@@ -15,6 +15,13 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
+  default_tags {
+    tags = {
+      Owner       = "AxelarScan"
+      Environment = var.environment
+      Terraform   = true
+    }
+  }
 }
 
 provider "archive" {}

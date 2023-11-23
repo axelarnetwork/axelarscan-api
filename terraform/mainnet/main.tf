@@ -14,7 +14,14 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.aws_region
+  region = var.aws_region
+  default_tags {
+    tags = {
+      Owner       = "AxelarScan"
+      Environment = var.environment
+      Terraform   = true
+    }
+  }
 }
 
 provider "archive" {}
@@ -39,7 +46,7 @@ data "aws_iam_policy_document" "policy" {
 }
 
 data "aws_iam_role" "role" {
-  name = "${var.iam_role}"
+  name = var.iam_role
 }
 
 resource "aws_iam_policy_attachment" "attachment" {
@@ -71,7 +78,7 @@ resource "aws_lambda_function" "api" {
       LOG_LEVEL                  = var.log_level
     }
   }
-  kms_key_arn      = ""
+  kms_key_arn = ""
 }
 
 resource "aws_lambda_provisioned_concurrency_config" "config" {
@@ -88,8 +95,8 @@ resource "aws_apigatewayv2_api" "api" {
     allow_headers = ["*"]
     allow_methods = ["*"]
   }
-  route_key     = "ANY /${aws_lambda_function.api.function_name}"
-  target        = aws_lambda_function.api.arn
+  route_key = "ANY /${aws_lambda_function.api.function_name}"
+  target    = aws_lambda_function.api.arn
 }
 
 resource "aws_apigatewayv2_route" "route_default" {
@@ -147,7 +154,7 @@ resource "aws_lambda_function" "axelar_crawler" {
       LOG_LEVEL        = var.log_level
     }
   }
-  kms_key_arn      = ""
+  kms_key_arn = ""
 }
 
 resource "aws_cloudwatch_event_rule" "schedule_axelar_crawler" {
@@ -184,7 +191,7 @@ resource "aws_lambda_function" "evm_crawler" {
       LOG_LEVEL        = var.log_level
     }
   }
-  kms_key_arn      = ""
+  kms_key_arn = ""
 }
 
 resource "aws_cloudwatch_event_rule" "schedule_evm_crawler" {
