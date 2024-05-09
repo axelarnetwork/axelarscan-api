@@ -162,6 +162,7 @@ module.exports = {
   IBC_CHANNEL_COLLECTION: 'ibc_channels',
   TVL_COLLECTION: 'tvls',
   TOKEN_PRICE_COLLECTION: 'token_prices',
+  TOKEN_CIRCULATING_SUPPLY_COLLECTION: 'token_circulating_supplys',
   EXCHANGE_RATE_COLLECTION: 'exchange_rates',
   AXELAR_CONFIG_COLLECTION,
   PRICE_ORACLE_API: 'https://api.coingecko.com/api/v3/',

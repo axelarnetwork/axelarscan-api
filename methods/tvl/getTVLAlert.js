@@ -69,14 +69,15 @@ module.exports = async params => {
           } :
           {
             chains: Object.entries({ ...tvl }).filter(([k, v]) => v?.is_abnormal_supply).map(([k, v]) => {
-              const { percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance, ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance, url } = { ...v };
+              const { percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance, token_manager_address, token_manager_type, token_manager_balance, ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance, url } = { ...v };
               let { supply } = { ...v };
               if (k === native_chain && k !== 'axelarnet') {
                 const { total } = { ...tvl?.axelarnet };
                 supply = isNumber(total) ? total : supply;
               }
               return {
-                chain: k, percent_diff_supply, ontract_data, denom_data, gateway_address, gateway_balance,
+                chain: k, percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance,
+                token_manager_address, token_manager_type, token_manager_balance,
                 ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance,
                 supply, link: d.url,
               };
