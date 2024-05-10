@@ -207,7 +207,7 @@ FX:
 C4E:
   coingecko_id: "c4e"
   default_price:
-    usd: 0.01
+    usd: 0.02
   decimals: 6
 BTSG:
   coingecko_id: "bitsong"
@@ -752,6 +752,8 @@ uscrt:
   redirect: "SCRT"
 ustars:
   redirect: "STARS"
+uc4e:
+  redirect: "C4E"
 dot-planck:
   redirect: "DOT"
 uusd:
