@@ -131,7 +131,7 @@ module.exports = async params => {
                   contract_data, gateway_address, gateway_balance,
                   ...(isLockUnlock ? { token_manager_address, token_manager_type, token_manager_balance } : undefined),
                   supply, total: isNativeOnCosmos ? 0 : gateway_balance + supply,
-                  url: url && `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gateway_address : address)}${isNative && address !== ZeroAddress && gateway_address && assetType !== 'its' ? `?a=${gateway_address}` : ''}`,
+                  url: url && `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gateway_address : address)}${isNative && address !== ZeroAddress ? gateway_address && assetType !== 'its' ? `?a=${gateway_address}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}`,
                   success: isNumber(isNative && assetType !== 'its' ? gateway_balance : supply),
                 };
               }
