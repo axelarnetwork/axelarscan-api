@@ -105,7 +105,7 @@ module.exports = async params => {
     const isNativeOnEVM = !!getChainData(native_chain, 'evm');
     const isNativeOnCosmos = !!getChainData(native_chain, 'cosmos');
     const isNativeOnAxelarnet = native_chain === 'axelarnet';
-    const isCanonicalITS = assetType === 'its' && Object.values({ ...addresses }).find(d => d.token_manager_type?.startsWith('lockUnlock'));
+    const isCanonicalITS = assetType === 'its' && Object.values({ ...addresses }).findIndex(d => d.token_manager_type?.startsWith('lockUnlock')) > -1;
 
     let tvl = Object.fromEntries((await Promise.all(
       _.concat(evmChainsData, cosmosChainsData).map(d => new Promise(async resolve => {
@@ -229,7 +229,7 @@ module.exports = async params => {
     const percent_diff_supply = evm_escrow_address ? evm_escrow_balance > 0 && total_on_evm > 0 ? Math.abs(evm_escrow_balance - total_on_evm) * 100 / evm_escrow_balance : null : total > 0 && total_on_evm >= 0 && total_on_cosmos >= 0 && total_on_evm + total_on_cosmos > 0 ? Math.abs(total - (total_on_evm + total_on_cosmos)) * 100 / total : null;
 
     const pricesData = await getTokensPrice({ symbol: asset });
-    const { price } = { ...(pricesData?.[asset] || Object.values({ ...pricesData }).find(d => d.denom === asset)) };
+    const { price } = { ...(pricesData?.[asset] || pricesData?.[assetData?.symbol] || Object.values({ ...pricesData }).find(d => d.denom === asset)) };
     data.push({
       asset, assetType, price,
       tvl, total_on_evm, total_on_cosmos, total,
