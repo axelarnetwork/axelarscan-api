@@ -15,10 +15,10 @@ module.exports = async params => {
   test = toBoolean(test, false);
   const { alert_asset_value_threshold } = { ...getTVLConfig() };
 
-  let { data } = { ...await read(TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 100 }) };
+  let { data } = { ...await read(TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 1000 }) };
   const { updated_at } = { ..._.head(data) };
 
-  data = _.orderBy(toArray(toArray(data).map(d => _.head(d.data))).map(d => {
+  data = _.orderBy(toArray(toArray(data).filter(d => d.assetType !== 'its').map(d => _.head(d.data))).map(d => {
     const { price, total, percent_diff_supply } = { ...d };
     return { ...d, value: toNumber(total * price), value_diff: toNumber(total * (percent_diff_supply / 100) * price) };
   }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
