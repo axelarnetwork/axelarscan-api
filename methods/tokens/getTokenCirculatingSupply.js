@@ -7,7 +7,7 @@ const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
 module.exports = async coingeckoId => {
-  if (coingeckoId) return;
+  if (!coingeckoId) return;
 
   const cacheId = coingeckoId;
   // get circulating supply from cache
