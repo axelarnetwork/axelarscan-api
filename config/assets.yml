@@ -4599,7 +4599,7 @@ testnet:
         ibc_denom: "ibc/4BDF2D63B8FFE3454AF30E9BC10D2D7979BD3A938D989889ABC94FC5B86F1E2D"
       fxcore:
         ibc_denom: "ibc/A4CEA4766647FE70F414F9AE310F38B85B5D6C4F38A893E0072D735153B36845"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/6F34E1BD664C36CE49ACC28E60D62559A5F96C4F9A6CCE4FC5A67B2852E24CFE"
       terra-3:
         ibc_denom: "ibc/720B52BDE1E2B84C5898D07C983B085C77EB5ED2D4C0ACD56B882A14777F750C"
@@ -4787,7 +4787,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/0DBF4A36139D93F477A728CBA10DFB4DD915D39D4FF440C312E53E7589B2BE89"
         symbol: "axlETH"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/29320BE25C3BF64A2355344625410899C1EB164038E328531C36095B0AA8BBFC"
         symbol: "axlETH"
       terra-3:
@@ -4966,7 +4966,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/6D57CC97C38769E83360454569DCD1EF9D8FD3A220EE9D65AFA11DE94D320A67"
         symbol: "axlBNB"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/55E995E3FD16C2C717A18D818A862E90A8414D1C7FCBA9B9349DB944275C98A3"
         symbol: "axlBNB"
       terra-3:
@@ -5120,7 +5120,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/C42B67A2559609F974D54BA91F33C2E458BB3C783EB0C1F298DA21BC9BF191A6"
         symbol: "axlMATIC"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/2B5D096F5732F3BADBFB987FE42FDA24B3569514BC5DFDEA1BC042B223A0CED3"
         symbol: "axlMATIC"
       terra-3:
@@ -5274,7 +5274,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/7F7DB257AE11CB585B14B298C160A271ABC024EEC2CA894DD5B9B3E6D83A1FDE"
         symbol: "axlAVAX"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/609C07B33C99E40A50498BDDECDD14D8BCC89D1A14D4E36053082AEA2E8D193D"
         symbol: "axlAVAX"
       terra-3:
@@ -5431,7 +5431,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/A1F450E3D6FBEE7742642B0699D70E3508167302BEC78BC4E5C1ECDFF1CA73E9"
         symbol: "axlFTM"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/055E7CBD9F1EF910CA7CA1DD293B39439CB33172F929194855DBAC6CB3081B95"
         symbol: "axlFTM"
       terra-3:
@@ -5585,7 +5585,7 @@ testnet:
       fxcore:
         ibc_denom: "ibc/C3467FC3FEF4285B822DC1915E1C13FA6CE7817D4747663E83D2E6F9936CC1F2"
         symbol: "axlDEV"
-      chain4energy:
+      c4e:
         ibc_denom: "ibc/76C8C560FDE4EFE9F4AEFB0679E6D523CFF6A62BCD3F9541E8F6E3DA6831550E"
         symbol: "axlDEV"
       terra-3:

@@ -46,10 +46,7 @@ const getChain = (chain, options) => {
   const { fromConfig } = { ...options };
   let { env } = { ...options };
   env = env || ENVIRONMENT;
-  const chainsLookup = {
-    c4e: env !== 'mainnet' ? undefined : 'chain4energy',
-    terra: env !== 'mainnet' ? 'terra-3' : undefined,
-  };
+  const chainsLookup = { terra: env !== 'mainnet' ? 'terra-3' : undefined };
   if (fromConfig && chainsLookup[chain]) return chainsLookup[chain];
   return getChainData(chain)?.id || chain;
 };

@@ -1755,9 +1755,9 @@ mainnet:
       prefix_address: "fx"
       prefix_chain_ids:
         - "fxcore"
-    chain4energy:
+    c4e:
       chain_id: "perun-1"
-      chain_name: "chain4energy"
+      chain_name: "c4e"
       endpoints:
         lcd:
           - "https://lcd.c4e.io"
@@ -1770,12 +1770,12 @@ mainnet:
         decimals: 6
       name: "Chain4Energy"
       short_name: "C4E"
-      image: "/logos/chains/chain4energy.svg"
+      image: "/logos/chains/c4e.svg"
       color: "#77b229"
       explorer:
         name: "Chain4Energy"
         url: "https://explorer.c4e.io"
-        icon: "/logos/explorers/chain4energy.png"
+        icon: "/logos/explorers/c4e.png"
         block_path: "/blocks/{block}"
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
@@ -3587,9 +3587,9 @@ testnet:
       prefix_address: "fx"
       prefix_chain_ids:
         - "dhobyghaut"
-    chain4energy:
+    c4e:
       chain_id: "babajaga-1"
-      chain_name: "chain4energy"
+      chain_name: "c4e"
       endpoints:
         lcd:
           - "https://lcd-testnet.c4e.io"
@@ -3602,12 +3602,12 @@ testnet:
         decimals: 6
       name: "Chain4Energy"
       short_name: "C4E"
-      image: "/logos/chains/chain4energy.svg"
+      image: "/logos/chains/c4e.svg"
       color: "#77b229"
       explorer:
         name: "Chain4Energy"
         url: "https://explorer-testnet.c4e.io"
-        icon: "/logos/explorers/chain4energy.png"
+        icon: "/logos/explorers/c4e.png"
         block_path: "/blocks/{block}"
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
