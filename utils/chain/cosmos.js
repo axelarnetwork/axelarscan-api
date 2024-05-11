@@ -70,10 +70,20 @@ const getIBCSupply = async (chain, denomData) => {
     supply = amount;
     valid = !!(supply && supply !== '0');
   }
+
   if (!valid) {
-    const response = await lcds.query('/cosmos/bank/v1beta1/supply', { 'pagination.limit': 10000 });
-    supply = toArray(response?.supply).find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
-    if (!(supply && supply !== '0') && response?.supply) supply = '0';
+    let responsive = false;
+    let supplies = [];
+    let nextKey = true;
+    while (nextKey) {
+      const response = await lcds.query('/cosmos/bank/v1beta1/supply', { 'pagination.limit': 3000, 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined });
+      responsive = responsive || !!response?.supply;
+      supplies = _.concat(supplies, toArray(response?.supply));
+      nextKey = response?.pagination?.next_key;
+    }
+
+    supply = supplies.find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
+    if (!(supply && supply !== '0') && responsive) supply = '0';
     valid = isNumber(supply);
   }
   return valid ? formatUnits(supply, decimals || 6, false) : null;
