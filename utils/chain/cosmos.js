@@ -80,9 +80,11 @@ const getIBCSupply = async (chain, denomData) => {
       responsive = responsive || !!response?.supply;
       supplies = _.concat(supplies, toArray(response?.supply));
       nextKey = response?.pagination?.next_key;
+
+      supply = supplies.find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
+      if (isNumber(supply) && nextKey) break;
     }
 
-    supply = supplies.find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
     if (!(supply && supply !== '0') && responsive) supply = '0';
     valid = isNumber(supply);
   }
