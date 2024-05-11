@@ -179,7 +179,7 @@ module.exports = async params => {
                 supply = isNumber(supply) ? toNumber(supply) : supply;
                 const totalSupply = isNativeOnCosmos ? toNumber(await getIBCSupply('axelarnet', denom_data)) : 0;
                 const percent_diff_supply = isNativeOnCosmos ? totalSupply > 0 && source_escrow_balance > 0 ? Math.abs(source_escrow_balance - totalSupply) * 100 / source_escrow_balance : null : supply > 0 && escrow_balance > 0 ? Math.abs(escrow_balance - supply) * 100 / escrow_balance : null;
-                let total = isNotNativeOnAxelarnet ? toNumber(await getIBCSupply(id, denom_data)) : isNativeOnCosmos ? toNumber(await getIBCSupply('axelarnet', { ...denom_data, ibc_denom: denom_data.denom })) : isSecretSnip ? escrow_balance : 0;
+                let total = isNotNativeOnAxelarnet ? await getIBCSupply(id, denom_data) : isNativeOnCosmos ? await getIBCSupply('axelarnet', { ...denom_data, ibc_denom: denom_data.denom }) : isSecretSnip ? escrow_balance : 0;
                 total = isNumber(total) ? toNumber(total) : total;
 
                 result = {
