@@ -77,12 +77,12 @@ const getIBCSupply = async (chain, denomData) => {
     let nextKey = true;
     while (nextKey) {
       const response = await lcds.query('/cosmos/bank/v1beta1/supply', { 'pagination.limit': 3000, 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined });
-      responsive = responsive || !!response?.supply;
       supplies = _.concat(supplies, toArray(response?.supply));
       nextKey = response?.pagination?.next_key;
 
       supply = supplies.find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
-      if (isNumber(supply) && nextKey) break;
+      responsive = isNumber(supply) || !!response?.supply;
+      if ((isNumber(supply) && nextKey) || !responsive) break;
     }
 
     if (!(supply && supply !== '0') && responsive) supply = '0';
