@@ -5837,7 +5837,7 @@ stagenet:
 
 
 
-devnet:
+devnet-amplifier:
   uaxl:
     denom: "uaxl"
     native_chain: "axelarnet"

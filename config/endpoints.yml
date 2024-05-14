@@ -35,11 +35,11 @@ stagenet:
 
 
 
-devnet:
+devnet-amplifier:
   rpc: "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:26657"
   lcd: "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:1317"
-  api: "https://devnet.api.axelarscan.io/api"
-  gmp_api: "https://devnet.api.axelarscan.io/gmp"
-  token_transfer_api: "https://devnet.api.axelarscan.io/token"
-  validator_api: "https://devnet.api.axelarscan.io/validator"
-  app: "https://devnet.axelarscan.io"
+  api: "https://devnet-amplifier.api.axelarscan.io/api"
+  gmp_api: "https://devnet-amplifier.api.axelarscan.io/gmp"
+  token_transfer_api: "https://devnet-amplifier.api.axelarscan.io/token"
+  validator_api: "https://devnet-amplifier.api.axelarscan.io/validator"
+  app: "https://devnet-amplifier.axelarscan.io"

@@ -95,7 +95,7 @@ stagenet:
 
 
 
-devnet:
+devnet-amplifier:
   max_supply: 1000000000
   initial_unlocked_percent: 0
   community_sale:

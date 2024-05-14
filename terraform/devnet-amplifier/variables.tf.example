@@ -20,7 +20,7 @@ variable "package_name" {
 
 variable "environment" {
   description = "Environment"
-  default     = "devnet"
+  default     = "devnet-amplifier"
 }
 
 variable "indexer_url" {

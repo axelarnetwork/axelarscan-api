@@ -4143,7 +4143,7 @@ stagenet:
 
 
 
-devnet:
+devnet-amplifier:
   evm:
   cosmos:
     axelarnet:
@@ -4167,7 +4167,7 @@ devnet:
       color: "#abaaaa"
       explorer:
         name: "Axelarscan"
-        url: "https://devnet.axelarscan.io"
+        url: "https://devnet-amplifier.axelarscan.io"
         icon: "/logos/explorers/axelarscan.svg"
         block_path: "/block/{block}"
         address_path: "/account/{address}"

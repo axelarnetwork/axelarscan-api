@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "axelar-terraform"
-    key    = "services/axelarscan/devnet/terraform.tfstate"
+    key    = "services/axelarscan/devnet-amplifier/terraform.tfstate"
     region = "us-east-2"
   }
   required_providers {
@@ -28,8 +28,8 @@ locals {
   url_subpath_api_mapping = "api" # map apigw to url subpath /api from aws_api_gateway_domain_name
 }
 
-data "aws_api_gateway_domain_name" "devnet" {
-  domain_name = "devnet.api.axelarscan.io"
+data "aws_api_gateway_domain_name" "devnet_amplifier" {
+  domain_name = "devnet-amplifier.api.axelarscan.io"
 }
 
 resource "aws_iam_role" "lambda_role" {
@@ -175,15 +175,15 @@ resource "aws_apigatewayv2_route" "default" {
   target    = "integrations/${aws_apigatewayv2_integration.api.id}"
 }
 
-resource "aws_apigatewayv2_stage" "devnet" {
+resource "aws_apigatewayv2_stage" "devnet_amplifier" {
   api_id      = aws_apigatewayv2_api.api.id
   auto_deploy = true
   name        = var.environment
 }
 
-resource "aws_apigatewayv2_api_mapping" "devnet" {
+resource "aws_apigatewayv2_api_mapping" "devnet-amplifier" {
   api_id          = aws_apigatewayv2_api.api.id
-  domain_name     = data.aws_api_gateway_domain_name.devnet.id
-  stage           = aws_apigatewayv2_stage.devnet.id
+  domain_name     = data.aws_api_gateway_domain_name.devnet_amplifier.id
+  stage           = aws_apigatewayv2_stage.devnet_amplifier.id
   api_mapping_key = local.url_subpath_api_mapping
 }
