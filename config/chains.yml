@@ -4140,3 +4140,69 @@ stagenet:
       prefix_chain_ids:
         - "osmosis-"
         - "osmo-test-"
+
+
+
+devnet:
+  evm:
+  cosmos:
+    axelarnet:
+      chain_id: "axelar-stagenet-1"
+      chain_name: "Axelarnet"
+      aliases:
+        - "axelar"
+      endpoints:
+        lcd:
+          - "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:1317"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Axelar"
+        symbol: "AXL"
+        denom: "uaxl"
+        decimals: 6
+      name: "Axelar"
+      short_name: "AXELAR"
+      image: "/logos/chains/axelarnet.svg"
+      color: "#abaaaa"
+      explorer:
+        name: "Axelarscan"
+        url: "https://devnet.axelarscan.io"
+        icon: "/logos/explorers/axelarscan.svg"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+      prefix_address: "axelar"
+      prefix_chain_ids:
+        - "axelar-"
+    osmosis:
+      chain_id: "osmo-test-5"
+      chain_name: "osmosis-7"
+      endpoints:
+        lcd:
+          - "https://lcd.osmotest5.osmosis.zone"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Osmosis"
+        symbol: "OSMO"
+        denom: "uosmo"
+        decimals: 6
+      name: "Osmosis"
+      short_name: "OSMO"
+      image: "/logos/chains/osmosis.svg"
+      color: "#d705cc"
+      explorer:
+        name: "Mintscan"
+        url: "https://www.mintscan.io/osmosis-testnet"
+        icon: "/logos/explorers/mintscan.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/txs/{tx}"
+        asset_path: "/assets/ibc/{ibc_denom}"
+      prefix_address: "osmo"
+      prefix_chain_ids:
+        - "osmosis-"
+        - "osmo-test-"

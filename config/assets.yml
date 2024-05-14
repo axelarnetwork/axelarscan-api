@@ -5834,3 +5834,17 @@ stagenet:
     addresses:
       axelarnet:
         ibc_denom: "uaxl"
+
+
+
+devnet:
+  uaxl:
+    denom: "uaxl"
+    native_chain: "axelarnet"
+    name: "Axelar"
+    symbol: "AXL"
+    decimals: 6
+    image: "/logos/assets/axl.svg"
+    addresses:
+      axelarnet:
+        ibc_denom: "uaxl"
