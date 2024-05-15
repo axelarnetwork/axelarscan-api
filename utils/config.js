@@ -68,7 +68,7 @@ const getAxelarConfig = async (env = ENVIRONMENT, forceCache = false) => {
 
 const getAssets = async (env = ENVIRONMENT) => {
   const assetsData = _.cloneDeep(assets[env]);
-  env = env !== 'mainnet' ? 'testnet' : env;
+  env = env === 'stagenet' ? 'testnet' : env;
   const response = await getAxelarConfig(env);
 
   Object.values({ ...response?.assets }).filter(d => d.type === 'gateway').forEach(d => {
@@ -101,7 +101,7 @@ const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
 
 const getITSAssets = async (env = ENVIRONMENT) => {
   const assetsData = _.cloneDeep(toArray(its_assets[env]));
-  env = env !== 'mainnet' ? 'testnet' : env;
+  env = env === 'stagenet' ? 'testnet' : env;
   const response = await getAxelarConfig(env);
 
   Object.values({ ...response?.assets }).filter(d => ['customInterchain', 'interchain', 'canonical'].includes(d.type)).forEach(d => {
