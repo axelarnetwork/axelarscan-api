@@ -4140,3 +4140,532 @@ stagenet:
       prefix_chain_ids:
         - "osmosis-"
         - "osmo-test-"
+
+
+
+devnet-amplifier:
+  evm:
+    ethereum-sepolia:
+      chain_id: 11155111
+      chain_name: "ethereum-sepolia"
+      maintainer_id: "ethereum-sepolia"
+      endpoints:
+        rpc:
+          - "https://1rpc.io/sepolia"
+          - "https://ethereum-sepolia.publicnode.com"
+          - "https://endpoints.omniatech.io/v1/eth/sepolia/public"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Ethereum Sepolia"
+      short_name: "ETH"
+      image: "/logos/chains/ethereum.svg"
+      color: "#c0c2c3"
+      explorer:
+        name: "Etherscan"
+        url: "https://sepolia.etherscan.io"
+        icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    binance:
+      chain_id: 97
+      chain_name: "binance"
+      maintainer_id: "binance"
+      endpoints:
+        rpc:
+          - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
+          - "https://bsc-testnet.blockpi.network/v1/rpc/public"
+          - "https://bsc-testnet.public.blastapi.io"
+          - "https://rpc.ankr.com/bsc_testnet_chapel"
+      native_token:
+        name: "BNB"
+        symbol: "BNB"
+        decimals: 18
+      name: "BNB Chain"
+      short_name: "BNB"
+      image: "/logos/chains/binance.png"
+      color: "#e8b30b"
+      explorer:
+        name: "BscScan"
+        url: "https://testnet.bscscan.com"
+        icon: "/logos/explorers/bscscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    polygon-sepolia:
+      chain_id: 80002
+      chain_name: "polygon-sepolia"
+      maintainer_id: "polygon-sepolia"
+      endpoints:
+        rpc:
+          - "https://rpc-amoy.polygon.technology"
+          - "https://rpc.ankr.com/polygon_amoy"
+      native_token:
+        name: "Polygon"
+        symbol: "MATIC"
+        decimals: 18
+      name: "Polygon Sepolia"
+      short_name: "POLYGON"
+      image: "/logos/chains/polygon.svg"
+      color: "#8247e5"
+      explorer:
+        name: "Polygonscan"
+        url: "https://amoy.polygonscan.com"
+        icon: "/logos/explorers/polygonscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    avalanche:
+      chain_id: 43113
+      chain_name: "Avalanche"
+      maintainer_id: "avalanche"
+      endpoints:
+        rpc:
+          - "https://api.avax-test.network/ext/bc/C/rpc"
+          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://rpc.ankr.com/avalanche_fuji"
+      native_token:
+        name: "Avalanche"
+        symbol: "AVAX"
+        decimals: 18
+      name: "Avalanche"
+      short_name: "AVAX"
+      image: "/logos/chains/avalanche.svg"
+      color: "#e84143"
+      explorer:
+        name: "Snowtrace"
+        url: "https://testnet.snowtrace.io"
+        icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    fantom:
+      chain_id: 4002
+      chain_name: "Fantom"
+      maintainer_id: "fantom"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.fantom.network"
+          - "https://fantom-testnet.public.blastapi.io"
+          - "https://rpc.ankr.com/fantom_testnet"
+      native_token:
+        name: "Fantom"
+        symbol: "FTM"
+        decimals: 18
+      name: "Fantom"
+      short_name: "FTM"
+      image: "/logos/chains/fantom.svg"
+      color: "#1869ff"
+      explorer:
+        name: "FTMScan"
+        url: "https://testnet.ftmscan.com"
+        icon: "/logos/explorers/ftmscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    moonbeam:
+      chain_id: 1287
+      chain_name: "Moonbeam"
+      maintainer_id: "moonbeam"
+      endpoints:
+        rpc:
+          - "https://rpc.api.moonbase.moonbeam.network"
+          - "https://rpc.testnet.moonbeam.network"
+          - "https://moonbase-alpha.public.blastapi.io"
+      native_token:
+        name: "Dev"
+        symbol: "DEV"
+        decimals: 18
+      name: "Moonbase"
+      short_name: "MOONBASE"
+      image: "/logos/chains/moonbase.png"
+      color: "#53cbc8"
+      explorer:
+        name: "Moonscan"
+        url: "https://moonbase.moonscan.io"
+        icon: "/logos/explorers/moonbeam.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    arbitrum-sepolia:
+      chain_id: 421614
+      chain_name: "arbitrum-sepolia"
+      maintainer_id: "arbitrum-sepolia"
+      endpoints:
+        rpc:
+          - "https://arbitrum-sepolia.blockpi.network/v1/rpc/public"
+          - "https://sepolia-rollup.arbitrum.io/rpc"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Arbitrum Sepolia"
+      short_name: "ARB"
+      image: "/logos/chains/arbitrum.svg"
+      color: "#28a0f0"
+      explorer:
+        name: "Arbiscan"
+        url: "https://sepolia.arbiscan.io"
+        icon: "/logos/explorers/arbiscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    optimism-sepolia:
+      chain_id: 11155420
+      chain_name: "optimism-sepolia"
+      maintainer_id: "optimism-sepolia"
+      endpoints:
+        rpc:
+          - "https://sepolia.optimism.io"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Optimism Sepolia"
+      short_name: "OP"
+      image: "/logos/chains/optimism.svg"
+      color: "#dc2626"
+      explorer:
+        name: "Etherscan"
+        url: "https://sepolia-optimism.etherscan.io"
+        icon: "/logos/explorers/optimism.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    base-sepolia:
+      chain_id: 84532
+      chain_name: "base-sepolia"
+      maintainer_id: "base-sepolia"
+      endpoints:
+        rpc:
+          - "https://rpc.notadegen.com/base/sepolia"
+          - "https://base-sepolia.blockpi.network/v1/rpc/public"
+          - "https://base-sepolia-rpc.publicnode.com"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Base Sepolia"
+      short_name: "BASE"
+      image: "/logos/chains/base.svg"
+      color: "#0052fe"
+      explorer:
+        name: "Basescan"
+        url: "https://sepolia.basescan.org"
+        icon: "/logos/explorers/basescan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    mantle-sepolia:
+      chain_id: 5003
+      chain_name: "mantle-sepolia"
+      maintainer_id: "mantle-sepolia"
+      endpoints:
+        rpc:
+          - "https://rpc.sepolia.mantle.xyz"
+      native_token:
+        name: "Mantle"
+        symbol: "MNT"
+        decimals: 18
+      name: "Mantle Sepolia"
+      short_name: "MNT"
+      image: "/logos/chains/mantle.svg"
+      color: "#65b3ae"
+      explorer:
+        name: "Mantle"
+        url: "https://explorer.sepolia.mantle.xyz"
+        icon: "/logos/explorers/mantle.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    celo:
+      chain_id: 44787
+      chain_name: "celo"
+      maintainer_id: "celo"
+      endpoints:
+        rpc:
+          - "https://alfajores-forno.celo-testnet.org"
+      native_token:
+        name: "Celo"
+        symbol: "CELO"
+        decimals: 18
+      name: "Celo"
+      short_name: "CELO"
+      image: "/logos/chains/celo.svg"
+      color: "#35d07f"
+      explorer:
+        name: "Celoscan"
+        url: "https://alfajores.celoscan.io"
+        icon: "/logos/explorers/celoscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    kava:
+      chain_id: 2221
+      chain_name: "kava"
+      maintainer_id: "kava"
+      endpoints:
+        rpc:
+          - "https://evm.testnet.kava.io"
+      native_token:
+        name: "Kava"
+        symbol: "KAVA"
+        decimals: 18
+      name: "Kava"
+      short_name: "KAVA"
+      image: "/logos/chains/kava.svg"
+      color: "#ff433e"
+      explorer:
+        name: "Kava"
+        url: "https://explorer.testnet.kava.io"
+        icon: "/logos/explorers/kava.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    filecoin-2:
+      chain_id: 314159
+      chain_name: "filecoin-2"
+      maintainer_id: "filecoin-2"
+      no_recover: true
+      endpoints:
+        rpc:
+          - "https://rpc.ankr.com/filecoin_testnet"
+          - "https://api.calibration.node.glif.io/rpc/v1"
+          - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
+          - "https://filecoin-calibration.chainup.net/rpc/v1"
+      native_token:
+        name: "Filecoin"
+        symbol: "FIL"
+        decimals: 18
+      name: "Filecoin Calibration"
+      short_name: "FIL"
+      image: "/logos/chains/filecoin.svg"
+      color: "#0090ff"
+      explorer:
+        name: "Filecoin"
+        url: "https://calibration.filfox.info"
+        icon: "/logos/explorers/filecoin.png"
+        block_path: "/tipset/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    linea-sepolia:
+      chain_id: 59141
+      chain_name: "linea-sepolia"
+      maintainer_id: "linea-sepolia"
+      endpoints:
+        rpc:
+          - "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://rpc.sepolia.linea.build"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Linea Sepolia"
+      short_name: "LINEA"
+      image: "/logos/chains/linea.svg"
+      color: "#62dfff"
+      explorer:
+        name: "Linea"
+        url: "https://sepolia.lineascan.build"
+        icon: "/logos/explorers/linea.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    centrifuge-2:
+      chain_id: 2090
+      chain_name: "centrifuge-2"
+      maintainer_id: "centrifuge-2"
+      no_recover: true
+      endpoints:
+        rpc:
+          - "https://fullnode.demo.k-f.dev"
+      native_token:
+        name: "Algol"
+        symbol: "ALGL"
+        decimals: 18
+      name: "Centrifuge"
+      short_name: "CFG"
+      image: "/logos/chains/centrifuge.svg"
+      color: "#ffc012"
+      explorer:
+        name: "Centrifuge"
+        url: ""
+        icon: "/logos/explorers/centrifuge.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    scroll:
+      chain_id: 534351
+      chain_name: "scroll"
+      maintainer_id: "scroll"
+      endpoints:
+        rpc:
+          - "https://sepolia-rpc.scroll.io"
+          - "https://rpc.ankr.com/scroll_sepolia_testnet"
+          - "https://1rpc.io/scroll/sepolia"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Scroll"
+      short_name: "SCROLL"
+      image: "/logos/chains/scroll.svg"
+      color: "#e4b67c"
+      explorer:
+        name: "Scrollscan"
+        url: "https://sepolia.scrollscan.com"
+        icon: "/logos/explorers/scroll.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    immutable:
+      chain_id: 13473
+      chain_name: "immutable"
+      maintainer_id: "immutable"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.immutable.com"
+      native_token:
+        name: "ImmutableX"
+        symbol: "tIMX"
+        decimals: 18
+      name: "Immutable"
+      short_name: "IMX"
+      image: "/logos/chains/immutable.svg"
+      color: "#0d0d0d"
+      explorer:
+        name: "Immutable"
+        url: "https://explorer.testnet.immutable.com"
+        icon: "/logos/explorers/immutable.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    fraxtal:
+      chain_id: 2522
+      chain_name: "fraxtal"
+      maintainer_id: "fraxtal"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.frax.com"
+      native_token:
+        name: "Frax Ether"
+        symbol: "frxETH"
+        decimals: 18
+      name: "Fraxtal"
+      short_name: "FRAXTAL"
+      image: "/logos/chains/fraxtal.svg"
+      color: "#111111"
+      explorer:
+        name: "Fraxtal"
+        url: "https://holesky.fraxscan.com"
+        icon: "/logos/explorers/fraxtal.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    blast-sepolia:
+      chain_id: 168587773
+      chain_name: "blast-sepolia"
+      maintainer_id: "blast-sepolia"
+      endpoints:
+        rpc:
+          - "https://sepolia.blast.io"
+          - "https://blast-sepolia.blockpi.network/v1/rpc/public"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Blast"
+      short_name: "BLAST"
+      image: "/logos/chains/blast.svg"
+      color: "#fefb1c"
+      explorer:
+        name: "Blast"
+        url: "https://testnet.blastscan.io"
+        icon: "/logos/explorers/blast.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+  cosmos:
+    axelarnet:
+      chain_id: "devnet-amplifier"
+      chain_name: "Axelarnet"
+      aliases:
+        - "axelar"
+      endpoints:
+        lcd:
+          - "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Axelar"
+        symbol: "AXL"
+        denom: "uaxl"
+        decimals: 6
+      name: "Axelar"
+      short_name: "AXELAR"
+      image: "/logos/chains/axelarnet.svg"
+      color: "#abaaaa"
+      explorer:
+        name: "Axelarscan"
+        url: "https://devnet-amplifier.axelarscan.io"
+        icon: "/logos/explorers/axelarscan.svg"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+      prefix_address: "axelar"
+      prefix_chain_ids:
+        - "devnet-amplifier"
+    osmosis:
+      chain_id: "osmo-test-5"
+      chain_name: "osmosis-7"
+      endpoints:
+        lcd:
+          - "https://lcd.osmotest5.osmosis.zone"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Osmosis"
+        symbol: "OSMO"
+        denom: "uosmo"
+        decimals: 6
+      name: "Osmosis"
+      short_name: "OSMO"
+      image: "/logos/chains/osmosis.svg"
+      color: "#d705cc"
+      explorer:
+        name: "Mintscan"
+        url: "https://www.mintscan.io/osmosis-testnet"
+        icon: "/logos/explorers/mintscan.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/txs/{tx}"
+        asset_path: "/assets/ibc/{ibc_denom}"
+      prefix_address: "osmo"
+      prefix_chain_ids:
+        - "osmosis-"
+        - "osmo-test-"

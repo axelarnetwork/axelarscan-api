@@ -53,7 +53,7 @@ const getChain = (chain, options) => {
 
 const AXELAR_CONFIG_COLLECTION = 'axelar_configs';
 const getAxelarConfig = async (env = ENVIRONMENT, forceCache = false) => {
-  env = env !== 'mainnet' ? 'testnet' : env;
+  env = env === 'stagenet' ? 'testnet' : env;
   let response;
   const cacheId = 'config';
   const { data, updated_at } = { ...(!forceCache ? await get(AXELAR_CONFIG_COLLECTION, cacheId) : undefined) };
@@ -74,7 +74,7 @@ const getAssets = async (env = ENVIRONMENT) => {
   Object.values({ ...response?.assets }).filter(d => d.type === 'gateway').forEach(d => {
     const existingDenom = Object.entries({ ...assets[env] }).find(([k, v]) => toArray(_.concat(v.denom, v.denoms)).includes(d.id))?.[0];
     const denom = existingDenom || d.id;
-    const image = existingDenom ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/') : `${response.resources?.staticAssetHost}${d.iconUrl}`;
+    const image = existingDenom ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/') : `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`;
     let { addresses } = { ...assetsData[denom] };
 
     Object.entries({ ...d.chains }).forEach(([k, v]) => {
@@ -124,7 +124,7 @@ const getITSAssets = async (env = ENVIRONMENT) => {
         symbol: d.prettySymbol,
         name: d.name,
         decimals: d.decimals,
-        image: `${response.resources?.staticAssetHost}${d.iconUrl}`,
+        image: `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
         coingecko_id: d.coingeckoId,
         addresses: _.uniq(toArray(Object.values({ ...d.chains }).map(_d => _d.tokenAddress))),
         native_chain: getChain(d.originAxelarChainId, { fromConfig: true }),

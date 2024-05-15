@@ -32,3 +32,14 @@ stagenet:
   token_transfer_api: "https://glhbed8wmg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/token"
   validator_api: "https://g45hmsa0tg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/validator"
   app: "https://stagenet.axelarscan.io"
+
+
+
+devnet-amplifier:
+  rpc: "http://devnet-amplifier.archive-node-rpc.axelarscan.io:80"
+  lcd: "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
+  api: "https://devnet-amplifier.api.axelarscan.io/api"
+  gmp_api: "https://devnet-amplifier.api.axelarscan.io/gmp"
+  token_transfer_api: "https://devnet-amplifier.api.axelarscan.io/token"
+  validator_api: "https://devnet-amplifier.api.axelarscan.io/validator"
+  app: "https://devnet-amplifier.axelarscan.io"
