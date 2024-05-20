@@ -4610,7 +4610,6 @@ testnet:
     symbol: "WBTC"
     decimals: 8
     image: "/logos/assets/wbtc.svg"
-    no_tvl: true
     addresses:
       ethereum:
         address: "0x5db5f7d211FA88266Fb316948da0D45798e5a22f"

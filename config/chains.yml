@@ -83,6 +83,7 @@ mainnet:
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
     polygon-zkevm:
+      disabled: true
       chain_id: 1101
       chain_name: "polygon-zkevm"
       maintainer_id: "polygon-zkevm"
@@ -410,6 +411,7 @@ mainnet:
       chain_name: "centrifuge"
       maintainer_id: "centrifuge"
       no_recover: true
+      no_tvl: true
       endpoints:
         rpc:
           - "https://fullnode.parachain.centrifuge.io"
