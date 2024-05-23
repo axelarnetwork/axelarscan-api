@@ -2479,6 +2479,7 @@ testnet:
       chain_id: 59140
       chain_name: "linea"
       maintainer_id: "linea"
+      deprecated: true
       endpoints:
         rpc:
           - "https://rpc.goerli.linea.build"
