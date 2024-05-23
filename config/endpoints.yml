@@ -43,3 +43,14 @@ devnet-amplifier:
   token_transfer_api: "https://devnet-amplifier.api.axelarscan.io/token"
   validator_api: "https://devnet-amplifier.api.axelarscan.io/validator"
   app: "https://devnet-amplifier.axelarscan.io"
+
+
+
+devnet-verifiers:
+  rpc: "http://devnet-verifiers.archive-node-rpc.axelarscan.io:80"
+  lcd: "http://devnet-verifiers.archive-node-lcd.axelarscan.io:80"
+  api: "https://devnet-verifiers.api.axelarscan.io/api"
+  gmp_api: "https://devnet-verifiers.api.axelarscan.io/gmp"
+  token_transfer_api: "https://devnet-verifiers.api.axelarscan.io/token"
+  validator_api: "https://devnet-verifiers.api.axelarscan.io/validator"
+  app: "https://devnet-verifiers.axelarscan.io"
