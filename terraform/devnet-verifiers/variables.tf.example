@@ -20,7 +20,7 @@ variable "package_name" {
 
 variable "environment" {
   description = "Environment"
-  default     = "testnet"
+  default     = "devnet-verifiers"
 }
 
 variable "indexer_url" {
