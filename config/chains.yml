@@ -3708,6 +3708,7 @@ testnet:
       prefix_chain_ids:
         - "pisco-"
     terra-2:
+      deprecated: true
       chain_name: "terra-2"
       endpoints:
         lcd:
