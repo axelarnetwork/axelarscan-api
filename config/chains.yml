@@ -2296,6 +2296,7 @@ testnet:
       maintainer_id: "optimism-sepolia"
       endpoints:
         rpc:
+          - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
           - "https://sepolia.optimism.io"
       native_token:
         name: "Ethereum"
@@ -4363,6 +4364,7 @@ devnet-amplifier:
       maintainer_id: "optimism-sepolia"
       endpoints:
         rpc:
+          - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
           - "https://sepolia.optimism.io"
       native_token:
         name: "Ethereum"
@@ -4892,6 +4894,7 @@ devnet-verifiers:
       maintainer_id: "optimism-sepolia"
       endpoints:
         rpc:
+          - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
           - "https://sepolia.optimism.io"
       native_token:
         name: "Ethereum"
