@@ -5,6 +5,7 @@ exports.handler = async (event = {}, context, callback) => {
   const intervalUpdate = require('./services/interval-update');
   const { parseParams, parseError, finalizeResponse } = require('./utils/io');
   const { ENVIRONMENT } = require('./utils/config');
+  const { toJson } = require('./utils/parser');
   const { log } = require('./utils/logger');
   const { version } = require('./package.json');
 
@@ -15,7 +16,7 @@ exports.handler = async (event = {}, context, callback) => {
     headers: event.headers,
     params: { ...event.pathParameters },
     query: { ...event.queryStringParameters },
-    body: { ...(event.body && JSON.parse(event.body)) },
+    body: { ...toJson(event.body) },
   };
   // create params from req
   const params = parseParams(req, 'api');
