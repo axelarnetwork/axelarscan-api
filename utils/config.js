@@ -7,6 +7,7 @@ const { get, write } = require('../services/indexer');
 const { request } = require('./http');
 const { toJson, toArray } = require('./parser');
 const { equalsIgnoreCase, capitalize, removeDoubleQuote } = require('./string');
+const { isNumber } = require('./number');
 const { timeDiff } = require('./time');
 
 const { methods, chains, assets, its_assets, endpoints, tokens, supply, tvl } = { ...config };
@@ -22,15 +23,18 @@ const getChains = (chainTypes = [], env = ENVIRONMENT) => {
       let no_tvl;
       switch (k) {
         case 'evm':
-          provider_params = [{
-            chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
-            chainName: `${_v.name} ${capitalize(env)}`,
-            rpcUrls: toArray(_v.endpoints?.rpc),
-            nativeCurrency: _v.native_token,
-            blockExplorerUrls: toArray([_v.explorer?.url]),
-          }];
-          no_inflation = !_v.maintainer_id || !!_v.deprecated;
-          no_tvl = _v.no_tvl || !!_v.deprecated;
+        case 'vm':
+          if (isNumber(_v.chain_id)) {
+            provider_params = [{
+              chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
+              chainName: `${_v.name} ${capitalize(env)}`,
+              rpcUrls: toArray(_v.endpoints?.rpc),
+              nativeCurrency: _v.native_token,
+              blockExplorerUrls: toArray([_v.explorer?.url]),
+            }];
+            no_inflation = !_v.maintainer_id || !!_v.deprecated;
+            no_tvl = _v.no_tvl || !!_v.deprecated;
+          }
           break;
         default:
           break;
