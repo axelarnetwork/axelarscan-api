@@ -218,6 +218,9 @@ NLS:
 LAVA:
   coingecko_id: "lava"
   decimals: 6
+WARD:
+  coingecko_id: ""
+  decimals: 6
 WHALE:
   coingecko_id: "white-whale"
   decimals: 6
