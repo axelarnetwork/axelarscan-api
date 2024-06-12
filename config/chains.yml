@@ -1545,6 +1545,7 @@ mainnet:
       chain_name: "migaloo"
       endpoints:
         lcd:
+          - "https://migaloo-api.polkachu.com"
           - "https://migaloo-api.lavenderfive.com"
         timeout:
           lcd: 3000
@@ -1603,6 +1604,7 @@ mainnet:
       chain_name: "haqq"
       endpoints:
         lcd:
+          - "https://api-1.haqq.nodes.guru"
           - "https://rest.cosmos.haqq.network"
         timeout:
           lcd: 3000
@@ -1816,7 +1818,9 @@ mainnet:
       chain_name: "bitsong"
       endpoints:
         lcd:
+          - "https://bitsong-api.polkachu.com"
           - "https://bitsong-api.lavenderfive.com"
+          - "https://api-bitsong-ia.cosmosia.notional.ventures"
         timeout:
           lcd: 3000
       native_token:
