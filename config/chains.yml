@@ -3698,7 +3698,7 @@ testnet:
       image: "/logos/chains/warden.svg"
       color: "#ffafee"
       explorer:
-        name: "Lava"
+        name: "Warden"
         url: "https://testnet.warden.explorers.guru"
         icon: "/logos/explorers/warden.png"
         block_path: "/block/{block}"
@@ -3708,6 +3708,35 @@ testnet:
       prefix_address: "warden"
       prefix_chain_ids:
         - "buenavista-"
+    nillion:
+      chain_id: "nillion-chain-testnet-1"
+      chain_name: "nillion"
+      endpoints:
+        lcd:
+          - "https://testnet-nillion-api.lavenderfive.com"
+          - "https://nillion-testnet-api.polkachu.com"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Nillion"
+        symbol: "NIL"
+        denom: "unil"
+        decimals: 6
+      name: "Nillion"
+      short_name: "NIL"
+      image: "/logos/chains/nillion.svg"
+      color: "#0000fe"
+      explorer:
+        name: "Nillion"
+        url: "https://testnet.nillion.explorers.guru"
+        icon: "/logos/explorers/nillion.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/transaction/{tx}"
+      prefix_address: "nillion"
+      prefix_chain_ids:
+        - "nillion-chain-testnet-"
     terra-3:
       chain_id: "pisco-1"
       chain_name: "terra-3"
