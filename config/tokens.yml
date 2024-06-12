@@ -221,6 +221,9 @@ LAVA:
 WARD:
   coingecko_id: ""
   decimals: 6
+NIL:
+  coingecko_id: ""
+  decimals: 6
 WHALE:
   coingecko_id: "white-whale"
   decimals: 6
