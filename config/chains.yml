@@ -2051,6 +2051,7 @@ testnet:
       chain_id: 80001
       chain_name: "Polygon"
       maintainer_id: "polygon"
+      deprecated: true
       endpoints:
         rpc:
           - "https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
@@ -2096,6 +2097,7 @@ testnet:
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
     polygon-zkevm:
+      disabled: true
       chain_id: 1442
       chain_name: "polygon-zkevm"
       maintainer_id: "polygon-zkevm"
@@ -2197,6 +2199,7 @@ testnet:
       chain_id: 1313161555
       chain_name: "aurora"
       maintainer_id: "aurora"
+      deprecated: true
       endpoints:
         rpc:
           - "https://testnet.aurora.dev"
