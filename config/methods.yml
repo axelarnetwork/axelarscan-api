@@ -543,7 +543,7 @@ methods:
       -
         name: "asset"
         type: "string"
-        description: "asset denom"
+        description: "asset denom; for ITS assets, please specify the ITS token ID."
         required: true
         default: "uaxl"
     response:
@@ -555,7 +555,7 @@ methods:
           -
             name: "asset"
             type: "string"
-            description: "asset denom from parameters"
+            description: "asset from parameters"
           -
             name: "assetType"
             type: "string"
