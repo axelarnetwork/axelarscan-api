@@ -160,17 +160,13 @@ ARCH:
   coingecko_id: "archway"
   decimals: 6
 HASH:
-  coingecko_id: "provenance"
-  default_price:
-    usd: 0.02
+  coingecko_id: "provenance-blockchain"
   decimals: 6
 TORI:
   coingecko_id: "teritori"
   decimals: 6
 ISLM:
-  coingecko_id: "islamiccoin"
-  default_price:
-    usd: 0.01
+  coingecko_id: "islamic-coin"
   decimals: 6
 TIA:
   coingecko_id: "celestia"
@@ -181,9 +177,7 @@ HUAHUA:
   coingecko_id: "chihuahua-token"
   decimals: 6
 ELYS:
-  coingecko_id: "elys"
-  default_price:
-    usd: 0.01
+  coingecko_id: "elys-network"
   decimals: 6
 OJO:
   coingecko_id: "ojo"
@@ -191,9 +185,7 @@ OJO:
     usd: 0.01
   decimals: 6
 SAGA:
-  coingecko_id: "saga"
-  default_price:
-    usd: 0.01
+  coingecko_id: "saga-2"
   decimals: 6
 DYM:
   coingecko_id: "dymension"
@@ -205,9 +197,7 @@ FX:
   coingecko_id: "fx-coin"
   decimals: 6
 C4E:
-  coingecko_id: "c4e"
-  default_price:
-    usd: 0.02
+  coingecko_id: "chain4energy"
   decimals: 6
 BTSG:
   coingecko_id: "bitsong"
@@ -524,9 +514,7 @@ VEXT:
   coingecko_id: "veloce-vext"
   decimals: 18
 OVN:
-  coingecko_id: "overnight"
-  default_price:
-    usd: 0.01
+  coingecko_id: "overnight-finance"
   decimals: 18
 EUROC:
   coingecko_id: "euro-coin"
