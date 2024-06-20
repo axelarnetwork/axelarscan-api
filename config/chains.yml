@@ -1726,6 +1726,38 @@ mainnet:
       prefix_address: "chihuahua"
       prefix_chain_ids:
         - "chihuahua-"
+    saga:
+      chain_id: "ssc-1"
+      chain_name: "saga"
+      endpoints:
+        lcd:
+          - "https://ssc-lcd.sagarpc.io"
+          - "https://saga-rest.publicnode.com"
+          - "https://api.saga.nodestake.org"
+          - "https://saga.api.kjnodes.com"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Saga"
+        symbol: "SAGA"
+        denom: "usaga"
+        decimals: 6
+      name: "Saga"
+      short_name: "SAGA"
+      image: "/logos/chains/saga.svg"
+      color: "#000000"
+      explorer:
+        name: "Mintscan"
+        url: "https://www.mintscan.io/saga"
+        icon: "/logos/explorers/mintscan.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/txs/{tx}"
+        asset_path: "/assets/ibc/{ibc_denom}"
+      prefix_address: "saga"
+      prefix_chain_ids:
+        - "ssc-"
     dymension:
       chain_id: "dymension_1100-1"
       chain_name: "dymension"
