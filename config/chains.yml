@@ -4283,6 +4283,8 @@ devnet-amplifier:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      service_registry:
+        address: "axelar1c9fkszt5lq34vvvlat3fxj6yv7ejtqapz04e97vtc9m5z9cwnamq8zjlhz"
       endpoints:
         lcd:
           - "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
@@ -4426,6 +4428,8 @@ devnet-verifiers:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      service_registry:
+        address: "axelar1qk00h5atutpsv900x202pxx42npjr9thg58dnqpa72f2p7m2luas9x8txw"
       endpoints:
         lcd:
           - "http://devnet-verifiers.archive-node-lcd.axelarscan.io:80"
