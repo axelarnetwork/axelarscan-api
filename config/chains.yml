@@ -1326,10 +1326,12 @@ mainnet:
       chain_name: "carbon"
       endpoints:
         lcd:
-          - "https://api.carbon.network"
           - "https://rest.carbon.blockhunters.org"
+          - "https://rest.carbon.bh.rocks"
+          - "https://api.carbon.network"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Carbon"
         symbol: "SWTH"
@@ -1392,6 +1394,7 @@ mainnet:
           - "https://api.novel.remedy.tm.p2p.org"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Neutron"
         symbol: "NTRN"
@@ -3245,6 +3248,7 @@ testnet:
           - "https://api.carbon-2.burnt.com/9909089ac2fa57a8f5661976ad0bcb3f0629372e5afa131e2e29e737588e505f"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Carbon"
         symbol: "SWTH"
@@ -3331,6 +3335,7 @@ testnet:
           - "https://api.baryon.remedy.tm.p2p.org"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Neutron"
         symbol: "NTRN"
