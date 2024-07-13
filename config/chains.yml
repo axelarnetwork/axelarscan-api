@@ -4288,6 +4288,8 @@ devnet-amplifier:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      router:
+        address: "axelar14jjdxqhuxk803e9pq64w4fgf385y86xxhkpzswe9crmu6vxycezst0zq8y"
       service_registry:
         address: "axelar1c9fkszt5lq34vvvlat3fxj6yv7ejtqapz04e97vtc9m5z9cwnamq8zjlhz"
       endpoints:
@@ -4433,6 +4435,8 @@ devnet-verifiers:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      router:
+        address: "axelar1q3g7fdqfpftqfpuakwn7x037k80wv35jj9ged7v5e798pds7hnasgj6azz"
       service_registry:
         address: "axelar1qk00h5atutpsv900x202pxx42npjr9thg58dnqpa72f2p7m2luas9x8txw"
       endpoints:
