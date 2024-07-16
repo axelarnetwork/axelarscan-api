@@ -165,9 +165,6 @@ HASH:
 TORI:
   coingecko_id: "teritori"
   decimals: 6
-ISLM:
-  coingecko_id: "islamic-coin"
-  decimals: 6
 TIA:
   coingecko_id: "celestia"
   decimals: 6
@@ -206,7 +203,9 @@ NLS:
   coingecko_id: "nolus"
   decimals: 6
 LAVA:
-  coingecko_id: "lava"
+  coingecko_id: "lava-network"
+  default_price:
+    usd: 1.00
   decimals: 6
 WARD:
   coingecko_id: ""
@@ -748,6 +747,8 @@ ustars:
   redirect: "STARS"
 uc4e:
   redirect: "C4E"
+ulava:
+  redirect: "LAVA"
 dot-planck:
   redirect: "DOT"
 uusd:
