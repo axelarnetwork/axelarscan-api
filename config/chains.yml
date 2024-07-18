@@ -1577,7 +1577,7 @@ mainnet:
       chain_name: "teritori"
       endpoints:
         lcd:
-          - "https://teritori-api.lavenderfive.com:443"
+          - "https://teritori-api.lavenderfive.com"
           - "https://teritori-api.polkachu.com"
         timeout:
           lcd: 3000
@@ -1704,7 +1704,7 @@ mainnet:
           - "https://chihuahua-api.lavenderfive.com"
           - "https://chihuahua-api.kleomedes.network"
           - "https://api-chihuahua.pupmos.network"
-          - "https://chihuahua-mainnet-lcd.autostake.com:443"
+          - "https://chihuahua-mainnet-lcd.autostake.com"
           - "https://chihuahua-rest.publicnode.com"
         timeout:
           lcd: 3000
@@ -1909,6 +1909,39 @@ mainnet:
       prefix_address: "nolus"
       prefix_chain_ids:
         - "pirin-"
+    lava:
+      chain_id: "lava-mainnet-1"
+      chain_name: "lava"
+      endpoints:
+        lcd:
+          - "https://lava-api.w3coins.io"
+          - "https://lava-api.ibs.team"
+          - "https://api.lava-mainnet-1.lava.aviaone.com"
+          - "https://lava-rest.publicnode.com"
+          - "https://lava.api.m.stavr.tech"
+          - "https://lava.api-archive.m.stavr.tech"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Lava"
+        symbol: "LAVA"
+        denom: "ulava"
+        decimals: 6
+      name: "Lava"
+      short_name: "LAVA"
+      image: "/logos/chains/lava.svg"
+      color: "#ff3900"
+      explorer:
+        name: "Lava"
+        url: "https://lava.explorers.guru"
+        icon: "/logos/explorers/lava.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/transaction/{tx}"
+      prefix_address: "lava@"
+      prefix_chain_ids:
+        - "lava-mainnet-"
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"
