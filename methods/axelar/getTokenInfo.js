@@ -15,7 +15,7 @@ module.exports = async params => {
   const { price } = { ...(data?.[symbol] || Object.values({ ...data }).find(d => d.denom === symbol)) };
   const supplyData = await getCirculatingSupply({ symbol, debug: true });
   const circulatingSupply = supplyData?.circulating_supply;
-  const totalSupply = denom === 'uaxl' ? await getTotalSupply({ asset: denom }) : null;
+  const totalSupply = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalSupply({ asset: denom }) : null;
   const updatedAt = supplyData?.updated_at || updated_at || moment().valueOf();
 
   switch (agent) {

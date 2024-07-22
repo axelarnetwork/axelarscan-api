@@ -4331,9 +4331,9 @@ devnet-amplifier:
         timeout:
           lcd: 3000
       native_token:
-        name: "Axelar"
-        symbol: "AXL"
-        denom: "uaxl"
+        name: "Amplifier"
+        symbol: "AMPLIFIER"
+        denom: "uamplifier"
         decimals: 6
       name: "Axelar"
       short_name: "AXELAR"
@@ -4478,9 +4478,9 @@ devnet-verifiers:
         timeout:
           lcd: 3000
       native_token:
-        name: "Axelar"
-        symbol: "AXL"
-        denom: "uaxl"
+        name: "Verifiers"
+        symbol: "VERIFIERS"
+        denom: "uverifiers"
         decimals: 6
       name: "Axelar"
       short_name: "AXELAR"
