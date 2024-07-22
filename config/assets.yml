@@ -5837,27 +5837,27 @@ stagenet:
 
 
 devnet-amplifier:
-  uaxl:
-    denom: "uaxl"
+  uamplifier:
+    denom: "uamplifier"
     native_chain: "axelarnet"
-    name: "Axelar"
-    symbol: "AXL"
+    name: "Amplifier"
+    symbol: "AMPLIFIER"
     decimals: 6
     image: "/logos/assets/axl.svg"
     addresses:
       axelarnet:
-        ibc_denom: "uaxl"
+        ibc_denom: "uamplifier"
 
 
 
 devnet-verifiers:
-  uaxl:
-    denom: "uaxl"
+  uverifiers:
+    denom: "uverifiers"
     native_chain: "axelarnet"
-    name: "Axelar"
-    symbol: "AXL"
+    name: "Verifiers"
+    symbol: "VERIFIERS"
     decimals: 6
     image: "/logos/assets/axl.svg"
     addresses:
       axelarnet:
-        ibc_denom: "uaxl"
+        ibc_denom: "uverifiers"

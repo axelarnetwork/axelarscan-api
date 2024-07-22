@@ -64,6 +64,12 @@ TIMX:
 AXL:
   coingecko_id: "axelar"
   decimals: 6
+VERIFIERS:
+  coingecko_id: "axelar"
+  decimals: 6
+AMPLIFIER:
+  coingecko_id: "axelar"
+  decimals: 6
 OSMO:
   coingecko_id: "osmosis"
   decimals: 6
@@ -563,6 +569,10 @@ axlSOMM:
 
 uaxl:
   redirect: "AXL"
+uverifiers:
+  redirect: "VERIFIERS"
+uamplifier:
+  redirect: "AMPLIFIER"
 uusdc:
   redirect: "USDC"
 polygon-uusdc:

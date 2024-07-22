@@ -1,4 +1,4 @@
-const { getLCD } = require('../../utils/config');
+const { ENVIRONMENT, getLCD } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
 
@@ -10,7 +10,7 @@ module.exports = async () => {
           resolve([k, (await request(getLCD(), { path: '/cosmos/staking/v1beta1/params' }))?.params]);
           break;
         case 'bankSupply':
-          resolve([k, (await request(getLCD(), { path: '/cosmos/bank/v1beta1/supply/uaxl' }))?.amount]);
+          resolve([k, (await request(getLCD(), { path: `/cosmos/bank/v1beta1/supply/${ENVIRONMENT === 'devnet-verifiers' ? 'uverifiers' : ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'}` }))?.amount]);
           break;
         case 'stakingPool':
           resolve([k, (await request(getLCD(), { path: '/cosmos/staking/v1beta1/pool' }))?.pool]);
