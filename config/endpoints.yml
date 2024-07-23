@@ -25,8 +25,8 @@ testnet:
 
 
 stagenet:
-  rpc: "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:26657"
-  lcd: "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:1317"
+  rpc: "http://stagenet.archive-node-rpc.axelarscan.io:80"
+  lcd: "http://stagenet.archive-node-lcd.axelarscan.io:80"
   api: "https://stagenet.api.axelarscan.io/api" # "https://v5uinwdgn2.execute-api.us-east-2.amazonaws.com"
   gmp_api: "https://stagenet.api.axelarscan.io/gmp" # "https://uwb67c0afj.execute-api.us-east-2.amazonaws.com"
   token_transfer_api: "https://glhbed8wmg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/token"
