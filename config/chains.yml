@@ -3904,31 +3904,6 @@ testnet:
 
 stagenet:
   evm:
-    ethereum-2:
-      chain_id: 5
-      chain_name: "ethereum-2"
-      maintainer_id: "ethereum-2"
-      endpoints:
-        rpc:
-          - "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://eth-goerli.public.blastapi.io"
-          - "https://rpc.ankr.com/eth_goerli"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Ethereum"
-      short_name: "ETH"
-      image: "/logos/chains/ethereum.svg"
-      color: "#c0c2c3"
-      explorer:
-        name: "Etherscan"
-        url: "https://goerli.etherscan.io"
-        icon: "/logos/explorers/etherscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     ethereum-sepolia:
       chain_id: 11155111
       chain_name: "ethereum-sepolia"
@@ -3982,25 +3957,25 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    polygon:
-      chain_id: 80001
-      chain_name: "Polygon"
-      maintainer_id: "polygon"
+    polygon-sepolia:
+      chain_id: 80002
+      chain_name: "polygon-sepolia"
+      maintainer_id: "polygon-sepolia"
       endpoints:
         rpc:
-          - "https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://rpc.ankr.com/polygon_mumbai"
+          - "https://rpc-amoy.polygon.technology"
+          - "https://rpc.ankr.com/polygon_amoy"
       native_token:
         name: "Polygon"
         symbol: "MATIC"
         decimals: 18
-      name: "Polygon"
+      name: "Polygon Sepolia"
       short_name: "POLYGON"
       image: "/logos/chains/polygon.svg"
       color: "#8247e5"
       explorer:
         name: "Polygonscan"
-        url: "https://mumbai.polygonscan.com"
+        url: "https://amoy.polygonscan.com"
         icon: "/logos/explorers/polygonscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
@@ -4081,34 +4056,6 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    arbitrum:
-      chain_id: 421613
-      chain_name: "arbitrum"
-      maintainer_id: "arbitrum"
-      endpoints:
-        rpc:
-          # - "https://goerli-rollup.arbitrum.io/rpc"
-          # - "https://endpoints.omniatech.io/v1/arbitrum/goerli/public"
-          # - "https://arb-goerli.g.alchemy.com/v2/demo"
-          - "https://arbitrum-goerli.publicnode.com"
-          - "https://arbitrum-goerli.blockpi.network/v1/rpc/public"
-          - "https://arbitrum-goerli.public.blastapi.io"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Arbitrum"
-      short_name: "ARB"
-      image: "/logos/chains/arbitrum.svg"
-      color: "#28a0f0"
-      explorer:
-        name: "Arbiscan"
-        url: "https://goerli.arbiscan.io"
-        icon: "/logos/explorers/arbiscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     arbitrum-sepolia:
       chain_id: 421614
       chain_name: "arbitrum-sepolia"
@@ -4133,49 +4080,97 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    optimism:
-      chain_id: 420
-      chain_name: "optimism"
-      maintainer_id: "optimism"
+    optimism-sepolia:
+      chain_id: 11155420
+      chain_name: "optimism-sepolia"
+      maintainer_id: "optimism-sepolia"
       endpoints:
         rpc:
-          - "https://optimism-goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://rpc.ankr.com/optimism_testnet"
+          - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
+          - "https://sepolia.optimism.io"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Optimism"
+      name: "Optimism Sepolia"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
       explorer:
         name: "Etherscan"
-        url: "https://goerli-optimism.etherscan.io"
+        url: "https://sepolia-optimism.etherscan.io"
         icon: "/logos/explorers/optimism.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    base:
-      chain_id: 84531
-      chain_name: "base"
-      maintainer_id: "base"
+    base-sepolia:
+      chain_id: 84532
+      chain_name: "base-sepolia"
+      maintainer_id: "base-sepolia"
       endpoints:
         rpc:
-          - "https://goerli.base.org"
+          - "https://rpc.notadegen.com/base/sepolia"
+          - "https://base-sepolia.blockpi.network/v1/rpc/public"
+          - "https://base-sepolia-rpc.publicnode.com"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Base"
+      name: "Base Sepolia"
       short_name: "BASE"
       image: "/logos/chains/base.svg"
       color: "#0052fe"
       explorer:
         name: "Basescan"
-        url: "https://goerli.basescan.org"
+        url: "https://sepolia.basescan.org"
         icon: "/logos/explorers/basescan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    mantle-sepolia:
+      chain_id: 5003
+      chain_name: "mantle-sepolia"
+      maintainer_id: "mantle-sepolia"
+      endpoints:
+        rpc:
+          - "https://rpc.sepolia.mantle.xyz"
+      native_token:
+        name: "Mantle"
+        symbol: "MNT"
+        decimals: 18
+      name: "Mantle Sepolia"
+      short_name: "MNT"
+      image: "/logos/chains/mantle.svg"
+      color: "#65b3ae"
+      explorer:
+        name: "Mantle"
+        url: "https://explorer.sepolia.mantle.xyz"
+        icon: "/logos/explorers/mantle.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    celo:
+      chain_id: 44787
+      chain_name: "celo"
+      maintainer_id: "celo"
+      endpoints:
+        rpc:
+          - "https://alfajores-forno.celo-testnet.org"
+      native_token:
+        name: "Celo"
+        symbol: "CELO"
+        decimals: 18
+      name: "Celo"
+      short_name: "CELO"
+      image: "/logos/chains/celo.svg"
+      color: "#35d07f"
+      explorer:
+        name: "Celoscan"
+        url: "https://alfajores.celoscan.io"
+        icon: "/logos/explorers/celoscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
@@ -4199,6 +4194,57 @@ stagenet:
         name: "Kava"
         url: "https://explorer.testnet.kava.io"
         icon: "/logos/explorers/kava.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    filecoin-2:
+      chain_id: 314159
+      chain_name: "filecoin-2"
+      maintainer_id: "filecoin-2"
+      no_recover: true
+      endpoints:
+        rpc:
+          - "https://rpc.ankr.com/filecoin_testnet"
+          - "https://api.calibration.node.glif.io/rpc/v1"
+          - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
+          - "https://filecoin-calibration.chainup.net/rpc/v1"
+      native_token:
+        name: "Filecoin"
+        symbol: "FIL"
+        decimals: 18
+      name: "Filecoin Calibration"
+      short_name: "FIL"
+      image: "/logos/chains/filecoin.svg"
+      color: "#0090ff"
+      explorer:
+        name: "Filecoin"
+        url: "https://calibration.filfox.info"
+        icon: "/logos/explorers/filecoin.png"
+        block_path: "/tipset/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    linea-sepolia:
+      chain_id: 59141
+      chain_name: "linea-sepolia"
+      maintainer_id: "linea-sepolia"
+      endpoints:
+        rpc:
+          - "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://rpc.sepolia.linea.build"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Linea Sepolia"
+      short_name: "LINEA"
+      image: "/logos/chains/linea.svg"
+      color: "#62dfff"
+      explorer:
+        name: "Linea"
+        url: "https://sepolia.lineascan.build"
+        icon: "/logos/explorers/linea.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
@@ -4227,6 +4273,31 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    scroll:
+      chain_id: 534351
+      chain_name: "scroll"
+      maintainer_id: "scroll"
+      endpoints:
+        rpc:
+          - "https://sepolia-rpc.scroll.io"
+          - "https://rpc.ankr.com/scroll_sepolia_testnet"
+          - "https://1rpc.io/scroll/sepolia"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Scroll"
+      short_name: "SCROLL"
+      image: "/logos/chains/scroll.svg"
+      color: "#e4b67c"
+      explorer:
+        name: "Scrollscan"
+        url: "https://sepolia.scrollscan.com"
+        icon: "/logos/explorers/scroll.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     immutable-devnet:
       chain_id: 15003
       chain_name: "immutable-devnet"
@@ -4246,6 +4317,53 @@ stagenet:
         name: "Immutable"
         url: "https://explorer.testnet.immutable.com"
         icon: "/logos/explorers/immutable.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    fraxtal:
+      chain_id: 2522
+      chain_name: "fraxtal"
+      maintainer_id: "fraxtal"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.frax.com"
+      native_token:
+        name: "Frax Ether"
+        symbol: "frxETH"
+        decimals: 18
+      name: "Fraxtal"
+      short_name: "FRAXTAL"
+      image: "/logos/chains/fraxtal.svg"
+      color: "#111111"
+      explorer:
+        name: "Fraxtal"
+        url: "https://holesky.fraxscan.com"
+        icon: "/logos/explorers/fraxtal.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    blast-sepolia:
+      chain_id: 168587773
+      chain_name: "blast-sepolia"
+      maintainer_id: "blast-sepolia"
+      endpoints:
+        rpc:
+          - "https://sepolia.blast.io"
+          - "https://blast-sepolia.blockpi.network/v1/rpc/public"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Blast"
+      short_name: "BLAST"
+      image: "/logos/chains/blast.svg"
+      color: "#fefb1c"
+      explorer:
+        name: "Blast"
+        url: "https://testnet.blastscan.io"
+        icon: "/logos/explorers/blast.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
