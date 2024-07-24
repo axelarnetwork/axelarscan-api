@@ -193,7 +193,7 @@ methods:
                       description: "symbol of asset on each chain"
   -
     id: "getITSAssets"
-    description: "The API route provides all its assets information supported on the Axelar network."
+    description: "The API route provides a list of ITS assets supported on the Axelar network. Remark: The response might not be updated in real-time; instead, it is based on Axelar's [static-configs](https://docs.axelar.dev/resources/static-configs/static-configs) file."
     response:
       -
         name: "data"
