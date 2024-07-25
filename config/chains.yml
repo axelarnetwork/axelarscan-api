@@ -4443,6 +4443,8 @@ devnet-amplifier:
         address: "axelar14jjdxqhuxk803e9pq64w4fgf385y86xxhkpzswe9crmu6vxycezst0zq8y"
       service_registry:
         address: "axelar1c9fkszt5lq34vvvlat3fxj6yv7ejtqapz04e97vtc9m5z9cwnamq8zjlhz"
+      rewards:
+        address: "axelar1vaj9sfzc3z0gpel90wu4ljutncutv0wuhvvwfsh30rqxq422z89qnd989l"
       endpoints:
         lcd:
           - "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
@@ -4475,6 +4477,8 @@ devnet-amplifier:
       maintainer_id: "ethereum-sepolia"
       multisig_prover:
         address: "axelar1274ntw3prlrzzys4m0mc5xxhzu09x0r3d37886xdz65w59ey7mgs6v0j5z"
+      voting_verifier:
+        address: "axelar1e6jnuljng6aljk0tjct6f0hl9tye6l0n9p067pwx2374h82dmr0s9qcqy9"
       endpoints:
         rpc:
           - "https://1rpc.io/sepolia"
@@ -4502,6 +4506,8 @@ devnet-amplifier:
       maintainer_id: "avalanche"
       multisig_prover:
         address: "axelar1g6520uhs8u37el40wqngf60z06mjgk6z7nezytd2mxrmh7yesnmsyc0zjw"
+      voting_verifier:
+        address: "axelar1ty7mx0cllgz8xuvhn2j7e3qy8999ssgmjtktyqetl335em0g88lq6rjhl2"
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
@@ -4529,6 +4535,8 @@ devnet-amplifier:
       maintainer_id: "fantom"
       multisig_prover:
         address: "axelar17fa8wruwmk2y0h32wrg5rxwespvcvz5zc2hjnczz58tnmg8enh0sunsshp"
+      voting_verifier:
+        address: "axelar1n7sftvs3ul6yy5wqykka4dtmzm76ewmlc58q8xgvuxuurkjxtjcsw7ucyf"
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
@@ -4556,6 +4564,8 @@ devnet-amplifier:
       maintainer_id: "op-sepolia"
       multisig_prover:
         address: "axelar1xdmwwl44tcdpljupjkafqpznrny4t60xgyyqw7hgnvztjtvlgurqx9k960"
+      voting_verifier:
+        address: "axelar1h6k0vnwagv3a5pmwck0g2dlwahr6p8aqlcueqnk259y6252adx5sn0f8jx"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
@@ -4590,6 +4600,8 @@ devnet-verifiers:
         address: "axelar1q3g7fdqfpftqfpuakwn7x037k80wv35jj9ged7v5e798pds7hnasgj6azz"
       service_registry:
         address: "axelar1qk00h5atutpsv900x202pxx42npjr9thg58dnqpa72f2p7m2luas9x8txw"
+      rewards:
+        address: "axelar1guczj53xxl4347adagh23eelyhnxvugw2nqq0q0dr6kws7q35jyqqnan33"
       endpoints:
         lcd:
           - "http://devnet-verifiers.archive-node-lcd.axelarscan.io:80"
@@ -4622,6 +4634,8 @@ devnet-verifiers:
       maintainer_id: "ethereum-sepolia"
       multisig_prover:
         address: "axelar1xz4cya4qm2ws6nzperhvc40wdjcq4872fl6d3j2s4cytyx8j80eqenv87g"
+      voting_verifier:
+        address: "axelar1sxujcvele5eqtx0xc4wuy6jr0m28y0yt8spn7efc3527vc2j2xrqk6wkay"
       endpoints:
         rpc:
           - "https://1rpc.io/sepolia"
@@ -4649,6 +4663,8 @@ devnet-verifiers:
       maintainer_id: "avalanche"
       multisig_prover:
         address: "axelar1qt0gkcrvcpv765k8ec4tl2svvg6hd3e3td8pvg2fsncrt3dzjefswsq3w2"
+      voting_verifier:
+        address: "axelar1elaymnd2epmfr498h2x9p2nezc4eklv95uv92u9csfs8wl75w7yqdc0h67"
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
@@ -4676,6 +4692,8 @@ devnet-verifiers:
       maintainer_id: "fantom"
       multisig_prover:
         address: "axelar17q90gwd9279une6fagsxqrak87fmc3gtusv9dglwc0ezcxufrtdshr7pxt"
+      voting_verifier:
+        address: "axelar19g43wyj843ydkc845dcdea6su4mgfjwn5jpa84emhemt9grh8qcs9wztck"
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
@@ -4703,6 +4721,8 @@ devnet-verifiers:
       maintainer_id: "op-sepolia"
       multisig_prover:
         address: "axelar17aatfk5ktm834djmyk3dsgr48mja54e8hjzcs4c8vyunlpacc7qscftcs7"
+      voting_verifier:
+        address: "axelar1h4j7geavjplss8ulw3agy5244kghe3yz9gljm90kv55dh2yrav6se2nx4d"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
