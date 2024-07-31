@@ -3748,7 +3748,7 @@ testnet:
       color: "#ff3900"
       explorer:
         name: "Lava"
-        url: "https://lava.explorers.guru"
+        url: "https://testnet.lava.explorers.guru"
         icon: "/logos/explorers/lava.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
