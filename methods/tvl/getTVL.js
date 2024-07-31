@@ -7,7 +7,7 @@ const { getTokensPrice, getTokenCirculatingSupply } = require('../tokens');
 const { get, read, write } = require('../../services/indexer');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
-const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig } = require('../../utils/config');
+const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAxelarConfig, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig } = require('../../utils/config');
 const { toHash, getAddress, split, toArray } = require('../../utils/parser');
 const { isString, lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
@@ -70,6 +70,7 @@ module.exports = async params => {
     }
   }
 
+  const axelarConfig = await getAxelarConfig();
   const axelarnet = getChainData('axelarnet');
   const axelarnetLCDUrl = _.head(axelarnet.endpoints?.lcd);
 
@@ -158,7 +159,8 @@ module.exports = async params => {
                     }, { size: 500, sort: [{ updated_at: 'asc' }] }) };
 
                     if (toArray(data).length > 0 && toArray(data).filter(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_UPDATE_INTERVAL_SECONDS).length === 0) {
-                      ibc_channels = _.orderBy(data, ['latest_height'], ['asc']);
+                      const { channelId } = { ...axelarConfig?.chains?.[id]?.config?.ibc?.fromAxelar };
+                      ibc_channels = _.orderBy(data.filter(d => !channelId || d.channel_id === channelId), ['latest_height'], ['asc']);
                       escrow_addresses = toArray(toArray(ibc_channels).map(d => d.escrow_address));
                       source_escrow_addresses = toArray(toArray(ibc_channels).map(d => d.counterparty?.escrow_address));
                       break;
