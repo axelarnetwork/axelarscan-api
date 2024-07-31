@@ -25,7 +25,7 @@ module.exports = async () => {
 
     if (!chain_id || !escrow_address || (counterparty && !counterparty.escrow_address) || timeDiff(updated_at * 1000, 'minutes') > 240) {
       const response = await request(createInstance(getLCD(), { gzip: true }), { path: `/ibc/core/channel/v1/channels/${channel_id}/ports/${port_id}/client_state` });
-      const { client_state } = { ...response?.data?.identified_client_state };
+      const { client_state } = { ...response?.identified_client_state };
       chain_id = client_state?.chain_id || chain_id;
 
       if (chain_id) {

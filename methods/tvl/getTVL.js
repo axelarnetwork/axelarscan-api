@@ -155,7 +155,7 @@ module.exports = async params => {
                         should: toArray(prefix_chain_ids).map(p => { return { match_phrase_prefix: { chain_id: p } }; }),
                         minimum_should_match: 1,
                       },
-                    }, { size: 500 }) };
+                    }, { size: 500, sort: [{ updated_at: 'asc' }] }) };
 
                     if (toArray(data).length > 0 && toArray(data).filter(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_UPDATE_INTERVAL_SECONDS).length === 0) {
                       ibc_channels = data;
