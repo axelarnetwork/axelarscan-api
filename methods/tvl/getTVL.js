@@ -158,7 +158,7 @@ module.exports = async params => {
                     }, { size: 500, sort: [{ updated_at: 'asc' }] }) };
 
                     if (toArray(data).length > 0 && toArray(data).filter(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_UPDATE_INTERVAL_SECONDS).length === 0) {
-                      ibc_channels = data;
+                      ibc_channels = _.orderBy(data, ['latest_height'], ['asc']);
                       escrow_addresses = toArray(toArray(ibc_channels).map(d => d.escrow_address));
                       source_escrow_addresses = toArray(toArray(ibc_channels).map(d => d.counterparty?.escrow_address));
                       break;

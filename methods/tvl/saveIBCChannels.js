@@ -5,6 +5,7 @@ const { read, write } = require('../../services/indexer');
 const { IBC_CHANNEL_COLLECTION, getChainData, getLCD } = require('../../utils/config');
 const { createInstance, request } = require('../../utils/http');
 const { getAddress, toArray } = require('../../utils/parser');
+const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
 module.exports = async () => {
@@ -32,7 +33,7 @@ module.exports = async () => {
         escrow_address = getAddress(`${version}\x00${port_id}/${channel_id}`) || escrow_address;
         const { prefix_address } = { ...getChainData(chain_id, 'cosmos') };
         if (counterparty && prefix_address) counterparty.escrow_address = getAddress(`${version}\x00${counterparty.port_id}/${counterparty.channel_id}`, prefix_address);
-        await write(IBC_CHANNEL_COLLECTION, channel_id, { ...channel, chain_id, counterparty, escrow_address, updated_at: moment().unix() }, false, false);
+        await write(IBC_CHANNEL_COLLECTION, channel_id, { ...channel, chain_id, counterparty, escrow_address, latest_height: isNumber(client_state?.latest_height?.revision_height) ? toNumber(client_state.latest_height.revision_height) : undefined, updated_at: moment().unix() }, false, false);
       }
     }
     resolve();
