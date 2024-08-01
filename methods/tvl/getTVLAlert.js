@@ -27,7 +27,7 @@ module.exports = async params => {
     toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.values(d.tvl).findIndex(_d => {
       const { price } = { ...d };
       const { supply, escrow_balance, percent_diff_supply } = { ..._d };
-      return toNumber((supply || escrow_balance) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
+      return toNumber((escrow_balance || supply) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
     }) > -1
   ));
 
@@ -66,7 +66,7 @@ module.exports = async params => {
             ))),
           } :
           {
-            chains: Object.entries({ ...tvl }).filter(([k, v]) => v?.is_abnormal_supply && toNumber((v.supply || v.escrow_balance) * (v.percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold).map(([k, v]) => {
+            chains: Object.entries({ ...tvl }).filter(([k, v]) => v?.is_abnormal_supply && toNumber((v.escrow_balance || v.supply) * (v.percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold).map(([k, v]) => {
               const { percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance, token_manager_address, token_manager_type, token_manager_balance, ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance, url } = { ...v };
               let { supply } = { ...v };
               if (k === native_chain && k !== 'axelarnet') {
