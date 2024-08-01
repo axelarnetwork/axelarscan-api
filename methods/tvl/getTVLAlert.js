@@ -13,7 +13,7 @@ const MAX_INTERVAL_UPDATE_SECONDS = 60 * 60;
 module.exports = async params => {
   let { test } = { ...params };
   test = toBoolean(test, false);
-  const { alert_asset_value_threshold } = { ...getTVLConfig() };
+  const { alert_asset_escrow_value_threshold, alert_asset_value_threshold } = { ...getTVLConfig() };
 
   let { data } = { ...await read(TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 1000 }) };
   const { updated_at } = { ..._.head(data) };
@@ -24,13 +24,11 @@ module.exports = async params => {
   }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
 
   const toAlertData = data.filter(d => (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || (
-    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && _.sum(
-      Object.values(d.tvl).map(_d => {
-        const { price } = { ...d };
-        const { supply, escrow_balance, percent_diff_supply } = { ..._d };
-        return toNumber((supply || escrow_balance) * (percent_diff_supply / 100) * price);
-      })
-    ) > alert_asset_value_threshold
+    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.values(d.tvl).findIndex(_d => {
+      const { price } = { ...d };
+      const { supply, escrow_balance, percent_diff_supply } = { ..._d };
+      return toNumber((supply || escrow_balance) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
+    }) > -1
   ));
 
   data = test && toAlertData.length === 0 && data.length > 0 ? _.slice(data, 0, 1) : toAlertData;
