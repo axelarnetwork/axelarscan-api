@@ -160,7 +160,7 @@ module.exports = async params => {
 
                     if (toArray(data).length > 0 && toArray(data).filter(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_UPDATE_INTERVAL_SECONDS).length === 0) {
                       const { channelId } = { ...axelarConfig?.chains?.[id]?.config?.ibc?.fromAxelar };
-                      ibc_channels = _.orderBy(data.filter(d => !channelId || d.channel_id === channelId), ['latest_height'], ['asc']);
+                      ibc_channels = _.orderBy(data.filter(d => (!channelId && id !== 'secret') || d.channel_id === channelId), ['latest_height'], ['asc']);
                       escrow_addresses = toArray(toArray(ibc_channels).map(d => d.escrow_address));
                       source_escrow_addresses = toArray(toArray(ibc_channels).map(d => d.counterparty?.escrow_address));
                       break;
@@ -169,7 +169,7 @@ module.exports = async params => {
                   }
                 }
 
-                const escrow_balance = _.sum(await Promise.all(toArray(escrow_addresses).map(address => new Promise(async resolve => resolve(toNumber(await getCosmosBalance('axelarnet', address, denom_data)))))));
+                const escrow_balance = id !== 'secret' ? _.sum(await Promise.all(toArray(escrow_addresses).map(address => new Promise(async resolve => resolve(toNumber(await getCosmosBalance('axelarnet', address, denom_data))))))) : undefined;
                 const source_escrow_balance = _.sum(await Promise.all(toArray(source_escrow_addresses).map(address => new Promise(async resolve => resolve(toNumber(await getCosmosBalance(id, address, denom_data)))))));
 
                 const isNativeOnCosmos = isNative && id !== 'axelarnet';
