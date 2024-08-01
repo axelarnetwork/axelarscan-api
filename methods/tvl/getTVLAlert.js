@@ -45,7 +45,7 @@ module.exports = async params => {
   if (data.length > 0) {
     const assetsData = await getAssetsList();
     details = await Promise.all(data.map(d => new Promise(async resolve => {
-      const { asset, price, is_abnormal_supply, percent_diff_supply, total, value, total_on_evm, total_on_cosmos, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
+      const { asset, price, is_abnormal_supply, percent_diff_supply, total, value_diff, total_on_evm, total_on_cosmos, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
       const { native_chain, symbol, addresses } = { ...await getAssetData(asset, assetsData) };
       const { chain_type } = { ...getChainData(native_chain) };
       const app = getAppURL();
@@ -54,7 +54,7 @@ module.exports = async params => {
       resolve({
         asset, symbol, price,
         native_chain, native_on: chain_type,
-        ...(is_abnormal_supply && value > alert_asset_value_threshold ?
+        ...(is_abnormal_supply && value_diff > alert_asset_value_threshold ?
           {
             percent_diff_supply,
             total, total_on_evm, total_on_cosmos,
@@ -87,7 +87,7 @@ module.exports = async params => {
     })));
 
     native_on_evm_total_status = details.findIndex(d => d.native_on === 'evm' && isNumber(d.percent_diff_supply)) > -1 ? 'alert' : 'ok';
-    native_on_evm_escrow_status = details.findIndex(d => d.native_on === 'evm' && toArray(d.chains).findIndex(_d => isNumber(_d.percent_diff_supply)) > -1) ? 'alert' : 'ok';
+    native_on_evm_escrow_status = details.findIndex(d => d.native_on === 'evm' && toArray(d.chains).findIndex(_d => isNumber(_d.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
     native_on_cosmos_evm_escrow_status = details.findIndex(d => d.native_on === 'cosmos' && isNumber(d.percent_diff_supply)) > -1 ? 'alert' : 'ok';
     native_on_cosmos_escrow_status = details.findIndex(d => d.native_on === 'cosmos' && toArray(d.chains).findIndex(_d => isNumber(_d.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
 

@@ -5,7 +5,7 @@
 mainnet:
   percent_diff_escrow_supply_threshold: 5.0
   percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 200000
+  alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
 
 
@@ -13,7 +13,7 @@ mainnet:
 testnet:
   percent_diff_escrow_supply_threshold: 5.0
   percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 200000
+  alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
 
 
@@ -21,7 +21,7 @@ testnet:
 stagenet:
   percent_diff_escrow_supply_threshold: 5.0
   percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 200000
+  alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
 
 
@@ -29,7 +29,7 @@ stagenet:
 devnet-amplifier:
   percent_diff_escrow_supply_threshold: 5.0
   percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 200000
+  alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
 
 
@@ -37,5 +37,5 @@ devnet-amplifier:
 devnet-verifiers:
   percent_diff_escrow_supply_threshold: 5.0
   percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 200000
+  alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
