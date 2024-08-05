@@ -4152,29 +4152,6 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    celo:
-      chain_id: 44787
-      chain_name: "celo"
-      maintainer_id: "celo"
-      endpoints:
-        rpc:
-          - "https://alfajores-forno.celo-testnet.org"
-      native_token:
-        name: "Celo"
-        symbol: "CELO"
-        decimals: 18
-      name: "Celo"
-      short_name: "CELO"
-      image: "/logos/chains/celo.svg"
-      color: "#35d07f"
-      explorer:
-        name: "Celoscan"
-        url: "https://alfajores.celoscan.io"
-        icon: "/logos/explorers/celoscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     kava:
       chain_id: 2221
       chain_name: "kava"
@@ -4197,33 +4174,6 @@ stagenet:
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    filecoin-2:
-      chain_id: 314159
-      chain_name: "filecoin-2"
-      maintainer_id: "filecoin-2"
-      no_recover: true
-      endpoints:
-        rpc:
-          - "https://rpc.ankr.com/filecoin_testnet"
-          - "https://api.calibration.node.glif.io/rpc/v1"
-          - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
-          - "https://filecoin-calibration.chainup.net/rpc/v1"
-      native_token:
-        name: "Filecoin"
-        symbol: "FIL"
-        decimals: 18
-      name: "Filecoin Calibration"
-      short_name: "FIL"
-      image: "/logos/chains/filecoin.svg"
-      color: "#0090ff"
-      explorer:
-        name: "Filecoin"
-        url: "https://calibration.filfox.info"
-        icon: "/logos/explorers/filecoin.png"
-        block_path: "/tipset/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     linea-sepolia:
       chain_id: 59141
@@ -4249,7 +4199,7 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    centrifuge-2:
+    centrifuge:
       chain_id: 2090
       chain_name: "centrifuge-2"
       maintainer_id: "centrifuge-2"
@@ -4269,54 +4219,6 @@ stagenet:
         name: "Centrifuge"
         url: ""
         icon: "/logos/explorers/centrifuge.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    scroll:
-      chain_id: 534351
-      chain_name: "scroll"
-      maintainer_id: "scroll"
-      endpoints:
-        rpc:
-          - "https://sepolia-rpc.scroll.io"
-          - "https://rpc.ankr.com/scroll_sepolia_testnet"
-          - "https://1rpc.io/scroll/sepolia"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Scroll"
-      short_name: "SCROLL"
-      image: "/logos/chains/scroll.svg"
-      color: "#e4b67c"
-      explorer:
-        name: "Scrollscan"
-        url: "https://sepolia.scrollscan.com"
-        icon: "/logos/explorers/scroll.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    immutable-devnet:
-      chain_id: 15003
-      chain_name: "immutable-devnet"
-      maintainer_id: "immutable-devnet"
-      endpoints:
-        rpc:
-          - "https://rpc.dev.immutable.com"
-      native_token:
-        name: "ImmutableX"
-        symbol: "tIMX"
-        decimals: 18
-      name: "Immutable"
-      short_name: "IMX"
-      image: "/logos/chains/immutable.svg"
-      color: "#0d0d0d"
-      explorer:
-        name: "Immutable"
-        url: "https://explorer.testnet.immutable.com"
-        icon: "/logos/explorers/immutable.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
@@ -4374,6 +4276,12 @@ stagenet:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      router:
+        address: "axelar1saq5hcztvd26vvkquv4dzn8e0uu967nuyxtcful3pvv7ajsw4kmq72xft9"
+      service_registry:
+        address: "axelar15454y4v8x2ennqq6k0t4cu4r0cpqsy3d6m2jw7d0p4tagaafs29qnlhljd"
+      rewards:
+        address: "axelar1nyhmtdrzx77ynqgu8cug0u7eqz2kzfk9mctvaa4stqpekg4s9vnsgu54at"
       endpoints:
         lcd:
           - "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:1317"
@@ -4399,36 +4307,65 @@ stagenet:
       prefix_address: "axelar"
       prefix_chain_ids:
         - "axelar-"
-    osmosis:
-      chain_id: "osmo-test-5"
-      chain_name: "osmosis-7"
+  vm:
+    test-sepolia:
+      chain_id: 11155111
+      chain_name: "test-sepolia"
+      maintainer_id: "test-sepolia"
+      multisig_prover:
+        address: "axelar14t526efvs4r6pmg3ntjve9t5k3hagswngrnaya83365w0ad9ky0s333suh"
+      voting_verifier:
+        address: "axelar1t3lwxcgjlauvcwsdvy4669azp9ks0q0hd2cxn95cdge63723z9ns8pdqms"
       endpoints:
-        lcd:
-          - "https://lcd.osmotest5.osmosis.zone"
-        timeout:
-          lcd: 3000
+        rpc:
+          - "https://1rpc.io/sepolia"
+          - "https://ethereum-sepolia.publicnode.com"
+          - "https://endpoints.omniatech.io/v1/eth/sepolia/public"
       native_token:
-        name: "Osmosis"
-        symbol: "OSMO"
-        denom: "uosmo"
-        decimals: 6
-      name: "Osmosis"
-      short_name: "OSMO"
-      image: "/logos/chains/osmosis.svg"
-      color: "#d705cc"
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Ethereum Sepolia"
+      short_name: "ETH"
+      image: "/logos/chains/ethereum.svg"
+      color: "#c0c2c3"
       explorer:
-        name: "Mintscan"
-        url: "https://www.mintscan.io/osmosis-testnet"
-        icon: "/logos/explorers/mintscan.png"
+        name: "Etherscan"
+        url: "https://sepolia.etherscan.io"
+        icon: "/logos/explorers/etherscan.png"
         block_path: "/block/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/account/{address}"
-        transaction_path: "/txs/{tx}"
-        asset_path: "/assets/ibc/{ibc_denom}"
-      prefix_address: "osmo"
-      prefix_chain_ids:
-        - "osmosis-"
-        - "osmo-test-"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    test-avalanche:
+      chain_id: 43113
+      chain_name: "test-avalanche"
+      maintainer_id: "test-avalanche"
+      multisig_prover:
+        address: "axelar1fzd0kqdewaupvngygmtltda9ru9zm590kj00sz4vxla4h6hlawtqpcfkqe"
+      voting_verifier:
+        address: "axelar10c8qetyyr5rart47a5luvm6lys4709u3jhyeakzd0e7nxdw0ah3stmxvd3"
+      endpoints:
+        rpc:
+          - "https://api.avax-test.network/ext/bc/C/rpc"
+          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://rpc.ankr.com/avalanche_fuji"
+      native_token:
+        name: "Avalanche"
+        symbol: "AVAX"
+        decimals: 18
+      name: "Avalanche"
+      short_name: "AVAX"
+      image: "/logos/chains/avalanche.svg"
+      color: "#e84143"
+      explorer:
+        name: "Snowtrace"
+        url: "https://testnet.snowtrace.io"
+        icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
