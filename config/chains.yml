@@ -562,12 +562,12 @@ mainnet:
       chain_name: "osmosis"
       endpoints:
         lcd:
-          - "https://lcd.osmosis.zone"
-          - "https://lcd-osmosis.imperator.co"
-          - "https://api-osmosis-ia.cosmosia.notional.ventures"
-          - "https://lcd-osmosis.blockapsis.com"
           - "https://rest-osmosis.ecostake.com"
           - "https://osmosis-api.polkachu.com"
+          - "https://lcd-osmosis.imperator.co"
+          - "https://lcd.osmosis.zone"
+          - "https://api-osmosis-ia.cosmosia.notional.ventures"
+          - "https://lcd-osmosis.blockapsis.com"
         timeout:
           lcd: 3000
       native_token:
@@ -3929,34 +3929,6 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    binance:
-      chain_id: 97
-      chain_name: "binance"
-      maintainer_id: "binance"
-      endpoints:
-        rpc:
-          - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
-          - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
-          - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
-          - "https://bsc-testnet.blockpi.network/v1/rpc/public"
-          - "https://bsc-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/bsc_testnet_chapel"
-      native_token:
-        name: "BNB"
-        symbol: "BNB"
-        decimals: 18
-      name: "BNB Chain"
-      short_name: "BNB"
-      image: "/logos/chains/binance.png"
-      color: "#e8b30b"
-      explorer:
-        name: "BscScan"
-        url: "https://testnet.bscscan.com"
-        icon: "/logos/explorers/bscscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     polygon-sepolia:
       chain_id: 80002
       chain_name: "polygon-sepolia"
@@ -4333,6 +4305,38 @@ stagenet:
         name: "Etherscan"
         url: "https://sepolia.etherscan.io"
         icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    binance:
+      chain_id: 97
+      chain_name: "binance"
+      maintainer_id: "binance"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
+          - "https://bsc-testnet.blockpi.network/v1/rpc/public"
+          - "https://bsc-testnet.public.blastapi.io"
+          - "https://rpc.ankr.com/bsc_testnet_chapel"
+      native_token:
+        name: "BNB"
+        symbol: "BNB"
+        decimals: 18
+      name: "BNB Chain"
+      short_name: "BNB"
+      image: "/logos/chains/binance.png"
+      color: "#e8b30b"
+      explorer:
+        name: "BscScan"
+        url: "https://testnet.bscscan.com"
+        icon: "/logos/explorers/bscscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
