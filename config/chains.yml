@@ -10,9 +10,11 @@ mainnet:
       maintainer_id: "ethereum"
       endpoints:
         rpc:
-          - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://1rpc.io/eth"
           - "https://rpc.ankr.com/eth"
+          - "https://cloudflare-eth.com"
+          - "https://ethereum.blockpi.network/v1/rpc/public"
+          - "https://1rpc.io/eth"
+          - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -213,10 +215,11 @@ mainnet:
       maintainer_id: "arbitrum"
       endpoints:
         rpc:
-          - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://arbitrum.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/arb"
+          - "https://arbitrum-one.public.blastapi.io"
+          - "https://arbitrum.blockpi.network/v1/rpc/public"
           - "https://rpc.ankr.com/arbitrum"
+          - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -364,6 +367,8 @@ mainnet:
       no_recover: true
       endpoints:
         rpc:
+          - "https://filfox.info/rpc/v1"
+          - "https://api.chain.love/rpc/v1"
           - "https://filecoin.chainup.net/rpc/v1"
           - "https://rpc.ankr.com/filecoin"
           - "https://api.node.glif.io"
@@ -2563,10 +2568,10 @@ testnet:
       no_recover: true
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/filecoin_testnet"
-          - "https://api.calibration.node.glif.io/rpc/v1"
           - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
           - "https://filecoin-calibration.chainup.net/rpc/v1"
+          - "https://rpc.ankr.com/filecoin_testnet"
+          - "https://api.calibration.node.glif.io/rpc/v1"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
