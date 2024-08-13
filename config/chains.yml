@@ -4271,8 +4271,8 @@ stagenet:
         transaction_path: "/tx/{tx}"
     centrifuge:
       chain_id: 2090
-      chain_name: "centrifuge-2"
-      maintainer_id: "centrifuge-2"
+      chain_name: "centrifuge"
+      maintainer_id: "centrifuge"
       no_recover: true
       endpoints:
         rpc:
