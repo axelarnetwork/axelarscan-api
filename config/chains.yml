@@ -2786,6 +2786,12 @@ testnet:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+      router:
+        address: "axelar1d9atnamjjhtc46zmzyc202llqs0rhtxnphs6mkjurekath3mkgtq7hsk93"
+      service_registry:
+        address: "axelar1rpj2jjrv3vpugx9ake9kgk3s2kgwt0y60wtkmcgfml5m3et0mrls6nct9m"
+      rewards:
+        address: "axelar1harq5xe68lzl2kx4e5ch4k8840cgqnry567g0fgw7vt2atcuugrqfa7j5z"
       endpoints:
         lcd:
           - "https://axelar-testnet-lcd.qubelabs.io"
@@ -3904,6 +3910,65 @@ testnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "bombay-"
+  vm:
+    test-sepolia:
+      chain_id: 11155111
+      chain_name: "test-sepolia"
+      maintainer_id: "test-sepolia"
+      multisig_prover:
+        address: "axelar1u7qt6kz34ljjx6c94444e2v57uzt2tdlgxc6qjkvu4c5phncca8qakejex"
+      voting_verifier:
+        address: "axelar1r4rmvn83vrfj4evy5l8cv2nat2v0whm36ds3crn2mhlq8ufmhvts9467zz"
+      endpoints:
+        rpc:
+          - "https://1rpc.io/sepolia"
+          - "https://ethereum-sepolia.publicnode.com"
+          - "https://endpoints.omniatech.io/v1/eth/sepolia/public"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Ethereum Sepolia"
+      short_name: "ETH"
+      image: "/logos/chains/ethereum.svg"
+      color: "#c0c2c3"
+      explorer:
+        name: "Etherscan"
+        url: "https://sepolia.etherscan.io"
+        icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    test-avalanche:
+      chain_id: 43113
+      chain_name: "test-avalanche"
+      maintainer_id: "test-avalanche"
+      multisig_prover:
+        address: "axelar1l5k8wlzmkmtnvjvs9x77wdcfweucwgums9e8fh0d8cy76ymqc5aqzguqnn"
+      voting_verifier:
+        address: "axelar1hupk5du59cgu4ps5s637rhakwsq0060ycdp57j2ccevna7wqqzrqnfrr0p"
+      endpoints:
+        rpc:
+          - "https://api.avax-test.network/ext/bc/C/rpc"
+          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://rpc.ankr.com/avalanche_fuji"
+      native_token:
+        name: "Avalanche"
+        symbol: "AVAX"
+        decimals: 18
+      name: "Avalanche"
+      short_name: "AVAX"
+      image: "/logos/chains/avalanche.svg"
+      color: "#e84143"
+      explorer:
+        name: "Snowtrace"
+        url: "https://testnet.snowtrace.io"
+        icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
@@ -3930,6 +3995,34 @@ stagenet:
         name: "Etherscan"
         url: "https://sepolia.etherscan.io"
         icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    binance:
+      chain_id: 97
+      chain_name: "binance"
+      maintainer_id: "binance"
+      endpoints:
+        rpc:
+          - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
+          - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
+          - "https://bsc-testnet.blockpi.network/v1/rpc/public"
+          - "https://bsc-testnet.public.blastapi.io"
+          - "https://rpc.ankr.com/bsc_testnet_chapel"
+      native_token:
+        name: "BNB"
+        symbol: "BNB"
+        decimals: 18
+      name: "BNB Chain"
+      short_name: "BNB"
+      image: "/logos/chains/binance.png"
+      color: "#e8b30b"
+      explorer:
+        name: "BscScan"
+        url: "https://testnet.bscscan.com"
+        icon: "/logos/explorers/bscscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
@@ -4253,6 +4346,7 @@ stagenet:
       chain_name: "Axelarnet"
       aliases:
         - "axelar"
+        - "axelardef"
       router:
         address: "axelar1saq5hcztvd26vvkquv4dzn8e0uu967nuyxtcful3pvv7ajsw4kmq72xft9"
       service_registry:
@@ -4310,38 +4404,6 @@ stagenet:
         name: "Etherscan"
         url: "https://sepolia.etherscan.io"
         icon: "/logos/explorers/etherscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    binance:
-      chain_id: 97
-      chain_name: "binance"
-      maintainer_id: "binance"
-      multisig_prover:
-        address: ""
-      voting_verifier:
-        address: ""
-      endpoints:
-        rpc:
-          - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
-          - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
-          - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
-          - "https://bsc-testnet.blockpi.network/v1/rpc/public"
-          - "https://bsc-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/bsc_testnet_chapel"
-      native_token:
-        name: "BNB"
-        symbol: "BNB"
-        decimals: 18
-      name: "BNB Chain"
-      short_name: "BNB"
-      image: "/logos/chains/binance.png"
-      color: "#e8b30b"
-      explorer:
-        name: "BscScan"
-        url: "https://testnet.bscscan.com"
-        icon: "/logos/explorers/bscscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
