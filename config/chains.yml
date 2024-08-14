@@ -2792,6 +2792,8 @@ testnet:
         address: "axelar1rpj2jjrv3vpugx9ake9kgk3s2kgwt0y60wtkmcgfml5m3et0mrls6nct9m"
       rewards:
         address: "axelar1harq5xe68lzl2kx4e5ch4k8840cgqnry567g0fgw7vt2atcuugrqfa7j5z"
+      multisig:
+        address: "axelar14a4ar5jh7ue4wg28jwsspf23r8k68j7g5d6d3fsttrhp42ajn4xq6zayy5"
       endpoints:
         lcd:
           - "https://axelar-testnet-lcd.qubelabs.io"
@@ -4353,6 +4355,8 @@ stagenet:
         address: "axelar15454y4v8x2ennqq6k0t4cu4r0cpqsy3d6m2jw7d0p4tagaafs29qnlhljd"
       rewards:
         address: "axelar1nyhmtdrzx77ynqgu8cug0u7eqz2kzfk9mctvaa4stqpekg4s9vnsgu54at"
+      multisig:
+        address: "axelar143vjln56ke4pjmj5ut7u3358ywyfl7h5rg58js8gprr39664wcqs72vs3u"
       endpoints:
         lcd:
           - "http://k8s-stagenet-axelarco-bcdb269e08-d3015352a090f6b0.elb.us-east-2.amazonaws.com:1317"
@@ -4453,6 +4457,8 @@ devnet-amplifier:
         address: "axelar1c9fkszt5lq34vvvlat3fxj6yv7ejtqapz04e97vtc9m5z9cwnamq8zjlhz"
       rewards:
         address: "axelar1vaj9sfzc3z0gpel90wu4ljutncutv0wuhvvwfsh30rqxq422z89qnd989l"
+      multisig:
+        address: "axelar19jxy26z0qnnspa45y5nru0l5rmy9d637z5km2ndjxthfxf5qaswst9290r"
       endpoints:
         lcd:
           - "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
@@ -4610,6 +4616,8 @@ devnet-verifiers:
         address: "axelar1qk00h5atutpsv900x202pxx42npjr9thg58dnqpa72f2p7m2luas9x8txw"
       rewards:
         address: "axelar1guczj53xxl4347adagh23eelyhnxvugw2nqq0q0dr6kws7q35jyqqnan33"
+      multisig:
+        address: "axelar15nczwuqh0zcu6syeqsc4td6dphql7n2p7cgkl9raz97z5s3zdjrsc8we9y"
       endpoints:
         lcd:
           - "http://devnet-verifiers.archive-node-lcd.axelarscan.io:80"
