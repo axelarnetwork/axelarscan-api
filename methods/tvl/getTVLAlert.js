@@ -8,7 +8,8 @@ const { toArray } = require('../../utils/parser');
 const { equalsIgnoreCase, toBoolean } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 
-const MAX_INTERVAL_UPDATE_SECONDS = 60 * 60;
+const MAX_INTERVAL_UPDATE_SECONDS = 120 * 60;
+const IGNORED_CHAINS = ['terra-2'];
 
 module.exports = async params => {
   let { test } = { ...params };
@@ -24,10 +25,10 @@ module.exports = async params => {
   }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
 
   const toAlertData = data.filter(d => (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || (
-    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.values(d.tvl).findIndex(_d => {
+    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.entries(d.tvl).findIndex((k, v) => {
       const { price } = { ...d };
-      const { supply, escrow_balance, percent_diff_supply } = { ..._d };
-      return toNumber((escrow_balance || supply) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
+      const { supply, escrow_balance, percent_diff_supply } = { ...v };
+      return !IGNORED_CHAINS.includes(k) && toNumber((escrow_balance || supply) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
     }) > -1
   ));
 
@@ -66,7 +67,7 @@ module.exports = async params => {
             ))),
           } :
           {
-            chains: Object.entries({ ...tvl }).filter(([k, v]) => v?.is_abnormal_supply && toNumber((v.escrow_balance || v.supply) * (v.percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold).map(([k, v]) => {
+            chains: Object.entries({ ...tvl }).filter(([k, v]) => !IGNORED_CHAINS.includes(k) && v?.is_abnormal_supply && toNumber((v.escrow_balance || v.supply) * (v.percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold).map(([k, v]) => {
               const { percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance, token_manager_address, token_manager_type, token_manager_balance, ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance, url } = { ...v };
               let { supply } = { ...v };
               if (k === native_chain && k !== 'axelarnet') {
@@ -80,7 +81,7 @@ module.exports = async params => {
                 supply, link: d.url,
               };
             }),
-            links: _.uniq(toArray(_.concat(toArray(Object.values({ ...tvl })).filter(_d => _d.is_abnormal_supply).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)))), appUrls),
+            links: _.uniq(toArray(_.concat(toArray(Object.entries({ ...tvl })).filter((k, v) => !IGNORED_CHAINS.includes(k) && v.is_abnormal_supply).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)))), appUrls),
           }
         ),
       });
