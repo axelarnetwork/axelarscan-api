@@ -3930,7 +3930,7 @@ testnet:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Ethereum Sepolia"
+      name: "TEST Ethereum Sepolia (VM)"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -3959,7 +3959,7 @@ testnet:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche"
+      name: "TEST Avalanche (VM)"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4400,7 +4400,7 @@ stagenet:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Ethereum Sepolia"
+      name: "TEST Ethereum Sepolia (VM)"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4429,7 +4429,7 @@ stagenet:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche"
+      name: "TEST Avalanche (VM)"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4502,7 +4502,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Ethereum Sepolia"
+      name: "Ethereum Sepolia (VM)"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4531,7 +4531,7 @@ devnet-amplifier:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche"
+      name: "Avalanche (VM)"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4560,7 +4560,7 @@ devnet-amplifier:
         name: "Fantom"
         symbol: "FTM"
         decimals: 18
-      name: "Fantom"
+      name: "Fantom (VM)"
       short_name: "FTM"
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
@@ -4588,7 +4588,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Optimism Sepolia"
+      name: "Optimism Sepolia (VM)"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
@@ -4661,7 +4661,7 @@ devnet-verifiers:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Ethereum Sepolia"
+      name: "Ethereum Sepolia (VM)"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4690,7 +4690,7 @@ devnet-verifiers:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche"
+      name: "Avalanche (VM)"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4719,7 +4719,7 @@ devnet-verifiers:
         name: "Fantom"
         symbol: "FTM"
         decimals: 18
-      name: "Fantom"
+      name: "Fantom (VM)"
       short_name: "FTM"
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
@@ -4747,7 +4747,7 @@ devnet-verifiers:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Optimism Sepolia"
+      name: "Optimism Sepolia (VM)"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
