@@ -3971,6 +3971,33 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    flow:
+      chain_id: 545
+      chain_name: "flow"
+      maintainer_id: "flow"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://testnet.evm.nodes.onflow.org"
+      native_token:
+        name: "Flow"
+        symbol: "FLOW"
+        decimals: 18
+      name: "Flow (VM)"
+      short_name: "FLOW"
+      image: "/logos/chains/flow.svg"
+      color: "#00ee8a"
+      explorer:
+        name: "Flowscan"
+        url: "https://evm-testnet.flowscan.io"
+        icon: "/logos/explorers/flow.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
@@ -4437,6 +4464,33 @@ stagenet:
         name: "Snowtrace"
         url: "https://testnet.snowtrace.io"
         icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    flow:
+      chain_id: 545
+      chain_name: "flow"
+      maintainer_id: "flow"
+      multisig_prover:
+        address: "axelar1u8cmvyq54fepjlt77vqnwyxhf4rqn5j5axgta7py34zlwue3v5fsy2pvhf"
+      voting_verifier:
+        address: "axelar1adz8u3q5mdfp73weg3f65e8ce5jvq4dwlqqm3lxqyy4pjf77nwtql8gjwr"
+      endpoints:
+        rpc:
+          - "https://testnet.evm.nodes.onflow.org"
+      native_token:
+        name: "Flow"
+        symbol: "FLOW"
+        decimals: 18
+      name: "Flow (VM)"
+      short_name: "FLOW"
+      image: "/logos/chains/flow.svg"
+      color: "#00ee8a"
+      explorer:
+        name: "Flowscan"
+        url: "https://evm-testnet.flowscan.io"
+        icon: "/logos/explorers/flow.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
