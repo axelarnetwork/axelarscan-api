@@ -602,12 +602,13 @@ mainnet:
       endpoints:
         lcd:
           - "https://lcd-cosmos.imperator.co"
-          - "https://lcd-cosmoshub.whispernode.com/"
+          - "https://lcd-cosmoshub.whispernode.com"
           - "https://api-cosmoshub-ia.cosmosia.notional.ventures"
           - "https://cosmos-api.polkachu.com"
           - "https://lcd.cosmos.dragonstake.io"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Cosmos"
         symbol: "ATOM"
@@ -697,12 +698,13 @@ mainnet:
       chain_name: "injective"
       endpoints:
         lcd:
-          - "https://api-injective-ia.cosmosia.notional.ventures"
-          - "https://sentry.lcd.injective.network"
           - "https://injective-api.polkachu.com"
+          - "https://sentry.lcd.injective.network"
+          - "https://api-injective-ia.cosmosia.notional.ventures"
           - "https://public.lcd.injective.network"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Injective"
         symbol: "INJ"
@@ -888,7 +890,7 @@ mainnet:
       chain_name: "stargaze"
       endpoints:
         lcd:
-          - "https://lcd-stargaze.imperator.co/"
+          - "https://lcd-stargaze.imperator.co"
           - "https://api-stargaze-ia.cosmosia.notional.ventures"
           - "https://stargaze-api.polkachu.com"
           - "https://api-stargaze.ezstaking.dev"
@@ -987,7 +989,7 @@ mainnet:
         lcd:
           - "https://api-mainnet.blockchain.ki"
           - "https://lcd-kichain.imperator.co"
-          - "https://api-kichain-ia.cosmosia.notional.ventures/"
+          - "https://api-kichain-ia.cosmosia.notional.ventures"
           - "https://api.kichain.chaintools.tech"
           - "https://kichain-api.polkachu.com"
         timeout:
@@ -2858,6 +2860,7 @@ testnet:
           - "https://rest.sentry-01.theta-testnet.polypore.xyz"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Cosmos"
         symbol: "ATOM"
