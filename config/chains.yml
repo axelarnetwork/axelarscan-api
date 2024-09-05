@@ -4557,9 +4557,38 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    eth-sepolia:
+      chain_id: 11155111
+      chain_name: "eth-sepolia"
+      maintainer_id: "eth-sepolia"
+      multisig_prover:
+        address: "axelar15ra7d5uvnmc6ety6sqxsvsfz4t34ud6lc5gmt39res0c5thkqp2qdwj4af"
+      voting_verifier:
+        address: "axelar16swl5eh3vspnyzddwltuf93hc65nwju7498u0zyq33u4cj8rxy4sgxx30m"
+      endpoints:
+        rpc:
+          - "https://1rpc.io/sepolia"
+          - "https://ethereum-sepolia.publicnode.com"
+          - "https://endpoints.omniatech.io/v1/eth/sepolia/public"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "ETH Sepolia (VM)"
+      short_name: "ETH"
+      image: "/logos/chains/ethereum.svg"
+      color: "#c0c2c3"
+      explorer:
+        name: "Etherscan"
+        url: "https://sepolia.etherscan.io"
+        icon: "/logos/explorers/etherscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     avalanche:
       chain_id: 43113
-      chain_name: "Avalanche"
+      chain_name: "avalanche"
       maintainer_id: "avalanche"
       multisig_prover:
         address: "axelar1g6520uhs8u37el40wqngf60z06mjgk6z7nezytd2mxrmh7yesnmsyc0zjw"
@@ -4575,6 +4604,35 @@ devnet-amplifier:
         symbol: "AVAX"
         decimals: 18
       name: "Avalanche (VM)"
+      short_name: "AVAX"
+      image: "/logos/chains/avalanche.svg"
+      color: "#e84143"
+      explorer:
+        name: "Snowtrace"
+        url: "https://testnet.snowtrace.io"
+        icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    avalanche-fuji:
+      chain_id: 43113
+      chain_name: "avalanche-fuji"
+      maintainer_id: "avalanche-fuji"
+      multisig_prover:
+        address: "axelar1p22kz5jr7a9ruu8ypg40smual0uagl64dwvz5xt042vu8fa7l7dsl3wx8q"
+      voting_verifier:
+        address: "axelar1252ahkw208d08ls64atp2pql4cnl9naxy7ahhq3lrthvq3spseys26l8xj"
+      endpoints:
+        rpc:
+          - "https://api.avax-test.network/ext/bc/C/rpc"
+          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://rpc.ankr.com/avalanche_fuji"
+      native_token:
+        name: "Avalanche"
+        symbol: "AVAX"
+        decimals: 18
+      name: "Avalanche Fuji (VM)"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4623,6 +4681,34 @@ devnet-amplifier:
         address: "axelar1xdmwwl44tcdpljupjkafqpznrny4t60xgyyqw7hgnvztjtvlgurqx9k960"
       voting_verifier:
         address: "axelar1h6k0vnwagv3a5pmwck0g2dlwahr6p8aqlcueqnk259y6252adx5sn0f8jx"
+      endpoints:
+        rpc:
+          - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
+          - "https://sepolia.optimism.io"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "OP Sepolia (VM)"
+      short_name: "OP"
+      image: "/logos/chains/optimism.svg"
+      color: "#dc2626"
+      explorer:
+        name: "Etherscan"
+        url: "https://sepolia-optimism.etherscan.io"
+        icon: "/logos/explorers/optimism.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    optimism-sepolia:
+      chain_id: 11155420
+      chain_name: "optimism-sepolia"
+      maintainer_id: "optimism-sepolia"
+      multisig_prover:
+        address: "axelar1p0yyfy7f70zdc0ludh6kffjzs8mvun5prdf7nh7s2cgq74g67nmsjcw7t4"
+      voting_verifier:
+        address: "axelar1qtg2es55w6zp539a2xh9mnajxqq2rsqghf604muyw85vrn0ky97qyu795s"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
@@ -4790,7 +4876,7 @@ devnet-verifiers:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Optimism Sepolia (VM)"
+      name: "OP Sepolia (VM)"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
