@@ -571,7 +571,6 @@ mainnet:
           - "https://osmosis-api.polkachu.com"
           - "https://lcd-osmosis.imperator.co"
           - "https://lcd.osmosis.zone"
-          - "https://api-osmosis-ia.cosmosia.notional.ventures"
           - "https://lcd-osmosis.blockapsis.com"
         timeout:
           lcd: 3000
@@ -601,9 +600,9 @@ mainnet:
       chain_name: "cosmoshub"
       endpoints:
         lcd:
+          - "https://cosmos-lcd.quickapi.com"
           - "https://lcd-cosmos.imperator.co"
           - "https://lcd-cosmoshub.whispernode.com"
-          - "https://api-cosmoshub-ia.cosmosia.notional.ventures"
           - "https://cosmos-api.polkachu.com"
           - "https://lcd.cosmos.dragonstake.io"
         timeout:
@@ -639,7 +638,6 @@ mainnet:
           - "https://juno-api.polkachu.com"
           - "https://lcd-juno.whispernode.com"
           - "https://lcd-juno.itastakers.com"
-          - "https://api-juno-ia.cosmosia.notional.ventures"
         timeout:
           lcd: 3000
       native_token:
@@ -668,7 +666,6 @@ mainnet:
       chain_name: "e-money"
       endpoints:
         lcd:
-          - "https://api-emoney-ia.cosmosia.notional.ventures"
           - "https://emoney.validator.network/api"
         timeout:
           lcd: 3000
@@ -698,9 +695,9 @@ mainnet:
       chain_name: "injective"
       endpoints:
         lcd:
+          - "https://injective-api.lavenderfive.com"
           - "https://injective-api.polkachu.com"
           - "https://sentry.lcd.injective.network"
-          - "https://api-injective-ia.cosmosia.notional.ventures"
           - "https://public.lcd.injective.network"
         timeout:
           lcd: 3000
@@ -761,7 +758,6 @@ mainnet:
       chain_name: "kujira"
       endpoints:
         lcd:
-          - "https://api-kujira-ia.cosmosia.notional.ventures"
           - "https://kujira-api.polkachu.com"
           - "https://lcd-kujira.imperator.co"
           - "https://lcd-kujira.whispernode.com"
@@ -891,7 +887,6 @@ mainnet:
       endpoints:
         lcd:
           - "https://lcd-stargaze.imperator.co"
-          - "https://api-stargaze-ia.cosmosia.notional.ventures"
           - "https://stargaze-api.polkachu.com"
           - "https://api-stargaze.ezstaking.dev"
           - "https://stargaze-api.ibs.team"
@@ -923,7 +918,6 @@ mainnet:
       chain_name: "assetmantle"
       endpoints:
         lcd:
-          - "https://api-assetmantle-ia.cosmosia.notional.ventures"
           - "https://assetmantle-api.polkachu.com"
           - "https://rest.assetmantle.one"
           - "https://rest-assetmantle.ecostake.com"
@@ -957,7 +951,6 @@ mainnet:
       endpoints:
         lcd:
           - "https://rest-fetchhub.fetch.ai"
-          - "https://api-fetchhub-ia.cosmosia.notional.ventures"
           - "https://fetch-api.polkachu.com"
         timeout:
           lcd: 3000
@@ -989,7 +982,6 @@ mainnet:
         lcd:
           - "https://api-mainnet.blockchain.ki"
           - "https://lcd-kichain.imperator.co"
-          - "https://api-kichain-ia.cosmosia.notional.ventures"
           - "https://api.kichain.chaintools.tech"
           - "https://kichain-api.polkachu.com"
         timeout:
@@ -1020,7 +1012,6 @@ mainnet:
       chain_name: "evmos"
       endpoints:
         lcd:
-          - "https://api-evmos-ia.cosmosia.notional.ventures"
           - "https://evmos-api.polkachu.com"
           - "https://lcd-evmos.imperator.co"
           - "https://evmos-api.lavenderfive.com"
@@ -1144,7 +1135,6 @@ mainnet:
       chain_name: "regen"
       endpoints:
         lcd:
-          - "https://api-regen-ia.cosmosia.notional.ventures"
           - "https://regen.stakesystems.io"
           - "https://rest-regen.ecostake.com"
         timeout:
@@ -1175,7 +1165,6 @@ mainnet:
       chain_name: "umee"
       endpoints:
         lcd:
-          - "https://api-umee-ia.cosmosia.notional.ventures"
           - "https://umee-api.polkachu.com"
           - "https://umee-lcd.quantnode.tech"
         timeout:
@@ -1522,7 +1511,6 @@ mainnet:
       chain_name: "ixo"
       endpoints:
         lcd:
-          - "https://api-ixo-ia.cosmosia.notional.ventures"
           - "https://impacthub-api.lavenderfive.com"
           - "https://ixo-api.ibs.team"
           - "https://proxies.sifchain.finance/api/impacthub-3/rest"
@@ -1707,7 +1695,6 @@ mainnet:
           - "https://chihuahua-api.polkachu.com"
           - "https://api.chihuahua.wtf"
           - "https://rest-chihuahua.ecostake.com"
-          - "https://api-chihuahua-ia.cosmosia.notional.ventures"
           - "https://chihuahua-api.lavenderfive.com"
           - "https://chihuahua-api.kleomedes.network"
           - "https://api-chihuahua.pupmos.network"
@@ -1862,7 +1849,6 @@ mainnet:
         lcd:
           - "https://bitsong-api.polkachu.com"
           - "https://bitsong-api.lavenderfive.com"
-          - "https://api-bitsong-ia.cosmosia.notional.ventures"
         timeout:
           lcd: 3000
       native_token:
@@ -1891,11 +1877,12 @@ mainnet:
       chain_name: "nolus"
       endpoints:
         lcd:
-          - "https://pirin-cl.nolus.network:1317"
           - "https://nolus-api.lavenderfive.com"
+          - "https://pirin-cl.nolus.network:1317"
           - "https://nolus-mainnet-lcd.autostake.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Nolus"
         symbol: "NLS"
@@ -1986,7 +1973,6 @@ mainnet:
         - "terra classic"
       endpoints:
         lcd:
-          - "https://api-terra-ia.cosmosia.notional.ventures"
           - "https://columbus-lcd.terra.dev"
           - "https://terra-classic-lcd.publicnode.com"
           - "https://terraclassic-mainnet-lcd.autostake.com"
