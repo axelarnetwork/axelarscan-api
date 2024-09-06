@@ -3965,9 +3965,9 @@ testnet:
       chain_name: "flow"
       maintainer_id: "flow"
       multisig_prover:
-        address: ""
+        address: "axelar1rsuejfntt4rs2y8dn4dd3acszs00zyg9wpnsc6fmhevcp6plu5qspzn7e0"
       voting_verifier:
-        address: ""
+        address: "axelar1kkqdsqvwq9a7p9fj0w89wpx2m2t0vrxl782aslhq0kdw2xxd2aesv3un04"
       endpoints:
         rpc:
           - "https://testnet.evm.nodes.onflow.org"
