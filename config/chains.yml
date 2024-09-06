@@ -4758,7 +4758,7 @@ devnet-amplifier:
       chain_name: "xrpl"
       endpoints:
         rpc:
-          - "https://testnet.xrpl-labs.com"
+          - "https://s.altnet.rippletest.net:51234"
       native_token:
         name: "Ripple"
         symbol: "XRP"
