@@ -4689,6 +4689,115 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    multiversx:
+      chain_name: "multiversx"
+      endpoints:
+        rpc:
+          - "https://testnet-gateway.multiversx.com"
+      native_token:
+        name: "MultiversX"
+        symbol: "EGLD"
+        decimals: 18
+      name: "MultiversX (VM)"
+      short_name: "EGLD"
+      image: "/logos/chains/multiversx.svg"
+      color: "#22f6dc"
+      explorer:
+        name: "MultiversX"
+        url: "https://testnet-explorer.multiversx.com"
+        icon: "/logos/explorers/multiversx.png"
+        block_path: "/blocks/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+    starknet:
+      chain_name: "starknet"
+      endpoints:
+        rpc:
+          - "https://starknet-sepolia.public.blastapi.io"
+          - "https://rpc.starknet-testnet.lava.build"
+      native_token:
+        name: "Starknet"
+        symbol: "STRK"
+        decimals: 18
+      name: "Starknet (VM)"
+      short_name: "STRK"
+      image: "/logos/chains/starknet.svg"
+      color: "#0c0c4f"
+      explorer:
+        name: "Starknet"
+        url: "https://sepolia.starkscan.co"
+        icon: "/logos/explorers/starknet.png"
+        block_path: "/block/{block}"
+        address_path: "/contract/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+    starknet-devnet:
+      chain_name: "starknet-devnet"
+      endpoints:
+        rpc:
+          - "https://starknet-sepolia.public.blastapi.io"
+          - "https://rpc.starknet-testnet.lava.build"
+      native_token:
+        name: "Starknet"
+        symbol: "STRK"
+        decimals: 18
+      name: "Starknet Devnet (VM)"
+      short_name: "STRK"
+      image: "/logos/chains/starknet.svg"
+      color: "#0c0c4f"
+      explorer:
+        name: "Starknet"
+        url: "https://sepolia.starkscan.co"
+        icon: "/logos/explorers/starknet.png"
+        block_path: "/block/{block}"
+        address_path: "/contract/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+    xrpl:
+      chain_name: "xrpl"
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+    zkstack-memento:
+      chain_id: 12052024
+      chain_name: "zkstack-memento"
+      maintainer_id: "zkstack-memento"
+      endpoints:
+        rpc:
+          - "https://test-rpc.mementoblockchain.com/IRkghvI3FfEArEJMr4zC/rpc"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Memento (VM)"
+      short_name: "MMT"
+      image: "/logos/chains/memento.svg"
+      color: "#0072bc"
+      explorer:
+        name: "Memento"
+        url: "https://test-explorer.mementoblockchain.com"
+        icon: "/logos/explorers/memento.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 

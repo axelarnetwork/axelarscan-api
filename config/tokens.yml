@@ -237,6 +237,17 @@ LUNC:
   decimals: 6
 LUNAC:
   redirect: "LUNC"
+EGLD:
+  coingecko_id: "elrond-erd-2"
+  decimals: 18
+STRK:
+  coingecko_id: "starknet"
+  decimals: 18
+XRP:
+  coingecko_id: "ripple"
+  decimals: 6
+XRPL:
+  redirect: "XRP"
 wAXL:
   redirect: "AXL"
 WAXL:
