@@ -8,7 +8,7 @@ const { getTokensPrice } = require('../methods');
 module.exports = () => {
   describe('getTokensPrice', () => {
     it('Should receive price of tokens', async () => {
-      const symbols = ['ETH', 'MATIC'];
+      const symbols = ['ETH', 'MATIC', 'POL'];
       const response = await getTokensPrice({ symbols });
       expect(Object.keys(response)).to.have.lengthOf(symbols.length);
       Object.values(response).forEach(d => {

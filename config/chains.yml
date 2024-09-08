@@ -70,7 +70,7 @@ mainnet:
           - "https://rpc.ankr.com/polygon"
       native_token:
         name: "Polygon"
-        symbol: "MATIC"
+        symbol: "POL"
         decimals: 18
       name: "Polygon"
       short_name: "POLYGON"

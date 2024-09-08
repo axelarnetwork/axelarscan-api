@@ -11,6 +11,9 @@ BNB:
 MATIC:
   coingecko_id: "matic-network"
   decimals: 18
+POL:
+  coingecko_id: "polygon-ecosystem-token"
+  decimals: 18
 AVAX:
   coingecko_id: "avalanche-2"
   decimals: 18
