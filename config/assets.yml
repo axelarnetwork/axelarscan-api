@@ -2416,6 +2416,21 @@ mainnet:
       terra-2:
         ibc_denom: "ibc/A203631DE58D5033FFC37676C7F6E715707E9A37B49757EC63B1F6DC3A9A1C10"
         symbol: "axlFIL"
+  imx-wei:
+    denom: "imx-wei"
+    denoms:
+      - "imx"
+    native_chain: "ethereum"
+    name: "Immutable X"
+    symbol: "IMX"
+    decimals: 18
+    image: "/logos/assets/imx.svg"
+    addresses:
+      ethereum:
+        address: "0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF"
+        custom_contracts:
+          -
+            address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
   link-wei:
     denom: "link-wei"
     native_chain: "ethereum"
