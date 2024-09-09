@@ -573,6 +573,14 @@ methods:
             type: "float"
             description: "total wrapped supply moved to Cosmos chains"
           -
+            name: "total_on_contracts"
+            type: "float"
+            description: "total balance on custom contracts"
+          -
+            name: "total_on_tokens"
+            type: "float"
+            description: "total supply on custom tokens"
+          -
             name: "price"
             type: "float"
             description: "token price in dollar"
