@@ -4717,8 +4717,8 @@ devnet-amplifier:
           - "https://starknet-sepolia.public.blastapi.io"
           - "https://rpc.starknet-testnet.lava.build"
       native_token:
-        name: "Starknet"
-        symbol: "STRK"
+        name: "Ethereum"
+        symbol: "ETH"
         decimals: 18
       name: "Starknet (VM)"
       short_name: "STRK"
@@ -4739,8 +4739,8 @@ devnet-amplifier:
           - "https://starknet-sepolia.public.blastapi.io"
           - "https://rpc.starknet-testnet.lava.build"
       native_token:
-        name: "Starknet"
-        symbol: "STRK"
+        name: "Ethereum"
+        symbol: "ETH"
         decimals: 18
       name: "Starknet Devnet (VM)"
       short_name: "STRK"
