@@ -4693,7 +4693,7 @@ devnet-amplifier:
       chain_name: "multiversx"
       endpoints:
         rpc:
-          - "https://testnet-gateway.multiversx.com"
+          - "https://devnet-gateway.multiversx.com"
       native_token:
         name: "MultiversX"
         symbol: "EGLD"
