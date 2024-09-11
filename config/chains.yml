@@ -3767,6 +3767,7 @@ testnet:
           - "https://api.buenavista.wardenprotocol.org"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Warden"
         symbol: "WARD"
