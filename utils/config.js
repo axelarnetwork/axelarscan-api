@@ -10,7 +10,7 @@ const { equalsIgnoreCase, capitalize, removeDoubleQuote } = require('./string');
 const { isNumber } = require('./number');
 const { timeDiff } = require('./time');
 
-const { methods, chains, assets, its_assets, endpoints, tokens, supply, tvl } = { ...config };
+const { methods, chains, assets, its_assets, endpoints, tokens, supply, tvl, custom_tvl } = { ...config };
 const ENVIRONMENT = process.env.ENVIRONMENT || 'testnet';
 
 const getMethods = () => methods;
@@ -157,6 +157,7 @@ const getAppURL = (env = ENVIRONMENT) => getEndpoints(env)?.app;
 const getTokens = () => tokens;
 const getSupplyConfig = (env = ENVIRONMENT) => supply[env];
 const getTVLConfig = (env = ENVIRONMENT) => tvl[env];
+const getCustomTVLConfig = (env = ENVIRONMENT) => custom_tvl[env];
 
 module.exports = {
   ENVIRONMENT,
@@ -192,4 +193,5 @@ module.exports = {
   getTokens,
   getSupplyConfig,
   getTVLConfig,
+  getCustomTVLConfig,
 };

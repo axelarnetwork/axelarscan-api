@@ -7,7 +7,7 @@ const { getTokensPrice, getTokenCirculatingSupply } = require('../tokens');
 const { get, read, write } = require('../../services/indexer');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
-const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAxelarConfig, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig } = require('../../utils/config');
+const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAxelarConfig, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig, getCustomTVLConfig } = require('../../utils/config');
 const { toHash, getAddress, split, toArray } = require('../../utils/parser');
 const { isString, lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
@@ -17,9 +17,24 @@ const CACHE_AGE_SECONDS = 60 * 60;
 const IBC_CHANNELS_UPDATE_INTERVAL_SECONDS = 240 * 60;
 
 const normalizeCacheId = id => isString(id) ? split(id, { delimiter: '/' }).join('_') : undefined;
+const generateDenom = d => `${d.decimals === 6 ? 'u' : ''}${d.symbol.toLowerCase()}${d.decimals === 18 ? '-wei' : ''}`;
 
 module.exports = async params => {
-  const assetsData = toArray(await getAssetsList());
+  const { percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold } = { ...getTVLConfig() };
+  const { custom_contracts, custom_tokens } = { ...getCustomTVLConfig() };
+
+  let assetsData = toArray(await getAssetsList());
+  const assetsFromCustomContracts = Object.values(_.groupBy(_.uniqBy(toArray(custom_contracts).flatMap(c => toArray(c.assets).filter(a => assetsData.findIndex(d => d.symbol === a.symbol) < 0).map(a => ({ ...a, chain: c.chain, k: `${a.symbol}_${c.chain}` }))), 'k'), 'symbol')).map(v => {
+    const d = { ..._.head(v) };
+    const denom = generateDenom(d);
+    return { id: denom, denom, ...d, addresses: Object.fromEntries(v.map(c => [c.chain, c])) };
+  });
+  const assetsFromCustomTokens = toArray(custom_tokens).filter(c => assetsData.findIndex(d => d.symbol === c.symbol) < 0).map(d => {
+    const denom = generateDenom(d);
+    return { id: denom, denom, ...d };
+  });
+  assetsData = _.concat(assetsData, Object.values(_.groupBy(_.concat(assetsFromCustomContracts, assetsFromCustomTokens), 'id')).map(v => ({ ..._.head(v), addresses: _.merge(v.map(d => d.addresses)) })));
+
   const itsAssetsData = toArray(await getITSAssetsList());
   const { gateway_contracts } = { ...await getContracts() };
   const { asset, chain, force_update } = { ...params };
@@ -29,7 +44,6 @@ module.exports = async params => {
   chains = toArray(chains || chain);
   chains = chains.length === 0 ? getChainsList().filter(d => (d.chain_type === 'cosmos' || gateway_contracts?.[d.id]?.address) && !d.no_tvl).map(d => d.id) : _.uniq(_.concat('axelarnet', toArray(chains.map(d => getChainData(d)?.id))));
 
-  const { percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold } = { ...getTVLConfig() };
   const evmChainsData = getChainsList('evm').filter(d => chains.includes(d.id) && !d.no_tvl);
   const cosmosChainsData = getChainsList('cosmos').filter(d => chains.includes(d.id) && !d.no_tvl);
   const hasAllEVMChains = evmChainsData.length >= getChainsList('evm').filter(d => gateway_contracts?.[d.id]?.address && !d.no_tvl).length;
@@ -121,16 +135,16 @@ module.exports = async params => {
             try {
               const contract_data = { ...assetData, ...addresses?.[id], contract_address: addresses?.[id]?.address };
               delete contract_data.addresses;
-              const { address, token_manager_address, token_manager_type, custom_contracts, custom_tokens } = { ...contract_data };
+              const { address, token_manager_address, token_manager_type } = { ...contract_data };
 
               if (address) {
                 const gateway_balance = assetType !== 'its' ? toNumber(await getBalance(id, gateway_address, contract_data)) : 0;
                 const isLockUnlock = assetType === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
                 const token_manager_balance = isLockUnlock ? toNumber(await getBalance(id, token_manager_address, contract_data)) : 0;
                 const supply = !isNative || assetType === 'its' ? isLockUnlock ? token_manager_balance : toNumber(await getTokenSupply(id, contract_data)) : 0;
-                const custom_contracts_balance = await Promise.all(toArray(custom_contracts).map(c => ({ address: c.address, balance: toNumber(await getBalance(id, c.address, { ...contract_data, address: c.native_asset ? ZeroAddress : contract_data.address })), url: url && `${url}${(c.native_asset ? address_path : contract_path).replace('{address}', c.native_asset ? c.address : `${contract_data.address}?a=${c.address}`)}` })));
+                const custom_contracts_balance = await Promise.all(toArray(custom_contracts).filter(c => c.chain === id && c.address && toArray(c.assets).findIndex(a => a.symbol === assetData?.symbol && a.address) > -1).map(c => ({ address: c.address, balance: toNumber(await getBalance(id, c.address, { ...c.assets.find(a => a.symbol === assetData?.symbol) })), url: url && `${url}${(c.assets.find(a => a.symbol === assetData?.symbol)?.address === ZeroAddress ? address_path : contract_path).replace('{address}', c.assets.find(a => a.symbol === assetData?.symbol)?.address === ZeroAddress ? c.address : `${c.assets.find(a => a.symbol === assetData?.symbol)?.address}?a=${c.address}`)}` })));
                 const total_balance_on_custom_contracts = _.sumBy(custom_contracts_balance, 'balance');
-                const custom_tokens_supply = await Promise.all(toArray(custom_tokens).map(c => ({ address: c.address, supply: toNumber(await getTokenSupply(id, { ...contract_data, address: c.address })), url: url && `${url}${(c.address === ZeroAddress ? address_path : contract_path).replace('{address}', c.address)}` })));
+                const custom_tokens_supply = await Promise.all(toArray(custom_tokens).filter(c => c.symbol === assetData?.symbol && c.addresses?.[id]).map(c => ({ address: c.addresses[id], supply: toNumber(await getTokenSupply(id, { ...c, address: c.addresses[id] })), url: url && `${url}${(c.addresses[id] === ZeroAddress ? address_path : contract_path).replace('{address}', c.addresses[id])}` })));
                 const total_supply_of_custom_tokens = _.sumBy(custom_tokens_supply, 'supply');
                 result = {
                   contract_data, gateway_address, gateway_balance,

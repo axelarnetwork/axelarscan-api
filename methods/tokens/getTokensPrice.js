@@ -2,7 +2,7 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const { get, write } = require('../../services/indexer');
-const { TOKEN_PRICE_COLLECTION, PRICE_ORACLE_API, CURRENCY, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getTokens } = require('../../utils/config');
+const { TOKEN_PRICE_COLLECTION, PRICE_ORACLE_API, CURRENCY, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getTokens, getCustomTVLConfig } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
 const { equalsIgnoreCase, lastString } = require('../../utils/string');
@@ -10,9 +10,14 @@ const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
 const tokens = getTokens();
+const { custom_contracts, custom_tokens } = { ...getCustomTVLConfig() };
 
 const getTokenConfig = async (symbol, additionalAssetsData, notGetAssetConfig = false) => {
-  const tokenData = tokens[symbol] || _.last(Object.entries(tokens).find(([k, v]) => equalsIgnoreCase(k, lastString(symbol, '/')))) || (!notGetAssetConfig ? await getAssetData(symbol, additionalAssetsData) || await getITSAssetData(symbol, additionalAssetsData) : undefined);
+  const tokenData = tokens[symbol] ||
+    _.last(Object.entries(tokens).find(([k, v]) => equalsIgnoreCase(k, lastString(symbol, '/')))) ||
+    _.head(toArray(toArray(custom_contracts).map(c => toArray(c.assets).find(a => a.symbol === symbol && a.coingecko_id)))) ||
+    toArray(custom_tokens).find(c => c.symbol === symbol && c.coingecko_id) ||
+    (!notGetAssetConfig ? await getAssetData(symbol, additionalAssetsData) || await getITSAssetData(symbol, additionalAssetsData) : undefined);
   const { redirect } = { ...tokenData };
   return { ...(redirect ? await getTokenConfig(redirect, additionalAssetsData, notGetAssetConfig) : tokenData) };
 };

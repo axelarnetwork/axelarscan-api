@@ -82,9 +82,6 @@ mainnet:
     addresses:
       ethereum:
         address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
-        custom_contracts:
-          -
-            address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
       binance:
         address: "0x4268B8F0B87b6Eae5d897996E6b845ddbD99Adf3"
         symbol: "axlUSDC"
@@ -278,9 +275,6 @@ mainnet:
     addresses:
       ethereum:
         address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
-        custom_contracts:
-          -
-            address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
       binance:
         address: "0x4818B684a810fC023C32bB6292da8D508Bd906EF"
         symbol: "axlUSDT"
@@ -1119,10 +1113,6 @@ mainnet:
     addresses:
       ethereum:
         address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
-        custom_contracts:
-          -
-            address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
-            native_asset: true
       binance:
         address: "0xfe7eDa5F2c56160d406869A8aA4B2F365d544C7B"
         symbol: "axlETH"
@@ -1308,9 +1298,6 @@ mainnet:
       binance:
         address: "0xb306669D6C024B3deA4ff3A35D50844289b2DCFC"
         symbol: "axl-wstETH"
-        custom_tokens:
-          -
-            address: "0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C"
       polygon:
         address: "0xd7Bb095a60D7666D4A6f236423B47DDD6ae6Cfa7"
         symbol: "axl-wstETH"
@@ -2416,21 +2403,6 @@ mainnet:
       terra-2:
         ibc_denom: "ibc/A203631DE58D5033FFC37676C7F6E715707E9A37B49757EC63B1F6DC3A9A1C10"
         symbol: "axlFIL"
-  imx-wei:
-    denom: "imx-wei"
-    denoms:
-      - "imx"
-    native_chain: "ethereum"
-    name: "Immutable X"
-    symbol: "IMX"
-    decimals: 18
-    image: "/logos/assets/imx.svg"
-    addresses:
-      ethereum:
-        address: "0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF"
-        custom_contracts:
-          -
-            address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
   link-wei:
     denom: "link-wei"
     native_chain: "ethereum"
