@@ -1,0 +1,42 @@
+############################
+# Custom TVL Configuration #
+############################
+
+mainnet:
+  custom_contracts:
+    -
+      address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
+      chain: "ethereum"
+      assets:
+        -
+          address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+          symbol: "USDC"
+          decimals: 6
+          image: "/logos/assets/usdc.svg"
+          coingecko_id: "usd-coin"
+        -
+          address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+          symbol: "USDT"
+          decimals: 6
+          image: "/logos/assets/usdt.svg"
+          coingecko_id: "tether"
+        -
+          address: "0x0000000000000000000000000000000000000000"
+          symbol: "ETH"
+          decimals: 18
+          image: "/logos/assets/eth.svg"
+          coingecko_id: "ethereum"
+        -
+          address: "0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF"
+          symbol: "IMX"
+          decimals: 18
+          image: "/logos/assets/imx.svg"
+          coingecko_id: "immutable-x"
+  custom_tokens:
+    -
+      symbol: "wstETH"
+      decimals: 18
+      image: "/logos/assets/wsteth.svg"
+      coingecko_id: "staked-ether"
+      addresses:
+        binance: "0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C"

@@ -20,8 +20,8 @@ module.exports = async params => {
   const { updated_at } = { ..._.head(data) };
 
   data = _.orderBy(toArray(toArray(data).map(d => _.head(toArray(d.data).filter(d => d.assetType !== 'its')))).map(d => {
-    const { price, total, percent_diff_supply } = { ...d };
-    return { ...d, value: toNumber(total * price), value_diff: toNumber(total * (percent_diff_supply / 100) * price) };
+    const { price, total, total_on_contracts, total_on_tokens, percent_diff_supply } = { ...d };
+    return { ...d, value: toNumber(total * price), value_diff: toNumber((total - (total_on_contracts + total_on_tokens)) * (percent_diff_supply / 100) * price) };
   }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
 
   const toAlertData = data.filter(d => (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || (
@@ -46,7 +46,7 @@ module.exports = async params => {
   if (data.length > 0) {
     const assetsData = await getAssetsList();
     details = await Promise.all(data.map(d => new Promise(async resolve => {
-      const { asset, price, is_abnormal_supply, percent_diff_supply, total, value_diff, total_on_evm, total_on_cosmos, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
+      const { asset, price, is_abnormal_supply, percent_diff_supply, total, value_diff, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
       const { native_chain, symbol, addresses } = { ...await getAssetData(asset, assetsData) };
       const { chain_type } = { ...getChainData(native_chain) };
       const app = getAppURL();
@@ -58,7 +58,7 @@ module.exports = async params => {
         ...(is_abnormal_supply && value_diff > alert_asset_value_threshold ?
           {
             percent_diff_supply,
-            total, total_on_evm, total_on_cosmos,
+            total, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens,
             evm_escrow_address, evm_escrow_balance,
             links: _.uniq(toArray(_.concat(
               evm_escrow_address_urls,
