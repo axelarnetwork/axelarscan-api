@@ -1,6 +1,7 @@
-############################
-# Custom TVL Configuration #
-############################
+#############################################################
+#                 Custom TVL Configuration                  #
+# coingecko_id: https://api.coingecko.com/api/v3/coins/list #
+#############################################################
 
 mainnet:
   custom_contracts:
@@ -32,6 +33,18 @@ mainnet:
           decimals: 18
           image: "/logos/assets/imx.svg"
           coingecko_id: "immutable-x"
+        -
+          address: "0x9AB7bb7FdC60f4357ECFef43986818A2A3569c62"
+          symbol: "GOG"
+          decimals: 18
+          image: "/logos/assets/gog.svg"
+          coingecko_id: "guild-of-guardians"
+        -
+          address: "0xc9E503562d0Db0A2629288a5D3b1c94Ea7741869"
+          symbol: "MCG"
+          decimals: 18
+          image: "/logos/assets/mcg.svg"
+          coingecko_id: "metalcore"
   custom_tokens:
     -
       symbol: "wstETH"
