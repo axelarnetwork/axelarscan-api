@@ -251,6 +251,9 @@ XRP:
   decimals: 6
 XRPL:
   redirect: "XRP"
+HBAR:
+  coingecko_id: "hedera-hashgraph"
+  decimals: 18
 wAXL:
   redirect: "AXL"
 WAXL:
