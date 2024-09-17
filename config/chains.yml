@@ -3990,6 +3990,33 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    hedera:
+      chain_id: 296
+      chain_name: "hedera"
+      maintainer_id: "hedera"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://testnet.hashio.io/api"
+      native_token:
+        name: "Hedera"
+        symbol: "HBAR"
+        decimals: 18
+      name: "Hedera (VM)"
+      short_name: "HBAR"
+      image: "/logos/chains/hedera.svg"
+      color: "#000000"
+      explorer:
+        name: "Hashscan"
+        url: "https://hashscan.io/testnet"
+        icon: "/logos/explorers/hedera.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
 
 
 
@@ -4487,6 +4514,33 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    hedera:
+      chain_id: 296
+      chain_name: "hedera"
+      maintainer_id: "hedera"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://testnet.hashio.io/api"
+      native_token:
+        name: "Hedera"
+        symbol: "HBAR"
+        decimals: 18
+      name: "Hedera (VM)"
+      short_name: "HBAR"
+      image: "/logos/chains/hedera.svg"
+      color: "#000000"
+      explorer:
+        name: "Hashscan"
+        url: "https://hashscan.io/testnet"
+        icon: "/logos/explorers/hedera.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
 
 
 
