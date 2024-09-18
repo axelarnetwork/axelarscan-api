@@ -4811,6 +4811,28 @@ devnet-amplifier:
         address_path: "/contract/{address}"
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
+    starknet-devnet-v1:
+      chain_name: "starknet-devnet-v1"
+      endpoints:
+        rpc:
+          - "https://starknet-sepolia.public.blastapi.io"
+          - "https://rpc.starknet-testnet.lava.build"
+      native_token:
+        name: "Ethereum"
+        symbol: "ETH"
+        decimals: 18
+      name: "Starknet Devnet V1 (VM)"
+      short_name: "STRK"
+      image: "/logos/chains/starknet.svg"
+      color: "#0c0c4f"
+      explorer:
+        name: "Starknet"
+        url: "https://sepolia.starkscan.co"
+        icon: "/logos/explorers/starknet.png"
+        block_path: "/block/{block}"
+        address_path: "/contract/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
     xrpl:
       chain_name: "xrpl"
       endpoints:
