@@ -4004,7 +4004,7 @@ testnet:
       native_token:
         name: "Hedera"
         symbol: "HBAR"
-        decimals: 8
+        decimals: 18
       name: "Hedera (VM)"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
@@ -4528,7 +4528,7 @@ stagenet:
       native_token:
         name: "Hedera"
         symbol: "HBAR"
-        decimals: 8
+        decimals: 18
       name: "Hedera (VM)"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
