@@ -576,6 +576,7 @@ mainnet:
           - "https://lcd-osmosis.blockapsis.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Osmosis"
         symbol: "OSMO"
@@ -2818,6 +2819,7 @@ testnet:
           - "https://lcd.osmotest5.osmosis.zone"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Osmosis"
         symbol: "OSMO"
