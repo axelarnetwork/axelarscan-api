@@ -67,6 +67,14 @@ TIMX:
 FLOW:
   coingecko_id: "flow"
   decimals: 18
+HBAR:
+  coingecko_id: "hedera-hashgraph"
+  decimals: 18
+COTI:
+  coingecko_id: "coti"
+  decimals: 18
+COTI2:
+  redirect: "COTI"
 AXL:
   coingecko_id: "axelar"
   decimals: 6
@@ -251,9 +259,6 @@ XRP:
   decimals: 6
 XRPL:
   redirect: "XRP"
-HBAR:
-  coingecko_id: "hedera-hashgraph"
-  decimals: 18
 SOL:
   coingecko_id: "solana"
   decimals: 9
