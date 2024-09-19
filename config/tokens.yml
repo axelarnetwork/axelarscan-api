@@ -254,6 +254,9 @@ XRPL:
 HBAR:
   coingecko_id: "hedera-hashgraph"
   decimals: 18
+SOL:
+  coingecko_id: "solana"
+  decimals: 9
 wAXL:
   redirect: "AXL"
 WAXL:

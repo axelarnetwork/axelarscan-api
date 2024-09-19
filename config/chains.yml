@@ -3997,9 +3997,9 @@ testnet:
       chain_name: "hedera"
       maintainer_id: "hedera"
       multisig_prover:
-        address: ""
+        address: "axelar1kleasry5ed73a8u4q6tdeu80hquy4nplfnrntx3n6agm2tcx40fssjk7gj"
       voting_verifier:
-        address: ""
+        address: "axelar1ce9rcvw8htpwukc048z9kqmyk5zz52d5a7zqn9xlq2pg0mxul9mqxlx2cq"
       endpoints:
         rpc:
           - "https://testnet.hashio.io/api"
@@ -4521,9 +4521,9 @@ stagenet:
       chain_name: "hedera"
       maintainer_id: "hedera"
       multisig_prover:
-        address: ""
+        address: "axelar1x3xd2z2p3703cdwu98tc27x5j9tgq60lyxdwtnggx05zj3egg0wqsnckd0"
       voting_verifier:
-        address: ""
+        address: "axelar1h8gx392pzlj6ff5lv3kc9jwegu0wwqjrur7ht93frus5czape9ns3j3d0a"
       endpoints:
         rpc:
           - "https://testnet.hashio.io/api"
@@ -4879,6 +4879,27 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    solana-devnet:
+      chain_name: "solana-devnet"
+      endpoints:
+        rpc:
+          - "https://rpc.ankr.com/solana_devnet"
+      native_token:
+        name: "Solana"
+        symbol: "SOL"
+        decimals: 9
+      name: "Solana Devnet (VM)"
+      short_name: "SOL"
+      image: "/logos/chains/solana.svg"
+      color: "#8d4df7"
+      explorer:
+        name: "Solana"
+        url: "https://solscan.io"
+        icon: "/logos/explorers/solana.png"
+        block_path: "/block/{block}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
 
 
 
