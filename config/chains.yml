@@ -4911,6 +4911,27 @@ devnet-amplifier:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
+    xrpl-evm-sidechain:
+      chain_name: "xrpl-evm-sidechain"
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger EVM Sidechain (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
     zkstack-memento:
       chain_id: 12052024
       chain_name: "zkstack-memento"
