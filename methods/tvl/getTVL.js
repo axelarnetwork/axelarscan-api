@@ -9,6 +9,7 @@ const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
 const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAxelarConfig, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig, getCustomTVLConfig } = require('../../utils/config');
 const { toHash, getAddress, split, toArray } = require('../../utils/parser');
+const { sleep } = require('../../utils/operator');
 const { isString, lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
@@ -189,7 +190,8 @@ module.exports = async params => {
                       source_escrow_addresses = toArray(toArray(ibc_channels).map(d => d.counterparty?.escrow_address));
                       break;
                     }
-                    else await saveIBCChannels();
+                    else if (data) await saveIBCChannels();
+                    await sleep(3000);
                   }
                 }
 
