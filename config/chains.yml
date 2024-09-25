@@ -2002,6 +2002,61 @@ mainnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "columbus-"
+  vm:
+    flow:
+      chain_id: 747
+      chain_name: "flow"
+      maintainer_id: "flow"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://mainnet.evm.nodes.onflow.org"
+      native_token:
+        name: "Flow"
+        symbol: "FLOW"
+        decimals: 18
+      name: "Flow (VM)"
+      short_name: "FLOW"
+      image: "/logos/chains/flow.svg"
+      color: "#00ee8a"
+      explorer:
+        name: "Flowscan"
+        url: "https://evm.flowscan.io"
+        icon: "/logos/explorers/flow.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    hedera:
+      chain_id: 295
+      chain_name: "hedera"
+      maintainer_id: "hedera"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://mainnet.hashio.io/api"
+      native_token:
+        name: "Hedera"
+        symbol: "HBAR"
+        decimals: 18
+      name: "Hedera (VM)"
+      short_name: "HBAR"
+      image: "/logos/chains/hedera.svg"
+      color: "#000000"
+      explorer:
+        name: "Hashscan"
+        url: "https://hashscan.io/mainnet"
+        icon: "/logos/explorers/hedera.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
 
 
 
