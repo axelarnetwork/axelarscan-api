@@ -18,24 +18,26 @@ module.exports = async () => {
   }
 
   const { data } = { ...await read(IBC_CHANNEL_COLLECTION, { match_all: {} }, { size: 1000 }) };
-  allChannels = toArray(allChannels).map(d => { return { ...toArray(data).find(_d => _d.channel_id === d.channel_id), ...d }; });
+  allChannels = toArray(allChannels).map(d => ({ ...toArray(data).find(_d => _d.channel_id === d.channel_id), ...d }));
 
-  await Promise.all(allChannels.map(channel => new Promise(async resolve => {
-    const { channel_id, port_id, version, counterparty, updated_at } = { ...channel };
-    let { chain_id, escrow_address } = { ...channel };
+  if (data) {
+    await Promise.all(allChannels.map(channel => new Promise(async resolve => {
+      const { channel_id, port_id, version, counterparty, updated_at } = { ...channel };
+      let { chain_id, escrow_address } = { ...channel };
 
-    if (!chain_id || !escrow_address || (counterparty && !counterparty.escrow_address) || timeDiff(updated_at * 1000, 'minutes') > 240) {
-      const response = await request(createInstance(getLCD(), { gzip: true }), { path: `/ibc/core/channel/v1/channels/${channel_id}/ports/${port_id}/client_state` });
-      const { client_state } = { ...response?.identified_client_state };
-      chain_id = client_state?.chain_id || chain_id;
+      if (!chain_id || !escrow_address || (counterparty && !counterparty.escrow_address) || timeDiff(updated_at * 1000, 'minutes') > 240) {
+        const response = await request(createInstance(getLCD(), { gzip: true }), { path: `/ibc/core/channel/v1/channels/${channel_id}/ports/${port_id}/client_state` });
+        const { client_state } = { ...response?.identified_client_state };
+        chain_id = client_state?.chain_id || chain_id;
 
-      if (chain_id) {
-        escrow_address = getAddress(`${version}\x00${port_id}/${channel_id}`) || escrow_address;
-        const { prefix_address } = { ...getChainData(chain_id, 'cosmos') };
-        if (counterparty && prefix_address) counterparty.escrow_address = getAddress(`${version}\x00${counterparty.port_id}/${counterparty.channel_id}`, prefix_address);
-        await write(IBC_CHANNEL_COLLECTION, channel_id, { ...channel, chain_id, counterparty, escrow_address, latest_height: isNumber(client_state?.latest_height?.revision_height) ? toNumber(client_state.latest_height.revision_height) : undefined, updated_at: moment().unix() }, false, false);
+        if (chain_id) {
+          escrow_address = getAddress(`${version}\x00${port_id}/${channel_id}`) || escrow_address;
+          const { prefix_address } = { ...getChainData(chain_id, 'cosmos') };
+          if (counterparty && prefix_address) counterparty.escrow_address = getAddress(`${version}\x00${counterparty.port_id}/${counterparty.channel_id}`, prefix_address);
+          await write(IBC_CHANNEL_COLLECTION, channel_id, { ...channel, chain_id, counterparty, escrow_address, latest_height: isNumber(client_state?.latest_height?.revision_height) ? toNumber(client_state.latest_height.revision_height) : undefined, updated_at: moment().unix() }, false, false);
+        }
       }
-    }
-    resolve();
-  })));
+      resolve();
+    })));
+  }
 };
