@@ -9,7 +9,7 @@ const createInstance = (url, options) => {
   let { timeout, headers } = { ...options };
   timeout = timeout || 5000;
   if (gzip) headers = { ...headers, 'Accept-Encoding': 'gzip' };
-  const httpsAgent = url.includes('execute-api.us-east-2.amazonaws.com') ? new https.Agent({ keepAlive: true }) : undefined;
+  const httpsAgent = new https.Agent({ keepAlive: true });
   return axios.create({ ...options, baseURL: url, timeout, headers, httpsAgent });
 };
 
