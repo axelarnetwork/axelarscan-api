@@ -9,7 +9,7 @@ const createInstance = (url, options) => {
   let { timeout, headers } = { ...options };
   timeout = timeout || 5000;
   if (gzip) headers = { ...headers, 'Accept-Encoding': 'gzip' };
-  const httpsAgent = ['amazonaws.com', 'axelarscan.io'].findIndex(d => url.includes(d)) > -1 ? new https.Agent({ keepAlive: true }) : undefined;
+  const httpsAgent = ['amazonaws.com'].findIndex(d => url.includes(d)) > -1 ? new https.Agent({ keepAlive: true }) : undefined;
   return axios.create({ ...options, baseURL: url, timeout, headers, httpsAgent });
 };
 
