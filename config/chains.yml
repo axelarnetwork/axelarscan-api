@@ -4748,6 +4748,33 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    flow:
+      chain_id: 545
+      chain_name: "flow"
+      maintainer_id: "flow"
+      multisig_prover:
+        address: "axelar19ukamzyhhaw4algkqch5relyg0h972smhj8zge2usjp8z7yaezrquc475f"
+      voting_verifier:
+        address: "axelar1hn4hf23pqy2s2yacs4cuzjqe72hxn0rtxugy2vq485l7cngtcavqu9d0zq"
+      endpoints:
+        rpc:
+          - "https://testnet.evm.nodes.onflow.org"
+      native_token:
+        name: "Flow"
+        symbol: "FLOW"
+        decimals: 18
+      name: "Flow (VM)"
+      short_name: "FLOW"
+      image: "/logos/chains/flow.svg"
+      color: "#00ee8a"
+      explorer:
+        name: "Flowscan"
+        url: "https://evm-testnet.flowscan.io"
+        icon: "/logos/explorers/flow.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     multiversx:
       chain_name: "multiversx"
       endpoints:
