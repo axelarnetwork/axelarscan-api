@@ -4101,12 +4101,12 @@ testnet:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://soroban.nownodes.io/testnet"
+        url: "https://testnet.lumenscan.io"
         icon: "/logos/explorers/stellar.png"
         block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
+        address_path: "/account/{address}"
+        contract_path: "/assets/{address}"
+        transaction_path: "/txns/{tx}"
 
 
 
@@ -5126,12 +5126,12 @@ devnet-amplifier:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://soroban.nownodes.io/testnet"
+        url: "https://testnet.lumenscan.io"
         icon: "/logos/explorers/stellar.png"
         block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
+        address_path: "/account/{address}"
+        contract_path: "/assets/{address}"
+        transaction_path: "/txns/{tx}"
 
 
 
