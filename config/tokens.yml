@@ -75,6 +75,9 @@ COTI:
   decimals: 18
 COTI2:
   redirect: "COTI"
+XLM:
+  coingecko_id: "stellar"
+  decimals: 7
 AXL:
   coingecko_id: "axelar"
   decimals: 6

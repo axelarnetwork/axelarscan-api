@@ -4082,6 +4082,31 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
+    stellar:
+      chain_name: "stellar"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar (VM)"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://soroban.nownodes.io/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
 
 
 
@@ -4838,6 +4863,33 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    hedera-testnet:
+      chain_id: 296
+      chain_name: "hedera-testnet"
+      maintainer_id: "hedera-testnet"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://testnet.hashio.io/api"
+      native_token:
+        name: "Hedera Testnet"
+        symbol: "HBAR"
+        decimals: 18
+      name: "Hedera (VM)"
+      short_name: "HBAR"
+      image: "/logos/chains/hedera.svg"
+      color: "#000000"
+      explorer:
+        name: "Hashscan"
+        url: "https://hashscan.io/testnet"
+        icon: "/logos/explorers/hedera.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
     multiversx:
       chain_name: "multiversx"
       endpoints:
@@ -4990,6 +5042,27 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    solana:
+      chain_name: "solana"
+      endpoints:
+        rpc:
+          - "https://rpc.ankr.com/solana_devnet"
+      native_token:
+        name: "Solana"
+        symbol: "SOL"
+        decimals: 9
+      name: "Solana (VM)"
+      short_name: "SOL"
+      image: "/logos/chains/solana.svg"
+      color: "#8d4df7"
+      explorer:
+        name: "Solana"
+        url: "https://solscan.io"
+        icon: "/logos/explorers/solana.png"
+        block_path: "/block/{block}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
     solana-devnet:
       chain_name: "solana-devnet"
       endpoints:
@@ -5034,6 +5107,31 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
+    stellar-test:
+      chain_name: "stellar-test"
+      multisig_prover:
+        address: "axelar1njlpnavy7z942vylfhe7l8chz0dsd0xcupzywp03xe2p7t4n746qga80lw"
+      voting_verifier:
+        address: "axelar1huyudq29jvepa04y7kaq6rwmx6d932wmdrvvdjathmkxc5wkpqqqz0c2h6"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar Test (VM)"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://soroban.nownodes.io/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
 
 
 
