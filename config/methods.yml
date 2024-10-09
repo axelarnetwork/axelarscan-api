@@ -124,7 +124,7 @@ methods:
           -
             name: "chain_type"
             type: "string"
-            description: "type of chain (evm/cosmos)"
+            description: "type of chain (evm/cosmos/vm)"
           -
             name: "provider_params"
             type: "[object]"
