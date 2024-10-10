@@ -78,6 +78,9 @@ COTI2:
 XLM:
   coingecko_id: "stellar"
   decimals: 7
+SUI:
+  coingecko_id: "sui"
+  decimals: 9
 AXL:
   coingecko_id: "axelar"
   decimals: 6
@@ -595,6 +598,12 @@ axlSEI:
   redirect: "SEI"
 axlSOMM:
   redirect: "SOMM"
+TFM-30de7b:
+  coingecko_id: "wrapped-fantom"
+  decimals: 18
+WEGLD-a28c59:
+  coingecko_id: "wrapped-elrond"
+  decimals: 18
 
 
 
