@@ -2065,6 +2065,31 @@ mainnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
+    stellar:
+      chain_name: "stellar"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://rpc.ankr.com/stellar_soroban"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar (VM)"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://lumenscan.io"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/assets/{address}"
+        transaction_path: "/txns/{tx}"
 
 
 
@@ -4107,6 +4132,31 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/assets/{address}"
         transaction_path: "/txns/{tx}"
+    sui:
+      chain_name: "sui"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://fullnode.testnet.sui.io"
+      native_token:
+        name: "Sui"
+        symbol: "SUI"
+        decimals: 9
+      name: "Sui (VM)"
+      short_name: "SUI"
+      image: "/logos/chains/sui.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Sui"
+        url: "https://suiscan.xyz/mainnet"
+        icon: "/logos/explorers/sui.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
