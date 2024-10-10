@@ -4148,7 +4148,7 @@ testnet:
       name: "Sui (VM)"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
-      color: "#0f0f0f"
+      color: "#4b7fdc"
       explorer:
         name: "Sui"
         url: "https://suiscan.xyz/mainnet"
