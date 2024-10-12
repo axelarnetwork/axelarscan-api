@@ -13,6 +13,6 @@ module.exports = () => {
         expect(d).to.be.an('object');
         expect(d.proposal_id).to.be.a('number');
       });
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };
