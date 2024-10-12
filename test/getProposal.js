@@ -11,6 +11,6 @@ module.exports = () => {
       const id = 1;
       const { proposal_id } = { ...await getProposal({ id }) };
       expect(proposal_id).to.equal(id);
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

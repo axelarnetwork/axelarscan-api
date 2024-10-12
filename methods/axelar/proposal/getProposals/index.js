@@ -14,6 +14,7 @@ module.exports = async () => {
   while (nextKey) {
     const { proposals, pagination } = { ...await request(createInstance(getLCD(), { gzip: true }), { path: '/cosmos/gov/v1beta1/proposals', params: { 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined } }) };
     data = _.orderBy(_.uniqBy(_.concat(toArray(data), await Promise.all(toArray(proposals).map(d => new Promise(async resolve => {
+      if (d.content) delete d.content.wasm_byte_code;
       d.proposal_id = toNumber(d.proposal_id);
       d.type = lastString(d.content?.['@type'], '.')?.replace('Proposal', '');
       d.content = { ...d.content, plan: d.content?.plan && { ...d.content.plan, height: toNumber(d.content.plan.height) } };
