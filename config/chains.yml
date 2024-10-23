@@ -1146,8 +1146,8 @@ mainnet:
       chain_name: "regen"
       endpoints:
         lcd:
-          - "https://regen.stakesystems.io"
           - "https://rest-regen.ecostake.com"
+          - "https://regen.stakesystems.io"
         timeout:
           lcd: 3000
       native_token:
