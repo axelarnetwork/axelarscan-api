@@ -1146,8 +1146,8 @@ mainnet:
       chain_name: "regen"
       endpoints:
         lcd:
-          - "https://regen.stakesystems.io"
           - "https://rest-regen.ecostake.com"
+          - "https://regen.stakesystems.io"
         timeout:
           lcd: 3000
       native_token:
@@ -5182,6 +5182,31 @@ devnet-amplifier:
         address_path: "/account/{address}"
         contract_path: "/assets/{address}"
         transaction_path: "/txns/{tx}"
+    stellar-test2:
+      chain_name: "stellar-test2"
+      multisig_prover:
+        address: "axelar1s8unjkst9sjc8csa8xu7sspv4maz8frl34ac2ypny0mylllyuz9qej9lfk"
+      voting_verifier:
+        address: "axelar1y00kk2j8pjx700hedhn3u7dyduy5q9kr37hgge6zxrl46ny0jr7qj046ey"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar Test2 (VM)"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://soroban.nownodes.io/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
 
 
 
