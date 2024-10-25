@@ -1673,6 +1673,7 @@ mainnet:
     ojo:
       chain_id: "agamotto"
       chain_name: "ojo"
+      unstable: true
       endpoints:
         lcd:
           - "https://api.agamotto-val-stage-0.ojo.network"
