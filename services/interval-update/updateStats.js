@@ -1,6 +1,12 @@
+const moment = require('moment');
+
 const METHODS = require('../../methods');
 
 module.exports = async () => {
+  const minute = moment().minutes();
+  // run every 10 minutes
+  if (minute % 10 !== 0) return;
+
   await Promise.all(['transfersStats', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee', 'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume', 'GMPStats', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee', 'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume'].map(d => new Promise(async resolve => {
     switch (d) {
       case 'transfersTopUsers':
