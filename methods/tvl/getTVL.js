@@ -40,10 +40,10 @@ module.exports = async params => {
 
   const itsAssetsData = toArray(await getITSAssetsList());
   const { gateway_contracts } = { ...await getContracts() };
-  const { asset, chain, force_update } = { ...params };
+  const { asset, chain, force_update, is_interval, custom_assets_only } = { ...params };
   let { assets, chains } = { ...params };
   assets = toArray(assets || asset);
-  assets = assets.length === 0 ? _.concat(assetsData, itsAssetsData).map(d => d.id) : await Promise.all(assets.map(d => new Promise(async resolve => resolve((await getAssetData(d, assetsData))?.denom || (await getITSAssetData(d, itsAssetsData))?.id))));
+  assets = assets.length === 0 ? _.concat(assetsData, itsAssetsData).filter(d => !custom_assets_only || d.is_custom).map(d => d.id) : await Promise.all(assets.map(d => new Promise(async resolve => resolve((await getAssetData(d, assetsData))?.denom || (await getITSAssetData(d, itsAssetsData))?.id))));
   chains = toArray(chains || chain);
   chains = chains.length === 0 ? getChainsList().filter(d => (d.chain_type === 'cosmos' || gateway_contracts?.[d.id]?.address) && !d.no_tvl).map(d => d.id) : _.uniq(_.concat('axelarnet', toArray(chains.map(d => getChainData(d)?.id))));
 
@@ -56,6 +56,8 @@ module.exports = async params => {
   // set cacheId on querying single asset on every chains
   const cacheId = assets.length === 1 && hasAllChains && normalizeCacheId(_.head(assets));
   let cache;
+  let cachesForIntervalUpdate;
+
   if (!force_update) {
     // query cache
     if (cacheId) {
@@ -86,6 +88,15 @@ module.exports = async params => {
       }
     }
   }
+  else if (is_interval) {
+    const response = await read(TVL_COLLECTION, {
+      bool: {
+        should: assets.map(id => ({ match: { _id: normalizeCacheId(id) } })),
+        minimum_should_match: 1,
+      },
+    }, { size: assets.length });
+    cachesForIntervalUpdate = response?.data;
+  }
 
   const axelarConfig = await getAxelarConfig();
   const axelarnet = getChainData('axelarnet');
@@ -93,6 +104,12 @@ module.exports = async params => {
 
   const data = [];
   for (const asset of assets) {
+    const cacheData = toArray(cachesForIntervalUpdate).find(d => d.asset === asset);
+    if (cacheData?.updated_at && timeDiff(cacheData.updated_at * 1000) < CACHE_AGE_SECONDS) {
+      data.push(cacheData);
+      continue;
+    }
+
     let assetData = await getAssetData(asset, assetsData);
     let assetType = 'gateway';
 
@@ -234,7 +251,7 @@ module.exports = async params => {
                     ])
                   ),
                   supply_urls: toArray(!isNativeOnCosmos && toArray(escrow_addresses).length > 0 && [ibc_denom && `${LCDUrl}/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`, `${LCDUrl}/cosmos/bank/v1beta1/supply`]),
-                  success: isNumber(isNotNativeOnAxelarnet ? total : supply) || !ibc_denom,
+                  success: isNumber(isNotNativeOnAxelarnet ? total : supply) || !ibc_denom || d.unstable,
                 };
               }
             } catch (error) {}
@@ -278,10 +295,17 @@ module.exports = async params => {
   let result = { data, updated_at: moment().unix() };
   let not_updated_on_chains;
   if (data.length === 0 && cache) result = cache;
-  else if (cacheId) {
+  else if (cacheId || custom_assets_only) {
     const unsuccessData = data.filter(d => !d.success);
     // caching
-    if (unsuccessData.length === 0) await write(TVL_COLLECTION, cacheId, result);
+    if (unsuccessData.length === 0) {
+      if (cacheId) await write(TVL_COLLECTION, cacheId, result);
+      else if (data.length > 0) {
+        for (const d of data) {
+          await write(TVL_COLLECTION, normalizeCacheId(d.asset), { data: [d], updated_at: moment().unix() });
+        }
+      }
+    }
     else not_updated_on_chains = unsuccessData.flatMap(d => Object.entries(d.tvl).filter(([k, v]) => !v?.success).map(([k, v]) => k));
   }
   return { ...result, not_updated_on_chains };
