@@ -5210,9 +5210,9 @@ devnet-amplifier:
     sui-test:
       chain_name: "sui-test"
       multisig_prover:
-        address: ""
+        address: "axelar1v33yqgzy4sfs0lm7lu7qjxe30wdnssmecm445suyqy55a8mavvfs5y3nwq"
       voting_verifier:
-        address: ""
+        address: "axelar1hxgp37tcyxm6ef0evj37c9muwxw8pxhn82h89ze49ncd49anyfkq9ah8ef"
       endpoints:
         rpc:
           - "https://fullnode.testnet.sui.io"
