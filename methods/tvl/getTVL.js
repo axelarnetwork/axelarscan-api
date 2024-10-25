@@ -15,7 +15,7 @@ const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
 const CACHE_AGE_SECONDS = 60 * 60;
-const IBC_CHANNELS_UPDATE_INTERVAL_SECONDS = 240 * 60;
+const IBC_CHANNELS_UPDATE_INTERVAL_SECONDS = 720 * 60;
 
 const normalizeCacheId = id => isString(id) ? split(id, { delimiter: '/' }).join('_') : undefined;
 const generateDenom = d => `${d.decimals === 6 ? 'u' : ''}${d.symbol.toLowerCase()}${d.decimals === 18 ? '-wei' : ''}`;
@@ -174,7 +174,7 @@ module.exports = async params => {
                 let escrow_addresses;
                 let source_escrow_addresses;
                 if (toArray(prefix_chain_ids).length > 0 && id !== 'axelarnet') {
-                  for (let i = 0; i < 2; i++) {
+                  for (let i = 0; i < 1; i++) {
                     const { data } = { ...await read(IBC_CHANNEL_COLLECTION, {
                       bool: {
                         must: [{ match: { state: 'STATE_OPEN' } }],

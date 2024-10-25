@@ -198,7 +198,7 @@ resource "aws_apigatewayv2_api_mapping" "mainnet" {
 
 resource "aws_cloudwatch_event_rule" "schedule" {
   name                = "${var.package_name}-${var.environment}-rule"
-  schedule_expression = "cron(*/2 * * * ? *)"
+  schedule_expression = "cron(*/5 * * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "target" {

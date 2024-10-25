@@ -7,10 +7,10 @@ const { toArray } = require('../../utils/parser');
 
 module.exports = async params => {
   const minute = moment().minutes();
-  // run every 10 minutes
-  if (minute % 10 !== 0) return;
+  // run every 15 minutes
+  if (minute % 15 !== 0) return;
   const data = {};
-  for (const d of toArray(_.concat(await getAssetsList(), await getITSAssetsList())).filter(d => !params?.id || d.id === params.id).filter(d => params?.id || (minute % 20 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x')))) {
+  for (const d of toArray(_.concat(await getAssetsList(), await getITSAssetsList())).filter(d => !params?.id || d.id === params.id).filter(d => params?.id || (minute % 30 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x')))) {
     data[d.id] = await getTVL({ asset: d.id, force_update: true });
   }
   return data;
