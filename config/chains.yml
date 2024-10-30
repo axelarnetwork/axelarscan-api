@@ -5233,6 +5233,31 @@ devnet-amplifier:
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
+    sui-test2:
+      chain_name: "sui-test2"
+      multisig_prover:
+        address: "axelar1amvmsrszflf43lhfgzcq93a22usvy3w7kqrp25uqghnws3x04jyscutk0w"
+      voting_verifier:
+        address: "axelar1pgzqdnnayxw0t73wea06amp4lpatg34q6wnlyplf2u2edt2veu0qygcpqe"
+      endpoints:
+        rpc:
+          - "https://fullnode.testnet.sui.io"
+      native_token:
+        name: "Sui"
+        symbol: "SUI"
+        decimals: 9
+      name: "Sui 2 (VM)"
+      short_name: "SUI"
+      image: "/logos/chains/sui.svg"
+      color: "#4b7fdc"
+      explorer:
+        name: "Sui"
+        url: "https://suiscan.xyz/mainnet"
+        icon: "/logos/explorers/sui.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
