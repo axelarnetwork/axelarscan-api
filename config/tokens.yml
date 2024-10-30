@@ -81,6 +81,9 @@ XLM:
 SUI:
   coingecko_id: "sui"
   decimals: 9
+STX:
+  coingecko_id: "blockstack"
+  decimals: 6
 AXL:
   coingecko_id: "axelar"
   decimals: 6
