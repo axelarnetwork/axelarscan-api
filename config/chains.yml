@@ -1465,6 +1465,7 @@ mainnet:
           - "https://m-archway.api.utsa.tech"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Archway"
         symbol: "ARCH"
@@ -5281,7 +5282,7 @@ devnet-amplifier:
         icon: "/logos/explorers/stacks.png"
         block_path: "/block/{block}?chain=testnet"
         address_path: "/address/{address}?chain=testnet"
-        contract_path: "/address/{address}?chain=testnet"
+        contract_path: "/token/{address}?chain=testnet"
         transaction_path: "/txid/{tx}?chain=testnet"
 
 
