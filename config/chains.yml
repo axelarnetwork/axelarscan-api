@@ -5258,6 +5258,31 @@ devnet-amplifier:
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
+    stacks:
+      chain_name: "stacks"
+      multisig_prover:
+        address: "axelar1az8gj559csay9am80dj04xtr2l5027qw4h0hxgspsrm5u09zey4sptt4mq"
+      voting_verifier:
+        address: "axelar1mjlvl44v8er50nxjxcuugd4prafzxj4r84q84pf3ntgte6crnywsrk0s5e"
+      endpoints:
+        rpc:
+          - "https://api.testnet.hiro.so"
+      native_token:
+        name: "Stacks"
+        symbol: "STX"
+        decimals: 6
+      name: "Stacks (VM)"
+      short_name: "STX"
+      image: "/logos/chains/stacks.svg"
+      color: "#fc6432"
+      explorer:
+        name: "Stacks"
+        url: "https://explorer.hiro.so"
+        icon: "/logos/explorers/stacks.png"
+        block_path: "/block/{block}?chain=testnet"
+        address_path: "/address/{address}?chain=testnet"
+        contract_path: "/address/{address}?chain=testnet"
+        transaction_path: "/txid/{tx}?chain=testnet"
 
 
 
