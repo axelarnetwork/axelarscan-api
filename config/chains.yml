@@ -5136,10 +5136,56 @@ devnet-amplifier:
         address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
         contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
         transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+    coti-3:
+      chain_id: 13068200
+      chain_name: "coti-3"
+      maintainer_id: "coti-3"
+      endpoints:
+        rpc:
+          - "https://devnet.coti.io/rpc"
+      native_token:
+        name: "Coti"
+        symbol: "COTI2"
+        decimals: 18
+      name: "Coti 3 (VM)"
+      short_name: "COTI"
+      image: "/logos/chains/coti.svg"
+      color: "#035dbc"
+      explorer:
+        name: "Coti"
+        url: "https://explorer-devnet.coti.io"
+        icon: "/logos/explorers/coti.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
     coti-4:
       chain_id: 13068200
       chain_name: "coti-4"
       maintainer_id: "coti-4"
+      endpoints:
+        rpc:
+          - "https://devnet.coti.io/rpc"
+      native_token:
+        name: "Coti 4"
+        symbol: "COTI2"
+        decimals: 18
+      name: "Coti (VM)"
+      short_name: "COTI"
+      image: "/logos/chains/coti.svg"
+      color: "#035dbc"
+      explorer:
+        name: "Coti"
+        url: "https://explorer-devnet.coti.io"
+        icon: "/logos/explorers/coti.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
+    coti-6:
+      chain_id: 13068200
+      chain_name: "coti-6"
+      maintainer_id: "coti-6"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
