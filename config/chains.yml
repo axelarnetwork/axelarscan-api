@@ -5171,10 +5171,10 @@ devnet-amplifier:
         rpc:
           - "https://devnet.coti.io/rpc"
       native_token:
-        name: "Coti 4"
+        name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti (VM)"
+      name: "Coti 4 (VM)"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5190,6 +5190,29 @@ devnet-amplifier:
       chain_id: 13068200
       chain_name: "coti-6"
       maintainer_id: "coti-6"
+      endpoints:
+        rpc:
+          - "https://devnet.coti.io/rpc"
+      native_token:
+        name: "Coti"
+        symbol: "COTI2"
+        decimals: 18
+      name: "Coti 6 (VM)"
+      short_name: "COTI"
+      image: "/logos/chains/coti.svg"
+      color: "#035dbc"
+      explorer:
+        name: "Coti"
+        url: "https://explorer-devnet.coti.io"
+        icon: "/logos/explorers/coti.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
+    coti-7:
+      chain_id: 13068200
+      chain_name: "coti-7"
+      maintainer_id: "coti-7"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
