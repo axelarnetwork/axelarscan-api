@@ -2086,12 +2086,12 @@ mainnet:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://lumenscan.io"
+        url: "https://stellar.expert/explorer/public"
         icon: "/logos/explorers/stellar.png"
-        block_path: "/ledgers/{block}"
+        block_path: "/ledger/{block}"
         address_path: "/account/{address}"
-        contract_path: "/assets/{address}"
-        transaction_path: "/txns/{tx}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
@@ -4128,12 +4128,12 @@ testnet:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://testnet.lumenscan.io"
+        url: "https://stellar.expert/explorer/testnet"
         icon: "/logos/explorers/stellar.png"
-        block_path: "/ledgers/{block}"
+        block_path: "/ledger/{block}"
         address_path: "/account/{address}"
-        contract_path: "/assets/{address}"
-        transaction_path: "/txns/{tx}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
     sui:
       chain_name: "sui"
       multisig_prover:
@@ -4155,7 +4155,7 @@ testnet:
         name: "Sui"
         url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
-        block_path: "/block/{block}"
+        block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
@@ -5224,12 +5224,12 @@ devnet-amplifier:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://testnet.lumenscan.io"
+        url: "https://stellar.expert/explorer/testnet"
         icon: "/logos/explorers/stellar.png"
-        block_path: "/ledgers/{block}"
+        block_path: "/ledger/{block}"
         address_path: "/account/{address}"
-        contract_path: "/assets/{address}"
-        transaction_path: "/txns/{tx}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
     stellar-test2:
       chain_name: "stellar-test2"
       multisig_prover:
@@ -5249,12 +5249,12 @@ devnet-amplifier:
       color: "#0f0f0f"
       explorer:
         name: "Stellar"
-        url: "https://soroban.nownodes.io/testnet"
+        url: "https://stellar.expert/explorer/testnet"
         icon: "/logos/explorers/stellar.png"
-        block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
     sui-test:
       chain_name: "sui-test"
       multisig_prover:
@@ -5276,7 +5276,7 @@ devnet-amplifier:
         name: "Sui"
         url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
-        block_path: "/block/{block}"
+        block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
@@ -5301,7 +5301,7 @@ devnet-amplifier:
         name: "Sui"
         url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
-        block_path: "/block/{block}"
+        block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
