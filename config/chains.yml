@@ -2092,6 +2092,8 @@ mainnet:
         address_path: "/account/{address}"
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
 
 
 
@@ -4134,6 +4136,8 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
       multisig_prover:
@@ -5230,6 +5234,8 @@ devnet-amplifier:
         address_path: "/account/{address}"
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     stellar-test2:
       chain_name: "stellar-test2"
       multisig_prover:
@@ -5255,6 +5261,8 @@ devnet-amplifier:
         address_path: "/account/{address}"
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui-test:
       chain_name: "sui-test"
       multisig_prover:
