@@ -4153,7 +4153,7 @@ testnet:
       color: "#4b7fdc"
       explorer:
         name: "Sui"
-        url: "https://suiscan.xyz/mainnet"
+        url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
@@ -5274,7 +5274,7 @@ devnet-amplifier:
       color: "#4b7fdc"
       explorer:
         name: "Sui"
-        url: "https://suiscan.xyz/mainnet"
+        url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
@@ -5299,7 +5299,7 @@ devnet-amplifier:
       color: "#4b7fdc"
       explorer:
         name: "Sui"
-        url: "https://suiscan.xyz/mainnet"
+        url: "https://suiscan.xyz/testnet"
         icon: "/logos/explorers/sui.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
