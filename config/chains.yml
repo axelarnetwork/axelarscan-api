@@ -1029,6 +1029,7 @@ mainnet:
           - "https://rest-evmos.ecostake.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Evmos"
         symbol: "EVMOS"
@@ -3148,6 +3149,7 @@ testnet:
           - "https://evmos-testnet-api.polkachu.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Evmos"
         symbol: "EVMOS"
