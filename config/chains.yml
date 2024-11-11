@@ -367,11 +367,10 @@ mainnet:
       no_recover: true
       endpoints:
         rpc:
-          - "https://filfox.info/rpc/v1"
-          - "https://api.chain.love/rpc/v1"
           - "https://filecoin.chainup.net/rpc/v1"
-          - "https://rpc.ankr.com/filecoin"
+          - "https://api.chain.love/rpc/v1"
           - "https://api.node.glif.io"
+          - "https://rpc.ankr.com/filecoin"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
@@ -382,12 +381,12 @@ mainnet:
       color: "#0090ff"
       explorer:
         name: "Filecoin"
-        url: "https://filfox.info"
+        url: "https://filscan.io/en"
         icon: "/logos/explorers/filecoin.png"
-        block_path: "/tipset/{block}"
+        block_path: "/height/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
-        transaction_path: "/tx/{tx}"
+        transaction_path: "/message/{tx}"
     linea:
       chain_id: 59144
       chain_name: "linea"
@@ -2654,8 +2653,8 @@ testnet:
         rpc:
           - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
           - "https://filecoin-calibration.chainup.net/rpc/v1"
-          - "https://rpc.ankr.com/filecoin_testnet"
           - "https://api.calibration.node.glif.io/rpc/v1"
+          - "https://rpc.ankr.com/filecoin_testnet"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
@@ -2666,12 +2665,12 @@ testnet:
       color: "#0090ff"
       explorer:
         name: "Filecoin"
-        url: "https://calibration.filfox.info"
+        url: "https://calibration.filscan.io/en"
         icon: "/logos/explorers/filecoin.png"
-        block_path: "/tipset/{block}"
+        block_path: "/height/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
-        transaction_path: "/tx/{tx}"
+        transaction_path: "/message/{tx}"
     linea:
       chain_id: 59140
       chain_name: "linea"
