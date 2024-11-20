@@ -1333,6 +1333,7 @@ mainnet:
       chain_name: "carbon"
       endpoints:
         lcd:
+          - "https://rest.lavenderfive.com/carbon"
           - "https://rest.carbon.blockhunters.org"
           - "https://rest.carbon.bh.rocks"
           - "https://api.carbon.network"
