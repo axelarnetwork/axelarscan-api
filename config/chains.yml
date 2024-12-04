@@ -5289,6 +5289,31 @@ devnet-amplifier:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    sui:
+      chain_name: "sui"
+      multisig_prover:
+        address: "axelar1lnu9xwpmfzh47876tawjqm5nelevra4v6gmhqchd2tezjwqu2d6stlz4r8"
+      voting_verifier:
+        address: "axelar1ac43p98m4pfv7zxrce3e99gwy5nf2crnwg3mu5rmxs09zvy2py9sxrgm8m"
+      endpoints:
+        rpc:
+          - "https://fullnode.testnet.sui.io"
+      native_token:
+        name: "Sui"
+        symbol: "SUI"
+        decimals: 9
+      name: "Sui (VM)"
+      short_name: "SUI"
+      image: "/logos/chains/sui.svg"
+      color: "#4b7fdc"
+      explorer:
+        name: "Sui"
+        url: "https://suiscan.xyz/testnet"
+        icon: "/logos/explorers/sui.png"
+        block_path: "/checkpoint/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
     sui-test:
       chain_name: "sui-test"
       multisig_prover:
@@ -5302,7 +5327,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui (VM)"
+      name: "Sui Test (VM)"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -5327,7 +5352,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui 2 (VM)"
+      name: "Sui Test 2 (VM)"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
