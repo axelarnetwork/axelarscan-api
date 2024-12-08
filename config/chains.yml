@@ -768,11 +768,10 @@ mainnet:
       chain_name: "kujira"
       endpoints:
         lcd:
-          - "https://kujira-api.lavenderfive.com"
-          - "https://rest-kujira.ecostake.com"
+          - "https://lcd.kaiyo.kujira.setten.io"
+          - "https://kujira-api.ibs.team"
+          - "https://api-kujira.starsquid.io"
           - "https://kujira-api.polkachu.com"
-          - "https://lcd-kujira.imperator.co"
-          - "https://lcd-kujira.whispernode.com"
         timeout:
           lcd: 3000
       native_token:
