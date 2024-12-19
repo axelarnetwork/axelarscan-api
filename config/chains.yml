@@ -12,7 +12,6 @@ mainnet:
         rpc:
           - "https://rpc.ankr.com/eth"
           - "https://cloudflare-eth.com"
-          - "https://ethereum.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/eth"
           - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
@@ -65,7 +64,6 @@ mainnet:
       endpoints:
         rpc:
           - "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://polygon.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/matic"
           - "https://rpc.ankr.com/polygon"
       native_token:
@@ -114,7 +112,6 @@ mainnet:
       maintainer_id: "avalanche"
       endpoints:
         rpc:
-          - "https://avalanche.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/avax/c"
           - "https://rpc.ankr.com/avalanche"
       native_token:
@@ -141,7 +138,6 @@ mainnet:
         rpc:
           - "https://rpc.ftm.tools"
           - "https://rpc.fantom.network"
-          - "https://fantom.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/ftm"
           - "https://rpc.ankr.com/fantom"
       native_token:
@@ -217,7 +213,6 @@ mainnet:
         rpc:
           - "https://1rpc.io/arb"
           - "https://arbitrum-one.public.blastapi.io"
-          - "https://arbitrum.blockpi.network/v1/rpc/public"
           - "https://rpc.ankr.com/arbitrum"
           - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
@@ -243,7 +238,6 @@ mainnet:
       endpoints:
         rpc:
           - "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://optimism.blockpi.network/v1/rpc/public"
           - "https://1rpc.io/op"
           - "https://rpc.ankr.com/optimism"
       native_token:
@@ -513,7 +507,7 @@ mainnet:
       endpoints:
         rpc:
           - "https://rpc.ankr.com/blast"
-          - "https://blast.blockpi.network/v1/rpc/public"
+          - "https://blast-rpc.publicnode.com"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -1748,6 +1742,7 @@ mainnet:
           - "https://saga.api.kjnodes.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Saga"
         symbol: "SAGA"
@@ -3695,6 +3690,7 @@ testnet:
           - "https://testnet-ssc-lcd.sagarpc.io"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Saga"
         symbol: "SAGA"
