@@ -211,10 +211,11 @@ mainnet:
       maintainer_id: "arbitrum"
       endpoints:
         rpc:
-          - "https://1rpc.io/arb"
+          - "https://arb1.lava.build"
           - "https://arbitrum-one.public.blastapi.io"
           - "https://rpc.ankr.com/arbitrum"
           - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://1rpc.io/arb"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -798,6 +799,7 @@ mainnet:
           - "https://secret-4.api.trivium.network:1317"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Secret"
         symbol: "SCRT"
@@ -829,6 +831,7 @@ mainnet:
           - "https://secret-4.api.trivium.network:1317"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Secret"
         symbol: "SCRT"
@@ -3056,6 +3059,7 @@ testnet:
           - "https://api.pulsar3.scrttestnet.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Secret"
         symbol: "SCRT"
