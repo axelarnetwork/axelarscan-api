@@ -4692,9 +4692,9 @@ stagenet:
     sui:
       chain_name: "sui"
       multisig_prover:
-        address: "axelar1p26m8x48gq5urxkdsx3zt5jgxru4dz9p5z3r9ruds8z9kqfmes5q3q4upn"
+        address: "axelar1ktjfpfrlgmh8s76ltjhhv0xcj0st0d0xrjh5rvm3gr5u66x9xvpsm0juw8"
       voting_verifier:
-        address: "axelar1xajgm2vztjysk4lnswmk58p7r8a8j9dusm3ee69wk7zp0em48e4stvd3uq"
+        address: "axelar1x8rqw5l5gzye7d063zupr5zlelfvjxq5z6rr7wy643ufuflhl6xqhgr5wt"
       endpoints:
         rpc:
           - "https://fullnode.testnet.sui.io"
