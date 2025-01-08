@@ -5413,6 +5413,27 @@ devnet-amplifier:
         address_path: "/address/{address}?chain=testnet"
         contract_path: "/token/{address}?chain=testnet"
         transaction_path: "/txid/{tx}?chain=testnet"
+    aleo-2:
+      chain_name: "aleo-2"
+      endpoints:
+        rpc:
+          - "https://testnet3.aleorpc.com"
+      native_token:
+        name: "Aleo"
+        symbol: "ALEO"
+        decimals: 64
+      name: "Aleo 2 (VM)"
+      short_name: "ALEO"
+      image: "/logos/chains/aleo.svg"
+      color: "#121212"
+      explorer:
+        name: "Aleo"
+        url: "https://testnet.explorer.provable.com"
+        icon: "/logos/explorers/aleo.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/transaction/{tx}"
 
 
 
