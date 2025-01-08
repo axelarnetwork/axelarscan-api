@@ -84,6 +84,9 @@ SUI:
 STX:
   coingecko_id: "blockstack"
   decimals: 6
+ALEO:
+  coingecko_id: "aleo"
+  decimals: 64
 AXL:
   coingecko_id: "axelar"
   decimals: 6
