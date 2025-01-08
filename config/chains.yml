@@ -5432,7 +5432,7 @@ devnet-amplifier:
         icon: "/logos/explorers/aleo.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/transaction/{tx}"
 
 
