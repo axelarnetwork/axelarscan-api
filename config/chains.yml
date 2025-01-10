@@ -4143,9 +4143,9 @@ testnet:
     sui:
       chain_name: "sui"
       multisig_prover:
-        address: ""
+        address: "axelar1v8jrupu2rqpskwgtr69max0ajul92q8z5mdxd505m2hu3xc5jzcqm8zyc6"
       voting_verifier:
-        address: ""
+        address: "axelar1sykyha8kzf35kc5hplqk76kdufntjn6w45ntwlevwxp74dqr3rvsq7fazh"
       endpoints:
         rpc:
           - "https://fullnode.testnet.sui.io"
