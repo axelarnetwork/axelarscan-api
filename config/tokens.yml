@@ -610,6 +610,9 @@ TFM-30de7b:
 WEGLD-a28c59:
   coingecko_id: "wrapped-elrond"
   decimals: 18
+USDX:
+  coingecko_id: "usdx-money-usdx"
+  decimals: 18
 
 
 
