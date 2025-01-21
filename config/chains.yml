@@ -5338,6 +5338,33 @@ devnet-amplifier:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    stellar-test-2025-q1:
+      chain_name: "stellar-test-2025-q1"
+      multisig_prover:
+        address: "axelar1uuja08qdy790ewq9mz0r6t7c4yp9fqccu9f9zssr4tu4k0l52yeqjhckm3"
+      voting_verifier:
+        address: "axelar1s3g877l0pk958vzeyrev9vncklrfht7dx2xv9c4u7zmr0y7jzfmq5cxjqm"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar Test 2025 Q1 (VM)"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
       multisig_prover:
