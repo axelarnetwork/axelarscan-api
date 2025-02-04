@@ -542,8 +542,8 @@ mainnet:
       endpoints:
         lcd:
           - "https://lcd-axelar.imperator.co"
-          - "https://axelar-rest.chainode.tech"
           - "https://axelar-lcd.qubelabs.io"
+          - "https://axelar-api.polkachu.com"
         timeout:
           lcd: 3000
       native_token:
@@ -898,6 +898,7 @@ mainnet:
           - "https://stargaze-api.ibs.team"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Stargaze"
         symbol: "STARS"
