@@ -268,7 +268,7 @@ STRK:
   decimals: 18
 XRP:
   coingecko_id: "ripple"
-  decimals: 6
+  decimals: 18
 XRPL:
   redirect: "XRP"
 SOL:
