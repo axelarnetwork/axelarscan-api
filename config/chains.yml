@@ -5088,14 +5088,16 @@ devnet-amplifier:
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
     xrpl:
+      chain_id: 1440002
       chain_name: "xrpl"
+      maintainer_id: "xrpl"
       endpoints:
         rpc:
-          - "https://s.altnet.rippletest.net:51234"
+          - "https://rpc.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
-        decimals: 6
+        decimals: 18
       name: "XRP Ledger (VM)"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
@@ -5109,14 +5111,16 @@ devnet-amplifier:
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     xrpl-evm-sidechain:
+      chain_id: 1440002
       chain_name: "xrpl-evm-sidechain"
+      maintainer_id: "xrpl-evm-sidechain"
       endpoints:
         rpc:
-          - "https://s.altnet.rippletest.net:51234"
+          - "https://rpc.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
-        decimals: 6
+        decimals: 18
       name: "XRP Ledger EVM Sidechain (VM)"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
