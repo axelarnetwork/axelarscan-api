@@ -1861,7 +1861,8 @@ mainnet:
       endpoints:
         lcd:
           - "https://bitsong-api.polkachu.com"
-          - "https://bitsong-api.lavenderfive.com"
+          - "https://lcd.explorebitsong.com"
+          - "https://api.bitsong.quokkastake.io"
         timeout:
           lcd: 3000
       native_token:
@@ -5101,12 +5102,12 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
+        url: "https://explorer.xrplevm.org"
         icon: "/logos/explorers/xrpl.png"
-        block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
     xrpl-evm-sidechain:
       chain_name: "xrpl-evm-sidechain"
       endpoints:
@@ -5122,12 +5123,12 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
+        url: "https://explorer.xrplevm.org"
         icon: "/logos/explorers/xrpl.png"
-        block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
     zkstack-memento:
       chain_id: 12052024
       chain_name: "zkstack-memento"
