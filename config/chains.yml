@@ -5088,28 +5088,68 @@ devnet-amplifier:
         contract_path: "/contract/{address}"
         transaction_path: "/tx/{tx}"
     xrpl:
-      chain_id: 1440002
       chain_name: "xrpl"
-      maintainer_id: "xrpl"
       endpoints:
         rpc:
-          - "https://rpc.xrplevm.org"
+          - "https://s.altnet.rippletest.net:51234"
       native_token:
         name: "Ripple"
         symbol: "XRP"
-        decimals: 18
+        decimals: 6
       name: "XRP Ledger (VM)"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://explorer.xrplevm.org"
+        url: "https://testnet.xrpl.org"
         icon: "/logos/explorers/xrpl.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/address/{address}"
-        transaction_path: "/tx/{tx}"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+    xrpl-dev:
+      chain_name: "xrpl-dev"
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger Dev (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+    xrpl-devnet:
+      chain_name: "xrpl-devnet"
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger Devnet (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
     xrpl-evm-sidechain:
       chain_id: 1440002
       chain_name: "xrpl-evm-sidechain"
@@ -5122,6 +5162,29 @@ devnet-amplifier:
         symbol: "XRP"
         decimals: 18
       name: "XRP Ledger EVM Sidechain (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.xrplevm.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    xrpl-evm-devnet:
+      chain_id: 1440002
+      chain_name: "xrpl-evm-devnet"
+      maintainer_id: "xrpl-evm-devnet"
+      endpoints:
+        rpc:
+          - "https://rpc.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM Devnet (VM)"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
