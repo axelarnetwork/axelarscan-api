@@ -5091,7 +5091,7 @@ devnet-amplifier:
       chain_name: "xrpl"
       endpoints:
         rpc:
-          - "https://s.altnet.rippletest.net:51234"
+          - "https://s.devnet.rippletest.net:51234"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5102,7 +5102,7 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
+        url: "https://devnet.xrpl.org"
         icon: "/logos/explorers/xrpl.png"
         block_path: "/ledgers/{block}"
         address_path: "/accounts/{address}"
@@ -5112,7 +5112,7 @@ devnet-amplifier:
       chain_name: "xrpl-dev"
       endpoints:
         rpc:
-          - "https://s.altnet.rippletest.net:51234"
+          - "https://s.devnet.rippletest.net:51234"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5123,7 +5123,7 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
+        url: "https://devnet.xrpl.org"
         icon: "/logos/explorers/xrpl.png"
         block_path: "/ledgers/{block}"
         address_path: "/accounts/{address}"
@@ -5133,7 +5133,7 @@ devnet-amplifier:
       chain_name: "xrpl-devnet"
       endpoints:
         rpc:
-          - "https://s.altnet.rippletest.net:51234"
+          - "https://s.devnet.rippletest.net:51234"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5144,7 +5144,7 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
+        url: "https://devnet.xrpl.org"
         icon: "/logos/explorers/xrpl.png"
         block_path: "/ledgers/{block}"
         address_path: "/accounts/{address}"
