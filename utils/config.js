@@ -148,8 +148,8 @@ const getITSAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
 
 const getContracts = async (env = ENVIRONMENT) => await request(`${getGMPAPI(env)}/getContracts`);
 const getEndpoints = (env = ENVIRONMENT) => endpoints[env];
-const getRPC = (env = ENVIRONMENT) => getEndpoints(env)?.rpc;
-const getLCD = (env = ENVIRONMENT) => getEndpoints(env)?.lcd;
+const getRPC = (env = ENVIRONMENT, archive = false) => (archive && getEndpoints(env)?.rpc_archive) || getEndpoints(env)?.rpc;
+const getLCD = (env = ENVIRONMENT, archive = false) => (archive && getEndpoints(env)?.lcd_archive) || getEndpoints(env)?.lcd;
 const getAPI = (env = ENVIRONMENT) => getEndpoints(env)?.api;
 const getGMPAPI = (env = ENVIRONMENT) => getEndpoints(env)?.gmp_api;
 const getTokenTransferAPI = (env = ENVIRONMENT) => getEndpoints(env)?.token_transfer_api;
