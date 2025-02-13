@@ -7,17 +7,17 @@ const { getTokensPrice, getExchangeRates } = require('../tokens');
 const { CURRENCY, getAssetData, getITSAssetData } = require('../../utils/config');
 
 module.exports = async params => {
-  const { agent } = { ...params };
+  const { agent, height } = { ...params };
   let { symbol } = { ...params };
   symbol = symbol || 'AXL';
 
   const { denom, name } = { ...(await getAssetData(symbol) || await getITSAssetData(symbol)) };
   const { data, updated_at } = { ...await getTokensPrice({ symbol, currency: CURRENCY, debug: true }) };
   const { price } = { ...(data?.[symbol] || Object.values({ ...data }).find(d => d.denom === symbol)) };
-  const supplyData = await getCirculatingSupply({ symbol, debug: true });
+  const supplyData = await getCirculatingSupply({ symbol, height, debug: true });
   const circulatingSupply = supplyData?.circulating_supply;
-  const totalSupply = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalSupply({ asset: denom }) : null;
-  const totalBurned = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalBurned() : undefined;
+  const totalSupply = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalSupply({ asset: denom, height }) : null;
+  const totalBurned = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalBurned({ height }) : undefined;
   const updatedAt = supplyData?.updated_at || updated_at || moment().valueOf();
 
   switch (agent) {

@@ -1,33 +1,37 @@
 const _ = require('lodash');
 
-const { getChainsList, getContracts, getLCD } = require('../../utils/config');
-const { request } = require('../../utils/http');
+const { ENVIRONMENT, getChainsList, getContracts, getLCD } = require('../../utils/config');
+const { createInstance, request } = require('../../utils/http');
 const { removeDoubleQuote } = require('../../utils/string');
 const { toNumber, toFixed } = require('../../utils/number');
 
 module.exports = async params => {
   const { gateway_contracts } = { ...await getContracts() };
   const chainsData = getChainsList('evm').filter(d => !d.no_inflation && gateway_contracts?.[d.id]?.address);
+  const { height } = { ...params };
   let { uptimeRate, heartbeatRate, numEVMChains, unsubmittedVoteRates } = { ...params };
   uptimeRate = uptimeRate || 1;
   heartbeatRate = heartbeatRate || 1;
   numEVMChains = numEVMChains || chainsData.length;
   unsubmittedVoteRates = unsubmittedVoteRates || Object.fromEntries(chainsData.map(d => [d.id, 0]));
 
+  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
+  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+
   const [tendermintInflationRate, communityTax, keyMgmtRelativeInflationRate, externalChainVotingInflationRate] = await Promise.all(
     ['tendermintInflationRate', 'communityTax', 'keyMgmtRelativeInflationRate', 'externalChainVotingInflationRate'].map(param => new Promise(async resolve => {
       switch (param) {
         case 'tendermintInflationRate':
-          resolve(toNumber((await request(getLCD(), { path: '/cosmos/mint/v1beta1/inflation' }))?.inflation));
+          resolve(toNumber((await request(instance, { path: '/cosmos/mint/v1beta1/inflation' }))?.inflation));
           break;
         case 'communityTax':
-          resolve(toNumber((await request(getLCD(), { path: '/cosmos/distribution/v1beta1/params' }))?.params?.community_tax));
+          resolve(toNumber((await request(instance, { path: '/cosmos/distribution/v1beta1/params' }))?.params?.community_tax));
           break;
         case 'keyMgmtRelativeInflationRate':
-          resolve(toNumber(removeDoubleQuote((await request(getLCD(), { path: '/cosmos/params/v1beta1/params', params: { subspace: 'reward', key: 'KeyMgmtRelativeInflationRate' } }))?.param?.value)));
+          resolve(toNumber(removeDoubleQuote((await request(instance, { path: '/cosmos/params/v1beta1/params', params: { subspace: 'reward', key: 'KeyMgmtRelativeInflationRate' } }))?.param?.value)));
           break;
         case 'externalChainVotingInflationRate':
-          resolve(toNumber(removeDoubleQuote((await request(getLCD(), { path: '/cosmos/params/v1beta1/params', params: { subspace: 'reward', key: 'ExternalChainVotingInflationRate' } }))?.param?.value)));
+          resolve(toNumber(removeDoubleQuote((await request(instance, { path: '/cosmos/params/v1beta1/params', params: { subspace: 'reward', key: 'ExternalChainVotingInflationRate' } }))?.param?.value)));
           break;
         default:
           resolve();

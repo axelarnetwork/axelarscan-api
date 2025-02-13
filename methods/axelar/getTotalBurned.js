@@ -3,8 +3,8 @@ const { ENVIRONMENT } = require('../../utils/config');
 const { toArray } = require('../../utils/parser');
 const { toNumber } = require('../../utils/number');
 
-module.exports = async () => {
+module.exports = async params => {
   const denom = ENVIRONMENT === 'devnet-verifiers' ? 'uverifiers' : ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl';
-  const { data } = { ...await getBalances({ address: 'axelar1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqecnww6' }) };
+  const { data } = { ...await getBalances({ ...params, address: 'axelar1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqecnww6' }) };
   return toNumber(toArray(data).find(d => d.denom === `burned-${denom}`)?.amount);
 };

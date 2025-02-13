@@ -1,14 +1,16 @@
 const { aggregate } = require('./utils');
-const { getAssetsList, getLCD } = require('../../../utils/config');
+const { ENVIRONMENT, getAssetsList, getLCD } = require('../../../utils/config');
 const { createInstance, request } = require('../../../utils/http');
 const { toArray } = require('../../../utils/parser');
 
 module.exports = async params => {
-  const { address } = { ...params };
+  const { address, height } = { ...params };
   let { assetsData } = { ...params };
   if (!address?.startsWith('axelar')) return;
 
-  const { rewards, total } = { ...await request(createInstance(getLCD(), { gzip: true }), { path: `/cosmos/distribution/v1beta1/delegators/${address}/rewards` }) };
+  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
+  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+  const { rewards, total } = { ...await request(instance, { path: `/cosmos/distribution/v1beta1/delegators/${address}/rewards` }) };
   assetsData = assetsData || (rewards ? await getAssetsList() : undefined);
 
   return {
