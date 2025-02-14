@@ -11,13 +11,22 @@ const { timeDiff } = require('../../utils/time');
 
 const { max_supply, initial_unlocked_percent, community_sale, community_programs, company_operations, backers, team } = { ...getSupplyConfig() };
 
-const calculateVesting = (config, assetData, until) => {
+const getBlockTimestamp = async height => {
+  if (!height) return;
+  const instance = createInstance(getLCD(ENVIRONMENT, true), { gzip: true });
+  const { block } = { ...await request(instance, { path: `/cosmos/base/tendermint/v1beta1/blocks/${height}` }) };
+  const { time } = { ...block?.header };
+  if (time) return moment(time).valueOf();
+  return;
+};
+
+const calculateVesting = (config, assetData, timestamp) => {
   const { total_unlock_percent, vesting_period, vesting_start, vesting_until } = { ...config };
   const { decimals } = { ...assetData };
   const total = parseFloat(toFixed(max_supply * total_unlock_percent / 100, decimals));
-  const current = moment().valueOf();
+  const current = timestamp || moment().valueOf();
   const vestingStart = moment(vesting_start, 'YYYY-MM-DD').startOf('day').valueOf();
-  const vestingUntil = until || moment(vesting_until, 'YYYY-MM-DD').startOf('day').valueOf();
+  const vestingUntil = moment(vesting_until, 'YYYY-MM-DD').startOf('day').valueOf();
   return { total, unlocked: current >= vestingUntil ? total : current <= vestingStart ? 0 : parseFloat(toFixed(total * timeDiff(vestingStart, `${vesting_period}s`) / timeDiff(vestingStart, `${vesting_period}s`, vestingUntil), decimals)), config };
 };
 
@@ -37,16 +46,7 @@ module.exports = async params => {
       const inflationRewards = totalSupply > max_supply ? parseFloat(toFixed(totalSupply - max_supply, decimals)) : 0;
       const initialUnlocked = parseFloat(toFixed(max_supply * initial_unlocked_percent / 100, decimals));
 
-      const headers = height ? { 'x-cosmos-block-height': height } : undefined;
-      const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
-
-      let timestamp;
-      if (height) {
-        const { block } = { ...await request(instance, { path: `/cosmos/base/tendermint/v1beta1/blocks/${height}` }) };
-        const { time } = { ...block?.header };
-        if (time) timestamp = moment(time).valueOf();
-      }
-
+      const timestamp = await getBlockTimestamp(height);
       const communitySale = calculateVesting(community_sale, assetData, timestamp);
       const communityPrograms = calculateVesting(community_programs, assetData, timestamp);
       const companyOperations = calculateVesting(company_operations, assetData, timestamp);

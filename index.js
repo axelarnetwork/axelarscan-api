@@ -23,7 +23,7 @@ exports.handler = async (event = {}, context, callback) => {
   const { method } = { ...params };
 
   // when not triggered by API
-  if (!method && !event.requestContext && ENVIRONMENT === 'mainnet') await intervalUpdate();
+  if (!method && !event.requestContext) await intervalUpdate();
 
   if (!method) return {
     version,
