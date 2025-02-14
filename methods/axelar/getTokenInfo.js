@@ -19,9 +19,11 @@ const getBlockTimestamp = async height => {
 module.exports = async params => {
   const { agent, height } = { ...params };
   let { symbol } = { ...params };
-  symbol = symbol || 'AXL';
+  symbol = symbol || (ENVIRONMENT === 'devnet-amplifier' ? 'AMPLIFIER' : 'AXL');
 
-  const timestamp = await getBlockTimestamp(height) || moment().valueOf();
+  let timestamp = height ? undefined : moment().valueOf();
+  while (height && !timestamp) timestamp = await getBlockTimestamp(height);
+
   const { denom, name } = { ...(await getAssetData(symbol) || await getITSAssetData(symbol)) };
   const { data, updated_at } = { ...await getTokensPrice({ symbol, timestamp, currency: CURRENCY, debug: true }) };
   const { price } = { ...(data?.[symbol] || Object.values({ ...data }).find(d => d.denom === symbol)) };
