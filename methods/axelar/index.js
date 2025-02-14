@@ -2,6 +2,7 @@ const getTotalSupply = require('./getTotalSupply');
 const getCirculatingSupply = require('./getCirculatingSupply');
 const getTotalBurned = require('./getTotalBurned');
 const getTokenInfo = require('./getTokenInfo');
+const searchTokenInfos = require('./searchTokenInfos');
 const getInflation = require('./getInflation');
 const getNetworkParameters = require('./getNetworkParameters');
 const { getBalances, getDelegations, getRedelegations, getUnbondings, getRewards, getCommissions, getAccountAmounts } = require('./account');
@@ -12,6 +13,7 @@ module.exports = {
   getCirculatingSupply,
   getTotalBurned,
   getTokenInfo,
+  searchTokenInfos,
   getInflation,
   getNetworkParameters,
   getBalances,
