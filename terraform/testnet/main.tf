@@ -187,3 +187,14 @@ resource "aws_apigatewayv2_api_mapping" "testnet" {
   stage           = aws_apigatewayv2_stage.testnet.id
   api_mapping_key = local.url_subpath_api_mapping
 }
+
+resource "aws_cloudwatch_event_rule" "schedule" {
+  name                = "${var.package_name}-${var.environment}-rule"
+  schedule_expression = "cron(*/5 * * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "target" {
+  rule      = aws_cloudwatch_event_rule.schedule.name
+  target_id = aws_lambda_function.function.id
+  arn       = aws_lambda_function.function.arn
+}
