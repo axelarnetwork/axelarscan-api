@@ -12,4 +12,5 @@ module.exports = async params => {
 
   const id = `${symbol}_${moment(timestamp).startOf('day').valueOf()}`.toLowerCase();
   await write(TOKEN_INFO_COLLECTION, id, { id, ...data, granularity: getGranularity(timestamp) });
+  return data;
 };

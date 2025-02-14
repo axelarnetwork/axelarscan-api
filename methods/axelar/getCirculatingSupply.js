@@ -33,7 +33,7 @@ const calculateVesting = (config, assetData, timestamp) => {
 module.exports = async params => {
   const { height } = { ...params };
   let { symbol, debug } = { ...params };
-  symbol = symbol || 'AXL';
+  symbol = symbol || (ENVIRONMENT === 'devnet-amplifier' ? 'AMPLIFIER' : 'AXL');
   debug = toBoolean(debug, false);
 
   const assetData = await getAssetData(symbol);
@@ -46,7 +46,9 @@ module.exports = async params => {
       const inflationRewards = totalSupply > max_supply ? parseFloat(toFixed(totalSupply - max_supply, decimals)) : 0;
       const initialUnlocked = parseFloat(toFixed(max_supply * initial_unlocked_percent / 100, decimals));
 
-      const timestamp = await getBlockTimestamp(height);
+      let timestamp = height ? undefined : moment().valueOf();
+      while (height && !timestamp) timestamp = await getBlockTimestamp(height);
+
       const communitySale = calculateVesting(community_sale, assetData, timestamp);
       const communityPrograms = calculateVesting(community_programs, assetData, timestamp);
       const companyOperations = calculateVesting(company_operations, assetData, timestamp);
