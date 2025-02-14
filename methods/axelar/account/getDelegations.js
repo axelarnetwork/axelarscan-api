@@ -1,20 +1,23 @@
 const _ = require('lodash');
 
-const { getAssetsList, getAssetData, getLCD } = require('../../../utils/config');
+const { ENVIRONMENT, getAssetsList, getAssetData, getLCD } = require('../../../utils/config');
 const { createInstance, request } = require('../../../utils/http');
 const { toArray } = require('../../../utils/parser');
 const { formatUnits } = require('../../../utils/number');
 
 module.exports = async params => {
-  const { address } = { ...params };
+  const { address, height } = { ...params };
   let { assetsData } = { ...params };
   if (!address?.startsWith('axelar')) return;
 
   assetsData = assetsData || await getAssetsList();
+  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
+  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+
   let data = [];
   let nextKey = true;
   while (nextKey) {
-    const { delegation_responses, pagination } = { ...await request(createInstance(getLCD(), { gzip: true }), { path: `/cosmos/staking/v1beta1/delegations/${address}`, params: { 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined } }) };
+    const { delegation_responses, pagination } = { ...await request(instance, { path: `/cosmos/staking/v1beta1/delegations/${address}`, params: { 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined } }) };
     data = _.orderBy(_.uniqBy(_.concat(toArray(data), await Promise.all(toArray(delegation_responses).map(d => new Promise(async resolve => {
       const { delegation, balance } = { ...d };
       const { shares } = { ...delegation };

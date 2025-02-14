@@ -1,5 +1,6 @@
 const getTotalSupply = require('./getTotalSupply');
 const getCirculatingSupply = require('./getCirculatingSupply');
+const getTotalBurned = require('./getTotalBurned');
 const getTokenInfo = require('./getTokenInfo');
 const getInflation = require('./getInflation');
 const getNetworkParameters = require('./getNetworkParameters');
@@ -9,6 +10,7 @@ const { getProposals, getProposal } = require('./proposal');
 module.exports = {
   getTotalSupply,
   getCirculatingSupply,
+  getTotalBurned,
   getTokenInfo,
   getInflation,
   getNetworkParameters,

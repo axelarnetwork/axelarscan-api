@@ -5,6 +5,7 @@ const getContracts = require('./getContracts');
 const getTokensPrice = require('./getTokensPrice');
 const getTotalSupply = require('./getTotalSupply');
 const getCirculatingSupply = require('./getCirculatingSupply');
+const getTotalBurned = require('./getTotalBurned');
 const getTokenInfo = require('./getTokenInfo');
 const getInflation = require('./getInflation');
 const getNetworkParameters = require('./getNetworkParameters');
@@ -26,6 +27,7 @@ const test = async () => {
   await getTokensPrice();
   await getTotalSupply();
   await getCirculatingSupply();
+  await getTotalBurned();
   await getTokenInfo();
   await getInflation();
   await getNetworkParameters();

@@ -1,9 +1,10 @@
 const { aggregate } = require('./utils');
-const { getAssetsList, getLCD } = require('../../../utils/config');
+const { ENVIRONMENT, getAssetsList, getLCD } = require('../../../utils/config');
 const { createInstance, request } = require('../../../utils/http');
 const { bech32ToBech32, toArray } = require('../../../utils/parser');
 
 module.exports = async params => {
+  const { height } = { ...params };
   let { address, assetsData } = { ...params };
   if (!address?.startsWith('axelar')) return;
   const prefix = 'axelarvaloper';
@@ -15,7 +16,9 @@ module.exports = async params => {
     }
   }
 
-  const { commission } = { ...await request(createInstance(getLCD(), { gzip: true }), { path: `/cosmos/distribution/v1beta1/validators/${address}/commission` }) };
+  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
+  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+  const { commission } = { ...await request(instance, { path: `/cosmos/distribution/v1beta1/validators/${address}/commission` }) };
   assetsData = assetsData || (commission ? await getAssetsList() : undefined);
   return await aggregate(toArray(commission?.commission), assetsData);
 };

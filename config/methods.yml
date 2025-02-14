@@ -361,6 +361,10 @@ methods:
         name: "maxSupply"
         type: "float"
       -
+        name: "totalBurned"
+        type: "float"
+        description: "total burned (for AXL only)"
+      -
         name: "updatedAt"
         type: "long"
         description: "updated time (in milliseconds)"
