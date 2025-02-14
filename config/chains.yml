@@ -1950,6 +1950,35 @@ mainnet:
       prefix_address: "lava@"
       prefix_chain_ids:
         - "lava-mainnet-"
+    allora:
+      chain_id: "allora-mainnet-1"
+      chain_name: "allora"
+      endpoints:
+        lcd:
+          - "https://allora-api.mainnet.allora.network"
+        timeout:
+          lcd: 3000
+        use_query: true
+      native_token:
+        name: "Allora"
+        symbol: "ALLO"
+        denom: "uallo"
+        decimals: 6
+      name: "Allora"
+      short_name: "ALLO"
+      image: "/logos/chains/allora.svg"
+      color: "#000000"
+      explorer:
+        name: "Allora"
+        url: "https://allora.explorers.guru"
+        icon: "/logos/explorers/allora.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/transaction/{tx}"
+      prefix_address: "allo"
+      prefix_chain_ids:
+        - "allora-"
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"

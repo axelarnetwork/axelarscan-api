@@ -239,6 +239,9 @@ LAVA:
   default_price:
     usd: 1.00
   decimals: 6
+ALLO:
+  coingecko_id: "allora"
+  decimals: 6
 WARD:
   coingecko_id: ""
   decimals: 6
