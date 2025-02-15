@@ -42,6 +42,7 @@ module.exports = async params => {
   let circulating_supply;
   switch (symbol) {
     case 'AXL':
+    case 'AMPLIFIER':
       const totalSupply = await getTotalSupply({ asset: denom, height });
       const inflationRewards = totalSupply > max_supply ? parseFloat(toFixed(totalSupply - max_supply, decimals)) : 0;
       const initialUnlocked = parseFloat(toFixed(max_supply * initial_unlocked_percent / 100, decimals));
