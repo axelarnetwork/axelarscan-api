@@ -2046,7 +2046,6 @@ mainnet:
     flow:
       chain_id: 747
       chain_name: "flow"
-      maintainer_id: "flow"
       multisig_prover:
         address: "axelar1rsuejfntt4rs2y8dn4dd3acszs00zyg9wpnsc6fmhevcp6plu5qspzn7e0"
       voting_verifier:
@@ -2073,7 +2072,6 @@ mainnet:
     hedera:
       chain_id: 295
       chain_name: "hedera"
-      maintainer_id: "hedera"
       multisig_prover:
         address: ""
       voting_verifier:
@@ -4060,7 +4058,6 @@ testnet:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
-      maintainer_id: "test-sepolia"
       multisig_prover:
         address: "axelar1u7qt6kz34ljjx6c94444e2v57uzt2tdlgxc6qjkvu4c5phncca8qakejex"
       voting_verifier:
@@ -4089,7 +4086,6 @@ testnet:
     test-avalanche:
       chain_id: 43113
       chain_name: "test-avalanche"
-      maintainer_id: "test-avalanche"
       multisig_prover:
         address: "axelar1l5k8wlzmkmtnvjvs9x77wdcfweucwgums9e8fh0d8cy76ymqc5aqzguqnn"
       voting_verifier:
@@ -4118,7 +4114,6 @@ testnet:
     flow:
       chain_id: 545
       chain_name: "flow"
-      maintainer_id: "flow"
       multisig_prover:
         address: "axelar1rsuejfntt4rs2y8dn4dd3acszs00zyg9wpnsc6fmhevcp6plu5qspzn7e0"
       voting_verifier:
@@ -4145,7 +4140,6 @@ testnet:
     hedera:
       chain_id: 296
       chain_name: "hedera"
-      maintainer_id: "hedera"
       multisig_prover:
         address: "axelar1kleasry5ed73a8u4q6tdeu80hquy4nplfnrntx3n6agm2tcx40fssjk7gj"
       voting_verifier:
@@ -4220,6 +4214,32 @@ testnet:
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+    xrpl-evm-test-1:
+      chain_id: 1449000
+      chain_name: "xrpl-evm-test-1"
+      multisig_prover:
+        address: "axelar1fxjzgyhuvst30frp773jnyvy4sj9839t23fkfsfnr3gun0w740uqfhwe4g"
+      voting_verifier:
+        address: "axelar1wn27x0th9amw5z59tssn5f9hwraevla8xx7ksur570npfpkckr9s257vet"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM Test 1 (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.testnet.xrplevm.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
 
 
@@ -4636,7 +4656,6 @@ stagenet:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
-      maintainer_id: "test-sepolia"
       multisig_prover:
         address: "axelar14t526efvs4r6pmg3ntjve9t5k3hagswngrnaya83365w0ad9ky0s333suh"
       voting_verifier:
@@ -4665,7 +4684,6 @@ stagenet:
     test-avalanche:
       chain_id: 43113
       chain_name: "test-avalanche"
-      maintainer_id: "test-avalanche"
       multisig_prover:
         address: "axelar1fzd0kqdewaupvngygmtltda9ru9zm590kj00sz4vxla4h6hlawtqpcfkqe"
       voting_verifier:
@@ -4694,7 +4712,6 @@ stagenet:
     flow:
       chain_id: 545
       chain_name: "flow"
-      maintainer_id: "flow"
       multisig_prover:
         address: "axelar1u8cmvyq54fepjlt77vqnwyxhf4rqn5j5axgta7py34zlwue3v5fsy2pvhf"
       voting_verifier:
@@ -4721,7 +4738,6 @@ stagenet:
     hedera:
       chain_id: 296
       chain_name: "hedera"
-      maintainer_id: "hedera"
       multisig_prover:
         address: "axelar1x3xd2z2p3703cdwu98tc27x5j9tgq60lyxdwtnggx05zj3egg0wqsnckd0"
       voting_verifier:
@@ -4892,7 +4908,6 @@ devnet-amplifier:
     eth-sepolia:
       chain_id: 11155111
       chain_name: "eth-sepolia"
-      maintainer_id: "eth-sepolia"
       multisig_prover:
         address: "axelar15ra7d5uvnmc6ety6sqxsvsfz4t34ud6lc5gmt39res0c5thkqp2qdwj4af"
       voting_verifier:
@@ -4921,7 +4936,6 @@ devnet-amplifier:
     avalanche-fuji:
       chain_id: 43113
       chain_name: "avalanche-fuji"
-      maintainer_id: "avalanche-fuji"
       multisig_prover:
         address: "axelar1p22kz5jr7a9ruu8ypg40smual0uagl64dwvz5xt042vu8fa7l7dsl3wx8q"
       voting_verifier:
@@ -4950,7 +4964,6 @@ devnet-amplifier:
     optimism-sepolia:
       chain_id: 11155420
       chain_name: "optimism-sepolia"
-      maintainer_id: "optimism-sepolia"
       multisig_prover:
         address: "axelar1p0yyfy7f70zdc0ludh6kffjzs8mvun5prdf7nh7s2cgq74g67nmsjcw7t4"
       voting_verifier:
@@ -4978,7 +4991,6 @@ devnet-amplifier:
     flow:
       chain_id: 545
       chain_name: "flow"
-      maintainer_id: "flow"
       multisig_prover:
         address: "axelar19ukamzyhhaw4algkqch5relyg0h972smhj8zge2usjp8z7yaezrquc475f"
       voting_verifier:
@@ -5005,7 +5017,6 @@ devnet-amplifier:
     hedera-testnet:
       chain_id: 296
       chain_name: "hedera-testnet"
-      maintainer_id: "hedera-testnet"
       multisig_prover:
         address: ""
       voting_verifier:
@@ -5182,7 +5193,6 @@ devnet-amplifier:
     xrpl-evm-sidechain:
       chain_id: 1440002
       chain_name: "xrpl-evm-sidechain"
-      maintainer_id: "xrpl-evm-sidechain"
       endpoints:
         rpc:
           - "https://rpc.xrplevm.org"
@@ -5205,7 +5215,6 @@ devnet-amplifier:
     xrpl-evm-devnet:
       chain_id: 1440002
       chain_name: "xrpl-evm-devnet"
-      maintainer_id: "xrpl-evm-devnet"
       endpoints:
         rpc:
           - "https://rpc.xrplevm.org"
@@ -5228,7 +5237,6 @@ devnet-amplifier:
     zkstack-memento:
       chain_id: 12052024
       chain_name: "zkstack-memento"
-      maintainer_id: "zkstack-memento"
       endpoints:
         rpc:
           - "https://test-rpc.mementoblockchain.com/IRkghvI3FfEArEJMr4zC/rpc"
@@ -5293,7 +5301,6 @@ devnet-amplifier:
     coti-3:
       chain_id: 13068200
       chain_name: "coti-3"
-      maintainer_id: "coti-3"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
@@ -5316,7 +5323,6 @@ devnet-amplifier:
     coti-4:
       chain_id: 13068200
       chain_name: "coti-4"
-      maintainer_id: "coti-4"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
@@ -5339,7 +5345,6 @@ devnet-amplifier:
     coti-6:
       chain_id: 13068200
       chain_name: "coti-6"
-      maintainer_id: "coti-6"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
@@ -5362,7 +5367,6 @@ devnet-amplifier:
     coti-7:
       chain_id: 13068200
       chain_name: "coti-7"
-      maintainer_id: "coti-7"
       endpoints:
         rpc:
           - "https://devnet.coti.io/rpc"
@@ -5658,7 +5662,6 @@ devnet-verifiers:
     ethereum-sepolia:
       chain_id: 11155111
       chain_name: "ethereum-sepolia"
-      maintainer_id: "ethereum-sepolia"
       multisig_prover:
         address: "axelar1xz4cya4qm2ws6nzperhvc40wdjcq4872fl6d3j2s4cytyx8j80eqenv87g"
       voting_verifier:
@@ -5687,7 +5690,6 @@ devnet-verifiers:
     avalanche:
       chain_id: 43113
       chain_name: "Avalanche"
-      maintainer_id: "avalanche"
       multisig_prover:
         address: "axelar1qt0gkcrvcpv765k8ec4tl2svvg6hd3e3td8pvg2fsncrt3dzjefswsq3w2"
       voting_verifier:
@@ -5716,7 +5718,6 @@ devnet-verifiers:
     fantom:
       chain_id: 4002
       chain_name: "Fantom"
-      maintainer_id: "fantom"
       multisig_prover:
         address: "axelar17q90gwd9279une6fagsxqrak87fmc3gtusv9dglwc0ezcxufrtdshr7pxt"
       voting_verifier:
@@ -5745,7 +5746,6 @@ devnet-verifiers:
     op-sepolia:
       chain_id: 11155420
       chain_name: "op-sepolia"
-      maintainer_id: "op-sepolia"
       multisig_prover:
         address: "axelar17aatfk5ktm834djmyk3dsgr48mja54e8hjzcs4c8vyunlpacc7qscftcs7"
       voting_verifier:
