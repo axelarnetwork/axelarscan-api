@@ -4217,6 +4217,10 @@ testnet:
         transaction_path: "/tx/{tx}"
     xrpl-test-1:
       chain_name: "xrpl-test-1"
+      multisig_prover:
+        address: "axelar18wq8qjlq6vfg2jw2fmvgyphjxrndc7529wq07pvlpnk0j2uvv5fqqqr4gv"
+      voting_verifier:
+        address: "axelar1nwv2cmp4lmwujpaq9t8t4w2xvcewv49jfzxy7apz4lz60h5ycd6qkjt4fr"
       endpoints:
         rpc:
           - "https://s.altnet.rippletest.net:51234"
