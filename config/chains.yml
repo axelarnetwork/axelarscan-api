@@ -4215,6 +4215,27 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
+    xrpl-test-1:
+      chain_name: "xrpl-test-1"
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger Test 1 (VM)"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
     xrpl-evm-test-1:
       chain_id: 1449000
       chain_name: "xrpl-evm-test-1"
