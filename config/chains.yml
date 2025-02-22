@@ -2057,7 +2057,7 @@ mainnet:
         name: "Flow"
         symbol: "FLOW"
         decimals: 18
-      name: "Flow (VM)"
+      name: "Flow"
       short_name: "FLOW"
       image: "/logos/chains/flow.svg"
       color: "#00ee8a"
@@ -2083,7 +2083,7 @@ mainnet:
         name: "Hedera"
         symbol: "HBAR"
         decimals: 18
-      name: "Hedera (VM)"
+      name: "Hedera"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
       color: "#000000"
@@ -2108,7 +2108,7 @@ mainnet:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar (VM)"
+      name: "Stellar"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -2135,7 +2135,7 @@ mainnet:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui (VM)"
+      name: "Sui"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -4071,7 +4071,7 @@ testnet:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "TEST Ethereum Sepolia (VM)"
+      name: "TEST Ethereum Sepolia"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4099,7 +4099,7 @@ testnet:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "TEST Avalanche (VM)"
+      name: "TEST Avalanche"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4125,7 +4125,7 @@ testnet:
         name: "Flow"
         symbol: "FLOW"
         decimals: 18
-      name: "Flow (VM)"
+      name: "Flow"
       short_name: "FLOW"
       image: "/logos/chains/flow.svg"
       color: "#00ee8a"
@@ -4151,7 +4151,7 @@ testnet:
         name: "Hedera"
         symbol: "HBAR"
         decimals: 18
-      name: "Hedera (VM)"
+      name: "Hedera"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
       color: "#000000"
@@ -4176,7 +4176,7 @@ testnet:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar (VM)"
+      name: "Stellar"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -4203,7 +4203,7 @@ testnet:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui (VM)"
+      name: "Sui"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -4228,7 +4228,7 @@ testnet:
         name: "Ripple"
         symbol: "XRP"
         decimals: 6
-      name: "XRP Ledger Test 1 (VM)"
+      name: "XRP Ledger Test 1"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -4254,7 +4254,7 @@ testnet:
         name: "Ripple"
         symbol: "XRP"
         decimals: 18
-      name: "XRP Ledger EVM Test 1 (VM)"
+      name: "XRP Ledger EVM Test 1"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -4694,7 +4694,7 @@ stagenet:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "TEST Ethereum Sepolia (VM)"
+      name: "TEST Ethereum Sepolia"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4722,7 +4722,7 @@ stagenet:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "TEST Avalanche (VM)"
+      name: "TEST Avalanche"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -4748,7 +4748,7 @@ stagenet:
         name: "Flow"
         symbol: "FLOW"
         decimals: 18
-      name: "Flow (VM)"
+      name: "Flow"
       short_name: "FLOW"
       image: "/logos/chains/flow.svg"
       color: "#00ee8a"
@@ -4774,7 +4774,7 @@ stagenet:
         name: "Hedera"
         symbol: "HBAR"
         decimals: 18
-      name: "Hedera (VM)"
+      name: "Hedera"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
       color: "#000000"
@@ -4799,7 +4799,7 @@ stagenet:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui (VM)"
+      name: "Sui"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -4946,7 +4946,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "ETH Sepolia (VM)"
+      name: "ETH Sepolia"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -4974,7 +4974,7 @@ devnet-amplifier:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche Fuji (VM)"
+      name: "Avalanche Fuji"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -5001,7 +5001,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Optimism Sepolia (VM)"
+      name: "Optimism Sepolia"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
@@ -5027,7 +5027,7 @@ devnet-amplifier:
         name: "Flow"
         symbol: "FLOW"
         decimals: 18
-      name: "Flow (VM)"
+      name: "Flow"
       short_name: "FLOW"
       image: "/logos/chains/flow.svg"
       color: "#00ee8a"
@@ -5053,7 +5053,7 @@ devnet-amplifier:
         name: "Hedera Testnet"
         symbol: "HBAR"
         decimals: 18
-      name: "Hedera (VM)"
+      name: "Hedera"
       short_name: "HBAR"
       image: "/logos/chains/hedera.svg"
       color: "#000000"
@@ -5074,7 +5074,7 @@ devnet-amplifier:
         name: "MultiversX"
         symbol: "EGLD"
         decimals: 18
-      name: "MultiversX (VM)"
+      name: "MultiversX"
       short_name: "EGLD"
       image: "/logos/chains/multiversx.svg"
       color: "#22f6dc"
@@ -5096,7 +5096,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Starknet (VM)"
+      name: "Starknet"
       short_name: "STRK"
       image: "/logos/chains/starknet.svg"
       color: "#0c0c4f"
@@ -5118,7 +5118,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Starknet Devnet (VM)"
+      name: "Starknet Devnet"
       short_name: "STRK"
       image: "/logos/chains/starknet.svg"
       color: "#0c0c4f"
@@ -5140,7 +5140,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Starknet Devnet V1 (VM)"
+      name: "Starknet Devnet V1"
       short_name: "STRK"
       image: "/logos/chains/starknet.svg"
       color: "#0c0c4f"
@@ -5161,7 +5161,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 6
-      name: "XRP Ledger (VM)"
+      name: "XRP Ledger"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5182,7 +5182,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 6
-      name: "XRP Ledger Dev (VM)"
+      name: "XRP Ledger Dev"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5203,7 +5203,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 6
-      name: "XRP Ledger Devnet (VM)"
+      name: "XRP Ledger Devnet"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5225,7 +5225,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 18
-      name: "XRP Ledger EVM Sidechain (VM)"
+      name: "XRP Ledger EVM Sidechain"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5247,7 +5247,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 18
-      name: "XRP Ledger EVM Devnet (VM)"
+      name: "XRP Ledger EVM Devnet"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5269,7 +5269,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Memento (VM)"
+      name: "Memento"
       short_name: "MMT"
       image: "/logos/chains/memento.svg"
       color: "#0072bc"
@@ -5290,7 +5290,7 @@ devnet-amplifier:
         name: "Solana"
         symbol: "SOL"
         decimals: 9
-      name: "Solana (VM)"
+      name: "Solana"
       short_name: "SOL"
       image: "/logos/chains/solana.svg"
       color: "#8d4df7"
@@ -5311,7 +5311,7 @@ devnet-amplifier:
         name: "Solana"
         symbol: "SOL"
         decimals: 9
-      name: "Solana Devnet (VM)"
+      name: "Solana Devnet"
       short_name: "SOL"
       image: "/logos/chains/solana.svg"
       color: "#8d4df7"
@@ -5333,7 +5333,7 @@ devnet-amplifier:
         name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti 3 (VM)"
+      name: "Coti 3"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5355,7 +5355,7 @@ devnet-amplifier:
         name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti 4 (VM)"
+      name: "Coti 4"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5377,7 +5377,7 @@ devnet-amplifier:
         name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti 6 (VM)"
+      name: "Coti 6"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5399,7 +5399,7 @@ devnet-amplifier:
         name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti (VM)"
+      name: "Coti"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5424,7 +5424,7 @@ devnet-amplifier:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar Test (VM)"
+      name: "Stellar Test"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5451,7 +5451,7 @@ devnet-amplifier:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar Test2 (VM)"
+      name: "Stellar Test2"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5478,7 +5478,7 @@ devnet-amplifier:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar 2024 Q4 (VM)"
+      name: "Stellar 2024 Q4"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5505,7 +5505,7 @@ devnet-amplifier:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar Test 2025 Q1 (VM)"
+      name: "Stellar Test 2025 Q1"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5532,7 +5532,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui (VM)"
+      name: "Sui"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -5557,7 +5557,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui Test (VM)"
+      name: "Sui Test"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -5582,7 +5582,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui Test 2 (VM)"
+      name: "Sui Test 2"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
@@ -5607,7 +5607,7 @@ devnet-amplifier:
         name: "Stacks"
         symbol: "STX"
         decimals: 6
-      name: "Stacks (VM)"
+      name: "Stacks"
       short_name: "STX"
       image: "/logos/chains/stacks.svg"
       color: "#fc6432"
@@ -5628,7 +5628,7 @@ devnet-amplifier:
         name: "Aleo"
         symbol: "ALEO"
         decimals: 64
-      name: "Aleo 2 (VM)"
+      name: "Aleo 2"
       short_name: "ALEO"
       image: "/logos/chains/aleo.svg"
       color: "#121212"
@@ -5700,7 +5700,7 @@ devnet-verifiers:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Ethereum Sepolia (VM)"
+      name: "Ethereum Sepolia"
       short_name: "ETH"
       image: "/logos/chains/ethereum.svg"
       color: "#c0c2c3"
@@ -5728,7 +5728,7 @@ devnet-verifiers:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche (VM)"
+      name: "Avalanche"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
@@ -5756,7 +5756,7 @@ devnet-verifiers:
         name: "Fantom"
         symbol: "FTM"
         decimals: 18
-      name: "Fantom (VM)"
+      name: "Fantom"
       short_name: "FTM"
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
@@ -5783,7 +5783,7 @@ devnet-verifiers:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "OP Sepolia (VM)"
+      name: "OP Sepolia"
       short_name: "OP"
       image: "/logos/chains/optimism.svg"
       color: "#dc2626"
