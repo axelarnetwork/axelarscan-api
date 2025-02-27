@@ -32,7 +32,7 @@ const getChains = (chainTypes = [], env = ENVIRONMENT) => {
               nativeCurrency: _v.native_token,
               blockExplorerUrls: toArray([_v.explorer?.url]),
             }];
-            no_inflation = !_v.maintainer_id || !!_v.deprecated;
+            no_inflation = (k === 'vm' ? false : !_v.maintainer_id) || !!_v.deprecated;
             no_tvl = _v.no_tvl || !!_v.deprecated;
           }
           break;
