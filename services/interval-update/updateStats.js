@@ -18,6 +18,9 @@ module.exports = async () => {
       case 'GMPStats':
         resolve(await METHODS.GMPStats({ forceCache: true }));
         break;
+      case 'GMPStatsAVGTimes':
+        resolve(await METHODS.GMPStatsAVGTimes({ fromTime: moment().subtract(3, 'months').startOf('day').unix() }));
+        break;
       case 'GMPTopUsers':
         resolve(await METHODS.GMPTopUsers({ size: 100 }));
         break;
