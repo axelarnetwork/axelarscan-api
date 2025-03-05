@@ -1521,12 +1521,13 @@ mainnet:
       chain_name: "ixo"
       endpoints:
         lcd:
-          - "https://impacthub-api.lavenderfive.com"
           - "https://ixo-api.ibs.team"
-          - "https://proxies.sifchain.finance/api/impacthub-3/rest"
           - "https://impacthub.ixo.world/rest"
+          - "https://impacthub-api.lavenderfive.com"
+          - "https://proxies.sifchain.finance/api/impacthub-3/rest"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "IXO"
         symbol: "IXO"
