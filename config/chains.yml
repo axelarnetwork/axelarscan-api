@@ -5468,9 +5468,9 @@ devnet-amplifier:
     stellar-2024-q4:
       chain_name: "stellar-2024-q4"
       multisig_prover:
-        address: ""
+        address: "axelar1knpl88d730hdmlmxfpjl46jxlals0cxwzxp8c8tavrc8g2rduugqtvl6kg"
       voting_verifier:
-        address: ""
+        address: "axelar1fclvpd3kx4udp3nxw88tk8279z36uvmkn6da0jh7fnz6eddh2n2s09n6tg"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
