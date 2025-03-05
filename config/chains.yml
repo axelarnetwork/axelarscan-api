@@ -4812,6 +4812,33 @@ stagenet:
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
         transaction_path: "/tx/{tx}"
+    stellar:
+      chain_name: "stellar"
+      multisig_prover:
+        address: "axelar1mvy2775qkhv69ejm6h8dyrsf8kd6ctt2gxse3c24re5qeeck89cq0kmy92"
+      voting_verifier:
+        address: "axelar14srynuyye43998r24t7n0qjnwa6u2559un6vmvsa6tlj5crazgfq59cqy9"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
 
 
 
