@@ -17,7 +17,7 @@ const { timeDiff } = require('./utils/time');
 // setup arguments
 const { block } = { ...require('command-line-args')([{ name: 'block', alias: 'b', type: Number }]) };
 
-const AVG_BLOCK_TIME = 6;
+const AVG_BLOCK_TIME = 7;
 const BLOCK_PER_MINUTE = parseInt(60 / AVG_BLOCK_TIME);
 const BLOCK_PER_HOUR = 60 * BLOCK_PER_MINUTE;
 const BLOCK_PER_DAY = 24 * BLOCK_PER_HOUR;

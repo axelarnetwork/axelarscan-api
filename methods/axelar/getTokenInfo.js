@@ -3,6 +3,7 @@ const moment = require('moment');
 const getTotalSupply = require('./getTotalSupply');
 const getCirculatingSupply = require('./getCirculatingSupply');
 const getTotalBurned = require('./getTotalBurned');
+const getInflation = require('./getInflation');
 const { getTokensPrice, getExchangeRates } = require('../tokens');
 const { ENVIRONMENT, CURRENCY, getAssetData, getITSAssetData, getLCD } = require('../../utils/config');
 const { createInstance, request } = require('../../utils/http');
@@ -29,8 +30,10 @@ module.exports = async params => {
   const { price } = { ...(data?.[symbol] || Object.values({ ...data }).find(d => d.denom === symbol)) };
   const supplyData = await getCirculatingSupply({ symbol, height, debug: true });
   const circulatingSupply = supplyData?.circulating_supply;
-  const totalSupply = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalSupply({ asset: denom, height }) : null;
-  const totalBurned = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom) ? await getTotalBurned({ height }) : undefined;
+  const isAXL = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom);
+  const totalSupply = isAXL ? await getTotalSupply({ asset: denom, height }) : null;
+  const totalBurned = isAXL ? await getTotalBurned({ height }) : null;
+  const { inflation } = { ...(isAXL ? await getInflation({ height }) : null) };
   const updatedAt = supplyData?.updated_at || updated_at || moment().valueOf();
 
   switch (agent) {
@@ -39,9 +42,9 @@ module.exports = async params => {
       return ['KRW', 'USD', 'IDR', 'SGD', 'THB'].map(currencyCode => {
         const currency = currencyCode.toLowerCase();
         const _price = price * (exchangeRates?.[currency] && currency !== CURRENCY ? exchangeRates[currency].value / exchangeRates[CURRENCY].value : 1);
-        return { symbol, currencyCode, price: _price, marketCap: circulatingSupply * _price, circulatingSupply, maxSupply: totalSupply, totalBurned, provider: 'Axelar', lastUpdatedTimestamp: updatedAt };
+        return { symbol, currencyCode, price: _price, marketCap: circulatingSupply * _price, circulatingSupply, maxSupply: totalSupply, totalBurned, inflation, provider: 'Axelar', lastUpdatedTimestamp: updatedAt };
       });
     default:
-      return { symbol, name, price, marketCap: circulatingSupply * price, circulatingSupply, maxSupply: totalSupply, totalBurned, updatedAt, timestamp };
+      return { symbol, name, price, marketCap: circulatingSupply * price, circulatingSupply, maxSupply: totalSupply, totalBurned, inflation, updatedAt, timestamp };
   }
 };
