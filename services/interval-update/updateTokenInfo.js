@@ -10,7 +10,7 @@ module.exports = async params => {
   const { symbol, timestamp } = { ...data };
   if (!(symbol && timestamp)) return;
 
-  const id = `${symbol}_${moment(timestamp).startOf('day').valueOf()}`.toLowerCase();
+  const id = `${symbol}_${moment(timestamp).utc().startOf('day').valueOf()}`.toLowerCase();
   await write(TOKEN_INFO_COLLECTION, id, { id, ...data, granularity: getGranularity(timestamp) });
   return data;
 };
