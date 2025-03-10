@@ -1951,6 +1951,65 @@ mainnet:
       prefix_address: "lava@"
       prefix_chain_ids:
         - "lava-mainnet-"
+    xion:
+      chain_id: "xion-mainnet-1"
+      chain_name: "xion"
+      endpoints:
+        lcd:
+          - "https://api.xion-mainnet-1.burnt.com"
+        timeout:
+          lcd: 3000
+        use_query: true
+      native_token:
+        name: "Xion"
+        symbol: "XION"
+        denom: "uxion"
+        decimals: 6
+      name: "Xion"
+      short_name: "XION"
+      image: "/logos/chains/xion.svg"
+      color: "#000000"
+      explorer:
+        name: "Mintscan"
+        url: "https://www.mintscan.io/xion"
+        icon: "/logos/explorers/mintscan.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/txs/{tx}"
+        asset_path: "/assets/ibc/{ibc_denom}"
+      prefix_address: "xion"
+      prefix_chain_ids:
+        - "xion-"
+    elys:
+      chain_id: "elys-1"
+      chain_name: "elys"
+      endpoints:
+        lcd:
+          - "https://api.elys.network"
+        timeout:
+          lcd: 3000
+        use_query: true
+      native_token:
+        name: "Elys"
+        symbol: "ELYS"
+        denom: "uelys"
+        decimals: 6
+      name: "Elys"
+      short_name: "ELYS"
+      image: "/logos/chains/elys.svg"
+      color: "#363738"
+      explorer:
+        name: "Elys"
+        url: "https://ping.pub/elys"
+        icon: "/logos/explorers/elys.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+      prefix_address: "elys"
+      prefix_chain_ids:
+        - "elys-"
     allora:
       chain_id: "allora-mainnet-1"
       chain_name: "allora"
@@ -3408,6 +3467,7 @@ testnet:
           - "https://api.xion-testnet-1.burnt.com"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Xion"
         symbol: "XION"
@@ -3415,12 +3475,12 @@ testnet:
         decimals: 6
       name: "Burnt"
       short_name: "BURNT"
-      image: "/logos/chains/carbon.svg"
-      color: "#74e7e7"
+      image: "/logos/chains/xion.svg"
+      color: "#000000"
       explorer:
         name: "Burnt"
         url: "https://pingpub.xion-testnet-1.burnt.com/xion-testnet-1"
-        icon: "/logos/explorers/carbon.png"
+        icon: "/logos/explorers/xion.png"
         block_path: "/blocks/{block}"
         address_path: "/account/{address}"
         contract_path: "/account/{address}"
@@ -3693,6 +3753,7 @@ testnet:
           - "https://api.testnet.elys.network"
         timeout:
           lcd: 3000
+        use_query: true
       native_token:
         name: "Elys"
         symbol: "ELYS"
