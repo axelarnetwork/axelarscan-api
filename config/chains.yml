@@ -1968,7 +1968,7 @@ mainnet:
       name: "Xion"
       short_name: "XION"
       image: "/logos/chains/xion.svg"
-      color: "#74e7e7"
+      color: "#000000"
       explorer:
         name: "Mintscan"
         url: "https://www.mintscan.io/xion"
@@ -3476,7 +3476,7 @@ testnet:
       name: "Burnt"
       short_name: "BURNT"
       image: "/logos/chains/xion.svg"
-      color: "#74e7e7"
+      color: "#000000"
       explorer:
         name: "Burnt"
         url: "https://pingpub.xion-testnet-1.burnt.com/xion-testnet-1"
