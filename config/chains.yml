@@ -1892,9 +1892,11 @@ mainnet:
       chain_name: "nolus"
       endpoints:
         lcd:
-          - "https://nolus-api.lavenderfive.com"
-          - "https://pirin-cl.nolus.network:1317"
-          - "https://nolus-mainnet-lcd.autostake.com"
+         - "https://rest.lavenderfive.com/nolus"
+          - "https://nolus.api.liveraven.net"
+          - "https://rest-nolus.architectnodes.com"
+          - "https://nolus-rest.publicnode.com"
+          - "https://nolus-api.ibs.team"
         timeout:
           lcd: 3000
         use_query: true
