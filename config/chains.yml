@@ -1892,7 +1892,7 @@ mainnet:
       chain_name: "nolus"
       endpoints:
         lcd:
-         - "https://rest.lavenderfive.com/nolus"
+          - "https://rest.lavenderfive.com/nolus"
           - "https://nolus.api.liveraven.net"
           - "https://rest-nolus.architectnodes.com"
           - "https://nolus-rest.publicnode.com"
