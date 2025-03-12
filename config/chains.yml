@@ -2160,9 +2160,9 @@ mainnet:
     stellar:
       chain_name: "stellar"
       multisig_prover:
-        address: ""
+        address: "axelar1wdgp5xyqjyv5zsq86n6pah2lsmd46mn0gt4055mvvk6mezn9skqs6p93dg"
       voting_verifier:
-        address: ""
+        address: "axelar1dalnx2yvmu3g3aau8m7fj426fk9u8dnzlr5azvqmr4x82rtclats8lhjmu"
       endpoints:
         rpc:
           - "https://rpc.ankr.com/stellar_soroban"
