@@ -1,6 +1,6 @@
 {
   "name": "axelarscan-api",
-  "version": "0.0.153",
+  "version": "0.0.154",
   "description": "Axelarscan API",
   "main": "index.js",
   "scripts": {
