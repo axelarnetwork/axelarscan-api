@@ -4357,6 +4357,32 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
+    xrpl-evm:
+      chain_id: 1449000
+      chain_name: "xrpl-evm"
+      multisig_prover:
+        address: "axelar198xehj5htckk75s8wcamxerxtdc45669zdqjmr69guveqntj9f6s5rqq55"
+      voting_verifier:
+        address: "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.testnet.xrplevm.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
@@ -4929,6 +4955,32 @@ stagenet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    xrpl-evm:
+      chain_id: 1449000
+      chain_name: "xrpl-evm"
+      multisig_prover:
+        address: "axelar18emrfkkz45zuxgk7v2gqrnm59wnnupdakqnmejh0t6krltwzjnxqreejwk"
+      voting_verifier:
+        address: "axelar1hmdnsrs8c8v8mr7vxg3rzdzxasxdpfj09muxakhth73sywg929qsczjscj"
+      endpoints:
+        rpc:
+          - "https://rpc.testnet.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.testnet.xrplevm.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
