@@ -23,7 +23,7 @@ const getTokenConfig = async (symbol, additionalAssetsData, notGetAssetConfig = 
 };
 
 module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, debug = false, cache = true }) => {
-  symbols = _.uniq(toArray(_.concat(symbols, symbol)));
+  symbols = _.uniq(toArray(_.concat(symbols, symbol)).map(s => s.startsWith('burned-') ? s.replace('burned-', '') : s));
   const assetsData = toArray(await Promise.all(toArray(symbols).map(s => new Promise(async resolve => resolve(Object.keys(await getTokenConfig(s, undefined, true)).length === 0))))).length > 0 ? toArray(_.concat(await Promise.all([0, 1].map(i => new Promise(async resolve => resolve(i === 0 ? await getAssetsList() : await getITSAssetsList())))))).flatMap(d => d) : undefined;
 
   let updatedAt;
