@@ -95,7 +95,7 @@ const getAssets = async (env = ENVIRONMENT) => {
     const assetData = { denom, native_chain, name: d.name || d.prettySymbol, symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : d.prettySymbol, decimals: d.decimals, image, coingecko_id: d.coingeckoId, addresses };
     assetsData[denom] = { ...assetsData[denom], ...assetData };
   });
-  return Object.entries({ ...assetsData }).filter(([k, v]) => Object.values({ ...assetsData }).findIndex(d => toArray(d.denoms).includes(k)) < 0).map(([k, v]) => { return { ...v, id: k }; });
+  return Object.entries({ ...assetsData }).filter(([k, v]) => Object.values({ ...assetsData }).findIndex(d => toArray(d.denoms).includes(k)) < 0).map(([k, v]) => ({ ...v, id: k }));
 };
 const getAssetsList = async (env = ENVIRONMENT) => Object.values(await getAssets(env));
 const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
