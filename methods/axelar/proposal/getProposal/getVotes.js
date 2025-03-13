@@ -16,7 +16,7 @@ module.exports = async params => {
     data = _.uniqBy(_.concat(toArray(data), toArray(votes).map(d => {
       d.proposal_id = toNumber(d.proposal_id);
       d.option = d.option?.replace('VOTE_OPTION_', '');
-      d.options = toArray(d.options).map(d => { return { ...d, option: d.option?.replace('VOTE_OPTION_', ''), weight: toNumber(d.weight) }; });
+      d.options = toArray(d.options).map(d => ({ ...d, option: d.option?.replace('VOTE_OPTION_', ''), weight: toNumber(d.weight) }));
       return d;
     })), 'voter');
     nextKey = pagination?.next_key;

@@ -22,7 +22,7 @@ const getTokenConfig = async (symbol, additionalAssetsData, notGetAssetConfig = 
   return { ...(redirect ? await getTokenConfig(redirect, additionalAssetsData, notGetAssetConfig) : tokenData) };
 };
 
-module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, debug = false }) => {
+module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, debug = false, cache = true }) => {
   symbols = _.uniq(toArray(_.concat(symbols, symbol)));
   const assetsData = toArray(await Promise.all(toArray(symbols).map(s => new Promise(async resolve => resolve(Object.keys(await getTokenConfig(s, undefined, true)).length === 0))))).length > 0 ? toArray(_.concat(await Promise.all([0, 1].map(i => new Promise(async resolve => resolve(i === 0 ? await getAssetsList() : await getITSAssetsList())))))).flatMap(d => d) : undefined;
 
@@ -44,11 +44,11 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
     // query current price
     if (tokensData.findIndex(d => !isNumber(d.price)) > -1) {
       const ids = _.uniq(toArray(tokensData.map(d => d.coingecko_id)));
-      const cacheId = toArray(ids, { toCase: 'lower' }).join('_');
+      const cacheId = cache ? toArray(ids, { toCase: 'lower' }).join('_') : undefined;
 
       let response;
       // get price from cache
-      const { data, updated_at } = { ...await get(TOKEN_PRICE_COLLECTION, cacheId) };
+      const { data, updated_at } = { ...(cacheId ? await get(TOKEN_PRICE_COLLECTION, cacheId) : undefined) };
       if (data && timeDiff(updated_at) < 300) {
         response = data;
         updatedAt = updated_at;
@@ -56,18 +56,18 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
       // get from api when cache missed
       else {
         response = await request(PRICE_ORACLE_API, { path: '/simple/price', params: { ids: ids.join(','), vs_currencies: currency } });
-        if (response && tokensData.findIndex(d => !response[d.coingecko_id]?.[currency]) < 0) await write(TOKEN_PRICE_COLLECTION, cacheId, { data: response, updated_at: moment().valueOf() });
+        if (response && tokensData.findIndex(d => !response[d.coingecko_id]?.[currency]) < 0 && cacheId) await write(TOKEN_PRICE_COLLECTION, cacheId, { data: response, updated_at: moment().valueOf() });
         else if (Object.keys({ ...data }).length > 0) {
           response = data;
           updatedAt = updated_at;
         }
       }
 
-      if (response && !response.error) tokensData = tokensData.map(d => { return { ...d, price: response[d.coingecko_id]?.[currency] || d.price }; });
+      if (response && !response.error) tokensData = tokensData.map(d => ({ ...d, price: response[d.coingecko_id]?.[currency] || d.price }));
     }
   }
   // set default price if cannot get price
-  tokensData = tokensData.map(d => { return { ...d, price: !isNumber(d.price) && isNumber(d.default_price?.[currency]) ? toNumber(d.default_price[currency]) : d.price }; });
+  tokensData = tokensData.map(d => ({ ...d, price: !isNumber(d.price) && isNumber(d.default_price?.[currency]) ? toNumber(d.default_price[currency]) : d.price }));
   const tokensMap = Object.fromEntries(tokensData.map(d => [d.symbol, d]));
   return debug ? { data: tokensMap, updated_at: updatedAt } : tokensMap;
 };
