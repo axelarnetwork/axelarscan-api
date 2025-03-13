@@ -100,6 +100,7 @@ const getAssets = async (env = ENVIRONMENT) => {
 const getAssetsList = async (env = ENVIRONMENT) => Object.values(await getAssets(env));
 const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   if (!asset) return;
+  if (asset.startsWith('burned-')) asset = asset.replace('burned-', '');
   assetsData = assetsData || await getAssetsList(env);
   return toArray(assetsData).find(d => toArray(_.concat(d.denom, d.denoms, d.symbol)).findIndex(s => equalsIgnoreCase(s, asset)) > -1 || toArray(Object.values({ ...d.addresses })).findIndex(a => toArray([a.ibc_denom, a.symbol]).findIndex(s => equalsIgnoreCase(s, asset)) > -1) > -1);
 };
