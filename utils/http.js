@@ -3,6 +3,8 @@ const https = require('https');
 
 const { isString } = require('./string');
 
+const parseError = error => ({ error: error?.response?.data || error?.message });
+
 const createInstance = (url, options) => {
   if (!url) return null;
   const { gzip } = { ...options };
@@ -13,8 +15,6 @@ const createInstance = (url, options) => {
   const httpsAgent = undefined;
   return axios.create({ ...options, baseURL: url, timeout, headers, httpsAgent });
 };
-
-const parseError = error => { return { error: error?.response?.data || error?.message }; };
 
 const request = async (instance, options) => {
   if (!instance) return null;
