@@ -10,7 +10,7 @@ const parseParams = (req, from) => {
   return params;
 };
 
-const parseError = error => { return { error: true, code: 400, message: error?.message }; };
+const parseError = error => ({ error: true, code: 400, message: error?.message });
 
 const finalizeResponse = (response, params, startTime = moment()) => {
   const { method } = { ...params };
