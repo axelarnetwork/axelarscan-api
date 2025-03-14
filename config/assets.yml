@@ -5816,17 +5816,3 @@ devnet-amplifier:
     addresses:
       axelarnet:
         ibc_denom: "uamplifier"
-
-
-
-devnet-verifiers:
-  uverifiers:
-    denom: "uverifiers"
-    native_chain: "axelarnet"
-    name: "Verifiers"
-    symbol: "VERIFIERS"
-    decimals: 6
-    image: "/logos/assets/axl.svg"
-    addresses:
-      axelarnet:
-        ibc_denom: "uverifiers"
