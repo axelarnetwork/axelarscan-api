@@ -31,11 +31,3 @@ devnet-amplifier:
   percent_diff_total_supply_threshold: 5.0
   alert_asset_escrow_value_threshold: 800000
   alert_asset_value_threshold: 3000000
-
-
-
-devnet-verifiers:
-  percent_diff_escrow_supply_threshold: 5.0
-  percent_diff_total_supply_threshold: 5.0
-  alert_asset_escrow_value_threshold: 800000
-  alert_asset_value_threshold: 3000000

@@ -30,7 +30,7 @@ module.exports = async params => {
   const { price } = { ...(data?.[symbol] || Object.values({ ...data }).find(d => d.denom === symbol)) };
   const supplyData = await getCirculatingSupply({ symbol, height, debug: true });
   const circulatingSupply = supplyData?.circulating_supply;
-  const isAXL = ['uaxl', 'uverifiers', 'uamplifier'].includes(denom);
+  const isAXL = ['uaxl', 'uamplifier'].includes(denom);
   const totalSupply = isAXL ? await getTotalSupply({ asset: denom, height }) : null;
   const totalBurned = isAXL ? await getTotalBurned({ height }) : null;
   const { inflation } = { ...(isAXL ? await getInflation({ height }) : null) };

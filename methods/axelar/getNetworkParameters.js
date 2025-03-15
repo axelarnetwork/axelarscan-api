@@ -14,7 +14,7 @@ module.exports = async params => {
           resolve([k, (await request(instance, { path: '/cosmos/staking/v1beta1/params' }))?.params]);
           break;
         case 'bankSupply':
-          resolve([k, (await request(instance, { path: `/cosmos/bank/v1beta1/supply/${ENVIRONMENT === 'devnet-verifiers' ? 'uverifiers' : ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'}` }))?.amount]);
+          resolve([k, (await request(instance, { path: `/cosmos/bank/v1beta1/supply/${ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'}` }))?.amount]);
           break;
         case 'stakingPool':
           resolve([k, (await request(instance, { path: '/cosmos/staking/v1beta1/pool' }))?.pool]);
