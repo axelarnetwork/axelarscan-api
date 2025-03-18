@@ -10,10 +10,13 @@ mainnet:
       maintainer_id: "ethereum"
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/eth"
-          - "https://cloudflare-eth.com"
-          - "https://1rpc.io/eth"
-          - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://eth1.lava.build"
+          - "https://ethereum.blockpi.network/v1/rpc/public"
+          - "https://eth-mainnet.public.blastapi.io"
+          # - "https://rpc.ankr.com/eth"
+          # - "https://cloudflare-eth.com"
+          # - "https://1rpc.io/eth"
+          # - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
