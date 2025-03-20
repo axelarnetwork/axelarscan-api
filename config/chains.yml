@@ -4338,6 +4338,7 @@ testnet:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
+        no_0x: true
     xrpl-evm-test-1:
       chain_id: 1449000
       chain_name: "xrpl-evm-test-1"
@@ -5350,6 +5351,7 @@ devnet-amplifier:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
+        no_0x: true
     xrpl-dev:
       chain_name: "xrpl-dev"
       endpoints:
@@ -5371,6 +5373,7 @@ devnet-amplifier:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
+        no_0x: true
     xrpl-devnet:
       chain_name: "xrpl-devnet"
       endpoints:
@@ -5392,6 +5395,7 @@ devnet-amplifier:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
+        no_0x: true
     xrpl-evm-sidechain:
       chain_id: 1440002
       chain_name: "xrpl-evm-sidechain"
