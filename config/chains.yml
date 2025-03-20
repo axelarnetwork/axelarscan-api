@@ -139,10 +139,11 @@ mainnet:
       maintainer_id: "fantom"
       endpoints:
         rpc:
-          - "https://rpc.ftm.tools"
+          - "https://fantom-mainnet.public.blastapi.io"
+          - "https://fantom-rpc.publicnode.com"
+          - "https://rpc3.fantom.network"
+          - "https://rpc2.fantom.network"
           - "https://rpc.fantom.network"
-          - "https://1rpc.io/ftm"
-          - "https://rpc.ankr.com/fantom"
       native_token:
         name: "Fantom"
         symbol: "FTM"
