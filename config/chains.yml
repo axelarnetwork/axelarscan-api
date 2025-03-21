@@ -4241,6 +4241,33 @@ testnet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    stellar-2025-q1:
+      chain_name: "stellar-2025-q1"
+      multisig_prover:
+        address: "axelar1cypnpcqk4zpk32stl7dutv3cdnag0q2v5a7dzfxh4jukrzxagxpqgjl5sr"
+      voting_verifier:
+        address: "axelar1a4wt84rllhuwpdvymj4tql6cugfsmdmau9ufmzcm329yx9st96eqx05uam"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q1"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
       multisig_prover:
@@ -4916,6 +4943,33 @@ stagenet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    stellar-2025-q1:
+      chain_name: "stellar-2025-q1"
+      multisig_prover:
+        address: "axelar1emmjd57gha5vchnysth3g6fsyzyrjm4xhj4dzlg2ulj4dz8p9kxs2l6zvy"
+      voting_verifier:
+        address: "axelar1f7unnl3uu8mgjecmaasv5p3e6khx2u99th9lhkhl2l9e05ldrzwq3vu33h"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q1"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     xrpl-evm:
       chain_id: 1449000
       chain_name: "xrpl-evm"
@@ -5533,7 +5587,7 @@ devnet-amplifier:
         name: "Coti"
         symbol: "COTI2"
         decimals: 18
-      name: "Coti"
+      name: "Coti 7"
       short_name: "COTI"
       image: "/logos/chains/coti.svg"
       color: "#035dbc"
@@ -5585,7 +5639,7 @@ devnet-amplifier:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar Test2"
+      name: "Stellar Test 2"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5653,6 +5707,33 @@ devnet-amplifier:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    stellar-2025-q1:
+      chain_name: "stellar-2025-q1"
+      multisig_prover:
+        address: "axelar1lgtcv0lfxwaz2prmea2y73lespr3mnwkfjv9kr0q6j7qhvhvwx6s54cesj"
+      voting_verifier:
+        address: "axelar1w78434ta3l83fstf743xh9v5vkh4k203x2rh7l6w093n4s4vzv0suz09g3"
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q1"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
       multisig_prover:
@@ -5691,7 +5772,7 @@ devnet-amplifier:
         name: "Sui"
         symbol: "SUI"
         decimals: 9
-      name: "Sui"
+      name: "Sui 2"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
