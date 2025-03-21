@@ -4,15 +4,20 @@ const getRedelegations = require('./getRedelegations');
 const getUnbondings = require('./getUnbondings');
 const getRewards = require('./getRewards');
 const getCommissions = require('./getCommissions');
-const { getAssetsList } = require('../../../utils/config');
+const { getAssets } = require('../../../utils/config');
 
 module.exports = async params => {
   const { address } = { ...params };
+
+  // check address param is axelar address
   if (!address?.startsWith('axelar')) return;
 
-  params = { ...params, assetsData: await getAssetsList() };
+  // set assets data to params
+  params = { ...params, assetsData: await getAssets() };
+
   return Object.fromEntries(await Promise.all(['balances', 'delegations', 'redelegations', 'unbondings', 'rewards', 'commissions'].map(k => new Promise(async resolve => {
     let v;
+
     switch (k) {
       case 'balances':
         v = await getBalances(params);
@@ -35,6 +40,7 @@ module.exports = async params => {
       default:
         break;
     }
+
     resolve([k, v]);
   }))));
 };

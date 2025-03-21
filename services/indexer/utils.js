@@ -1,9 +1,11 @@
-const { isString, equalsIgnoreCase, toBoolean } = require('../../utils/string');
+const { toJson } = require('../../utils/parser');
+const { isString, toBoolean } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 
 const normalizeSearchObject = object => {
-  try { object = JSON.parse(object); } catch (error) {}
+  object = toJson(object);
   if (Array.isArray(object)) return object;
+
   return Object.fromEntries(
     Object.entries({ ...object }).map(([k, v]) => {
       switch (typeof v) {
@@ -13,7 +15,7 @@ const normalizeSearchObject = object => {
         case 'boolean':
           break;
         default:
-          v = isNumber(v) && (!isString(v) || !v.startsWith('0x')) ? toNumber(v) : v;
+          v = isNumber(v) && (!isString(v) || ['0x', '00'].findIndex(s => !v.startsWith(s)) < 0) ? toNumber(v) : v;
           break;
       }
       return [k, v];

@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const getTVL = require('./getTVL');
 const { read } = require('../../services/indexer');
-const { TVL_COLLECTION, getChainData, getAssetsList, getAssetData, getAppURL, getTVLConfig } = require('../../utils/config');
+const { TVL_COLLECTION, getChainData, getAssets, getAssetData, getAppURL, getTVLConfig } = require('../../utils/config');
 const { toArray } = require('../../utils/parser');
 const { equalsIgnoreCase, toBoolean } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
@@ -25,7 +25,7 @@ module.exports = async params => {
   }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
 
   const toAlertData = data.filter(d => (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || (
-    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.entries(d.tvl).findIndex((k, v) => {
+    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.entries(d.tvl).findIndex(([k, v]) => {
       const { price } = { ...d };
       const { supply, escrow_balance, percent_diff_supply } = { ...v };
       return !IGNORED_CHAINS.includes(k) && toNumber((escrow_balance || supply) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
@@ -44,7 +44,7 @@ module.exports = async params => {
   let links;
 
   if (data.length > 0) {
-    const assetsData = await getAssetsList();
+    const assetsData = await getAssets();
     details = await Promise.all(data.map(d => new Promise(async resolve => {
       const { asset, price, is_abnormal_supply, percent_diff_supply, total, value_diff, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
       const { native_chain, symbol, addresses } = { ...await getAssetData(asset, assetsData) };
@@ -81,7 +81,7 @@ module.exports = async params => {
                 supply, link: d.url,
               };
             }),
-            links: _.uniq(toArray(_.concat(toArray(Object.entries({ ...tvl })).filter((k, v) => !IGNORED_CHAINS.includes(k) && v.is_abnormal_supply).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)))), appUrls),
+            links: _.uniq(toArray(_.concat(toArray(Object.entries({ ...tvl })).filter(([k, v]) => !IGNORED_CHAINS.includes(k) && v.is_abnormal_supply).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)))), appUrls),
           }
         ),
       });

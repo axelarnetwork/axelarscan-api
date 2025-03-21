@@ -4,7 +4,6 @@ const { split } = require('./parser');
 const { isString, headString } = require('./string');
 
 const isNumber = number => typeof number === 'number' || (isString(number) && number && !isNaN(number));
-
 const toNumber = number => isNumber(number) ? Number(number) : 0;
 
 const toBigNumber = number => {
@@ -25,16 +24,19 @@ const formatUnits = (number = '0', decimals = 18, parseNumber = true) => {
 const parseUnits = (number = 0, decimals = 18) => {
   try {
     number = number.toString();
+
     if (number.includes('.')) {
       const [_number, _decimals] = split(number, { delimiter: '.' });
+
       if (isString(_decimals) && _decimals.length > decimals) {
+        // decimals fixed
         let output = `${_number}${_decimals.substring(0, decimals)}`;
-        while (output.length > 1 && output.startsWith('0')) {
-          output = output.substring(1);
-        }
+        // remove prefix 0
+        while (output.length > 1 && output.startsWith('0')) output = output.substring(1);
         return output;
       }
     }
+
     return toBigNumber(_parseUnits(number, decimals));
   } catch (error) {
     return '0';

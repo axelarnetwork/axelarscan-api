@@ -1,22 +1,29 @@
 const _ = require('lodash');
 
-const { ENVIRONMENT, getChainsList, getContracts, getLCD } = require('../../utils/config');
-const { createInstance, request } = require('../../utils/http');
+const { getLCDInstance } = require('./utils');
+const { getChains, getContracts } = require('../../utils/config');
+const { request } = require('../../utils/http');
 const { removeDoubleQuote } = require('../../utils/string');
 const { toNumber, toFixed } = require('../../utils/number');
 
 module.exports = async params => {
-  const { gateway_contracts } = { ...await getContracts() };
-  const chainsData = getChainsList('evm').filter(d => !d.no_inflation && gateway_contracts?.[d.id]?.address);
   const { height } = { ...params };
+
+  // get contracts
+  const { gateway_contracts } = { ...await getContracts() };
+
+  // get evm chains that has inflation
+  const chainsData = getChains('evm').filter(d => !d.no_inflation && gateway_contracts?.[d.id]?.address);
+
   let { uptimeRate, heartbeatRate, numEVMChains, unsubmittedVoteRates } = { ...params };
+
+  // set default
   uptimeRate = uptimeRate || 1;
   heartbeatRate = heartbeatRate || 1;
   numEVMChains = numEVMChains || chainsData.length;
   unsubmittedVoteRates = unsubmittedVoteRates || Object.fromEntries(chainsData.map(d => [d.id, 0]));
 
-  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
-  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+  const instance = getLCDInstance(height);
 
   const [tendermintInflationRate, communityTax, keyMgmtRelativeInflationRate, externalChainVotingInflationRate] = await Promise.all(
     ['tendermintInflationRate', 'communityTax', 'keyMgmtRelativeInflationRate', 'externalChainVotingInflationRate'].map(param => new Promise(async resolve => {

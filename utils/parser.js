@@ -1,6 +1,5 @@
 const { bech32 } = require('bech32');
 const { tmhash } = require('tendermint/lib/hash');
-const { decodeBase64, getAddress, hexlify } = require('ethers');
 
 const toHash = (string, length) => {
   try {
@@ -20,23 +19,7 @@ const hexToBech32 = (address, prefix = 'axelar') => {
 
 const bech32ToBech32 = (address, prefix) => bech32.encode(prefix, bech32.decode(address).words);
 
-const _getAddress = (string, prefix = 'axelar', length = 20) => hexToBech32(toHash(string, length), prefix);
-
-const getIcapAddress = string => {
-  try {
-    return string?.startsWith('0x') ? getAddress(string) : string;
-  } catch (error) {
-    return string;
-  }
-};
-
-const base64ToHex = string => {
-  try {
-    return hexlify(decodeBase64(string));
-  } catch (error) {
-    return string;
-  }
-};
+const getBech32Address = (string, prefix = 'axelar', length = 20) => hexToBech32(toHash(string, length), prefix);
 
 const toJson = string => {
   if (!string) return null;
@@ -46,14 +29,6 @@ const toJson = string => {
   } catch (error) {
     return null;
   }
-};
-
-const toHex = byteArray => {
-  let string = '0x';
-  if (typeof byteArray === 'string' && byteArray.startsWith('[') && byteArray.endsWith(']')) byteArray = toJson(byteArray);
-  if (Array.isArray(byteArray)) byteArray.forEach(byte => string += ('0' + (byte & 0xFF).toString(16)).slice(-2));
-  else string = byteArray;
-  return string;
 };
 
 const toCase = (string, _case = 'normal') => {
@@ -72,32 +47,32 @@ const toCase = (string, _case = 'normal') => {
   return string;
 };
 
-const split = (string, options) => {
+const getOptions = options => {
   let { delimiter, toCase: _toCase, filterBlank } = { ...options };
   delimiter = typeof delimiter === 'string' ? delimiter : ',';
   _toCase = _toCase || 'normal';
   filterBlank = typeof filterBlank === 'boolean' ? filterBlank : true;
+  return { ...options, delimiter, toCase: _toCase, filterBlank };
+};
+
+const split = (string, options) => {
+  const { delimiter, toCase: _toCase, filterBlank } = { ...getOptions(options) };
   return (typeof string !== 'string' && ![undefined, null].includes(string) ? [string] : (typeof string === 'string' ? string : '').split(delimiter).map(s => toCase(s, _toCase))).filter(s => !filterBlank || s);
 };
 
 const toArray = (x, options) => {
-  let { delimiter, toCase: _toCase, filterBlank } = { ...options };
-  delimiter = typeof delimiter === 'string' ? delimiter : ',';
-  _toCase = _toCase || 'normal';
-  filterBlank = typeof filterBlank === 'boolean' ? filterBlank : true;
+  options = getOptions(options);
+  const { toCase: _toCase, filterBlank } = { ...options };
   if (Array.isArray(x)) return x.map(_x => toCase(_x, _toCase)).filter(_x => !filterBlank || _x);
-  return split(x, { delimiter, toCase: _toCase, filterBlank });
+  return split(x, options);
 };
 
 module.exports = {
   toHash,
   hexToBech32,
   bech32ToBech32,
-  getAddress: _getAddress,
-  getIcapAddress,
-  base64ToHex,
+  getBech32Address,
   toJson,
-  toHex,
   toCase,
   split,
   toArray,

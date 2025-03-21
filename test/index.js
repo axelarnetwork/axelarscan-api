@@ -1,3 +1,4 @@
+const circularImport = require('./circularImport');
 const getChains = require('./getChains');
 const getAssets = require('./getAssets');
 const getITSAssets = require('./getITSAssets');
@@ -21,6 +22,7 @@ const interchainTotalFee = require('./interchainTotalFee');
 const interchainTotalActiveUsers = require('./interchainTotalActiveUsers');
 
 const test = async () => {
+  await circularImport();
   getChains();
   await getAssets();
   await getITSAssets();

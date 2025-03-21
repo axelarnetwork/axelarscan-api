@@ -1,12 +1,17 @@
 const { aggregate } = require('./utils');
-const { ENVIRONMENT, getAssetsList, getLCD } = require('../../../utils/config');
-const { createInstance, request } = require('../../../utils/http');
+const { getLCDInstance } = require('../utils');
+const { getAssets } = require('../../../utils/config');
+const { request } = require('../../../utils/http');
 const { bech32ToBech32, toArray } = require('../../../utils/parser');
 
 module.exports = async params => {
   const { height } = { ...params };
   let { address, assetsData } = { ...params };
+
+  // check address param is axelar address
   if (!address?.startsWith('axelar')) return;
+
+  // parse to operator address
   const prefix = 'axelarvaloper';
   if (!address.startsWith(prefix)) {
     try {
@@ -16,9 +21,11 @@ module.exports = async params => {
     }
   }
 
-  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
-  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
-  const { commission } = { ...await request(instance, { path: `/cosmos/distribution/v1beta1/validators/${address}/commission` }) };
-  assetsData = assetsData || (commission ? await getAssetsList() : undefined);
+  // get commission of this validator
+  const { commission } = { ...await request(getLCDInstance(height), { path: `/cosmos/distribution/v1beta1/validators/${address}/commission` }) };
+
+  // get assets data when has commission
+  assetsData = assetsData || (commission ? await getAssets() : undefined);
+
   return await aggregate(toArray(commission?.commission), assetsData);
 };

@@ -24,12 +24,12 @@ provider "aws" {
   }
 }
 
-locals {
-  url_subpath_api_mapping = "api" # map apigw to url subpath /api from aws_api_gateway_domain_name
-}
-
 data "aws_api_gateway_domain_name" "testnet" {
   domain_name = "testnet.api.axelarscan.io"
+}
+
+locals {
+  url_subpath_api_mapping = "api" # map apigw to url subpath /api from aws_api_gateway_domain_name
 }
 
 resource "aws_iam_role" "lambda_role" {
@@ -123,7 +123,7 @@ resource "aws_lambda_function" "function" {
 
 resource "aws_lambda_provisioned_concurrency_config" "config" {
   function_name                     = aws_lambda_function.function.function_name
-  provisioned_concurrent_executions = 25
+  provisioned_concurrent_executions = 50
   qualifier                         = aws_lambda_function.function.version
 }
 
@@ -133,6 +133,14 @@ resource "aws_lambda_permission" "api" {
   function_name = aws_lambda_function.function.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+}
+
+resource "aws_lambda_permission" "allow_cloudwatch" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.function.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_cloudwatch_event_rule.schedule.arn
 }
 
 resource "aws_apigatewayv2_api" "api" {
@@ -157,6 +165,19 @@ resource "aws_apigatewayv2_integration" "api" {
   payload_format_version = "2.0"
 }
 
+resource "aws_apigatewayv2_stage" "testnet" {
+  api_id      = aws_apigatewayv2_api.api.id
+  auto_deploy = true
+  name        = var.environment
+}
+
+resource "aws_apigatewayv2_api_mapping" "testnet" {
+  api_id          = aws_apigatewayv2_api.api.id
+  domain_name     = data.aws_api_gateway_domain_name.testnet.id
+  stage           = aws_apigatewayv2_stage.testnet.id
+  api_mapping_key = local.url_subpath_api_mapping
+}
+
 resource "aws_apigatewayv2_route" "route" {
   api_id    = aws_apigatewayv2_api.api.id
   route_key = "ANY /"
@@ -173,19 +194,6 @@ resource "aws_apigatewayv2_route" "default" {
   api_id    = aws_apigatewayv2_api.api.id
   route_key = "$default"
   target    = "integrations/${aws_apigatewayv2_integration.api.id}"
-}
-
-resource "aws_apigatewayv2_stage" "testnet" {
-  api_id      = aws_apigatewayv2_api.api.id
-  auto_deploy = true
-  name        = var.environment
-}
-
-resource "aws_apigatewayv2_api_mapping" "testnet" {
-  api_id          = aws_apigatewayv2_api.api.id
-  domain_name     = data.aws_api_gateway_domain_name.testnet.id
-  stage           = aws_apigatewayv2_stage.testnet.id
-  api_mapping_key = local.url_subpath_api_mapping
 }
 
 resource "aws_cloudwatch_event_rule" "schedule" {
