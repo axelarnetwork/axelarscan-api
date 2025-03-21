@@ -85,30 +85,6 @@ mainnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    polygon-zkevm:
-      disabled: true
-      chain_id: 1101
-      chain_name: "polygon-zkevm"
-      maintainer_id: "polygon-zkevm"
-      endpoints:
-        rpc:
-          - "https://zkevm-rpc.com"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Polygon zkEVM"
-      short_name: "POLY ZK"
-      image: "/logos/chains/polygon-zkevm.svg"
-      color: "#8247e5"
-      explorer:
-        name: "Polygonscan"
-        url: "https://zkevm.polygonscan.com"
-        icon: "/logos/explorers/polygonscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     avalanche:
       chain_id: 43114
       chain_name: "Avalanche"
@@ -2111,7 +2087,7 @@ mainnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "columbus-"
-  vm:
+  amplifier:
     flow:
       chain_id: 747
       chain_name: "flow"
@@ -2369,30 +2345,6 @@ testnet:
       explorer:
         name: "Polygonscan"
         url: "https://amoy.polygonscan.com"
-        icon: "/logos/explorers/polygonscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    polygon-zkevm:
-      disabled: true
-      chain_id: 1442
-      chain_name: "polygon-zkevm"
-      maintainer_id: "polygon-zkevm"
-      endpoints:
-        rpc:
-          - "https://rpc.public.zkevm-test.net"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Polygon zkEVM"
-      short_name: "POLY ZK"
-      image: "/logos/chains/polygon-zkevm.svg"
-      color: "#8247e5"
-      explorer:
-        name: "Polygonscan"
-        url: "https://testnet-zkevm.polygonscan.com"
         icon: "/logos/explorers/polygonscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
@@ -4126,7 +4078,7 @@ testnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "bombay-"
-  vm:
+  amplifier:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
@@ -4803,7 +4755,7 @@ stagenet:
       prefix_address: "axelar"
       prefix_chain_ids:
         - "axelar-"
-  vm:
+  amplifier:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
@@ -5108,7 +5060,7 @@ devnet-amplifier:
       prefix_address: "axelar"
       prefix_chain_ids:
         - "devnet-amplifier"
-  vm:
+  amplifier:
     eth-sepolia:
       chain_id: 11155111
       chain_name: "eth-sepolia"

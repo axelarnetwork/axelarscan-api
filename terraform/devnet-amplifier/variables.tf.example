@@ -8,11 +8,6 @@ variable "aws_account" {
   default     = ""
 }
 
-variable "project_name" {
-  description = "Project name"
-  default     = "axelarscan"
-}
-
 variable "package_name" {
   description = "Package name"
   default     = "axelarscan-api"
@@ -45,7 +40,7 @@ variable "log_level" {
 
 variable "app_version" {
   description = "App version, same as docker image version"
-  default     = "0.0.161"
+  default     = "1.0.0"
   validation {
     error_message = "Must be valid semantic version. $Major.$Minor.$Patch"
     condition     = can(regex("^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$", var.app_version))

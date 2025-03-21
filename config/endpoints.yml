@@ -3,51 +3,39 @@
 ###########################
 
 mainnet:
-  rpc: "http://rpc.axelarscan.io:80" # "http://ec2-18-218-242-252.us-east-2.compute.amazonaws.com:26657"
   lcd: "http://lcd.axelarscan.io:80" # "http://ec2-18-218-242-252.us-east-2.compute.amazonaws.com:1317"
-  rpc_archive: "http://archive-node-rpc.axelarscan.io:80" # "http://ec2-18-218-242-252.us-east-2.compute.amazonaws.com:26657"
   lcd_archive: "http://archive-node-lcd.axelarscan.io:80" # "http://ec2-18-218-242-252.us-east-2.compute.amazonaws.com:1317"
-  api: "https://api.axelarscan.io/api" # "https://rbciot6683.execute-api.us-east-2.amazonaws.com"
-  gmp_api: "https://api.axelarscan.io/gmp" # "https://ec2ny1mc5e.execute-api.us-east-2.amazonaws.com"
-  token_transfer_api: "https://xo550w4a8b.execute-api.us-east-2.amazonaws.com" # "https://api.axelarscan.io/token"
   validator_api: "https://ww5e4qrad0.execute-api.us-east-2.amazonaws.com" # "https://api.axelarscan.io/validator"
+  token_transfer_api: "https://xo550w4a8b.execute-api.us-east-2.amazonaws.com" # "https://api.axelarscan.io/token"
+  gmp_api: "https://api.axelarscan.io/gmp" # "https://ec2ny1mc5e.execute-api.us-east-2.amazonaws.com"
   app: "https://axelarscan.io"
 
 
 
 testnet:
-  rpc: "http://testnet.rpc.axelarscan.io:80" # "http://ec2-18-188-23-105.us-east-2.compute.amazonaws.com:26657"
   lcd: "http://testnet.lcd.axelarscan.io:80" # "http://ec2-18-188-23-105.us-east-2.compute.amazonaws.com:1317"
-  rpc_archive: "https://tm.axelar-testnet.lava.build" # "http://ec2-18-188-23-105.us-east-2.compute.amazonaws.com:26657"
   lcd_archive: "https://axelart.lava.build" # "http://ec2-18-188-23-105.us-east-2.compute.amazonaws.com:1317"
-  api: "https://testnet.api.axelarscan.io/api" # "https://86z9r9x0r9.execute-api.us-east-2.amazonaws.com"
-  gmp_api: "https://testnet.api.axelarscan.io/gmp" # "https://5z3lgrqk51.execute-api.us-east-2.amazonaws.com"
-  token_transfer_api: "https://dl5bgfjozd.execute-api.us-east-2.amazonaws.com" # "https://testnet.api.axelarscan.io/token"
   validator_api: "https://762da1qejd.execute-api.us-east-2.amazonaws.com" # "https://testnet.api.axelarscan.io/validator"
+  token_transfer_api: "https://dl5bgfjozd.execute-api.us-east-2.amazonaws.com" # "https://testnet.api.axelarscan.io/token"
+  gmp_api: "https://testnet.api.axelarscan.io/gmp" # "https://5z3lgrqk51.execute-api.us-east-2.amazonaws.com"
   app: "https://testnet.axelarscan.io"
 
 
 
 stagenet:
-  rpc: "http://stagenet.archive-node-rpc.axelarscan.io:80"
   lcd: "http://stagenet.archive-node-lcd.axelarscan.io:80"
-  rpc_archive: "http://stagenet.archive-node-rpc.axelarscan.io:80"
   lcd_archive: "http://stagenet.archive-node-lcd.axelarscan.io:80"
-  api: "https://stagenet.api.axelarscan.io/api" # "https://v5uinwdgn2.execute-api.us-east-2.amazonaws.com"
-  gmp_api: "https://stagenet.api.axelarscan.io/gmp" # "https://uwb67c0afj.execute-api.us-east-2.amazonaws.com"
-  token_transfer_api: "https://glhbed8wmg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/token"
   validator_api: "https://g45hmsa0tg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/validator"
+  token_transfer_api: "https://glhbed8wmg.execute-api.us-east-2.amazonaws.com" # "https://stagenet.api.axelarscan.io/token"
+  gmp_api: "https://stagenet.api.axelarscan.io/gmp" # "https://uwb67c0afj.execute-api.us-east-2.amazonaws.com"
   app: "https://stagenet.axelarscan.io"
 
 
 
 devnet-amplifier:
-  rpc: "http://devnet-amplifier.archive-node-rpc.axelarscan.io:80"
   lcd: "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
-  rpc_archive: "http://devnet-amplifier.archive-node-rpc.axelarscan.io:80"
   lcd_archive: "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
-  api: "https://devnet-amplifier.api.axelarscan.io/api"
-  gmp_api: "https://devnet-amplifier.api.axelarscan.io/gmp"
-  token_transfer_api: "https://devnet-amplifier.api.axelarscan.io/token"
   validator_api: "https://devnet-amplifier.api.axelarscan.io/validator"
+  token_transfer_api: "https://devnet-amplifier.api.axelarscan.io/token"
+  gmp_api: "https://devnet-amplifier.api.axelarscan.io/gmp"
   app: "https://devnet-amplifier.axelarscan.io"

@@ -1,73 +1,172 @@
 const _ = require('lodash');
 const moment = require('moment');
 
-const { get, write } = require('../../services/indexer');
-const { TOKEN_PRICE_COLLECTION, PRICE_ORACLE_API, CURRENCY, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getTokens, getCustomTVLConfig } = require('../../utils/config');
+const { TOKEN_PRICE_COLLECTION, TOKEN_API, CURRENCY, getAssets, getAssetData, getITSAssets, getITSAssetData, getTokens, getCustomTVLConfig } = require('../../utils/config');
+const { readCache, writeCache } = require('../../utils/cache');
 const { request } = require('../../utils/http');
-const { toArray } = require('../../utils/parser');
-const { equalsIgnoreCase, lastString } = require('../../utils/string');
+const { toCase, toArray } = require('../../utils/parser');
+const { lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
 const tokens = getTokens();
 const { custom_contracts, custom_tokens } = { ...getCustomTVLConfig() };
 
-const getTokenConfig = async (symbol, additionalAssetsData, notGetAssetConfig = false) => {
-  const tokenData = tokens[symbol] ||
-    _.last(Object.entries(tokens).find(([k, v]) => equalsIgnoreCase(k, lastString(symbol, '/')))) ||
-    _.head(toArray(toArray(custom_contracts).map(c => toArray(c.assets).find(a => a.symbol === symbol && a.coingecko_id)))) ||
-    toArray(custom_tokens).find(c => c.symbol === symbol && c.coingecko_id) ||
-    (!notGetAssetConfig ? await getAssetData(symbol, additionalAssetsData) || await getITSAssetData(symbol, additionalAssetsData) : undefined);
-  const { redirect } = { ...tokenData };
-  return { ...(redirect ? await getTokenConfig(redirect, additionalAssetsData, notGetAssetConfig) : tokenData) };
+const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
+  let tokenData;
+
+  // key in tokens config
+  if (tokens[symbol]) {
+    tokenData = tokens[symbol];
+  }
+  // full denom to key in tokens config
+  else if (tokens[toCase(lastString(symbol, '/'), 'lower')]) {
+    tokenData = tokens[toCase(lastString(symbol, '/'), 'lower')];
+  }
+  // custom token in contracts of tvl
+  if (!tokensData) {
+    const customTokenInContracts = _.head(toArray(toArray(custom_contracts).map(d => toArray(d.assets).find(a => a.symbol === symbol && a.coingecko_id))));
+
+    if (customTokenInContracts) {
+      tokenData = customTokenInContracts;
+    }
+  }
+  // custom token of tvl
+  if (!tokensData) {
+    const customToken = toArray(custom_tokens).find(d => d.symbol === symbol && d.coingecko_id);
+
+    if (customToken) {
+      tokenData = customToken;
+    }
+  }
+  // from s3 config
+  if (!tokensData && !noRequest) {
+    tokenData = await getAssetData(symbol, assetsData) || await getITSAssetData(symbol, assetsData);
+  }
+
+  // recursive getTokenConfig when has redirect
+  if (tokenData?.redirect) {
+    return await getTokenConfig(tokenData.redirect, assetsData, noRequest);
+  }
+
+  return tokenData;
 };
 
-module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, debug = false, cache = true }) => {
+module.exports = async ({
+  symbols,
+  symbol,
+  timestamp = moment(),
+  currency = CURRENCY,
+}) => {
+  // merge symbols and remove 'burned-' prefix
   symbols = _.uniq(toArray(_.concat(symbols, symbol)).map(s => s.startsWith('burned-') ? s.replace('burned-', '') : s));
-  const assetsData = toArray(await Promise.all(toArray(symbols).map(s => new Promise(async resolve => resolve(Object.keys(await getTokenConfig(s, undefined, true)).length === 0))))).length > 0 ? toArray(_.concat(await Promise.all([0, 1].map(i => new Promise(async resolve => resolve(i === 0 ? await getAssetsList() : await getITSAssetsList())))))).flatMap(d => d) : undefined;
 
-  let updatedAt;
-  let tokensData = await Promise.all(toArray(symbols).map(s => new Promise(async resolve => resolve({ symbol: s, ...await getTokenConfig(s, assetsData) }))));
+  // valid when some symbols are in config
+  const isSymbolsValid = toArray(
+    await Promise.all(
+      symbols.map(s => new Promise(async resolve =>
+        resolve(await getTokenConfig(s, undefined, true))
+      ))
+    )
+  ).length > 0;
+
+  // get assets data
+  const assetsData = !isSymbolsValid ? undefined :
+    toArray(
+      await Promise.all(['gateway', 'its'].map(type => new Promise(async resolve => {
+        let data;
+
+        switch (type) {
+          case 'gateway':
+            data = await getAssets();
+            break;
+          case 'its':
+            data = await getITSAssets();
+            break;
+          default:
+            break;
+        }
+
+        resolve(data);
+      })))
+    ).flatMap(d => d);
+
+  // get token config of each symbol
+  let tokensData = await Promise.all(
+    symbols.map(s => new Promise(async resolve =>
+      resolve({
+        symbol: s,
+        ...await getTokenConfig(s, assetsData),
+      })
+    ))
+  );
+
   if (tokensData.findIndex(d => d.coingecko_id) > -1) {
     // query historical price
     if (timeDiff(timestamp, 'hours') > 4) {
       for (let i = 0; i < tokensData.length; i++) {
-        const tokenData = tokensData[i];
-        const { coingecko_id } = { ...tokenData };
+        const { coingecko_id } = { ...tokensData[i] };
+
         if (coingecko_id) {
-          const { market_data } = { ...await request(PRICE_ORACLE_API, { path: `/coins/${coingecko_id}/history`, params: { id: coingecko_id, date: moment(timestamp).format('DD-MM-YYYY'), localization: 'false' } }) };
-          if (market_data?.current_price) tokensData[i] = { ...tokenData, price: market_data.current_price[currency] };
+          // get historical price from coingecko
+          const { market_data } = { ...await request(TOKEN_API, { path: `/coins/${coingecko_id}/history`, params: { id: coingecko_id, date: moment(timestamp).format('DD-MM-YYYY'), localization: 'false' } }) };
+
+          if (market_data?.current_price) {
+            tokensData[i] = {
+              ...tokensData[i],
+              price: market_data.current_price[currency],
+            };
+          }
         }
       }
     }
 
     // query current price
     if (tokensData.findIndex(d => !isNumber(d.price)) > -1) {
+      // coingecko ids
       const ids = _.uniq(toArray(tokensData.map(d => d.coingecko_id)));
-      const cacheId = cache ? toArray(ids, { toCase: 'lower' }).join('_') : undefined;
 
+      const cacheId = toArray(ids, { toCase: 'lower' }).join('_');
       let response;
+
       // get price from cache
-      const { data, updated_at } = { ...(cacheId ? await get(TOKEN_PRICE_COLLECTION, cacheId) : undefined) };
-      if (data && timeDiff(updated_at) < 300) {
-        response = data;
-        updatedAt = updated_at;
+      const cache = await readCache(cacheId, 300, TOKEN_PRICE_COLLECTION);
+      if (cache) {
+        response = cache;
       }
-      // get from api when cache missed
       else {
-        response = await request(PRICE_ORACLE_API, { path: '/simple/price', params: { ids: ids.join(','), vs_currencies: currency } });
-        if (response && tokensData.findIndex(d => !response[d.coingecko_id]?.[currency]) < 0 && cacheId) await write(TOKEN_PRICE_COLLECTION, cacheId, { data: response, updated_at: moment().valueOf() });
-        else if (Object.keys({ ...data }).length > 0) {
-          response = data;
-          updatedAt = updated_at;
+        // get tokens price from coingecko
+        response = await request(TOKEN_API, { path: '/simple/price', params: { ids: ids.join(','), vs_currencies: currency } });
+
+        if (response && !response.error) {
+          // caching
+          await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION);
+        }
+        else {
+          response = await readCache(cacheId, 3600, TOKEN_PRICE_COLLECTION);
         }
       }
 
-      if (response && !response.error) tokensData = tokensData.map(d => ({ ...d, price: response[d.coingecko_id]?.[currency] || d.price }));
+      if (response) {
+        // set price to tokens
+        tokensData = tokensData.map(d => {
+          if (isNumber(response[d.coingecko_id]?.[currency])) {
+            d.price = toNumber(response[d.coingecko_id][currency]);
+          }
+          return d;
+        });
+      }
     }
   }
-  // set default price if cannot get price
-  tokensData = tokensData.map(d => ({ ...d, price: !isNumber(d.price) && isNumber(d.default_price?.[currency]) ? toNumber(d.default_price[currency]) : d.price }));
-  const tokensMap = Object.fromEntries(tokensData.map(d => [d.symbol, d]));
-  return debug ? { data: tokensMap, updated_at: updatedAt } : tokensMap;
+
+  // set default price when price from api is available
+  tokensData = tokensData.map(d => {
+    if (!isNumber(d.price) && isNumber(d.default_price?.[currency])) {
+      d.price = toNumber(d.default_price[currency]);
+    }
+    return d;
+  });
+
+  // return tokens price map
+  return Object.fromEntries(tokensData.map(d => [d.symbol, d]));
 };

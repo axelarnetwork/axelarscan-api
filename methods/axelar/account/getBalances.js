@@ -1,25 +1,35 @@
 const _ = require('lodash');
 
 const { aggregate } = require('./utils');
-const { ENVIRONMENT, getAssetsList, getLCD } = require('../../../utils/config');
-const { createInstance, request } = require('../../../utils/http');
+const { getLCDInstance } = require('../utils');
+const { getAssets } = require('../../../utils/config');
+const { request } = require('../../../utils/http');
 const { toArray } = require('../../../utils/parser');
+const { isString } = require('../../../utils/string');
 
 module.exports = async params => {
   const { address, height } = { ...params };
   let { assetsData } = { ...params };
+
+  // check address param is axelar address
   if (!address?.startsWith('axelar')) return;
 
-  assetsData = assetsData || await getAssetsList();
-  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
-  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+  assetsData = assetsData || await getAssets();
 
   let data = [];
   let nextKey = true;
+
   while (nextKey) {
-    const { balances, pagination } = { ...await request(instance, { path: `/cosmos/bank/v1beta1/balances/${address}`, params: { 'pagination.key': nextKey && typeof nextKey !== 'boolean' ? nextKey : undefined } }) };
-    data = _.orderBy(_.uniqBy(_.concat(toArray(data), await aggregate(balances, assetsData, { includesValue: true })), 'denom'), ['value', 'amount'], ['desc', 'desc']);
+    // get balances of this address
+    const { balances, pagination } = { ...await request(getLCDInstance(height), { path: `/cosmos/bank/v1beta1/balances/${address}`, params: { 'pagination.key': isString(nextKey) ? nextKey : undefined } }) };
+
+    data = _.orderBy(_.uniqBy(
+      _.concat(data, await aggregate(balances, assetsData, { includesValue: true })),
+      'denom',
+    ), ['value', 'amount'], ['desc', 'desc']);
+
     nextKey = pagination?.next_key;
   }
+
   return { data, total: data.length };
 };

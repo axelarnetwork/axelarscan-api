@@ -3,21 +3,22 @@ const updateStats = require('./updateStats');
 const updateConfig = require('./updateConfig');
 const updateTokenInfo = require('./updateTokenInfo');
 const { ENVIRONMENT } = require('../../utils/config');
+const { find } = require('../../utils/string');
 
-module.exports = async context => {
+module.exports = async () => {
   await Promise.all(['tvl', 'stats', 'config', 'tokenInfo'].map(d => new Promise(async resolve => {
     switch (d) {
       case 'tvl':
-        resolve(['mainnet'].includes(ENVIRONMENT) && await updateTVL());
+        resolve(find(ENVIRONMENT, ['mainnet']) && await updateTVL());
         break;
       case 'stats':
-        resolve(['mainnet', 'testnet'].includes(ENVIRONMENT) && await updateStats());
+        resolve(find(ENVIRONMENT, ['mainnet', 'testnet']) && await updateStats());
         break;
       case 'config':
-        resolve(['mainnet', 'testnet'].includes(ENVIRONMENT) && await updateConfig());
+        resolve(find(ENVIRONMENT, ['mainnet', 'testnet']) && await updateConfig());
         break;
       case 'tokenInfo':
-        resolve(['mainnet', 'testnet', 'devnet-amplifier'].includes(ENVIRONMENT) && await updateTokenInfo());
+        resolve(find(ENVIRONMENT, ['mainnet', 'testnet', 'devnet-amplifier']) && await updateTokenInfo());
         break;
       default:
         resolve();
