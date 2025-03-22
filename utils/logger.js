@@ -1,6 +1,7 @@
-const { getLogLevel } = require('./config');
 const { toCase } = require('./parser');
 const { isString } = require('./string');
+
+const getLogLevel = () => process.env.LOG_LEVEL || 'debug';
 
 const log = (level = 'info', from, message, data = {}) => {
   try {

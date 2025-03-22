@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const getTVL = require('./getTVL');
 const { read } = require('../../services/indexer');
-const { TVL_COLLECTION, getChainData, getAssets, getAssetData, getAppURL, getTVLConfig } = require('../../utils/config');
+const { TOKEN_TVL_COLLECTION, getChainData, getAssets, getAssetData, getAppURL, getTVLConfig } = require('../../utils/config');
 const { toArray } = require('../../utils/parser');
 const { equalsIgnoreCase, toBoolean } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
@@ -11,12 +11,13 @@ const { isNumber, toNumber } = require('../../utils/number');
 const MAX_INTERVAL_UPDATE_SECONDS = 120 * 60;
 const IGNORED_CHAINS = ['terra-2'];
 
+const { alert_asset_escrow_value_threshold, alert_asset_value_threshold } = { ...getTVLConfig() };
+
 module.exports = async params => {
   let { test } = { ...params };
   test = toBoolean(test, false);
-  const { alert_asset_escrow_value_threshold, alert_asset_value_threshold } = { ...getTVLConfig() };
 
-  let { data } = { ...await read(TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 1000 }) };
+  let { data } = { ...await read(TOKEN_TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 1000 }) };
   const { updated_at } = { ..._.head(data) };
 
   data = _.orderBy(toArray(toArray(data).map(d => _.head(toArray(d.data).filter(d => d.assetType !== 'its')))).map(d => {
@@ -99,7 +100,7 @@ module.exports = async params => {
 
     if (data.length === 1) {
       const { asset } = { ..._.head(data) };
-      if (asset) await getTVL({ asset, force_update: true });
+      if (asset) await getTVL({ asset, forceCache: true });
     }
   }
 

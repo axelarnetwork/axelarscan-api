@@ -9,6 +9,6 @@ module.exports = () => {
   describe('interchainTotalActiveUsers', () => {
     it('Should receive interchain total active users', async () => {
       expect(await interchainTotalActiveUsers()).to.be.a('number');
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

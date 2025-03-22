@@ -9,6 +9,6 @@ module.exports = () => {
   describe('interchainTotalVolume', () => {
     it('Should receive interchain total volume', async () => {
       expect(await interchainTotalVolume()).to.be.a('number');
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

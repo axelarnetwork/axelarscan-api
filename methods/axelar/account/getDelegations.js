@@ -14,7 +14,7 @@ module.exports = async params => {
   // check address param is axelar address
   if (!address?.startsWith('axelar')) return;
 
-  assetsData = assetsData || await getAssets();
+  assetsData = toArray(assetsData || await getAssets());
 
   let data = [];
   let nextKey = true;
@@ -23,23 +23,26 @@ module.exports = async params => {
     // get delegations of this address
     const { delegation_responses, pagination } = { ...await request(getLCDInstance(height), { path: `/cosmos/staking/v1beta1/delegations/${address}`, params: { 'pagination.key': isString(nextKey) ? nextKey : undefined } }) };
 
-    data = _.orderBy(_.uniqBy(
-      _.concat(data, await Promise.all(toArray(delegation_responses).map(d => new Promise(async resolve => {
-        const { delegation, balance } = { ...d };
-        const { shares } = { ...delegation };
-        const { denom, amount } = { ...balance };
-        const { symbol, decimals } = { ...await getAssetData(denom, assetsData) };
+    data = _.orderBy(
+      _.uniqBy(_.concat(
+        data,
+        await Promise.all(toArray(delegation_responses).map(d => new Promise(async resolve => {
+          const { delegation, balance } = { ...d };
+          const { shares } = { ...delegation };
+          const { denom, amount } = { ...balance };
+          const { symbol, decimals } = { ...await getAssetData(denom, assetsData) };
 
-        resolve({
-          ...delegation,
-          shares: formatUnits(shares, decimals || 6),
-          ...balance,
-          symbol,
-          amount: formatUnits(amount, decimals || 6),
-        });
-      })))),
-      'validator_address',
-    ), ['amount'], ['desc']);
+          resolve({
+            ...delegation,
+            shares: formatUnits(shares, decimals || 6),
+            ...balance,
+            symbol,
+            amount: formatUnits(amount, decimals || 6),
+          });
+        }))),
+      ), 'validator_address'),
+      ['amount'], ['desc'],
+    );
 
     nextKey = pagination?.next_key;
   }

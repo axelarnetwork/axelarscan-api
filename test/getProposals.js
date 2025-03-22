@@ -9,6 +9,7 @@ module.exports = () => {
   describe('getProposals', () => {
     it('Should receive list of proposals', async () => {
       const { data } = { ...await getProposals() };
+
       data.forEach(d => {
         expect(d).to.be.an('object');
         expect(d.proposal_id).to.be.a('number');

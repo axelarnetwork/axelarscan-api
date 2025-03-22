@@ -220,7 +220,7 @@ module.exports = {
   ENVIRONMENT,
   TOKEN_PRICE_COLLECTION: 'token_prices',
   TOKEN_INFO_COLLECTION: 'token_infos',
-  TVL_COLLECTION: 'tvls',
+  TOKEN_TVL_COLLECTION: 'token_tvls',
   IBC_CHANNEL_COLLECTION: 'ibc_channels',
   TOKEN_API: 'https://api.coingecko.com/api/v3/',
   CURRENCY: 'usd',

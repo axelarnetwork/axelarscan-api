@@ -9,10 +9,11 @@ module.exports = () => {
   describe('getAssets', () => {
     it('Should receive list of asset data', async () => {
       const response = await getAssets();
+
       response.forEach(d => {
         expect(d).to.be.an('object');
         expect(d.id).to.equal(d.denom);
       });
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

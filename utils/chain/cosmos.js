@@ -35,11 +35,11 @@ const getLCDs = (chain, nLCDs, timeout) => {
   return;
 };
 
-const getCosmosBalance = async (chain, address, denomData) => {
+const getCosmosBalance = async (chain, address, contractData) => {
   const lcds = getLCDs(chain, 3);
   if (!(lcds && address)) return;
 
-  const { denom, ibc_denom, decimals } = { ...denomData };
+  const { denom, ibc_denom, decimals } = { ...contractData };
   const denoms = toArray([denom, ibc_denom]);
 
   let balance;
@@ -65,11 +65,11 @@ const getCosmosBalance = async (chain, address, denomData) => {
   return formatUnits(balance, decimals || 6, false);
 };
 
-const getIBCSupply = async (chain, denomData) => {
+const getIBCSupply = async (chain, contractData) => {
   const lcds = getLCDs(chain, 3, 5000);
   if (!(lcds && ibc_denom)) return;
 
-  const { ibc_denom, decimals } = { ...denomData };
+  const { ibc_denom, decimals } = { ...contractData };
 
   let supply;
   let valid = false;

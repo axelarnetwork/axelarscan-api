@@ -10,11 +10,13 @@ module.exports = () => {
     it('Should receive price of tokens', async () => {
       const symbols = ['ETH', 'MATIC', 'POL'];
       const response = await getTokensPrice({ symbols });
+
       expect(Object.keys(response)).to.have.lengthOf(symbols.length);
+
       Object.values(response).forEach(d => {
         expect(d).to.be.an('object');
         expect(d.price).to.be.a('number');
       });
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

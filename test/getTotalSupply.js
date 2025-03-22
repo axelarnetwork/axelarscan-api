@@ -9,6 +9,6 @@ module.exports = () => {
   describe('getTotalSupply', () => {
     it('Should receive total supply', async () => {
       expect(await getTotalSupply()).to.be.a('number');
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

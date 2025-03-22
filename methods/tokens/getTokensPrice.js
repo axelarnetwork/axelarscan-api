@@ -24,7 +24,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
     tokenData = tokens[toCase(lastString(symbol, '/'), 'lower')];
   }
   // custom token in contracts of tvl
-  if (!tokensData) {
+  if (!tokenData) {
     const customTokenInContracts = _.head(toArray(toArray(custom_contracts).map(d => toArray(d.assets).find(a => a.symbol === symbol && a.coingecko_id))));
 
     if (customTokenInContracts) {
@@ -32,7 +32,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
     }
   }
   // custom token of tvl
-  if (!tokensData) {
+  if (!tokenData) {
     const customToken = toArray(custom_tokens).find(d => d.symbol === symbol && d.coingecko_id);
 
     if (customToken) {
@@ -40,7 +40,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
     }
   }
   // from s3 config
-  if (!tokensData && !noRequest) {
+  if (!tokenData && !noRequest) {
     tokenData = await getAssetData(symbol, assetsData) || await getITSAssetData(symbol, assetsData);
   }
 
@@ -52,12 +52,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
   return tokenData;
 };
 
-module.exports = async ({
-  symbols,
-  symbol,
-  timestamp = moment(),
-  currency = CURRENCY,
-}) => {
+module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY }) => {
   // merge symbols and remove 'burned-' prefix
   symbols = _.uniq(toArray(_.concat(symbols, symbol)).map(s => s.startsWith('burned-') ? s.replace('burned-', '') : s));
 
@@ -140,7 +135,7 @@ module.exports = async ({
 
         if (response && !response.error) {
           // caching
-          await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION);
+          await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION, true);
         }
         else {
           response = await readCache(cacheId, 3600, TOKEN_PRICE_COLLECTION);
