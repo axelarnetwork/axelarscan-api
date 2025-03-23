@@ -10,10 +10,10 @@ const { interchainChart, interchainTotalVolume, interchainTotalFee, interchainTo
 const { getMethods, getChains, getAssets, getITSAssets, getContracts } = require('../utils/config');
 
 const METHODS = {
-  getChains,
-  getAssets,
-  getITSAssets,
-  getContracts,
+  getChains: () => getChains(),
+  getAssets: () => getAssets(),
+  getITSAssets: () => getITSAssets(),
+  getContracts: () => getContracts(),
   getTokensPrice,
   getTotalSupply,
   getCirculatingSupply,
