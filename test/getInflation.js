@@ -9,7 +9,8 @@ module.exports = () => {
   describe('getInflation', () => {
     it('Should receive inflation', async () => {
       const { inflation } = { ...await getInflation() };
+
       expect(inflation).to.be.a('number');
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

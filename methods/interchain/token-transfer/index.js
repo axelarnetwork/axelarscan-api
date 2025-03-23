@@ -13,5 +13,4 @@ module.exports = {
   transfersTopUsers: async params => await requestAPI('transfersTopUsers', params),
   searchTransfers: async params => await requestAPI('searchTransfers', params),
   getTransfersDataMapping: async params => await requestAPI('getTransfersDataMapping', params),
-  searchBatches: async params => await requestAPI('searchBatches', params),
 };

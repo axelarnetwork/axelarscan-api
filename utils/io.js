@@ -1,25 +1,22 @@
 const moment = require('moment');
 
-const { log } = require('./logger');
-
-const parseParams = (req, from) => {
+const parseParams = req => {
   const { query, body } = { ...req };
   const method = req?.params?.method || body?.method || query?.method;
-  const params = { ...query, ...body, method };
-  // if (from) log('debug', from, 'receive request', { params });
-  return params;
+  return { ...query, ...body, method };
 };
 
 const parseError = error => ({ error: true, code: 400, message: error?.message });
 
 const finalizeResponse = (response, params, startTime = moment()) => {
-  const { method } = { ...params };
   // on error, add parameters to response
-  if (response?.error) response = { ...response, method: response.method || method, params: response.params || params };
+  if (response?.error) response = { ...response, method: response.method || params.method, params: response.params || params };
+
   // add time spent to response
-  if (response && typeof response === 'object' && !Array.isArray(response) && !['getGMPDataMapping', 'getTransfersDataMapping'].includes(method)) {
+  if (response && typeof response === 'object' && !Array.isArray(response) && !['getGMPDataMapping', 'getTransfersDataMapping'].includes(params.method)) {
     response = { ...response, time_spent: moment().diff(startTime) };
   }
+
   return response;
 };
 

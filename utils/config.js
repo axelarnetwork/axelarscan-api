@@ -1,200 +1,247 @@
 const config = require('config-yml');
 const { toBeHex } = require('ethers');
 const _ = require('lodash');
-const moment = require('moment');
 
-const { get, write } = require('../services/indexer');
+const { readCache, writeCache } = require('./cache');
 const { request } = require('./http');
-const { toJson, toArray } = require('./parser');
-const { equalsIgnoreCase, capitalize, removeDoubleQuote } = require('./string');
+const { toArray } = require('./parser');
+const { capitalize, removeDoubleQuote, find } = require('./string');
 const { isNumber } = require('./number');
-const { timeDiff } = require('./time');
 
-const { methods, chains, assets, its_assets, endpoints, tokens, supply, tvl, custom_tvl } = { ...config };
 const ENVIRONMENT = process.env.ENVIRONMENT || 'testnet';
 
-const getMethods = () => methods;
-const getChains = (chainTypes = [], env = ENVIRONMENT) => {
-  chainTypes = toArray(chainTypes);
-  return Object.fromEntries(
-    Object.entries({ ...chains[env] }).filter(([k, v]) => chainTypes.length === 0 || chainTypes.includes(k)).flatMap(([k, v]) => Object.entries({ ...v }).map(([_k, _v]) => {
-      let provider_params;
-      let no_inflation;
-      let no_tvl;
-      switch (k) {
-        case 'evm':
-        case 'vm':
-          if (isNumber(_v.chain_id)) {
-            provider_params = [{
-              chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
-              chainName: `${_v.name} ${capitalize(env)}`,
-              rpcUrls: toArray(_v.endpoints?.rpc),
-              nativeCurrency: _v.native_token,
-              blockExplorerUrls: toArray([_v.explorer?.url]),
-            }];
-            no_inflation = (k === 'vm' ? false : !_v.maintainer_id) || !!_v.deprecated;
-            no_tvl = _v.no_tvl || !!_v.deprecated;
-          }
-          break;
-        default:
-          break;
-      }
-      _v = { ..._v, id: _k, chain_type: k, provider_params, no_inflation, no_tvl };
-      return [_k, _v];
-    }))
+const getLogLevel = () => process.env.LOG_LEVEL || 'debug';
+const getMethods = () => config.methods;
+
+const getChains = (types, env = ENVIRONMENT) => {
+  types = toArray(types);
+
+  // get chains of env and filter by chain types
+  return Object.entries({ ...config.chains[env] }).filter(([k, v]) => types.length === 0 || types.includes(k)).flatMap(([k, v]) => Object.entries({ ...v }).map(([_k, _v]) => {
+    let provider_params;
+
+    switch (k) {
+      case 'evm':
+      case 'amplifier':
+        if (isNumber(_v.chain_id)) {
+          provider_params = [{
+            chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
+            chainName: `${_v.name} ${capitalize(env)}`,
+            rpcUrls: toArray(_v.endpoints?.rpc),
+            nativeCurrency: _v.native_token,
+            blockExplorerUrls: toArray(_v.explorer?.url),
+          }];
+        }
+        break;
+      default:
+        break;
+    }
+
+    return {
+      ..._v,
+      id: _k,
+      chain_type: k === 'amplifier' ? 'vm' : k,
+      provider_params,
+      no_inflation: !!_v.deprecated,
+      no_tvl: _v.no_tvl || !!_v.deprecated,
+    };
+  })).filter(d => !d.disabled);
+};
+
+const getChainData = (chain, types, env = ENVIRONMENT) => {
+  if (!chain) return;
+
+  const chainsData = getChains(types, env);
+  
+  return chainsData.find(d =>
+    find(removeDoubleQuote(chain), _.concat(d.id, d.chain_id, d.chain_name, d.maintainer_id, d.aliases)) || // check equals
+    toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1 // check prefix
   );
 };
-const getChainsList = (chainTypes = [], env = ENVIRONMENT) => Object.values(getChains(chainTypes, env)).filter(d => !d.disabled);
-const getChainData = (chain, chainTypes = [], env = ENVIRONMENT) => chain && (getChains(chainTypes, env)[removeDoubleQuote(chain).toLowerCase()] || Object.values(getChains(chainTypes)).find(d => toArray(_.concat(d.chain_id, d.chain_name, d.maintainer_id, d.aliases)).findIndex(s => equalsIgnoreCase(s, removeDoubleQuote(chain))) > -1 || toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1));
-const getChain = (chain, options) => {
-  const { fromConfig } = { ...options };
-  let { env } = { ...options };
-  env = env || ENVIRONMENT;
-  const chainsLookup = { terra: env !== 'mainnet' ? 'terra-3' : undefined };
-  if (fromConfig && chainsLookup[chain]) return chainsLookup[chain];
+
+const getChainByS3ConfigChain = chain => {
+  const chainsMapping = {
+    testnet: {
+      terra: 'terra-3',
+    },
+  };
+
+  if (chainsMapping[ENVIRONMENT]?.[chain]) {
+    return chainsMapping[ENVIRONMENT][chain];
+  }
+
   return getChainData(chain)?.id || chain;
 };
 
-const AXELAR_CONFIG_COLLECTION = 'axelar_configs';
-const getAxelarConfig = async (env = ENVIRONMENT, forceCache = false) => {
-  env = env === 'stagenet' ? 'testnet' : env;
-  let response;
-  const cacheId = 'config';
-  const { data, updated_at } = { ...(!forceCache ? await get(AXELAR_CONFIG_COLLECTION, cacheId) : undefined) };
-  if (data && timeDiff(updated_at) < 900) response = toJson(data);
-  else {
-    response = await request(`https://axelar-${env}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
-    if (response?.tokenAddressToAsset) delete response.tokenAddressToAsset;
-    if (response?.assets) await write(AXELAR_CONFIG_COLLECTION, cacheId, { data: JSON.stringify(response), updated_at: moment().valueOf() });
-    else if (Object.keys({ ...toJson(data) }).length > 0) response = toJson(data);
+const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
+  const cacheId = 's3config';
+
+  // get s3 config from cache
+  if (!forceCache) {
+    const cache = await readCache(cacheId, 900);
+    if (cache) return cache;
   }
-  return response;
+
+  const response = await request(`https://axelar-${env}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
+  if (response?.tokenAddressToAsset) delete response.tokenAddressToAsset;
+
+  if (response?.assets) {
+    // caching
+    await writeCache(cacheId, response);
+    return response;
+  }
+
+  return await readCache(cacheId, 24 * 3600);
 };
 
 const getAssets = async (env = ENVIRONMENT) => {
-  const assetsData = _.cloneDeep(assets[env]);
-  env = env === 'stagenet' ? 'testnet' : env;
-  const response = await getAxelarConfig(env);
+  const response = await getAxelarS3Config(env);
 
-  Object.values({ ...response?.assets }).filter(d => d.type === 'gateway').forEach(d => {
-    const existingDenom = Object.entries({ ...assets[env] }).find(([k, v]) => toArray(_.concat(v.denom, v.denoms)).includes(d.id))?.[0];
+  // assetsData from config
+  const assetsData = _.cloneDeep({ ...config.assets[env] });
+
+  // gateway assets
+  for (const d of Object.values({ ...response?.assets }).filter(d => d.type === 'gateway')) {
+    const existingDenom = _.head(Object.entries({ ...config.assets[env] }).find(([k, v]) => find(d.id, _.concat(v.denom, v.denoms))));
+
+    // denom from existing config or s3 config
     const denom = existingDenom || d.id;
-    const image = existingDenom ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/') : `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`;
+
+    // get asset addresses from existing
     let { addresses } = { ...assetsData[denom] };
 
-    Object.entries({ ...d.chains }).forEach(([k, v]) => {
-      const key = getChain(k, { fromConfig: true });
-      let { symbol, address, ibc_denom } = { ...addresses?.[key] };
-      symbol = d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : v.symbol || symbol;
-      address = (v.tokenAddress?.startsWith('0x') ? v.tokenAddress : undefined) || address;
-      ibc_denom = (v.tokenAddress === d.id || v.tokenAddress?.includes('/') ? v.tokenAddress : undefined) || ibc_denom;
-      addresses = { ...addresses, [key]: { symbol, address, ibc_denom } };
-    });
-    const native_chain = getChain(d.originAxelarChainId, { fromConfig: true });
-    if (native_chain && !addresses?.[native_chain] && getChainData(native_chain, 'cosmos')) addresses = { ...addresses, [native_chain]: { symbol: d.prettySymbol, ibc_denom: d.id } };
-    const assetData = { denom, native_chain, name: d.name || d.prettySymbol, symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : d.prettySymbol, decimals: d.decimals, image, coingecko_id: d.coingeckoId, addresses };
-    assetsData[denom] = { ...assetsData[denom], ...assetData };
-  });
-  return Object.entries({ ...assetsData }).filter(([k, v]) => Object.values({ ...assetsData }).findIndex(d => toArray(d.denoms).includes(k)) < 0).map(([k, v]) => ({ ...v, id: k }));
+    for (const [k, v] of Object.entries({ ...d.chains })) {
+      const chain = getChainByS3ConfigChain(k);
+
+      // get asset info of each chain
+      const { symbol, address, ibc_denom } = { ...addresses?.[chain] };
+
+      // set asset info that retrieved from s3 config
+      addresses = {
+        ...addresses,
+        [chain]: {
+          symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : v.symbol || symbol,
+          address: (v.tokenAddress?.startsWith('0x') ? v.tokenAddress : undefined) || address,
+          ibc_denom: (v.tokenAddress === d.id || v.tokenAddress?.includes('/') ? v.tokenAddress : undefined) || ibc_denom,
+        },
+      };
+    }
+
+    // native chain from s3 config
+    const nativeChain = getChainByS3ConfigChain(d.originAxelarChainId);
+
+    // set asset info of native chain
+    if (getChainData(nativeChain, 'cosmos') && !addresses?.[nativeChain]) {
+      addresses = {
+        ...addresses,
+        [nativeChain]: {
+          symbol: d.prettySymbol,
+          ibc_denom: d.id,
+        },
+      };
+    }
+
+    // update assetData of this denom to assetsData map
+    assetsData[denom] = {
+      ...assetsData[denom],
+      denom,
+      native_chain: nativeChain,
+      name: d.name || d.prettySymbol,
+      symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : d.prettySymbol,
+      decimals: d.decimals,
+      image: existingDenom ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/') : `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
+      coingecko_id: d.coingeckoId,
+      addresses,
+    };
+  }
+
+  // filter duplicate assets
+  const assetsDataEntries = Object.entries(assetsData).filter(([k, v]) => !find(k, Object.values(assetsData).flatMap(d => toArray(d.denoms))));
+
+  // return assets list
+  return assetsDataEntries.map(([k, v]) => ({ ...v, id: k }));
 };
-const getAssetsList = async (env = ENVIRONMENT) => Object.values(await getAssets(env));
+
 const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   if (!asset) return;
+
+  // handle get burned asset
   if (asset.startsWith('burned-')) asset = asset.replace('burned-', '');
-  assetsData = assetsData || await getAssetsList(env);
-  return toArray(assetsData).find(d => toArray(_.concat(d.denom, d.denoms, d.symbol)).findIndex(s => equalsIgnoreCase(s, asset)) > -1 || toArray(Object.values({ ...d.addresses })).findIndex(a => toArray([a.ibc_denom, a.symbol]).findIndex(s => equalsIgnoreCase(s, asset)) > -1) > -1);
+
+  assetsData = toArray(assetsData || await getAssets(env));
+
+  return assetsData.find(d =>
+    find(asset, _.concat(d.denom, d.denoms, d.symbol)) || // check equals
+    toArray(Object.values({ ...d.addresses })).findIndex(a => find(asset, [a.ibc_denom, a.symbol])) > -1 // check equals to denom or symbol of each chain
+  );
 };
 
 const getITSAssets = async (env = ENVIRONMENT) => {
-  const assetsData = _.cloneDeep(toArray(its_assets[env]));
-  env = env === 'stagenet' ? 'testnet' : env;
-  const response = await getAxelarConfig(env);
+  const response = await getAxelarS3Config(env);
 
-  Object.values({ ...response?.assets }).filter(d => ['customInterchain', 'interchain', 'canonical'].includes(d.type)).forEach(d => {
-    const i = toArray(its_assets[env]).findIndex(_d => equalsIgnoreCase(_d.symbol, d.prettySymbol));
-    if (i > -1) {
-      const assetData = assetsData[i];
-      assetData.id = d.id;
-      assetData.name = d.name;
-      assetData.decimals = assetData.decimals || d.decimals;
-      assetData.image = assetData.image || d.iconUrl?.replace('/images/tokens/', '/logos/its/');
-      assetData.coingecko_id = assetData.coingecko_id || d.coingeckoId;
-      assetData.addresses = _.uniq(toArray(_.concat(assetData.addresses, Object.values({ ...d.chains }).map(_d => _d.tokenAddress))));
-      assetData.native_chain = getChain(d.originAxelarChainId, { fromConfig: true });
-      assetData.chains = d.chains;
-      assetsData[i] = assetData;
-    }
-    else {
-      assetsData.push({
-        id: d.id,
-        symbol: d.prettySymbol,
-        name: d.name,
-        decimals: d.decimals,
-        image: `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
-        coingecko_id: d.coingeckoId,
-        addresses: _.uniq(toArray(Object.values({ ...d.chains }).map(_d => _d.tokenAddress))),
-        native_chain: getChain(d.originAxelarChainId, { fromConfig: true }),
-        chains: d.chains,
-      });
-    }
-  });
-  return assetsData;
+  // ITS assets
+  return Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
+    id: d.id,
+    symbol: d.prettySymbol,
+    name: d.name,
+    decimals: d.decimals,
+    image: `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
+    coingecko_id: d.coingeckoId,
+    addresses: _.uniq(toArray(Object.values({ ...d.chains }).map(c => c.tokenAddress))),
+    native_chain: getChainByS3ConfigChain(d.originAxelarChainId),
+    chains: d.chains,
+  }));
 };
-const getITSAssetsList = async (env = ENVIRONMENT) => await getITSAssets(env);
+
 const getITSAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   if (!asset) return;
-  assetsData = assetsData || await getITSAssets(env);
-  return toArray(assetsData).find(d => toArray(_.concat(d.id, d.symbol, d.addresses)).findIndex(s => equalsIgnoreCase(s, asset)) > -1);
+
+  assetsData = toArray(assetsData || await getITSAssets(env));
+
+  // check equals
+  return assetsData.find(d => find(asset, _.concat(d.id, d.symbol, d.addresses)));
 };
 
+const getTokens = () => config.tokens;
+const getSupplyConfig = (env = ENVIRONMENT) => config.supply[env];
+const getTVLConfig = (env = ENVIRONMENT) => config.tvl[env];
+const getCustomTVLConfig = (env = ENVIRONMENT) => config.custom_tvl[env];
+
 const getContracts = async (env = ENVIRONMENT) => await request(`${getGMPAPI(env)}/getContracts`);
-const getEndpoints = (env = ENVIRONMENT) => endpoints[env];
-const getRPC = (env = ENVIRONMENT, archive = false) => (archive && getEndpoints(env)?.rpc_archive) || getEndpoints(env)?.rpc;
-const getLCD = (env = ENVIRONMENT, archive = false) => (archive && getEndpoints(env)?.lcd_archive) || getEndpoints(env)?.lcd;
-const getAPI = (env = ENVIRONMENT) => getEndpoints(env)?.api;
-const getGMPAPI = (env = ENVIRONMENT) => getEndpoints(env)?.gmp_api;
-const getTokenTransferAPI = (env = ENVIRONMENT) => getEndpoints(env)?.token_transfer_api;
+
+const getEndpoints = (env = ENVIRONMENT) => config.endpoints[env];
+const getLCD = (archive = false, env = ENVIRONMENT) => (archive && getEndpoints(env)?.lcd_archive) || getEndpoints(env)?.lcd;
 const getValidatorAPI = (env = ENVIRONMENT) => getEndpoints(env)?.validator_api;
+const getTokenTransferAPI = (env = ENVIRONMENT) => getEndpoints(env)?.token_transfer_api;
+const getGMPAPI = (env = ENVIRONMENT) => getEndpoints(env)?.gmp_api;
 const getAppURL = (env = ENVIRONMENT) => getEndpoints(env)?.app;
-const getTokens = () => tokens;
-const getSupplyConfig = (env = ENVIRONMENT) => supply[env];
-const getTVLConfig = (env = ENVIRONMENT) => tvl[env];
-const getCustomTVLConfig = (env = ENVIRONMENT) => custom_tvl[env];
 
 module.exports = {
   ENVIRONMENT,
-  IBC_CHANNEL_COLLECTION: 'ibc_channels',
-  TVL_COLLECTION: 'tvls',
   TOKEN_PRICE_COLLECTION: 'token_prices',
-  TOKEN_CIRCULATING_SUPPLY_COLLECTION: 'token_circulating_supplys',
   TOKEN_INFO_COLLECTION: 'token_infos',
-  EXCHANGE_RATE_COLLECTION: 'exchange_rates',
-  AXELAR_CONFIG_COLLECTION,
-  PRICE_ORACLE_API: 'https://api.coingecko.com/api/v3/',
+  TOKEN_TVL_COLLECTION: 'token_tvls',
+  IBC_CHANNEL_COLLECTION: 'ibc_channels',
+  TOKEN_API: 'https://api.coingecko.com/api/v3/',
   CURRENCY: 'usd',
+  getLogLevel,
   getMethods,
   getChains,
-  getChainsList,
   getChainData,
-  getChain,
-  getAxelarConfig,
+  getAxelarS3Config,
   getAssets,
-  getAssetsList,
   getAssetData,
   getITSAssets,
-  getITSAssetsList,
   getITSAssetData,
-  getContracts,
-  getEndpoints,
-  getRPC,
-  getLCD,
-  getAPI,
-  getGMPAPI,
-  getTokenTransferAPI,
-  getValidatorAPI,
-  getAppURL,
   getTokens,
   getSupplyConfig,
   getTVLConfig,
   getCustomTVLConfig,
+  getContracts,
+  getEndpoints,
+  getLCD,
+  getValidatorAPI,
+  getTokenTransferAPI,
+  getGMPAPI,
+  getAppURL,
 };

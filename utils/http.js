@@ -1,23 +1,20 @@
 const axios = require('axios');
-const https = require('https');
 
 const { isString } = require('./string');
 
 const parseError = error => ({ error: error?.response?.data || error?.message });
 
 const createInstance = (url, options) => {
-  if (!url) return null;
+  if (!url) return;
   const { gzip } = { ...options };
   let { timeout, headers } = { ...options };
   timeout = timeout || 5000;
   if (gzip) headers = { ...headers, 'Accept-Encoding': 'gzip' };
-  // const httpsAgent = ['amazonaws.com', 'axelarscan.io'].findIndex(d => url.includes(d)) > -1 ? new https.Agent({ keepAlive: true }) : undefined;
-  const httpsAgent = undefined;
-  return axios.create({ ...options, baseURL: url, timeout, headers, httpsAgent });
+  return axios.create({ ...options, baseURL: url, timeout, headers });
 };
 
 const request = async (instance, options) => {
-  if (!instance) return null;
+  if (!instance) return;
   if (isString(instance)) instance = createInstance(instance);
 
   const { auth } = { ...options };
@@ -26,8 +23,8 @@ const request = async (instance, options) => {
   path = path || '';
   params = { ...params };
 
-  let response;
   let headers;
+  let response;
   try {
     switch (method) {
       case 'post':

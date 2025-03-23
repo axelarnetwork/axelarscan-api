@@ -3,255 +3,322 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const saveIBCChannels = require('./saveIBCChannels');
+const { normalizeParams, getCustomContractsData, getCustomTokensData, getTVLAssets, getTVLChains, getContractData, getChainType, isSecretSnipChain, isSecretChain } = require('./utils');
 const { getTokensPrice, getTokenCirculatingSupply } = require('../tokens');
-const { get, read, write } = require('../../services/indexer');
+const { read } = require('../../services/indexer');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
-const { IBC_CHANNEL_COLLECTION, TVL_COLLECTION, getChainsList, getChainData, getAxelarConfig, getAssetsList, getAssetData, getITSAssetsList, getITSAssetData, getContracts, getTVLConfig, getCustomTVLConfig } = require('../../utils/config');
-const { toHash, getAddress, split, toArray } = require('../../utils/parser');
+const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3Config, getTVLConfig, getContracts } = require('../../utils/config');
+const { readCache, writeCache, normalizeCacheId } = require('../../utils/cache');
+const { toHash, getBech32Address, toArray } = require('../../utils/parser');
 const { sleep } = require('../../utils/operator');
-const { isString, lastString } = require('../../utils/string');
+const { lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
-const CACHE_AGE_SECONDS = 60 * 60;
-const IBC_CHANNELS_UPDATE_INTERVAL_SECONDS = 720 * 60;
+const CACHE_AGE = 3600;
+const IBC_CHANNELS_CACHE_AGE = 24 * 3600;
 
-const normalizeCacheId = id => isString(id) ? split(id, { delimiter: '/' }).join('_') : undefined;
-const generateDenom = d => `${d.decimals === 6 ? 'u' : ''}${d.symbol.toLowerCase()}${d.decimals === 18 ? '-wei' : ''}`;
-const equalsSymbol = (a, b, isNative = false) => a === b || (isNative && (a === `W${b}` || b === `W${a}`));
+const { percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold } = { ...getTVLConfig() };
 
 module.exports = async params => {
-  const { percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold } = { ...getTVLConfig() };
-  const { custom_contracts, custom_tokens } = { ...getCustomTVLConfig() };
+  params = normalizeParams(params);
+  const { forceCache, isIntervalUpdate } = { ...params };
 
-  let assetsData = toArray(await getAssetsList());
-  const assetsFromCustomContracts = Object.values(_.groupBy(_.uniqBy(toArray(custom_contracts).flatMap(c => toArray(c.assets).filter(a => assetsData.findIndex(d => equalsSymbol(d.symbol, a.symbol, a.address === ZeroAddress)) < 0).map(a => ({ ...a, chain: c.chain, k: `${a.symbol}_${c.chain}` }))), 'k'), 'symbol')).map(v => {
-    const d = { ..._.head(v) };
-    const denom = generateDenom(d);
-    delete d.address;
-    return { id: denom, denom, is_custom: true, ...d, addresses: Object.fromEntries(v.map(c => [c.chain, c])) };
-  });
-  const assetsFromCustomTokens = toArray(custom_tokens).filter(c => assetsData.findIndex(d => equalsSymbol(d.symbol, c.symbol, c.address === ZeroAddress)) < 0).map(d => {
-    const denom = generateDenom(d);
-    return { id: denom, denom, is_custom: true, ...d };
-  });
-  assetsData = _.concat(assetsData, Object.values(_.groupBy(_.concat(assetsFromCustomContracts, assetsFromCustomTokens), 'id')).map(v => ({ ..._.head(v), addresses: _.merge(...v.map(d => d.addresses)) })));
-
-  const itsAssetsData = toArray(await getITSAssetsList());
+  // get contracts
   const { gateway_contracts } = { ...await getContracts() };
-  const { asset, chain, force_update, is_interval, custom_assets_only } = { ...params };
-  let { assets, chains } = { ...params };
-  assets = toArray(assets || asset);
-  assets = assets.length === 0 ? _.concat(assetsData, itsAssetsData).filter(d => !custom_assets_only || d.is_custom).map(d => d.id) : await Promise.all(assets.map(d => new Promise(async resolve => resolve((await getAssetData(d, assetsData))?.denom || (await getITSAssetData(d, itsAssetsData))?.id))));
-  chains = toArray(chains || chain);
-  chains = chains.length === 0 ? getChainsList().filter(d => (d.chain_type === 'cosmos' || gateway_contracts?.[d.id]?.address) && !d.no_tvl).map(d => d.id) : _.uniq(_.concat('axelarnet', toArray(chains.map(d => getChainData(d)?.id))));
 
-  const evmChainsData = getChainsList('evm').filter(d => chains.includes(d.id) && !d.no_tvl);
-  const cosmosChainsData = getChainsList('cosmos').filter(d => chains.includes(d.id) && !d.no_tvl);
-  const hasAllEVMChains = evmChainsData.length >= getChainsList('evm').filter(d => gateway_contracts?.[d.id]?.address && !d.no_tvl).length;
-  const hasAllCosmosChains = cosmosChainsData.length >= getChainsList('cosmos').filter(d => !d.no_tvl).length;
-  const hasAllChains = hasAllEVMChains && hasAllCosmosChains;
+  // get assets
+  const assetsData = await getTVLAssets(params);
+  const gatewayAssetsData = assetsData.filter(d => d.type === 'gateway');
+  const itsAssetsData = assetsData.filter(d => d.type === 'its');
+
+  // get chains
+  const chainsData = getTVLChains(params, ['evm', 'cosmos'], gateway_contracts);
+  const evmChainsData = chainsData.filter(d => d.chain_type === 'evm');
+  const cosmosChainsData = chainsData.filter(d => d.chain_type === 'cosmos');
+  const isAllChains = chainsData.length >= getTVLChains(undefined, ['evm', 'cosmos'], gateway_contracts).length;
+  const isAllCosmosChains = cosmosChainsData.length >= getTVLChains(undefined, ['cosmos']).length;
+
+  // get axelar
+  const axelar = getChainData('axelarnet', 'cosmos');
+  const axelarLCD = _.head(axelar.endpoints?.lcd);
 
   // set cacheId on querying single asset on every chains
-  const cacheId = assets.length === 1 && hasAllChains && normalizeCacheId(_.head(assets));
-  let cache;
-  let cachesForIntervalUpdate;
+  const cacheId = assetsData.length === 1 && isAllChains && normalizeCacheId(assetsData[0].id);
 
-  if (!force_update) {
-    // query cache
-    if (cacheId) {
-      cache = await get(TVL_COLLECTION, cacheId);
-      const { updated_at } = { ...cache };
-      if (timeDiff(updated_at * 1000) < CACHE_AGE_SECONDS) return cache;
-    }
-    else if (assets.length > 1 && hasAllChains) {
-      const response = await read(TVL_COLLECTION, {
-        bool: {
-          should: assets.map(id => ({ match: { _id: normalizeCacheId(id) } })),
-          minimum_should_match: 1,
-        },
-      }, { size: assets.length });
-      const { data } = { ...response };
+  if (!forceCache) {
+    // get tvl from cache
+    const cache = await readCache(cacheId, CACHE_AGE, TOKEN_TVL_COLLECTION);
+    if (cache) return cache;
+  }
 
-      if (toArray(data).length > 0) {
-        return {
-          ...response,
-          data: _.orderBy(toArray(data).flatMap(d => {
-            const { updated_at } = { ...d };
-            const tvlData = _.head(d.data);
-            const { total, price } = { ...tvlData };
-            return { ...tvlData, value: toNumber(total) * toNumber(price), updated_at };
-          }), ['value'], ['desc']),
-          updated_at: _.minBy(toArray(data), 'updated_at')?.updated_at,
-        };
+  let cachesData;
+  // use cache when no forceCache and get multiple assets or isIntervalUpdate
+  if (!forceCache ? assetsData.length > 1 && isAllChains : isIntervalUpdate) {
+    // get tvl of assets from cache
+    const { data } = { ...await read(TOKEN_TVL_COLLECTION, {
+      bool: {
+        must: [{ range: { updated_at: { gte: moment().subtract(CACHE_AGE, 'seconds').valueOf() } } }],
+        should: assetsData.map(d => ({ match: { _id: normalizeCacheId(d.id) } })),
+        minimum_should_match: 1,
+      },
+    }, { size: assetsData.length }) };
+
+    if (toArray(data).length > 0) {
+      cachesData = {
+        data: _.orderBy(data.flatMap(d => d.data), ['value'], ['desc']),
+        updated_at: _.minBy(data, 'updated_at')?.updated_at,
+      };
+
+      if (!isIntervalUpdate) {
+        return cachesData;
       }
     }
   }
-  else if (is_interval) {
-    const response = await read(TVL_COLLECTION, {
-      bool: {
-        should: assets.map(id => ({ match: { _id: normalizeCacheId(id) } })),
-        minimum_should_match: 1,
-      },
-    }, { size: assets.length });
-    cachesForIntervalUpdate = response?.data;
-  }
 
-  const axelarConfig = await getAxelarConfig();
-  const axelarnet = getChainData('axelarnet');
-  const axelarnetLCDUrl = _.head(axelarnet.endpoints?.lcd);
+  // get s3 config
+  const axelars3Config = await getAxelarS3Config();
 
+  // results
   const data = [];
-  for (const asset of assets) {
-    const cacheData = toArray(cachesForIntervalUpdate).find(d => d.asset === asset);
-    if (cacheData?.updated_at && timeDiff(cacheData.updated_at * 1000) < CACHE_AGE_SECONDS) {
+
+  // calculate tvl of each assets
+  for (const assetData of assetsData) {
+    const { id: asset, type, symbol, is_custom, coingecko_id, native_chain, addresses } = { ...assetData };
+
+    // use cache data when it's available
+    const cacheData = toArray(cachesData).find(d => d.asset === asset);
+
+    if (cacheData) {
       data.push(cacheData);
       continue;
     }
 
-    let assetData = await getAssetData(asset, assetsData);
-    let assetType = 'gateway';
-
-    if (!assetData) {
-      const itsAssetData = await getITSAssetData(asset, itsAssetsData);
-      if (itsAssetData) {
-        assetData = { ...itsAssetData, addresses: Object.fromEntries(Object.entries({ ...itsAssetData.chains }).map(([k, v]) => {
-          const value = { symbol: v.symbol };
-          if (v.tokenManager) value.token_manager_address = v.tokenManager;
-          if (v.tokenManagerType) value.token_manager_type = v.tokenManagerType;
-
-          switch (getChainData(k)?.chain_type) {
-            case 'cosmos':
-              value.ibc_denom = v.tokenAddress;
-              break;
-            default:
-              value.address = v.tokenAddress;
-              break;
-          }
-          return [k, value];
-        })) };
-        delete assetData.chains;
-        assetType = 'its';
-      }
-    }
-
-    const { native_chain, addresses, coingecko_id } = { ...assetData };
+    // flags
     const isNativeOnEVM = !!getChainData(native_chain, 'evm');
     const isNativeOnCosmos = !!getChainData(native_chain, 'cosmos');
-    const isNativeOnAxelarnet = native_chain === 'axelarnet';
-    const isCanonicalITS = assetType === 'its' && Object.values({ ...addresses }).findIndex(d => d.token_manager_type?.startsWith('lockUnlock')) > -1;
+    const isNativeOnAxelar = native_chain === axelar.id;
+    const isCanonicalITS = type === 'its' && Object.values({ ...addresses }).findIndex(d => d.token_manager_type?.startsWith('lockUnlock')) > -1;
 
-    let tvl = Object.fromEntries((await Promise.all(
-      _.concat(evmChainsData, cosmosChainsData).map(d => new Promise(async resolve => {
-        const { id, chain_type, endpoints, explorer, prefix_chain_ids } = { ...d };
+    let tvlsByChain = Object.fromEntries((await Promise.all(
+      chainsData.map(d => new Promise(async resolve => {
+        const { id: chain, chain_type, endpoints, explorer, prefix_chain_ids } = { ...d };
         const { url, address_path, contract_path, asset_path } = { ...explorer };
-        const gateway_address = gateway_contracts?.[id]?.address;
-        const isNative = id === native_chain;
+        const LCD = _.head(endpoints?.lcd);
 
-        let result;
+        // is processing on native chain
+        const isNative = native_chain && chain === native_chain;
+
+        let tvlData;
+
         switch (chain_type) {
           case 'evm':
             try {
-              const contract_data = { ...assetData, ...addresses?.[id], contract_address: addresses?.[id]?.address };
-              delete contract_data.addresses;
-              const { address, token_manager_address, token_manager_type } = { ...contract_data };
+              // gateway of this chain
+              const gatewayAddress = gateway_contracts?.[chain]?.address;
+
+              // create contract data from asset and chain data
+              const contractData = getContractData(assetData, d);
+              const { address, token_manager_address, token_manager_type } = { ...contractData };
 
               if (address) {
-                const gateway_balance = assetType !== 'its' ? toNumber(await getBalance(id, gateway_address, contract_data)) : 0;
-                const isLockUnlock = assetType === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
-                const token_manager_balance = isLockUnlock ? toNumber(await getBalance(id, token_manager_address, contract_data)) : 0;
-                const supply = (native_chain && !isNative) || assetType === 'its' ? isLockUnlock ? token_manager_balance : toNumber(await getTokenSupply(id, contract_data)) : 0;
-                const custom_contracts_balance = await Promise.all(toArray(custom_contracts).filter(c => c.chain === id && c.address && toArray(c.assets).findIndex(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress) && a.address) > -1).map(c => new Promise(async resolve => resolve({ address: c.address, balance: toNumber(await getBalance(id, c.address, { ...c.assets.find(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress)), contract_address: c.assets.find(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress))?.address })), url: url && `${url}${(c.assets.find(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress))?.address === ZeroAddress ? address_path : contract_path).replace('{address}', c.assets.find(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress))?.address === ZeroAddress ? c.address : `${c.assets.find(a => equalsSymbol(a.symbol, assetData?.symbol, a.address === ZeroAddress))?.address}?a=${c.address}`)}` }))));
-                const total_balance_on_custom_contracts = _.sumBy(custom_contracts_balance, 'balance');
-                const custom_tokens_supply = await Promise.all(toArray(custom_tokens).filter(c => c.addresses?.[id] && equalsSymbol(c.symbol, assetData?.symbol, c.addresses[id].address === ZeroAddress)).map(c => new Promise(async resolve => resolve({ address: c.addresses[id], supply: toNumber(await getTokenSupply(id, { ...c, address: c.addresses[id] })), url: url && `${url}${(c.addresses[id] === ZeroAddress ? address_path : contract_path).replace('{address}', c.addresses[id])}` }))));
-                const total_supply_of_custom_tokens = _.sumBy(custom_tokens_supply, 'supply');
-                result = {
-                  contract_data, gateway_address, gateway_balance,
-                  ...(isLockUnlock ? { token_manager_address, token_manager_type, token_manager_balance } : undefined),
-                  supply, total: isNativeOnCosmos ? 0 : gateway_balance + supply,
-                  custom_contracts_balance,
-                  total_balance_on_custom_contracts,
-                  custom_tokens_supply,
-                  total_supply_of_custom_tokens,
-                  url: url && `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gateway_address : address)}${isNative && address !== ZeroAddress ? gateway_address && assetType !== 'its' ? `?a=${gateway_address}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}`,
-                  success: isNumber(isNative && assetType !== 'its' ? gateway_balance : supply),
+                // get balance of this asset on gateway
+                const gatewayBalance = type === 'gateway' ? toNumber(await getBalance(chain, gatewayAddress, contractData)) : 0;
+
+                // check token manager type is lockUnlock
+                const isLockUnlock = type === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
+                // get balance of this asset on token manager
+                const tokenManagerBalance = isLockUnlock ? toNumber(await getBalance(chain, token_manager_address, contractData)) : 0;
+
+                // for lockUnlock, supply = tokenManagerBalance, otherwise supply = getTokenSupply
+                const supply = (!isNative || type === 'its') && !is_custom ? isLockUnlock ? tokenManagerBalance : toNumber(await getTokenSupply(chain, contractData)) : 0;
+
+                // custom contracts with their asset balance
+                const customContractsBalances = await Promise.all(getCustomContractsData(d, assetData).map(c => new Promise(async resolve =>
+                  resolve({
+                    address: c.address,
+                    balance: toNumber(await getBalance(chain, c.address, _.head(c.assets))),
+                    url: `${url}${(_.head(c.assets)?.address === ZeroAddress ? address_path : contract_path).replace('{address}', _.head(c.assets)?.address === ZeroAddress ? c.address : `${_.head(c.assets)?.address}?a=${c.address}`)}`,
+                  })
+                )));
+
+                // custom tokens supply
+                const customTokensSupply = await Promise.all(getCustomTokensData(d, assetData).map(a => new Promise(async resolve => {
+                  // token address of this chain
+                  const address = a.addresses[chain];
+
+                  resolve({
+                    address,
+                    supply: toNumber(await getTokenSupply(chain, { ...a, address })),
+                    url: `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address)}`,
+                  });
+                })));
+
+                tvlData = {
+                  // contract
+                  contract_data: contractData,
+                  // gateway
+                  gateway_address: gatewayAddress,
+                  gateway_balance: gatewayBalance,
+                  // token manager
+                  ...(isLockUnlock ? {
+                    token_manager_address,
+                    token_manager_type,
+                    token_manager_balance: tokenManagerBalance,
+                  } : undefined),
+                  // amount
+                  supply,
+                  total: isNativeOnCosmos ? 0 : gatewayBalance + supply,
+                  // custom contracts
+                  custom_contracts_balance: customContractsBalances,
+                  total_balance_on_custom_contracts: _.sumBy(customContractsBalances, 'balance'),
+                  // custom tokens
+                  custom_tokens_supply: customTokensSupply,
+                  total_supply_of_custom_tokens: _.sumBy(customTokensSupply, 'supply'),
+                  // link
+                  url: `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gatewayAddress : address)}${isNative && address !== ZeroAddress ? gatewayAddress && type === 'gateway' ? `?a=${gatewayAddress}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}`,
+                  // status
+                  success: isNumber(isNative && type === 'gateway' ? gatewayBalance : supply),
                 };
               }
             } catch (error) {}
             break;
           case 'cosmos':
             try {
-              const denom_data = { ...assetData, ...addresses?.[id], denom: addresses?.axelarnet?.ibc_denom };
-              delete denom_data.addresses;
-              const { denom, ibc_denom } = { ...denom_data };
+              // create contract data from asset and chain data
+              const contractData = getContractData(assetData, d);
+              const { denom, ibc_denom } = { ...contractData };
 
               if (ibc_denom) {
-                let ibc_channels;
-                let escrow_addresses;
-                let source_escrow_addresses;
-                if (toArray(prefix_chain_ids).length > 0 && id !== 'axelarnet') {
-                  for (let i = 0; i < 1; i++) {
+                let ibcChannels;
+                let escrowAddresses;
+                let sourceEscrowAddresses;
+
+                if (chain !== axelar.id && toArray(prefix_chain_ids).length > 0) {
+                  let wasRun;
+
+                  while (!wasRun) {
+                    // channel id from axelar s3 config
+                    const { channelId } = { ...axelars3Config?.chains?.[chain]?.config?.ibc?.fromAxelar };
+
                     const { data } = { ...await read(IBC_CHANNEL_COLLECTION, {
                       bool: {
-                        must: [{ match: { state: 'STATE_OPEN' } }],
-                        should: toArray(prefix_chain_ids).map(p => ({ match_phrase_prefix: { chain_id: p } })),
+                        must: toArray([
+                          channelId ? { match: { channel_id: channelId } } : undefined,
+                          { match: { state: 'STATE_OPEN' } },
+                        ]),
+                        should: prefix_chain_ids.map(p => ({ match_phrase_prefix: { chain_id: p } })),
                         minimum_should_match: 1,
                       },
-                    }, { size: 500, sort: [{ updated_at: 'asc' }] }) };
+                    }, { size: 1000, sort: [{ updated_at: 'asc' }] }) };
 
-                    if (toArray(data).length > 0 && toArray(data).filter(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_UPDATE_INTERVAL_SECONDS).length === 0) {
-                      const { channelId } = { ...axelarConfig?.chains?.[id]?.config?.ibc?.fromAxelar };
-                      ibc_channels = _.orderBy(data.filter(d => (!channelId && id !== 'secret') || d.channel_id === channelId), ['latest_height'], ['asc']);
-                      escrow_addresses = toArray(toArray(ibc_channels).map(d => d.escrow_address));
-                      source_escrow_addresses = toArray(toArray(ibc_channels).map(d => d.counterparty?.escrow_address));
-                      break;
+                    // cache hit
+                    if (toArray(data).length > 0 && !data.find(d => timeDiff(d.updated_at * 1000) > IBC_CHANNELS_CACHE_AGE)) {
+                      // filter ibc channels by channelId
+                      ibcChannels = _.orderBy(data.filter(d => (!channelId && !isSecretChain(chain)) || d.channel_id === channelId), ['latest_height'], ['asc']);
+
+                      // get escrow addresses from ibc channels
+                      escrowAddresses = toArray(ibcChannels.map(d => d.escrow_address));
+                      sourceEscrowAddresses = toArray(ibcChannels.map(d => d.counterparty?.escrow_address));
+
+                      wasRun = true;
                     }
-                    else if (data) await saveIBCChannels();
+                    else if (data) {
+                      // index ibc channels
+                      await saveIBCChannels();
+
+                      // query from collection again after first time index
+                      wasRun = typeof wasRun === 'boolean' || false;
+                    }
+
+                    // delay for updating ibc channels
                     await sleep(3000);
                   }
                 }
 
-                const escrow_balance = id !== 'secret' ? _.sum(await Promise.all(toArray(escrow_addresses).map(address => new Promise(async resolve => resolve(toNumber(await getCosmosBalance('axelarnet', address, denom_data))))))) : undefined;
-                const source_escrow_balance = _.sum(await Promise.all(toArray(source_escrow_addresses).map(address => new Promise(async resolve => resolve(toNumber(await getCosmosBalance(id, address, denom_data)))))));
+                // get asset balance of escrow addresses on axelar
+                const escrowBalance = isSecretChain(chain) ? undefined : _.sum(await Promise.all(toArray(escrowAddresses)
+                  .map(a => new Promise(async resolve =>
+                    resolve(toNumber(await getCosmosBalance(axelar.id, a, contractData)))
+                  ))
+                ));
 
-                const isNativeOnCosmos = isNative && id !== 'axelarnet';
-                const isNotNativeOnAxelarnet = !isNative && id === 'axelarnet';
-                const isSecretSnip = id === 'secret-snip';
-                const LCDUrl = _.head(endpoints?.lcd);
+                // get asset balance of source escrow addresses on cosmos chain
+                const sourceEscrowBalance = _.sum(await Promise.all(toArray(sourceEscrowAddresses)
+                  .map(a => new Promise(async resolve =>
+                    resolve(toNumber(await getCosmosBalance(chain, a, contractData)))
+                  ))
+                ));
 
-                let supply = isNative ? id !== 'axelarnet' ? source_escrow_balance : 0 : toArray(escrow_addresses).length > 0 ? await getIBCSupply(id, denom_data) : 0;
-                supply = isNumber(supply) ? toNumber(supply) : supply;
-                const totalSupply = isNativeOnCosmos ? toNumber(await getIBCSupply('axelarnet', denom_data)) : 0;
-                const percent_diff_supply = isNativeOnCosmos ? totalSupply > 0 && source_escrow_balance > 0 ? Math.abs(source_escrow_balance - totalSupply) * 100 / source_escrow_balance : null : supply > 0 && escrow_balance > 0 ? Math.abs(escrow_balance - supply) * 100 / escrow_balance : null;
-                let total = isNotNativeOnAxelarnet ? await getIBCSupply(id, denom_data) : isNativeOnCosmos ? await getIBCSupply('axelarnet', { ...denom_data, ibc_denom: denom_data.denom }) : isSecretSnip ? escrow_balance : 0;
-                total = isNumber(total) ? toNumber(total) : total;
+                // flags
+                const isNativeOnCosmos = isNative && chain !== axelar.id;
+                const isNotNativeOnAxelar = !isNative && chain === axelar.id;
 
-                result = {
-                  denom_data, ibc_channels,
-                  escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance,
-                  supply, total, percent_diff_supply, is_abnormal_supply: percent_diff_supply > percent_diff_escrow_supply_threshold,
-                  url: url && address_path && toArray(source_escrow_addresses).length > 0 && isNativeOnCosmos ?
-                    `${url}${address_path.replace('{address}', _.last(source_escrow_addresses))}` :
-                    !isSecretSnip && url && asset_path && ibc_denom?.includes('/') ?
-                      `${url}${asset_path.replace('{ibc_denom}', Buffer.from(lastString(ibc_denom, { delimiter: '/' })).toString('base64'))}` :
-                      axelarnet.explorer?.url && axelarnet.explorer.address_path && toArray(escrow_addresses).length > 0 ?
-                        `${axelarnet.explorer.url}${axelarnet.explorer.address_path.replace('{address}', isSecretSnip ? _.head(escrow_addresses) : _.last(escrow_addresses))}` :
-                        null,
-                  escrow_addresses_urls: toArray(isNativeOnCosmos ?
-                    _.reverse(_.cloneDeep(toArray(source_escrow_addresses))).flatMap(a => [
-                      url && address_path && `${url}${address_path.replace('{address}', a)}`,
-                      ibc_denom && `${LCDUrl}/cosmos/bank/v1beta1/balances/${a}/by_denom?denom=${encodeURIComponent(ibc_denom)}`,
-                      `${LCDUrl}/cosmos/bank/v1beta1/balances/${a}`,
+                let supply = isNative ?
+                  chain !== axelar.id ? sourceEscrowBalance : 0 : // use source escrow balance when native on cosmos chain
+                  toArray(escrowAddresses).length > 0 ? await getIBCSupply(chain, contractData) : 0; // get ibc supply on this chain
+
+                // parse supply to number
+                if (isNumber(supply)) {
+                  supply = toNumber(supply);
+                }
+
+                let total = isNotNativeOnAxelar ?
+                  await getIBCSupply(chain, contractData) : // on axelar and not native, get ibc supply
+                  isNativeOnCosmos ?
+                    await getIBCSupply(axelar.id, { ...contractData, ibc_denom: denom }) : // when native on cosmos, get ibc supply on axelar
+                    isSecretSnipChain(chain) ? escrowBalance : 0; // use escrow balance when secret-snip
+
+                // parse total to number
+                if (isNumber(total)) {
+                  total = toNumber(total);
+                }
+
+                // get ibc supply on axelar when native on cosmos
+                const totalSupply = isNativeOnCosmos ? toNumber(await getIBCSupply(axelar.id, contractData)) : 0;
+
+                const percentDiffSupply = isNativeOnCosmos ?
+                  // compare total supply on axelar with source escrow balance
+                  totalSupply > 0 && sourceEscrowBalance > 0 ? Math.abs(sourceEscrowBalance - totalSupply) * 100 / sourceEscrowBalance : null :
+                  // compare supply with escrow balance
+                  supply > 0 && escrowBalance > 0 ? Math.abs(escrowBalance - supply) * 100 / escrowBalance : null;
+
+                tvlData = {
+                  // contract
+                  denom_data: contractData,
+                  // escrow
+                  ibc_channels: ibcChannels,
+                  escrow_addresses: escrowAddresses,
+                  escrow_balance: escrowBalance,
+                  source_escrow_addresses: sourceEscrowAddresses,
+                  source_escrow_balance: sourceEscrowBalance,
+                  // amount
+                  supply,
+                  total,
+                  percent_diff_supply: percentDiffSupply,
+                  is_abnormal_supply: percentDiffSupply > percent_diff_escrow_supply_threshold,
+                  // link
+                  url: isNativeOnCosmos && toArray(sourceEscrowAddresses).length > 0 ?
+                    `${url}${address_path?.replace('{address}', _.last(sourceEscrowAddresses))}` :
+                    ibc_denom.includes('/') && !isSecretSnipChain(chain) ?
+                      `${url}${asset_path?.replace('{ibc_denom}', Buffer.from(lastString(ibc_denom, { delimiter: '/' })).toString('base64'))}` :
+                      toArray(escrowAddresses).length > 0 ?
+                        `${axelar.explorer?.url}${axelar.explorer?.address_path?.replace('{address}', isSecretSnipChain(chain) ? _.head(escrowAddresses) : _.last(escrowAddresses))}` : null,
+                  escrow_addresses_urls: isNativeOnCosmos ?
+                    _.reverse(_.cloneDeep(toArray(sourceEscrowAddresses))).flatMap(a => [
+                      `${url}${address_path.replace('{address}', a)}`,
+                      `${LCD}/cosmos/bank/v1beta1/balances/${a}/by_denom?denom=${encodeURIComponent(ibc_denom)}`,
+                      `${LCD}/cosmos/bank/v1beta1/balances/${a}`,
                     ]) :
-                    _.reverse(_.cloneDeep(toArray(escrow_addresses))).flatMap(a => [
-                      axelarnet.explorer?.url && axelarnet.explorer.address_path && `${axelarnet.explorer.url}${axelarnet.explorer.address_path.replace('{address}', a)}`,
-                      denom && `${axelarnetLCDUrl}/cosmos/bank/v1beta1/balances/${a}/by_denom?denom=${encodeURIComponent(denom)}`,
-                      `${axelarnetLCDUrl}/cosmos/bank/v1beta1/balances/${a}`,
-                    ])
-                  ),
-                  supply_urls: toArray(!isNativeOnCosmos && toArray(escrow_addresses).length > 0 && [ibc_denom && `${LCDUrl}/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`, `${LCDUrl}/cosmos/bank/v1beta1/supply`]),
-                  success: isNumber(isNotNativeOnAxelarnet ? total : supply) || !ibc_denom || d.unstable,
+                    _.reverse(_.cloneDeep(toArray(escrowAddresses))).flatMap(a => toArray([
+                      `${axelar.explorer?.url}${axelar.explorer?.address_path?.replace('{address}', a)}`,
+                      denom && `${axelarLCD}/cosmos/bank/v1beta1/balances/${a}/by_denom?denom=${encodeURIComponent(denom)}`,
+                      `${axelarLCD}/cosmos/bank/v1beta1/balances/${a}`,
+                    ])),
+                  supply_urls: !isNativeOnCosmos && toArray(escrowAddresses).length > 0 ? [`${LCD}/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`, `${LCD}/cosmos/bank/v1beta1/supply`] : [],
+                  // status
+                  success: isNumber(isNotNativeOnAxelar ? total : supply) || d.unstable,
                 };
               }
             } catch (error) {}
@@ -259,54 +326,128 @@ module.exports = async params => {
           default:
             break;
         }
-        resolve([id, result]);
+
+        resolve([chain, tvlData]);
       }))
     )).filter(([k, v]) => v));
 
-    tvl = Object.fromEntries(Object.entries(tvl).map(([k, v]) => {
-      const { supply, total } = { ...v };
-      return [k, { ...v, supply: getChainData(k)?.chain_type !== 'cosmos' ? supply : k === 'axelarnet' && assetType !== 'its' ? isNativeOnEVM ? total - _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'cosmos').map(([k, v]) => k === 'secret-snip' ? v.total : v.supply))) : isNativeOnCosmos ? total ? total - _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'evm').map(([k, v]) => v.supply))) : 0 : supply : supply }];
-    }));
+    // set supply on axelar chain
+    if (type === 'gateway' && !isNativeOnAxelar) {
+      tvlsByChain = Object.fromEntries(Object.entries(tvlsByChain).map(([k, v]) => {
+        if (k === axelar.id) {
+          if (!v.total) {
+            v.supply = 0;
+          }
+          else {
+            // supply on axelar = total - sum(supply of others cosmos | evm)
+            v.supply = v.total - _.sum(Object.entries(tvlsByChain)
+              .filter(([k, v]) => getChainType(k) === (isNativeOnEVM ? 'cosmos' : isNativeOnCosmos ? 'evm' : '')) // filter by chain type
+              .map(([k, v]) => toNumber(isSecretSnipChain(k) ? v.total : v.supply))
+            );
+          }
+        }
+        return [k, v];
+      }));
+    }
 
-    let total_on_evm = _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'evm' && (assetType !== 'its' || isCanonicalITS) && !v.token_manager_type?.startsWith('lockUnlock')).map(([k, v]) => v.supply)));
-    const total_on_cosmos = _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'cosmos' && k !== native_chain && (assetType !== 'its' || isCanonicalITS)).map(([k, v]) => v[hasAllCosmosChains ? isNativeOnCosmos || k === 'secret-snip' ? 'supply' : 'total' : 'escrow_balance'])));
-    const total_on_contracts = _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'evm' && assetType !== 'its').map(([k, v]) => v.total_balance_on_custom_contracts)));
-    const total_on_tokens = _.sum(toArray(Object.entries(tvl).filter(([k, v]) => getChainData(k)?.chain_type === 'evm' && assetType !== 'its').map(([k, v]) => v.total_supply_of_custom_tokens)));
-    const total = (isNativeOnCosmos || isNativeOnAxelarnet ? total_on_evm + total_on_cosmos : assetType === 'its' ? isCanonicalITS ? _.sum(toArray(Object.values(tvl).map(d => d.token_manager_balance))) : toNumber(await getTokenCirculatingSupply(coingecko_id)) : _.sum(toArray(Object.entries(tvl).map(([k, v]) => isNativeOnEVM ? v.gateway_balance : v.total)))) + total_on_contracts + total_on_tokens;
-    if (assetType === 'its' && !isCanonicalITS && isNativeOnEVM) total_on_evm += total;
+    let totalOnEVM = !(type === 'gateway' || isCanonicalITS) ? 0 : _.sum(Object.entries(tvlsByChain)
+      .filter(([k, v]) => getChainType(k) === 'evm' && !v.token_manager_type?.startsWith('lockUnlock'))
+      .map(([k, v]) => toNumber(v.supply))
+    );
 
-    const evm_escrow_address = isNativeOnCosmos ? getAddress(isNativeOnAxelarnet ? asset : `ibc/${toHash(`transfer/${_.last(tvl[native_chain]?.ibc_channels)?.channel_id}/${asset}`)}`, axelarnet.prefix_address, 32) : undefined;
-    const evm_escrow_balance = evm_escrow_address ? toNumber(await getCosmosBalance('axelarnet', evm_escrow_address, { ...assetData, ...addresses?.axelarnet })) : 0;
-    const evm_escrow_address_urls = evm_escrow_address && toArray([axelarnet.explorer?.url && axelarnet.explorer.address_path && `${axelarnet.explorer.url}${axelarnet.explorer.address_path.replace('{address}', evm_escrow_address)}`, `${axelarnetLCDUrl}/cosmos/bank/v1beta1/balances/${evm_escrow_address}`]);
-    const percent_diff_supply = evm_escrow_address ? evm_escrow_balance > 0 && total_on_evm > 0 ? Math.abs(evm_escrow_balance - total_on_evm) * 100 / evm_escrow_balance : null : total > 0 && total_on_evm >= 0 && total_on_cosmos >= 0 && total_on_evm + total_on_cosmos > 0 ? Math.abs(total - (total_on_evm + total_on_cosmos) - (total_on_contracts + total_on_tokens)) * 100 / (total - (total_on_contracts + total_on_tokens)) : null;
+    const totalOnCosmos = !(type === 'gateway' || isCanonicalITS) ? 0 : _.sum(Object.entries(tvlsByChain)
+      .filter(([k, v]) => getChainType(k) === 'cosmos' && k !== native_chain)
+      .map(([k, v]) => toNumber(isAllCosmosChains ? isNativeOnCosmos || isSecretSnipChain(k) ? v.supply : v.total : v.escrow_balance))
+    );
 
-    const pricesData = await getTokensPrice({ symbol: assetData?.is_custom && assetData.symbol ? assetData.symbol : asset });
-    const { price } = { ...(pricesData?.[asset] || pricesData?.[assetData?.symbol] || Object.values({ ...pricesData }).find(d => d.denom === asset)) };
+    const totalOnContracts = !(type === 'gateway') ? 0 : _.sum(Object.entries(tvlsByChain)
+      .filter(([k, v]) => getChainType(k) === 'evm')
+      .map(([k, v]) => v.total_balance_on_custom_contracts)
+    );
+
+    const totalOnTokens = !(type === 'gateway') ? 0 : _.sum(Object.entries(tvlsByChain)
+      .filter(([k, v]) => getChainType(k) === 'evm')
+      .map(([k, v]) => v.total_supply_of_custom_tokens)
+    );
+
+    const total = totalOnContracts + totalOnTokens + (
+      isNativeOnCosmos || isNativeOnAxelar ? totalOnEVM + totalOnCosmos :
+      type === 'its' ?
+        isCanonicalITS ?
+          _.sum(Object.values(tvlsByChain).map(v => toNumber(v.token_manager_balance))) : // lockUnlock token manager balances
+          toNumber(await getTokenCirculatingSupply(coingecko_id)) : // circulating supply from coingecko
+        _.sum(Object.values(tvlsByChain).map(v => toNumber(isNativeOnEVM ? v.gateway_balance : v.total))) // gateway balances for native on evm, otherwise total
+    );
+
+    // total on evm += total when asset is ITS which isn't lockUnlock
+    if (type === 'its' && !isCanonicalITS && isNativeOnEVM) totalOnEVM += total;
+
+    // generate evm escrow address when native on cosmos
+    const evmEscrowAddress = isNativeOnCosmos ? getBech32Address(isNativeOnAxelar ? asset : `ibc/${toHash(`transfer/${_.last(tvlsByChain[native_chain]?.ibc_channels)?.channel_id}/${asset}`)}`, axelar.prefix_address, 32) : undefined;
+
+    // get axelar asset balance of evm escrow address
+    const evmEscrowBalance = evmEscrowAddress ? toNumber(await getCosmosBalance(axelar.id, evmEscrowAddress, getContractData(assetData, axelar))) : 0;
+
+    // debug urls of evm escrow address
+    const evmEscrowURLs = !evmEscrowAddress ? undefined : [
+      `${axelar.explorer?.url}${axelar.explorer?.address_path?.replace('{address}', evmEscrowAddress)}`,
+      `${axelarLCD}/cosmos/bank/v1beta1/balances/${evmEscrowAddress}`,
+    ];
+
+    const percentDiffSupply = evmEscrowAddress ?
+      // compare evm escrow balance with total on evm
+      evmEscrowBalance > 0 && totalOnEVM > 0 ? Math.abs(evmEscrowBalance - totalOnEVM) * 100 / evmEscrowBalance : null :
+      // compare total with total on evm + total on cosmos
+      total > 0 && totalOnEVM + totalOnCosmos > 0 ? Math.abs(total - (totalOnContracts + totalOnTokens) - (totalOnEVM + totalOnCosmos)) * 100 / (total - (totalOnContracts + totalOnTokens)) : null;
+
+    // price
+    const pricesData = await getTokensPrice({ symbol: is_custom && symbol ? symbol : asset });
+    const { price } = { ...(pricesData[asset] || pricesData[symbol]) };
+
     data.push({
-      asset, assetType, price,
-      tvl, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens, total,
-      evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls,
-      percent_diff_supply, is_abnormal_supply: percent_diff_supply > (evm_escrow_address ? percent_diff_escrow_supply_threshold : percent_diff_total_supply_threshold),
-      percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold,
-      success: Object.values(tvl).filter(d => !d.success).length === 0,
+      asset,
+      assetType: type,
+      price,
+      // amount
+      total,
+      value: toNumber(total) * toNumber(price),
+      total_on_evm: totalOnEVM,
+      total_on_cosmos: totalOnCosmos,
+      total_on_contracts: totalOnContracts,
+      total_on_tokens: totalOnTokens,
+      tvl: tvlsByChain,
+      // evm escrow
+      evm_escrow_address: evmEscrowAddress,
+      evm_escrow_balance: evmEscrowBalance,
+      evm_escrow_address_urls: evmEscrowURLs,
+      // status
+      percent_diff_supply: percentDiffSupply,
+      is_abnormal_supply: percentDiffSupply > (evmEscrowAddress ? percent_diff_escrow_supply_threshold : percent_diff_total_supply_threshold),
+      percent_diff_escrow_supply_threshold,
+      percent_diff_total_supply_threshold,
+      success: !Object.values(tvlsByChain).find(d => !d.success),
     });
   }
 
-  let result = { data, updated_at: moment().unix() };
-  let not_updated_on_chains;
-  if (data.length === 0 && cache) result = cache;
-  else if (cacheId || custom_assets_only) {
-    const unsuccessData = data.filter(d => !d.success);
-    // caching
-    if (unsuccessData.length === 0) {
-      if (cacheId) await write(TVL_COLLECTION, cacheId, result);
-      else if (data.length > 0) {
-        for (const d of data) {
-          await write(TVL_COLLECTION, normalizeCacheId(d.asset), { data: [d], updated_at: moment().unix() });
-        }
-      }
+  const response = { data, updated_at: moment().unix() };
+
+  if (cacheId) {
+    if (!data.find(d => d.success)) {
+      // return cache data when cannot get result
+      const cache = await readCache(cacheId, 24 * CACHE_AGE, TOKEN_TVL_COLLECTION);
+      if (cache) return cache;
     }
-    else not_updated_on_chains = unsuccessData.flatMap(d => Object.entries(d.tvl).filter(([k, v]) => !v?.success).map(([k, v]) => k));
+    else if (!data.find(d => !d.success)) {
+      // caching
+      await writeCache(cacheId, data, TOKEN_TVL_COLLECTION, true);
+    }
   }
-  return { ...result, not_updated_on_chains };
+  else {
+    for (const d of data.filter(d => d.success)) {
+      // caching
+      await writeCache(normalizeCacheId(d.asset), [d], TOKEN_TVL_COLLECTION, true);
+    }
+  }
+
+  return response;
 };

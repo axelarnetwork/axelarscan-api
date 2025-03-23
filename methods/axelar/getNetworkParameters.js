@@ -1,11 +1,11 @@
-const { ENVIRONMENT, getLCD } = require('../../utils/config');
-const { createInstance, request } = require('../../utils/http');
+const { getLCDInstance } = require('./utils');
+const { ENVIRONMENT } = require('../../utils/config');
+const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
 
 module.exports = async params => {
   const { height } = { ...params };
-  const headers = height ? { 'x-cosmos-block-height': height } : undefined;
-  const instance = createInstance(getLCD(ENVIRONMENT, !!height), { gzip: true, headers });
+  const instance = getLCDInstance(height);
 
   return Object.fromEntries(toArray(await Promise.all(
     ['stakingParams', 'bankSupply', 'stakingPool', 'slashingParams'].map(k => new Promise(async resolve => {

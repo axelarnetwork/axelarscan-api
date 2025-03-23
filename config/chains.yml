@@ -11,11 +11,8 @@ mainnet:
       endpoints:
         rpc:
           - "https://eth1.lava.build"
-          - "https://ethereum.blockpi.network/v1/rpc/public"
-          - "https://eth-mainnet.public.blastapi.io"
-          # - "https://rpc.ankr.com/eth"
-          # - "https://cloudflare-eth.com"
-          # - "https://1rpc.io/eth"
+          - "https://eth.blockrazor.xyz"
+          - "https://1rpc.io/eth"
           # - "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Ethereum"
@@ -39,11 +36,13 @@ mainnet:
       maintainer_id: "binance"
       endpoints:
         rpc:
+          - "https://bsc-mainnet.public.blastapi.io"
+          - "https://api.zan.top/bsc-mainnet"
+          - "https://bsc-rpc.publicnode.com"
           - "https://bsc-dataseed1.defibit.io"
           - "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3"
           - "https://1rpc.io/bnb"
           - "https://bscrpc.com"
-          - "https://rpc.ankr.com/bsc"
       native_token:
         name: "BNB"
         symbol: "BNB"
@@ -66,9 +65,9 @@ mainnet:
       maintainer_id: "polygon"
       endpoints:
         rpc:
-          - "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://polygon.lava.build"
           - "https://1rpc.io/matic"
-          - "https://rpc.ankr.com/polygon"
+          - "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Polygon"
         symbol: "POL"
@@ -85,38 +84,15 @@ mainnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    polygon-zkevm:
-      disabled: true
-      chain_id: 1101
-      chain_name: "polygon-zkevm"
-      maintainer_id: "polygon-zkevm"
-      endpoints:
-        rpc:
-          - "https://zkevm-rpc.com"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Polygon zkEVM"
-      short_name: "POLY ZK"
-      image: "/logos/chains/polygon-zkevm.svg"
-      color: "#8247e5"
-      explorer:
-        name: "Polygonscan"
-        url: "https://zkevm.polygonscan.com"
-        icon: "/logos/explorers/polygonscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     avalanche:
       chain_id: 43114
       chain_name: "Avalanche"
       maintainer_id: "avalanche"
       endpoints:
         rpc:
+          - "https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-c-chain-rpc.publicnode.com"
           - "https://1rpc.io/avax/c"
-          - "https://rpc.ankr.com/avalanche"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -167,8 +143,8 @@ mainnet:
       endpoints:
         rpc:
           - "https://rpc.api.moonbeam.network"
+          - "https://moonbeam.public.blastapi.io"
           - "https://1rpc.io/glmr"
-          - "https://rpc.ankr.com/moonbeam"
       native_token:
         name: "Moonbeam"
         symbol: "GLMR"
@@ -216,8 +192,8 @@ mainnet:
       endpoints:
         rpc:
           - "https://arb1.lava.build"
+          - "https://endpoints.omniatech.io/v1/arbitrum/one/public"
           - "https://arbitrum-one.public.blastapi.io"
-          - "https://rpc.ankr.com/arbitrum"
           - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
           - "https://1rpc.io/arb"
       native_token:
@@ -242,9 +218,10 @@ mainnet:
       maintainer_id: "optimism"
       endpoints:
         rpc:
-          - "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          - "https://optimism.lava.build"
+          - "https://optimism-rpc.publicnode.com"
           - "https://1rpc.io/op"
-          - "https://rpc.ankr.com/optimism"
+          - "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -316,7 +293,6 @@ mainnet:
         rpc:
           - "https://forno.celo.org"
           - "https://1rpc.io/celo"
-          - "https://rpc.ankr.com/celo"
       native_token:
         name: "Celo"
         symbol: "CELO"
@@ -369,7 +345,6 @@ mainnet:
           - "https://filecoin.chainup.net/rpc/v1"
           - "https://api.chain.love/rpc/v1"
           - "https://api.node.glif.io"
-          - "https://rpc.ankr.com/filecoin"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
@@ -513,8 +488,9 @@ mainnet:
       maintainer_id: "blast"
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/blast"
+          - "https://rpc.blast.io"
           - "https://blast-rpc.publicnode.com"
+          - "https://blastl2-mainnet.public.blastapi.io"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -2051,6 +2027,7 @@ mainnet:
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"
+      no_alert_tvl: true
       endpoints:
         lcd:
           - "https://phoenix-lcd.terra.dev"
@@ -2111,7 +2088,7 @@ mainnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "columbus-"
-  vm:
+  amplifier:
     flow:
       chain_id: 747
       chain_name: "flow"
@@ -2229,7 +2206,6 @@ testnet:
       endpoints:
         rpc:
           - "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://rpc.ankr.com/eth_ropsten"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -2255,7 +2231,6 @@ testnet:
         rpc:
           - "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
           - "https://eth-goerli.public.blastapi.io"
-          - "https://rpc.ankr.com/eth_goerli"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -2308,7 +2283,6 @@ testnet:
           - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
           - "https://bsc-testnet.blockpi.network/v1/rpc/public"
           - "https://bsc-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/bsc_testnet_chapel"
       native_token:
         name: "BNB"
         symbol: "BNB"
@@ -2333,7 +2307,6 @@ testnet:
       endpoints:
         rpc:
           - "https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://rpc.ankr.com/polygon_mumbai"
       native_token:
         name: "Polygon"
         symbol: "MATIC"
@@ -2357,7 +2330,6 @@ testnet:
       endpoints:
         rpc:
           - "https://rpc-amoy.polygon.technology"
-          - "https://rpc.ankr.com/polygon_amoy"
       native_token:
         name: "Polygon"
         symbol: "MATIC"
@@ -2374,30 +2346,6 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    polygon-zkevm:
-      disabled: true
-      chain_id: 1442
-      chain_name: "polygon-zkevm"
-      maintainer_id: "polygon-zkevm"
-      endpoints:
-        rpc:
-          - "https://rpc.public.zkevm-test.net"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Polygon zkEVM"
-      short_name: "POLY ZK"
-      image: "/logos/chains/polygon-zkevm.svg"
-      color: "#8247e5"
-      explorer:
-        name: "Polygonscan"
-        url: "https://testnet-zkevm.polygonscan.com"
-        icon: "/logos/explorers/polygonscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     avalanche:
       chain_id: 43113
       chain_name: "Avalanche"
@@ -2406,7 +2354,6 @@ testnet:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -2431,7 +2378,6 @@ testnet:
         rpc:
           - "https://rpc.testnet.fantom.network"
           - "https://fantom-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/fantom_testnet"
       native_token:
         name: "Fantom"
         symbol: "FTM"
@@ -2558,7 +2504,6 @@ testnet:
       endpoints:
         rpc:
           - "https://optimism-goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://rpc.ankr.com/optimism_testnet"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -2776,7 +2721,6 @@ testnet:
           - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
           - "https://filecoin-calibration.chainup.net/rpc/v1"
           - "https://api.calibration.node.glif.io/rpc/v1"
-          - "https://rpc.ankr.com/filecoin_testnet"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
@@ -2897,7 +2841,6 @@ testnet:
       endpoints:
         rpc:
           - "https://sepolia-rpc.scroll.io"
-          - "https://rpc.ankr.com/scroll_sepolia_testnet"
           - "https://1rpc.io/scroll/sepolia"
       native_token:
         name: "Ethereum"
@@ -4126,7 +4069,7 @@ testnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "bombay-"
-  vm:
+  amplifier:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
@@ -4166,7 +4109,6 @@ testnet:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -4460,7 +4402,6 @@ stagenet:
           - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
           - "https://bsc-testnet.blockpi.network/v1/rpc/public"
           - "https://bsc-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/bsc_testnet_chapel"
       native_token:
         name: "BNB"
         symbol: "BNB"
@@ -4484,7 +4425,6 @@ stagenet:
       endpoints:
         rpc:
           - "https://rpc-amoy.polygon.technology"
-          - "https://rpc.ankr.com/polygon_amoy"
       native_token:
         name: "Polygon"
         symbol: "MATIC"
@@ -4509,7 +4449,6 @@ stagenet:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -4534,7 +4473,6 @@ stagenet:
         rpc:
           - "https://rpc.testnet.fantom.network"
           - "https://fantom-testnet.public.blastapi.io"
-          - "https://rpc.ankr.com/fantom_testnet"
       native_token:
         name: "Fantom"
         symbol: "FTM"
@@ -4830,7 +4768,7 @@ stagenet:
       prefix_address: "axelar"
       prefix_chain_ids:
         - "axelar-"
-  vm:
+  amplifier:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
@@ -4870,7 +4808,6 @@ stagenet:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -5082,7 +5019,6 @@ devnet-amplifier:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -5162,7 +5098,7 @@ devnet-amplifier:
       prefix_address: "axelar"
       prefix_chain_ids:
         - "devnet-amplifier"
-  vm:
+  amplifier:
     eth-sepolia:
       chain_id: 11155111
       chain_name: "eth-sepolia"
@@ -5202,7 +5138,6 @@ devnet-amplifier:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
           - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
-          - "https://rpc.ankr.com/avalanche_fuji"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"

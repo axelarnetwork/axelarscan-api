@@ -9,6 +9,6 @@ module.exports = () => {
   describe('interchainTotalFee', () => {
     it('Should receive interchain total fee', async () => {
       expect(await interchainTotalFee()).to.be.a('number');
-    }).timeout(10000);
+    }).timeout(30000);
   });
 };

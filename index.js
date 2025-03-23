@@ -4,9 +4,8 @@ exports.handler = async (event = {}, context, callback) => {
   const METHODS = require('./methods');
   const intervalUpdate = require('./services/interval-update');
   const { parseParams, parseError, finalizeResponse } = require('./utils/io');
-  const { ENVIRONMENT } = require('./utils/config');
+  const { ENVIRONMENT, getLogLevel } = require('./utils/config');
   const { toJson } = require('./utils/parser');
-  const { log } = require('./utils/logger');
   const { version } = require('./package.json');
 
   // parse event to req
@@ -18,29 +17,32 @@ exports.handler = async (event = {}, context, callback) => {
     query: { ...event.queryStringParameters },
     body: { ...toJson(event.body) },
   };
+
   // create params from req
-  const params = parseParams(req, 'api');
+  const params = parseParams(req);
   const { method } = { ...params };
 
   // when not triggered by API
-  if (!method && !event.requestContext) await intervalUpdate();
+  if (!method && !event.requestContext) {
+    await intervalUpdate();
+  }
 
-  if (!method) return {
-    version,
-    env: { environment: ENVIRONMENT, log_level: process.env.LOG_LEVEL },
-  };
+  // without method (default)
+  if (!method) {
+    return {
+      version,
+      env: {
+        environment: ENVIRONMENT,
+        log_level: getLogLevel(),
+      },
+    };
+  }
 
-  // for calculate timeSpent
+  // for calculate time spent
   const startTime = moment();
+
   let response;
   switch (method) {
-    case 'tvl-alert':
-      try {
-        response = await METHODS.getTVLAlert(params);
-      } catch (error) {
-        response = parseError(error);
-      }
-      break;
     default:
       if (method in METHODS) {
         try {
@@ -54,7 +56,5 @@ exports.handler = async (event = {}, context, callback) => {
       break;
   }
 
-  response = finalizeResponse(response, params, startTime);
-  // log('debug', 'api', 'send response', response);
-  return response;
+  return finalizeResponse(response, params, startTime);
 };

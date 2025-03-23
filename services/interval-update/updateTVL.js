@@ -2,17 +2,26 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const { getTVL } = require('../../methods');
-const { getAssetsList, getITSAssetsList } = require('../../utils/config');
-const { toArray } = require('../../utils/parser');
+const { getAssets, getITSAssets } = require('../../utils/config');
 
 module.exports = async params => {
   const minute = moment().minutes();
   // run every 15 minutes
   if (minute % 15 !== 0) return;
+
+  // get TVL of custom assets
+  await getTVL({ forceCache: true, isIntervalUpdate: true, customAssetsOnly: true });
+
+  const assetsData = _.concat(await getAssets(), await getITSAssets())
+    .filter(d => !params?.id || d.id === params.id) // filter by params.id
+    .filter(d => params?.id || (minute % 30 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x'))); // run ITS on min 0 and 30, otherwise gateway
+
   const data = {};
-  await getTVL({ force_update: true, is_interval: true, custom_assets_only: true });
-  for (const d of toArray(_.concat(await getAssetsList(), await getITSAssetsList())).filter(d => !params?.id || d.id === params.id).filter(d => params?.id || (minute % 30 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x')))) {
-    data[d.id] = await getTVL({ asset: d.id, force_update: true, is_interval: true });
+
+  for (const { id } of assetsData) {
+    // get TVL of each asset
+    data[id] = await getTVL({ asset: id, forceCache: true, isIntervalUpdate: true });
   }
+
   return data;
 };

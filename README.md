@@ -4,6 +4,11 @@
 - mainnet: [https://api.axelarscan.io/api](https://api.axelarscan.io/api)
 - testnet: [https://testnet.api.axelarscan.io/api](https://testnet.api.axelarscan.io/api)
 
+## Stacks
+- AWS Lambda
+- AWS API Gateway
+- AWS EventBridge
+
 ## Deployment
 ### Prerequisites
 1. [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-prereqs.html)
