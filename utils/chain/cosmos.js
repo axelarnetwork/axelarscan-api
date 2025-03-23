@@ -67,9 +67,8 @@ const getCosmosBalance = async (chain, address, contractData) => {
 
 const getIBCSupply = async (chain, contractData) => {
   const lcds = getLCDs(chain, 3, 5000);
-  if (!(lcds && ibc_denom)) return;
-
   const { ibc_denom, decimals } = { ...contractData };
+  if (!(lcds && ibc_denom)) return;
 
   let supply;
   let valid = false;

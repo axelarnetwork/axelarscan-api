@@ -43,13 +43,6 @@ exports.handler = async (event = {}, context, callback) => {
 
   let response;
   switch (method) {
-    case 'tvl-alert':
-      try {
-        response = await METHODS.getTVLAlert(params);
-      } catch (error) {
-        response = parseError(error);
-      }
-      break;
     default:
       if (method in METHODS) {
         try {

@@ -36,7 +36,7 @@ const getBalance = async (chain, address, contractData) => {
   let { contract_address } = { ...contractData };
 
   // default to ZeroAddress
-  contract_address = contract_address || ZeroAddress;
+  contract_address = contract_address || contractData?.address || ZeroAddress;
 
   let balance;
 
@@ -72,9 +72,8 @@ const getBalance = async (chain, address, contractData) => {
 
 const getTokenSupply = async (chain, contractData) => {
   const { rpc } = { ...getChainData(chain, 'evm')?.endpoints };
-  if (!(rpc && address)) return;
-
   const { address, decimals } = { ...contractData };
+  if (!(rpc && address && address !== ZeroAddress)) return;
 
   let supply;
 
@@ -94,6 +93,7 @@ const getTokenSupply = async (chain, contractData) => {
     // fallback to ethers
     try {
       const provider = getProvider(chain);
+
       const contract = new Contract(address, ['function totalSupply() view returns (uint256)'], provider);
       supply = await contract.totalSupply();
     } catch (error) {}

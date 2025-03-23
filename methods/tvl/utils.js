@@ -25,21 +25,28 @@ const isAssetsEquals = (a, b, isNativeToken = false) => {
   if (!(a && b)) return;
 
   // check native token by compare address with ZeroAddress
-  isNativeToken = isNativeToken, !!find(ZeroAddress, [a.address, b.address]);
+  isNativeToken = isNativeToken || !!find(ZeroAddress, [a.address, b.address]);
 
   // exact or native / wrapped
   return equalsIgnoreCase(a.symbol, b.symbol) || (isNativeToken && (equalsIgnoreCase(a.symbol, `W${b.symbol}`) || equalsIgnoreCase(b.symbol, `W${a.symbol}`)));
 };
 
-const getTVLAssets = async params => {
-  const { custom_contracts, custom_tokens } = { ...getCustomTVLConfig() };
-  const { assets, customAssetsOnly } = { ...params };
+const getCustomContractsData = (chainData, assetData) => {
+  const { custom_contracts } = { ...getCustomTVLConfig() };
 
-  // gateway
-  const gatewayAssetsData = (await getAssets()).map(d => ({ ...d, type: 'gateway' }));
+  return toArray(custom_contracts).filter(c => c.address) // has contract address
+    .filter(c => !chainData || equalsIgnoreCase(c.chain, chainData.id)) // filter by chain
+    .filter(c => !assetData || toArray(c.assets).findIndex(a => a.address && isAssetsEquals(a, assetData)) > -1) // filter by contain asset
+    .map(c => ({
+      ...c,
+      assets: toArray(c.assets).filter(a => a.address && (!assetData || isAssetsEquals(a, assetData))), // filter by asset
+    }))
+    .filter(c => toArray(c.assets).length > 0); // filter has assets
+};
 
-  const customAssetsFromContracts = toArray(custom_contracts).flatMap(c => toArray(c.assets)
-    .filter(a => gatewayAssetsData.findIndex(d => isAssetsEquals(d, a)) < 0) // filter not gateway asset
+const getCustomContractsAssetsData = (chainData, assetData, gatewayAssetsData) => {
+  const customAssetsFromContracts = getCustomContractsData(chainData, assetData).flatMap(c => toArray(c.assets)
+    .filter(a => toArray(gatewayAssetsData).findIndex(d => isAssetsEquals(d, a)) < 0) // filter not gateway asset
     .map(a => ({
       key: [a.symbol, c.chain].join('_'),
       chain: c.chain,
@@ -47,8 +54,7 @@ const getTVLAssets = async params => {
     }))
   );
 
-  // custom contracts
-  const customContractsAssetsData = Object.values(_.groupBy(_.uniqBy(customAssetsFromContracts, 'key'), 'symbol')).map(assetsData => {
+  return Object.values(_.groupBy(_.uniqBy(customAssetsFromContracts, 'key'), 'symbol')).map(assetsData => {
     const assetData = { ..._.head(assetsData) };
     delete assetData.address;
 
@@ -64,12 +70,20 @@ const getTVLAssets = async params => {
       addresses: Object.fromEntries(assetsData.map(d => [d.chain, d])),
     };
   });
+};
 
-  // filter not gateway asset
-  const customAssets = toArray(custom_tokens).filter(a => gatewayAssetsData.findIndex(d => isAssetsEquals(d, a)) < 0);
+const getCustomTokensData = (chainData, assetData) => {
+  const { custom_tokens } = { ...getCustomTVLConfig() };
 
-  // custom tokens
-  const customTokensAssetsData = customAssets.map(assetData => {
+  return toArray(custom_tokens)
+  .filter(a => !chainData || a.addresses?.[chainData.id]) // filter by chain
+  .filter(a => !assetData || isAssetsEquals(a, assetData, chainData ? a.addresses[chainData.id].address === ZeroAddress : undefined)); // filter by asset
+};
+
+const getCustomTokensAssetsData = (chainData, assetData, gatewayAssetsData) => {
+  const customTokens = getCustomTokensData(chainData, assetData).filter(a => gatewayAssetsData.findIndex(d => isAssetsEquals(d, a)) < 0) // filter not gateway asset
+
+  return customTokens.map(assetData => {
     // generate denom by asset data from config and use as id
     const denom = generateDenomForAsset(assetData);
 
@@ -81,6 +95,19 @@ const getTVLAssets = async params => {
       ...assetData,
     };
   });
+};
+
+const getTVLAssets = async params => {
+  const { assets, customAssetsOnly } = { ...params };
+
+  // gateway
+  const gatewayAssetsData = (await getAssets()).map(d => ({ ...d, type: 'gateway' }));
+
+  // custom contracts
+  const customContractsAssetsData = getCustomContractsAssetsData(undefined, undefined, gatewayAssetsData);
+
+  // custom tokens
+  const customTokensAssetsData = getCustomTokensAssetsData(undefined, undefined, gatewayAssetsData);
 
   // ITS
   const itsAssetsData = customAssetsOnly ? [] :
@@ -162,8 +189,6 @@ const getTVLChains = (params, types, gatewayContracts) => {
   ), 'id');
 };
 
-const getChainType = chain => getChainData(chain)?.chain_type;
-
 const getContractData = (assetData, chainData) => {
   if (!(assetData && chainData)) return;
 
@@ -174,7 +199,7 @@ const getContractData = (assetData, chainData) => {
     case 'evm':
       data = {
         ...assetData,
-        ...addresses?.[id],
+        ...addresses?.[chainData.id],
         contract_address: addresses?.[chainData.id]?.address,
       };
       delete data.addresses;
@@ -182,7 +207,7 @@ const getContractData = (assetData, chainData) => {
     case 'cosmos':
       data = {
         ...assetData,
-        ...addresses?.[id],
+        ...addresses?.[chainData.id],
         denom: addresses?.axelarnet?.ibc_denom,
       };
       delete data.addresses;
@@ -194,12 +219,24 @@ const getContractData = (assetData, chainData) => {
   return data;
 };
 
+const getChainType = chain => getChainData(chain)?.chain_type;
+
+const isSecretSnipChain = chain => chain === 'secret-snip';
+
+const isSecretChain = chain => chain === 'secret';
+
 module.exports = {
   normalizeParams,
   generateDenomForAsset,
   isAssetsEquals,
+  getCustomContractsData,
+  getCustomContractsAssetsData,
+  getCustomTokensData,
+  getCustomTokensAssetsData,
   getTVLAssets,
   getTVLChains,
-  getChainType,
   getContractData,
+  getChainType,
+  isSecretSnipChain,
+  isSecretChain,
 };

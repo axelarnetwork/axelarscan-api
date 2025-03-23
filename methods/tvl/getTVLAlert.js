@@ -2,39 +2,50 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const getTVL = require('./getTVL');
+const { getChainType } = require('./utils');
 const { read } = require('../../services/indexer');
-const { TOKEN_TVL_COLLECTION, getChainData, getAssets, getAssetData, getAppURL, getTVLConfig } = require('../../utils/config');
+const { TOKEN_TVL_COLLECTION, getChainData, getAssets, getAssetData, getTVLConfig, getAppURL } = require('../../utils/config');
 const { toArray } = require('../../utils/parser');
-const { equalsIgnoreCase, toBoolean } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 
-const MAX_INTERVAL_UPDATE_SECONDS = 120 * 60;
-const IGNORED_CHAINS = ['terra-2'];
+const MAX_INTERVAL_UPDATE = 2 * 3600;
 
 const { alert_asset_escrow_value_threshold, alert_asset_value_threshold } = { ...getTVLConfig() };
 
-module.exports = async params => {
-  let { test } = { ...params };
-  test = toBoolean(test, false);
+module.exports = async () => {
+  // get tvls from cache
+  let { data } = { ...await read(TOKEN_TVL_COLLECTION, {
+    bool: {
+      must: [
+        { match: { 'data.assetType': 'gateway' } },
+        { exists: { field: 'data.price' } },
+        { exists: { field: 'data.total' } },
+        { exists: { field: 'data.percent_diff_supply' } },
+        { exists: { field: 'data.tvl' } },
+        { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE, 'seconds').valueOf() } } },
+      ],
+    },
+  }, { size: 1000 }) };
 
-  let { data } = { ...await read(TOKEN_TVL_COLLECTION, { range: { updated_at: { gt: moment().subtract(MAX_INTERVAL_UPDATE_SECONDS, 'seconds').unix() } } }, { size: 1000 }) };
-  const { updated_at } = { ..._.head(data) };
+  // set value of supply diff
+  data = _.orderBy(
+    toArray(data).flatMap(d => toArray(d.data)).map(d => ({
+      ...d,
+      value_diff: toNumber((d.total - (d.total_on_contracts + d.total_on_tokens)) * (d.percent_diff_supply / 100) * d.price),
+      tvl: Object.fromEntries(Object.entries(d.tvl).map(([k, v]) => [k, {
+        ...v,
+        is_abnormal_supply: !getChainData(k)?.no_alert_tvl && v.is_abnormal_supply,
+        value_diff: toNumber((v.escrow_balance || v.supply) * (v.percent_diff_supply / 100) * d.price),
+      }])),
+    })),
+    ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc'],
+  );
 
-  data = _.orderBy(toArray(toArray(data).map(d => _.head(toArray(d.data).filter(d => d.assetType !== 'its')))).map(d => {
-    const { price, total, total_on_contracts, total_on_tokens, percent_diff_supply } = { ...d };
-    return { ...d, value: toNumber(total * price), value_diff: toNumber((total - (total_on_contracts + total_on_tokens)) * (percent_diff_supply / 100) * price) };
-  }), ['value_diff', 'value', 'total'], ['desc', 'desc', 'desc']);
-
-  const toAlertData = data.filter(d => (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || (
-    toArray(Object.values({ ...d.tvl })).findIndex(_d => _d.is_abnormal_supply) > -1 && Object.entries(d.tvl).findIndex(([k, v]) => {
-      const { price } = { ...d };
-      const { supply, escrow_balance, percent_diff_supply } = { ...v };
-      return !IGNORED_CHAINS.includes(k) && toNumber((escrow_balance || supply) * (percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold;
-    }) > -1
-  ));
-
-  data = test && toAlertData.length === 0 && data.length > 0 ? _.slice(data, 0, 1) : toAlertData;
-  const timestamp = (updated_at ? moment(updated_at * 1000) : moment()).format();
+  // filter tvls to alert
+  const toAlertData = data.filter(d =>
+    (d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold) || // value of supply diff > threshold
+    Object.entries(d.tvl).find(([k, v]) => v.is_abnormal_supply && v.value_diff > alert_asset_escrow_value_threshold) // value of escrow balance diff > threshold
+  );
 
   let native_on_evm_total_status = 'ok';
   let native_on_evm_escrow_status = 'ok';
@@ -44,65 +55,119 @@ module.exports = async params => {
   let details;
   let links;
 
-  if (data.length > 0) {
+  if (toAlertData.length > 0) {
     const assetsData = await getAssets();
-    details = await Promise.all(data.map(d => new Promise(async resolve => {
-      const { asset, price, is_abnormal_supply, percent_diff_supply, total, value_diff, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens, evm_escrow_address, evm_escrow_balance, evm_escrow_address_urls, tvl } = { ...d };
-      const { native_chain, symbol, addresses } = { ...await getAssetData(asset, assetsData) };
-      const { chain_type } = { ...getChainData(native_chain) };
-      const app = getAppURL();
-      const appUrls = app && [`${app}/tvl`, `${app}/transfers/search?asset=${asset}&fromTime=${moment().subtract(24, 'hours').unix()}&toTime=${moment().unix()}&sortBy=value`];
+
+    // to alert details
+    details = await Promise.all(toAlertData.map(d => new Promise(async resolve => {
+      const { native_chain, symbol } = { ...await getAssetData(d.asset, assetsData) };
+
+      // urls to initial check
+      const appURLs = [`${getAppURL()}/tvl`, `${getAppURL()}/transfers/search?asset=${d.asset}&fromTime=${moment().subtract(24, 'hours').unix()}&toTime=${moment().unix()}&sortBy=value`];
 
       resolve({
-        asset, symbol, price,
-        native_chain, native_on: chain_type,
-        ...(is_abnormal_supply && value_diff > alert_asset_value_threshold ?
+        asset: d.asset,
+        symbol,
+        price: d.price,
+        native_chain,
+        native_on: getChainType(native_chain),
+        ...(d.is_abnormal_supply && d.value_diff > alert_asset_value_threshold ?
           {
-            percent_diff_supply,
-            total, total_on_evm, total_on_cosmos, total_on_contracts, total_on_tokens,
-            evm_escrow_address, evm_escrow_balance,
+            // amount
+            percent_diff_supply: d.percent_diff_supply,
+            total: d.total,
+            total_on_evm: d.total_on_evm,
+            total_on_cosmos: d.total_on_cosmos,
+            total_on_contracts: d.total_on_contracts,
+            total_on_tokens: d.total_on_tokens,
+            // evm escrow
+            evm_escrow_address: d.evm_escrow_address,
+            evm_escrow_balance: d.evm_escrow_balance,
+            // link
             links: _.uniq(toArray(_.concat(
-              evm_escrow_address_urls,
-              toArray(tvl?.[native_chain]).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)),
-              appUrls,
+              d.evm_escrow_address_urls,
+              toArray(d.tvl[native_chain]).flatMap(v => _.concat(v.url, v.escrow_addresses_urls, v.supply_urls)),
+              appURLs,
             ))),
           } :
           {
-            chains: Object.entries({ ...tvl }).filter(([k, v]) => !IGNORED_CHAINS.includes(k) && v?.is_abnormal_supply && toNumber((v.escrow_balance || v.supply) * (v.percent_diff_supply / 100) * price) > alert_asset_escrow_value_threshold).map(([k, v]) => {
-              const { percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance, token_manager_address, token_manager_type, token_manager_balance, ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance, url } = { ...v };
+            chains: Object.entries(d.tvl).filter(([k, v]) => v.is_abnormal_supply && v.value_diff > alert_asset_escrow_value_threshold).map(([k, v]) => {
               let { supply } = { ...v };
+
+              // native chain and not axelar
               if (k === native_chain && k !== 'axelarnet') {
-                const { total } = { ...tvl?.axelarnet };
+                const { total } = { ...d.tvl.axelarnet };
+
+                // set total axelar to supply of native chain
                 supply = isNumber(total) ? total : supply;
               }
+
               return {
-                chain: k, percent_diff_supply, contract_data, denom_data, gateway_address, gateway_balance,
-                token_manager_address, token_manager_type, token_manager_balance,
-                ibc_channels, escrow_addresses, escrow_balance, source_escrow_addresses, source_escrow_balance,
-                supply, link: d.url,
+                chain: k,
+                // amount
+                percent_diff_supply: v.percent_diff_supply,
+                supply,
+                // contract
+                contract_data: v.contract_data,
+                denom_data: v.denom_data,
+                // gateway
+                gateway_address: v.gateway_address,
+                gateway_balance: v.gateway_balance,
+                // token manager
+                token_manager_address: v.token_manager_address,
+                token_manager_type: v.token_manager_type,
+                token_manager_balance: v.token_manager_balance,
+                // escrow
+                ibc_channels: v.ibc_channels,
+                escrow_addresses: v.escrow_addresses,
+                escrow_balance: v.escrow_balance,
+                source_escrow_addresses: v.source_escrow_addresses,
+                source_escrow_balance: v.source_escrow_balance,
+                // link
+                link: v.url,
               };
             }),
-            links: _.uniq(toArray(_.concat(toArray(Object.entries({ ...tvl })).filter(([k, v]) => !IGNORED_CHAINS.includes(k) && v.is_abnormal_supply).flatMap(_d => _.concat(_d.url, _d.escrow_addresses_urls, _d.supply_urls)))), appUrls),
+            links: _.uniq(toArray(_.concat(
+              Object.values(d.tvl).filter(v => v.is_abnormal_supply).flatMap(v => _.concat(v.url, v.escrow_addresses_urls, v.supply_urls)),
+              appURLs,
+            ))),
           }
         ),
       });
     })));
 
+    // statuses
     native_on_evm_total_status = details.findIndex(d => d.native_on === 'evm' && isNumber(d.percent_diff_supply)) > -1 ? 'alert' : 'ok';
-    native_on_evm_escrow_status = details.findIndex(d => d.native_on === 'evm' && toArray(d.chains).findIndex(_d => isNumber(_d.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
+    native_on_evm_escrow_status = details.findIndex(d => d.native_on === 'evm' && toArray(d.chains).findIndex(c => isNumber(c.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
     native_on_cosmos_evm_escrow_status = details.findIndex(d => d.native_on === 'cosmos' && isNumber(d.percent_diff_supply)) > -1 ? 'alert' : 'ok';
-    native_on_cosmos_escrow_status = details.findIndex(d => d.native_on === 'cosmos' && toArray(d.chains).findIndex(_d => isNumber(_d.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
+    native_on_cosmos_escrow_status = details.findIndex(d => d.native_on === 'cosmos' && toArray(d.chains).findIndex(c => isNumber(c.percent_diff_supply)) > -1) > -1 ? 'alert' : 'ok';
 
-    const EVMDetails = [native_on_evm_total_status, native_on_evm_escrow_status].findIndex(s => s !== 'ok') > -1 ? details.filter(d => d.native_on === 'evm') : undefined;
+    // details
+    const evmDetails = [native_on_evm_total_status, native_on_evm_escrow_status].findIndex(s => s !== 'ok') > -1 ? details.filter(d => d.native_on === 'evm') : undefined;
     const cosmosDetails = [native_on_cosmos_evm_escrow_status, native_on_cosmos_escrow_status].findIndex(s => s !== 'ok') > -1 ? details.filter(d => d.native_on === 'cosmos') : undefined;
-    summary = toArray(_.concat(EVMDetails, cosmosDetails)).map(d => d.symbol).join(', ');
-    links = _.uniq(details.flatMap(d => d.links));
 
-    if (data.length === 1) {
-      const { asset } = { ..._.head(data) };
-      if (asset) await getTVL({ asset, forceCache: true });
+    // set list of symbols to summary
+    summary = toArray(_.concat(evmDetails, cosmosDetails)).map(d => d.symbol).join(', ');
+
+    // try get tvl when only one asset alerted
+    if (toAlertData.length === 1) {
+      const { asset } = { ..._.head(toAlertData) };
+
+      if (asset) {
+        // force update tvl of this asset
+        await getTVL({ asset, forceCache: true });
+      }
     }
   }
 
-  return { summary, timestamp, native_on_evm_total_status, native_on_evm_escrow_status, native_on_cosmos_evm_escrow_status, native_on_cosmos_escrow_status, details, links };
+  return {
+    summary,
+    timestamp: moment(_.head(toAlertData)?.updated_at).format(),
+    native_on_evm_total_status,
+    native_on_evm_escrow_status,
+    native_on_cosmos_evm_escrow_status,
+    native_on_cosmos_escrow_status,
+    details,
+    links: details && _.uniq(details.flatMap(d => d.links)),
+  };
 };
