@@ -45,7 +45,7 @@ module.exports = async params => {
   const axelarLCD = _.head(axelar.endpoints?.lcd);
 
   // set cacheId on querying single asset on every chains
-  const cacheId = assetsData.length === 1 && isAllChains && normalizeCacheId(assetsData[0].id);
+  const cacheId = assetsData.length === 1 && isAllChains && assetsData[0].id;
 
   if (!forceCache) {
     // get tvl from cache
@@ -445,7 +445,7 @@ module.exports = async params => {
   else {
     for (const d of data.filter(d => d.success)) {
       // caching
-      await writeCache(normalizeCacheId(d.asset), [d], TOKEN_TVL_COLLECTION, true);
+      await writeCache(d.asset, [d], TOKEN_TVL_COLLECTION, true);
     }
   }
 
