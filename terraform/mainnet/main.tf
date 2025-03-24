@@ -78,8 +78,8 @@ resource "aws_iam_role" "lambda_role" {
               "logs:CreateLogStream",
               "logs:PutLogEvents"
             ]
-            Effect   = "Deny"
-            Resource = "*"
+            Effect   = "Allow"
+            Resource = "arn:aws:logs:us-east-2:${var.aws_account}:log-group:/aws/lambda/${var.package_name}-${var.environment}:*"
           },
         ]
         Version = "2012-10-17"
