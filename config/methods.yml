@@ -223,52 +223,6 @@ methods:
             type: "[string]"
             description: "list of token address"
   -
-    id: "getContracts"
-    description: "The API route provides a list of Axelar gateway and the Gas Service contract addresses on each EVM-supported chain."
-    response:
-      -
-        name: "gateway_contracts"
-        type: "Map"
-        description: "gateway's address lookup by chain ([chain, contract])"
-        attributes:
-          -
-            type: "entry"
-            key: "chain"
-            value:
-              type: "object"
-              attributes:
-                -
-                  name: "address"
-                  type: "string"
-      -
-        name: "gas_service_contracts"
-        type: "Map"
-        description: "gas service's address lookup by chain ([chain, contract])"
-        attributes:
-          -
-            type: "entry"
-            key: "chain"
-            value:
-              type: "object"
-              attributes:
-                -
-                  name: "address"
-                  type: "string"
-      -
-        name: "operators_contracts"
-        type: "Map"
-        description: "operator contract's address lookup by chain ([chain, contract])"
-        attributes:
-          -
-            type: "entry"
-            key: "chain"
-            value:
-              type: "object"
-              attributes:
-                -
-                  name: "address"
-                  type: "string"
-  -
     id: "getTokensPrice"
     description: "The API route provides price of asset."
     parameters:

@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 const { getLCDInstance } = require('./utils');
-const { getChains, getContracts } = require('../../utils/config');
+const { getChains } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { removeDoubleQuote } = require('../../utils/string');
 const { toNumber, toFixed } = require('../../utils/number');
@@ -9,11 +9,8 @@ const { toNumber, toFixed } = require('../../utils/number');
 module.exports = async params => {
   const { height } = { ...params };
 
-  // get contracts
-  const { gateway_contracts } = { ...await getContracts() };
-
   // get evm chains that has inflation
-  const chainsData = getChains('evm').filter(d => !d.no_inflation && gateway_contracts?.[d.id]?.address);
+  const chainsData = getChains('evm').filter(d => !d.no_inflation && d.gateway?.address);
 
   let { uptimeRate, heartbeatRate, numEVMChains, unsubmittedVoteRates } = { ...params };
 

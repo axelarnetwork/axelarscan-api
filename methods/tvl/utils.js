@@ -162,11 +162,11 @@ const getTVLAssets = async params => {
   ), 'id');
 };
 
-const getTVLChains = (params, types, gatewayContracts) => {
+const getTVLChains = (params, types) => {
   const { chains } = { ...params };
 
   // get chains and filter 'no_tvl' and cosmos or has gateway
-  const chainsData = getChains(types).filter(d => !d.no_tvl && (d.chain_type === 'cosmos' || !gatewayContracts || gatewayContracts[d.id]?.address));
+  const chainsData = getChains(types).filter(d => !d.no_tvl && (d.chain_type === 'cosmos' || d.gateway?.address));
 
   // return all chains data when no filter chains
   if (toArray(chains).length === 0) return chainsData;

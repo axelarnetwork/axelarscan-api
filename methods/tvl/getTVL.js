@@ -8,7 +8,7 @@ const { getTokensPrice, getTokenCirculatingSupply } = require('../tokens');
 const { read } = require('../../services/indexer');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
-const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3Config, getTVLConfig, getContracts } = require('../../utils/config');
+const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3Config, getTVLConfig } = require('../../utils/config');
 const { readCache, writeCache, normalizeCacheId } = require('../../utils/cache');
 const { toHash, getBech32Address, toArray } = require('../../utils/parser');
 const { sleep } = require('../../utils/operator');
@@ -25,19 +25,16 @@ module.exports = async params => {
   params = normalizeParams(params);
   const { forceCache, isIntervalUpdate } = { ...params };
 
-  // get contracts
-  const { gateway_contracts } = { ...await getContracts() };
-
   // get assets
   const assetsData = await getTVLAssets(params);
   const gatewayAssetsData = assetsData.filter(d => d.type === 'gateway');
   const itsAssetsData = assetsData.filter(d => d.type === 'its');
 
   // get chains
-  const chainsData = getTVLChains(params, ['evm', 'cosmos'], gateway_contracts);
+  const chainsData = getTVLChains(params, ['evm', 'cosmos']);
   const evmChainsData = chainsData.filter(d => d.chain_type === 'evm');
   const cosmosChainsData = chainsData.filter(d => d.chain_type === 'cosmos');
-  const isAllChains = chainsData.length >= getTVLChains(undefined, ['evm', 'cosmos'], gateway_contracts).length;
+  const isAllChains = chainsData.length >= getTVLChains(undefined, ['evm', 'cosmos']).length;
   const isAllCosmosChains = cosmosChainsData.length >= getTVLChains(undefined, ['cosmos']).length;
 
   // get axelar
@@ -103,7 +100,7 @@ module.exports = async params => {
 
     let tvlsByChain = Object.fromEntries((await Promise.all(
       chainsData.map(d => new Promise(async resolve => {
-        const { id: chain, chain_type, endpoints, explorer, prefix_chain_ids } = { ...d };
+        const { id: chain, chain_type, gateway, endpoints, explorer, prefix_chain_ids } = { ...d };
         const { url, address_path, contract_path, asset_path } = { ...explorer };
         const LCD = _.head(endpoints?.lcd);
 
@@ -115,16 +112,13 @@ module.exports = async params => {
         switch (chain_type) {
           case 'evm':
             try {
-              // gateway of this chain
-              const gatewayAddress = gateway_contracts?.[chain]?.address;
-
               // create contract data from asset and chain data
               const contractData = getContractData(assetData, d);
               const { address, token_manager_address, token_manager_type } = { ...contractData };
 
               if (address) {
                 // get balance of this asset on gateway
-                const gatewayBalance = type === 'gateway' ? toNumber(await getBalance(chain, gatewayAddress, contractData)) : 0;
+                const gatewayBalance = type === 'gateway' ? toNumber(await getBalance(chain, gateway.address, contractData)) : 0;
 
                 // check token manager type is lockUnlock
                 const isLockUnlock = type === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
@@ -159,7 +153,7 @@ module.exports = async params => {
                   // contract
                   contract_data: contractData,
                   // gateway
-                  gateway_address: gatewayAddress,
+                  gateway_address: gateway.address,
                   gateway_balance: gatewayBalance,
                   // token manager
                   ...(isLockUnlock ? {
@@ -177,7 +171,7 @@ module.exports = async params => {
                   custom_tokens_supply: customTokensSupply,
                   total_supply_of_custom_tokens: _.sumBy(customTokensSupply, 'supply'),
                   // link
-                  url: `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gatewayAddress : address)}${isNative && address !== ZeroAddress ? gatewayAddress && type === 'gateway' ? `?a=${gatewayAddress}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}`,
+                  url: `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gateway.address : address)}${isNative && address !== ZeroAddress ? gateway.address && type === 'gateway' ? `?a=${gateway.address}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}`,
                   // status
                   success: isNumber(isNative && type === 'gateway' ? gatewayBalance : supply),
                 };
