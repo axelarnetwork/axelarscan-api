@@ -8,6 +8,8 @@ mainnet:
       chain_id: 1
       chain_name: "Ethereum"
       maintainer_id: "ethereum"
+      gateway:
+        address: "0x4F4495243837681061C4743b74B3eEdf548D56A5"
       endpoints:
         rpc:
           - "https://eth1.lava.build"
@@ -34,6 +36,8 @@ mainnet:
       chain_id: 56
       chain_name: "binance"
       maintainer_id: "binance"
+      gateway:
+        address: "0x304acf330bbE08d1e512eefaa92F6a57871fD895"
       endpoints:
         rpc:
           - "https://bsc-mainnet.public.blastapi.io"
@@ -63,6 +67,8 @@ mainnet:
       chain_id: 137
       chain_name: "Polygon"
       maintainer_id: "polygon"
+      gateway:
+        address: "0x6f015F16De9fC8791b234eF68D486d2bF203FBA8"
       endpoints:
         rpc:
           - "https://polygon.lava.build"
@@ -88,6 +94,8 @@ mainnet:
       chain_id: 43114
       chain_name: "Avalanche"
       maintainer_id: "avalanche"
+      gateway:
+        address: "0x5029C0EFf6C34351a0CEc334542cDb22c7928f78"
       endpoints:
         rpc:
           - "https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc"
@@ -113,6 +121,8 @@ mainnet:
       chain_id: 250
       chain_name: "Fantom"
       maintainer_id: "fantom"
+      gateway:
+        address: "0x304acf330bbE08d1e512eefaa92F6a57871fD895"
       endpoints:
         rpc:
           - "https://fantom-mainnet.public.blastapi.io"
@@ -140,6 +150,8 @@ mainnet:
       chain_id: 1284
       chain_name: "Moonbeam"
       maintainer_id: "moonbeam"
+      gateway:
+        address: "0x4F4495243837681061C4743b74B3eEdf548D56A5"
       endpoints:
         rpc:
           - "https://rpc.api.moonbeam.network"
@@ -161,34 +173,12 @@ mainnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    aurora:
-      chain_id: 1313161554
-      chain_name: "aurora"
-      maintainer_id: "aurora"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://mainnet.aurora.dev"
-      native_token:
-        name: "Ethereum"
-        symbol: "aETH"
-        decimals: 18
-      name: "Aurora"
-      short_name: "AURORA"
-      image: "/logos/chains/aurora.svg"
-      color: "#88d060"
-      explorer:
-        name: "Aurora"
-        url: "https://explorer.aurora.dev"
-        icon: "/logos/explorers/aurorascan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     arbitrum:
       chain_id: 42161
       chain_name: "arbitrum"
       maintainer_id: "arbitrum"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://arb1.lava.build"
@@ -216,6 +206,8 @@ mainnet:
       chain_id: 10
       chain_name: "optimism"
       maintainer_id: "optimism"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://optimism.lava.build"
@@ -242,6 +234,8 @@ mainnet:
       chain_id: 8453
       chain_name: "base"
       maintainer_id: "base"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://developer-access-mainnet.base.org"
@@ -265,6 +259,8 @@ mainnet:
       chain_id: 5000
       chain_name: "mantle"
       maintainer_id: "mantle"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.mantle.xyz"
@@ -289,6 +285,8 @@ mainnet:
       chain_id: 42220
       chain_name: "celo"
       maintainer_id: "celo"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://forno.celo.org"
@@ -313,6 +311,8 @@ mainnet:
       chain_id: 2222
       chain_name: "kava"
       maintainer_id: "kava"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://evm.data.axelar.kava.io"
@@ -340,6 +340,8 @@ mainnet:
       chain_name: "filecoin"
       maintainer_id: "filecoin"
       no_recover: true
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://filecoin.chainup.net/rpc/v1"
@@ -365,6 +367,8 @@ mainnet:
       chain_id: 59144
       chain_name: "linea"
       maintainer_id: "linea"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.linea.build"
@@ -394,6 +398,8 @@ mainnet:
       maintainer_id: "centrifuge"
       no_recover: true
       no_tvl: true
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://fullnode.parachain.centrifuge.io"
@@ -417,6 +423,8 @@ mainnet:
       chain_id: 534352
       chain_name: "scroll"
       maintainer_id: "scroll"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.scroll.io"
@@ -440,6 +448,8 @@ mainnet:
       chain_id: 13371
       chain_name: "immutable"
       maintainer_id: "immutable"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.immutable.com"
@@ -463,6 +473,8 @@ mainnet:
       chain_id: 252
       chain_name: "fraxtal"
       maintainer_id: "fraxtal"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.frax.com"
@@ -486,6 +498,8 @@ mainnet:
       chain_id: 81457
       chain_name: "blast"
       maintainer_id: "blast"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.blast.io"
@@ -2092,6 +2106,8 @@ mainnet:
     flow:
       chain_id: 747
       chain_name: "flow"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
         address: "axelar1rsuejfntt4rs2y8dn4dd3acszs00zyg9wpnsc6fmhevcp6plu5qspzn7e0"
       voting_verifier:
@@ -2118,6 +2134,8 @@ mainnet:
     hedera:
       chain_id: 295
       chain_name: "hedera"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
         address: ""
       voting_verifier:
@@ -2198,59 +2216,12 @@ mainnet:
 
 testnet:
   evm:
-    ethereum:
-      chain_id: 3
-      chain_name: "Ethereum"
-      maintainer_id: "ethereum"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Ropsten"
-      short_name: "ETH"
-      image: "/logos/chains/ropsten.svg"
-      color: "#c0c2c3"
-      explorer:
-        name: "Etherscan"
-        url: "https://ropsten.etherscan.io"
-        icon: "/logos/explorers/etherscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    ethereum-2:
-      chain_id: 5
-      chain_name: "ethereum-2"
-      maintainer_id: "ethereum-2"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-          - "https://eth-goerli.public.blastapi.io"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Ethereum"
-      short_name: "ETH"
-      image: "/logos/chains/ethereum.svg"
-      color: "#c0c2c3"
-      explorer:
-        name: "Etherscan"
-        url: "https://goerli.etherscan.io"
-        icon: "/logos/explorers/etherscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     ethereum-sepolia:
       chain_id: 11155111
       chain_name: "ethereum-sepolia"
       maintainer_id: "ethereum-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://1rpc.io/sepolia"
@@ -2276,6 +2247,8 @@ testnet:
       chain_id: 97
       chain_name: "binance"
       maintainer_id: "binance"
+      gateway:
+        address: "0x4D147dCb984e6affEEC47e44293DA442580A3Ec0"
       endpoints:
         rpc:
           - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
@@ -2299,34 +2272,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    polygon:
-      chain_id: 80001
-      chain_name: "Polygon"
-      maintainer_id: "polygon"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-      native_token:
-        name: "Polygon"
-        symbol: "MATIC"
-        decimals: 18
-      name: "Polygon"
-      short_name: "POLYGON"
-      image: "/logos/chains/polygon.svg"
-      color: "#8247e5"
-      explorer:
-        name: "Polygonscan"
-        url: "https://mumbai.polygonscan.com"
-        icon: "/logos/explorers/polygonscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     polygon-sepolia:
       chain_id: 80002
       chain_name: "polygon-sepolia"
       maintainer_id: "polygon-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc-amoy.polygon.technology"
@@ -2350,6 +2301,8 @@ testnet:
       chain_id: 43113
       chain_name: "Avalanche"
       maintainer_id: "avalanche"
+      gateway:
+        address: "0xC249632c2D40b9001FE907806902f63038B737Ab"
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
@@ -2374,6 +2327,8 @@ testnet:
       chain_id: 4002
       chain_name: "Fantom"
       maintainer_id: "fantom"
+      gateway:
+        address: "0x97837985Ec0494E7b9C71f5D3f9250188477ae14"
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
@@ -2398,6 +2353,8 @@ testnet:
       chain_id: 1287
       chain_name: "Moonbeam"
       maintainer_id: "moonbeam"
+      gateway:
+        address: "0x5769D84DD62a6fD969856c75c7D321b84d455929"
       endpoints:
         rpc:
           - "https://rpc.api.moonbase.moonbeam.network"
@@ -2419,63 +2376,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    aurora:
-      chain_id: 1313161555
-      chain_name: "aurora"
-      maintainer_id: "aurora"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://testnet.aurora.dev"
-      native_token:
-        name: "Ethereum"
-        symbol: "aETH"
-        decimals: 18
-      name: "Aurora"
-      short_name: "AURORA"
-      image: "/logos/chains/aurora.svg"
-      color: "#88d060"
-      explorer:
-        name: "Aurora"
-        url: "https://explorer.testnet.aurora.dev"
-        icon: "/logos/explorers/aurorascan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    arbitrum:
-      chain_id: 421613
-      chain_name: "arbitrum"
-      maintainer_id: "arbitrum"
-      deprecated: true
-      endpoints:
-        rpc:
-          # - "https://goerli-rollup.arbitrum.io/rpc"
-          # - "https://endpoints.omniatech.io/v1/arbitrum/goerli/public"
-          # - "https://arb-goerli.g.alchemy.com/v2/demo"
-          - "https://arbitrum-goerli.publicnode.com"
-          - "https://arbitrum-goerli.blockpi.network/v1/rpc/public"
-          - "https://arbitrum-goerli.public.blastapi.io"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Arbitrum"
-      short_name: "ARB"
-      image: "/logos/chains/arbitrum.svg"
-      color: "#28a0f0"
-      explorer:
-        name: "Arbiscan"
-        url: "https://goerli.arbiscan.io"
-        icon: "/logos/explorers/arbiscan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     arbitrum-sepolia:
       chain_id: 421614
       chain_name: "arbitrum-sepolia"
       maintainer_id: "arbitrum-sepolia"
+      gateway:
+        address: "0xe1cE95479C84e9809269227C7F8524aE051Ae77a"
       endpoints:
         rpc:
           - "https://arbitrum-sepolia.blockpi.network/v1/rpc/public"
@@ -2496,34 +2402,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    optimism:
-      chain_id: 420
-      chain_name: "optimism"
-      maintainer_id: "optimism"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://optimism-goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Optimism"
-      short_name: "OP"
-      image: "/logos/chains/optimism.svg"
-      color: "#dc2626"
-      explorer:
-        name: "Etherscan"
-        url: "https://goerli-optimism.etherscan.io"
-        icon: "/logos/explorers/optimism.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     optimism-sepolia:
       chain_id: 11155420
       chain_name: "optimism-sepolia"
       maintainer_id: "optimism-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
@@ -2544,34 +2428,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    base:
-      chain_id: 84531
-      chain_name: "base"
-      maintainer_id: "base"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://goerli.base.org"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Base"
-      short_name: "BASE"
-      image: "/logos/chains/base.svg"
-      color: "#0052fe"
-      explorer:
-        name: "Basescan"
-        url: "https://goerli.basescan.org"
-        icon: "/logos/explorers/basescan.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     base-sepolia:
       chain_id: 84532
       chain_name: "base-sepolia"
       maintainer_id: "base-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.notadegen.com/base/sepolia"
@@ -2593,34 +2455,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    mantle:
-      chain_id: 5001
-      chain_name: "mantle"
-      maintainer_id: "mantle"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://rpc.testnet.mantle.xyz"
-      native_token:
-        name: "Mantle"
-        symbol: "MNT"
-        decimals: 18
-      name: "Mantle"
-      short_name: "MNT"
-      image: "/logos/chains/mantle.svg"
-      color: "#65b3ae"
-      explorer:
-        name: "Mantle"
-        url: "https://explorer.testnet.mantle.xyz"
-        icon: "/logos/explorers/mantle.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     mantle-sepolia:
       chain_id: 5003
       chain_name: "mantle-sepolia"
       maintainer_id: "mantle-sepolia"
+      gateway:
+        address: "0xC8D18F85cB0Cee5C95eC29c69DeaF6cea972349c"
       endpoints:
         rpc:
           - "https://rpc.sepolia.mantle.xyz"
@@ -2644,6 +2484,8 @@ testnet:
       chain_id: 44787
       chain_name: "celo"
       maintainer_id: "celo"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://alfajores-forno.celo-testnet.org"
@@ -2667,6 +2509,8 @@ testnet:
       chain_id: 2221
       chain_name: "kava"
       maintainer_id: "kava"
+      gateway:
+        address: "0xC8D18F85cB0Cee5C95eC29c69DeaF6cea972349c"
       endpoints:
         rpc:
           - "https://evm.testnet.kava.io"
@@ -2686,36 +2530,13 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    filecoin:
-      chain_id: 3141
-      chain_name: "filecoin"
-      maintainer_id: "filecoin"
-      deprecated: true
-      no_recover: true
-      endpoints:
-        rpc:
-          - "https://api.hyperspace.node.glif.io/rpc/v1"
-      native_token:
-        name: "Filecoin"
-        symbol: "FIL"
-        decimals: 18
-      name: "Filecoin"
-      short_name: "FIL"
-      image: "/logos/chains/filecoin.svg"
-      color: "#0090ff"
-      explorer:
-        name: "Filecoin"
-        url: "https://hyperspace.filfox.info"
-        icon: "/logos/explorers/filecoin.png"
-        block_path: "/tipset/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/address/{address}"
-        transaction_path: "/tx/{tx}"
     filecoin-2:
       chain_id: 314159
       chain_name: "filecoin-2"
       maintainer_id: "filecoin-2"
       no_recover: true
+      gateway:
+        address: "0x999117D44220F33e0441fbAb2A5aDB8FF485c54D"
       endpoints:
         rpc:
           - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
@@ -2737,34 +2558,12 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/message/{tx}"
-    linea:
-      chain_id: 59140
-      chain_name: "linea"
-      maintainer_id: "linea"
-      deprecated: true
-      endpoints:
-        rpc:
-          - "https://rpc.goerli.linea.build"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Linea"
-      short_name: "LINEA"
-      image: "/logos/chains/linea.svg"
-      color: "#62dfff"
-      explorer:
-        name: "Linea"
-        url: "https://goerli.lineascan.build"
-        icon: "/logos/explorers/linea.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     linea-sepolia:
       chain_id: 59141
       chain_name: "linea-sepolia"
       maintainer_id: "linea-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
@@ -2785,36 +2584,13 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    centrifuge:
-      chain_id: 2089
-      chain_name: "centrifuge"
-      maintainer_id: "centrifuge"
-      deprecated: true
-      no_recover: true
-      endpoints:
-        rpc:
-          - "https://fullnode.algol.cntrfg.com/rpc"
-      native_token:
-        name: "Algol"
-        symbol: "ALGL"
-        decimals: 18
-      name: "Centrifuge"
-      short_name: "CFG"
-      image: "/logos/chains/centrifuge.svg"
-      color: "#ffc012"
-      explorer:
-        name: "Centrifuge"
-        url: ""
-        icon: "/logos/explorers/centrifuge.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
     centrifuge-2:
       chain_id: 2090
       chain_name: "centrifuge-2"
       maintainer_id: "centrifuge-2"
       no_recover: true
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://fullnode.demo.k-f.dev"
@@ -2838,6 +2614,8 @@ testnet:
       chain_id: 534351
       chain_name: "scroll"
       maintainer_id: "scroll"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://sepolia-rpc.scroll.io"
@@ -2862,6 +2640,8 @@ testnet:
       chain_id: 13473
       chain_name: "immutable"
       maintainer_id: "immutable"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.testnet.immutable.com"
@@ -2885,6 +2665,8 @@ testnet:
       chain_id: 2522
       chain_name: "fraxtal"
       maintainer_id: "fraxtal"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://rpc.testnet.frax.com"
@@ -2908,6 +2690,8 @@ testnet:
       chain_id: 168587773
       chain_name: "blast-sepolia"
       maintainer_id: "blast-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       endpoints:
         rpc:
           - "https://sepolia.blast.io"
@@ -4073,6 +3857,8 @@ testnet:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
+      gateway:
+        address: "0x14213B104d2D897cFeE3767F24277771C8e6B702"
       multisig_prover:
         address: "axelar1u7qt6kz34ljjx6c94444e2v57uzt2tdlgxc6qjkvu4c5phncca8qakejex"
       voting_verifier:
@@ -4101,6 +3887,8 @@ testnet:
     test-avalanche:
       chain_id: 43113
       chain_name: "test-avalanche"
+      gateway:
+        address: "0x14213B104d2D897cFeE3767F24277771C8e6B702"
       multisig_prover:
         address: "axelar1l5k8wlzmkmtnvjvs9x77wdcfweucwgums9e8fh0d8cy76ymqc5aqzguqnn"
       voting_verifier:
@@ -4128,6 +3916,8 @@ testnet:
     flow:
       chain_id: 545
       chain_name: "flow"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
         address: "axelar1rsuejfntt4rs2y8dn4dd3acszs00zyg9wpnsc6fmhevcp6plu5qspzn7e0"
       voting_verifier:
@@ -4154,6 +3944,8 @@ testnet:
     hedera:
       chain_id: 296
       chain_name: "hedera"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
         address: "axelar1kleasry5ed73a8u4q6tdeu80hquy4nplfnrntx3n6agm2tcx40fssjk7gj"
       voting_verifier:
@@ -4370,6 +4162,8 @@ stagenet:
       chain_id: 11155111
       chain_name: "ethereum-sepolia"
       maintainer_id: "ethereum-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://1rpc.io/sepolia"
@@ -4395,6 +4189,8 @@ stagenet:
       chain_id: 97
       chain_name: "binance"
       maintainer_id: "binance"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
@@ -4422,6 +4218,8 @@ stagenet:
       chain_id: 80002
       chain_name: "polygon-sepolia"
       maintainer_id: "polygon-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc-amoy.polygon.technology"
@@ -4445,6 +4243,8 @@ stagenet:
       chain_id: 43113
       chain_name: "Avalanche"
       maintainer_id: "avalanche"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
@@ -4469,6 +4269,8 @@ stagenet:
       chain_id: 4002
       chain_name: "Fantom"
       maintainer_id: "fantom"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
@@ -4493,6 +4295,8 @@ stagenet:
       chain_id: 1287
       chain_name: "Moonbeam"
       maintainer_id: "moonbeam"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc.api.moonbase.moonbeam.network"
@@ -4518,6 +4322,8 @@ stagenet:
       chain_id: 421614
       chain_name: "arbitrum-sepolia"
       maintainer_id: "arbitrum-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://arbitrum-sepolia.blockpi.network/v1/rpc/public"
@@ -4542,6 +4348,8 @@ stagenet:
       chain_id: 11155420
       chain_name: "optimism-sepolia"
       maintainer_id: "optimism-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
@@ -4566,6 +4374,8 @@ stagenet:
       chain_id: 84532
       chain_name: "base-sepolia"
       maintainer_id: "base-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc.notadegen.com/base/sepolia"
@@ -4591,6 +4401,8 @@ stagenet:
       chain_id: 5003
       chain_name: "mantle-sepolia"
       maintainer_id: "mantle-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc.sepolia.mantle.xyz"
@@ -4614,6 +4426,8 @@ stagenet:
       chain_id: 2221
       chain_name: "kava"
       maintainer_id: "kava"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://evm.testnet.kava.io"
@@ -4637,6 +4451,8 @@ stagenet:
       chain_id: 59141
       chain_name: "linea-sepolia"
       maintainer_id: "linea-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
@@ -4662,6 +4478,8 @@ stagenet:
       chain_name: "centrifuge"
       maintainer_id: "centrifuge"
       no_recover: true
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://fullnode.demo.k-f.dev"
@@ -4685,6 +4503,8 @@ stagenet:
       chain_id: 2522
       chain_name: "fraxtal"
       maintainer_id: "fraxtal"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://rpc.testnet.frax.com"
@@ -4708,6 +4528,8 @@ stagenet:
       chain_id: 168587773
       chain_name: "blast-sepolia"
       maintainer_id: "blast-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       endpoints:
         rpc:
           - "https://sepolia.blast.io"
@@ -4772,6 +4594,8 @@ stagenet:
     test-sepolia:
       chain_id: 11155111
       chain_name: "test-sepolia"
+      gateway:
+        address: "0x6157b0801Bd08427E20a6A216694315DA2C9BF09"
       multisig_prover:
         address: "axelar14t526efvs4r6pmg3ntjve9t5k3hagswngrnaya83365w0ad9ky0s333suh"
       voting_verifier:
@@ -4800,6 +4624,8 @@ stagenet:
     test-avalanche:
       chain_id: 43113
       chain_name: "test-avalanche"
+      gateway:
+        address: "0x6157b0801Bd08427E20a6A216694315DA2C9BF09"
       multisig_prover:
         address: "axelar1fzd0kqdewaupvngygmtltda9ru9zm590kj00sz4vxla4h6hlawtqpcfkqe"
       voting_verifier:
@@ -4827,6 +4653,8 @@ stagenet:
     flow:
       chain_id: 545
       chain_name: "flow"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       multisig_prover:
         address: "axelar1u8cmvyq54fepjlt77vqnwyxhf4rqn5j5axgta7py34zlwue3v5fsy2pvhf"
       voting_verifier:
@@ -4853,6 +4681,8 @@ stagenet:
     hedera:
       chain_id: 296
       chain_name: "hedera"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       multisig_prover:
         address: "axelar1x3xd2z2p3703cdwu98tc27x5j9tgq60lyxdwtnggx05zj3egg0wqsnckd0"
       voting_verifier:
@@ -4990,6 +4820,8 @@ devnet-amplifier:
       chain_id: 11155111
       chain_name: "core-ethereum"
       maintainer_id: "core-ethereum"
+      gateway:
+        address: "0x7C60aA56482c2e78D75Fd6B380e1AdC537B97319"
       endpoints:
         rpc:
           - "https://1rpc.io/sepolia"
@@ -5015,6 +4847,8 @@ devnet-amplifier:
       chain_id: 43113
       chain_name: "core-avalanche"
       maintainer_id: "core-avalanche"
+      gateway:
+        address: "0xb7879887ec7e85a5C757D7ccF5E3AB15007152e2"
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
@@ -5039,6 +4873,8 @@ devnet-amplifier:
       chain_id: 11155420
       chain_name: "core-optimism"
       maintainer_id: "core-optimism"
+      gateway:
+        address: "0xdb6711cFc97e13E4aF6EEEe5f4923A9c2FBf0721"
       endpoints:
         rpc:
           - "https://optimism-sepolia.blockpi.network/v1/rpc/public"
@@ -5102,6 +4938,8 @@ devnet-amplifier:
     eth-sepolia:
       chain_id: 11155111
       chain_name: "eth-sepolia"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
       multisig_prover:
         address: "axelar15ra7d5uvnmc6ety6sqxsvsfz4t34ud6lc5gmt39res0c5thkqp2qdwj4af"
       voting_verifier:
@@ -5130,6 +4968,8 @@ devnet-amplifier:
     avalanche-fuji:
       chain_id: 43113
       chain_name: "avalanche-fuji"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
       multisig_prover:
         address: "axelar1p22kz5jr7a9ruu8ypg40smual0uagl64dwvz5xt042vu8fa7l7dsl3wx8q"
       voting_verifier:
@@ -5157,6 +4997,8 @@ devnet-amplifier:
     optimism-sepolia:
       chain_id: 11155420
       chain_name: "optimism-sepolia"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
       multisig_prover:
         address: "axelar1p0yyfy7f70zdc0ludh6kffjzs8mvun5prdf7nh7s2cgq74g67nmsjcw7t4"
       voting_verifier:
@@ -5184,6 +5026,8 @@ devnet-amplifier:
     flow:
       chain_id: 545
       chain_name: "flow"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
       multisig_prover:
         address: "axelar19ukamzyhhaw4algkqch5relyg0h972smhj8zge2usjp8z7yaezrquc475f"
       voting_verifier:
@@ -5210,6 +5054,8 @@ devnet-amplifier:
     hedera-testnet:
       chain_id: 296
       chain_name: "hedera-testnet"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
       multisig_prover:
         address: ""
       voting_verifier:
