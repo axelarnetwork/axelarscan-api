@@ -12,6 +12,7 @@ module.exports = {
   searchProposedBlocks: async params => await requestAPI('searchProposedBlocks', params),
   searchHeartbeats: async params => await requestAPI('searchHeartbeats', params),
   searchPolls: async params => await requestAPI('searchPolls', params),
+  searchEVMPolls: async params => await requestAPI('searchEVMPolls', params),
   getValidators: async params => await requestAPI('getValidators', params),
   getValidatorsVotes: async params => await requestAPI('getValidatorsVotes', params),
   getChainMaintainers: async params => await requestAPI('getChainMaintainers', params),

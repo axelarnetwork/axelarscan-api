@@ -11,7 +11,7 @@ const readCache = async (cacheId, cacheAge = 300, collection = CACHE_COLLECTION)
   if (!cacheId) return;
 
   // get cache by id
-  const { data, updated_at } = { ...await get(collection, cacheId) };
+  const { data, updated_at } = { ...await get(collection, normalizeCacheId(cacheId)) };
 
   // cache hit and not expired
   if (toJson(data) && timeDiff(updated_at) < cacheAge) {
@@ -26,7 +26,7 @@ const writeCache = async (cacheId, data, collection = CACHE_COLLECTION, useRawDa
   if (!cacheId) return;
 
   // write cache
-  await write(collection, cacheId, { data: useRawData ? data : JSON.stringify(data), updated_at: moment().valueOf() });
+  await write(collection, normalizeCacheId(cacheId), { data: useRawData ? data : JSON.stringify(data), updated_at: moment().valueOf() });
 };
 
 const normalizeCacheId = id => isString(id) ? split(id, { delimiter: '/' }).join('_') : undefined;
