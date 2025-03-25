@@ -16,7 +16,7 @@ const { lastString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
-const CACHE_AGE = 3600;
+const CACHE_AGE = 4 * 3600;
 const IBC_CHANNELS_CACHE_AGE = 24 * 3600;
 
 const { percent_diff_escrow_supply_threshold, percent_diff_total_supply_threshold } = { ...getTVLConfig() };

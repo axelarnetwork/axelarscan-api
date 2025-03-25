@@ -8,7 +8,7 @@ const { TOKEN_TVL_COLLECTION, getChainData, getAssets, getAssetData, getTVLConfi
 const { toArray } = require('../../utils/parser');
 const { isNumber, toNumber } = require('../../utils/number');
 
-const MAX_INTERVAL_UPDATE = 2 * 3600;
+const MAX_INTERVAL_UPDATE = 6 * 3600;
 
 const { alert_asset_escrow_value_threshold, alert_asset_value_threshold } = { ...getTVLConfig() };
 
