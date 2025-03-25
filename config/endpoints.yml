@@ -14,7 +14,7 @@ mainnet:
 
 testnet:
   lcd: "http://testnet.lcd.axelarscan.io:80"
-  lcd_archive: "http://testnet.archive-node-lcd.axelarscan.io:80"
+  lcd_archive: "https://axelart.lava.build"
   validator_api: "https://762da1qejd.execute-api.us-east-2.amazonaws.com"
   token_transfer_api: "https://dl5bgfjozd.execute-api.us-east-2.amazonaws.com"
   gmp_api: "https://testnet.api.axelarscan.io/gmp"
