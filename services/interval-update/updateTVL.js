@@ -5,6 +5,7 @@ const { getTVL } = require('../../methods');
 const { getAssets, getITSAssets } = require('../../utils/config');
 
 module.exports = async params => {
+  const hour = moment().hours();
   const minute = moment().minutes();
   // run every 15 minutes
   if (minute % 15 !== 0) return;
@@ -14,7 +15,8 @@ module.exports = async params => {
 
   const assetsData = _.concat(await getAssets(), await getITSAssets())
     .filter(d => !params?.id || d.id === params.id) // filter by params.id
-    .filter(d => params?.id || (minute % 30 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x'))); // run ITS on min 0 and 30, otherwise gateway
+    .filter(d => params?.id || (minute % 30 === 0 ? d.id.startsWith('0x') : !d.id.startsWith('0x'))) // run ITS on min 0 and 30, otherwise gateway
+    .filter((d, i) => params?.id || hour % 3 === i % 3);
 
   const data = {};
 
