@@ -3,7 +3,7 @@ const moment = require('moment');
 const { getTokenInfo } = require('../../methods');
 const { write } = require('../../services/indexer');
 const { TOKEN_INFO_COLLECTION } = require('../../utils/config');
-const { toCase } = require('../../utils/string');
+const { toCase } = require('../../utils/parser');
 const { getGranularity } = require('../../utils/time');
 
 module.exports = async params => {
