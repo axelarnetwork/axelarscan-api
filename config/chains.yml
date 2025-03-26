@@ -567,10 +567,10 @@ mainnet:
       chain_name: "osmosis"
       endpoints:
         lcd:
+          - "https://lcd.osmosis.zone"
           - "https://rest-osmosis.ecostake.com"
           - "https://osmosis-api.polkachu.com"
           - "https://lcd-osmosis.imperator.co"
-          - "https://lcd.osmosis.zone"
           - "https://lcd-osmosis.blockapsis.com"
         timeout:
           lcd: 3000

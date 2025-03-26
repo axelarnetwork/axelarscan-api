@@ -2,7 +2,7 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const { TOKEN_PRICE_COLLECTION, TOKEN_API, CURRENCY, getAssets, getAssetData, getITSAssets, getITSAssetData, getTokens, getCustomTVLConfig } = require('../../utils/config');
-const { readCache, writeCache } = require('../../utils/cache');
+const { readCache, readMultipleCache, writeCache } = require('../../utils/cache');
 const { request } = require('../../utils/http');
 const { toCase, toArray } = require('../../utils/parser');
 const { lastString } = require('../../utils/string');
@@ -121,24 +121,52 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
       // coingecko ids
       const ids = _.uniq(toArray(tokensData.map(d => d.coingecko_id)));
 
-      const cacheId = toArray(ids, { toCase: 'lower' }).join('_');
+      const cacheId = ids.length === 1 && ids[0];
       let response;
 
       // get price from cache
-      const cache = await readCache(cacheId, 300, TOKEN_PRICE_COLLECTION);
-      if (cache) {
-        response = cache;
+      if (cacheId) {
+        const cache = await readCache(cacheId, 300, TOKEN_PRICE_COLLECTION);
+        if (cache) {
+          response = cache;
+        }
       }
       else {
+        // get tokens price from cache
+        const data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
+
+        if (toArray(data).length > 0) {
+          response = Object.fromEntries(data.flatMap(d => Object.entries(d)));
+        }
+      }
+
+      if (!response) {
         // get tokens price from coingecko
         response = await request(TOKEN_API, { path: '/simple/price', params: { ids: ids.join(','), vs_currencies: currency } });
 
         if (response && !response.error) {
           // caching
-          await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION, true);
+          if (cacheId) {
+            await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION, true);
+          }
+          else {
+            for (const [k, v] of Object.entries(response)) {
+              await writeCache(k, v, TOKEN_PRICE_COLLECTION, true);
+            }
+          }
         }
         else {
-          response = await readCache(cacheId, 3600, TOKEN_PRICE_COLLECTION);
+          // return old data when api is not available
+          if (cacheId) {
+            response = await readCache(cacheId, 3600, TOKEN_PRICE_COLLECTION);
+          }
+          else {
+            const data = await readMultipleCache(ids, 3600, TOKEN_PRICE_COLLECTION);
+
+            if (toArray(data).length > 0) {
+              response = Object.fromEntries(data.flatMap(d => Object.entries(d)));
+            }
+          }
         }
       }
 
