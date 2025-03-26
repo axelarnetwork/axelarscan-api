@@ -136,7 +136,7 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
         const data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
 
         if (toArray(data).length > 0) {
-          response = Object.fromEntries(data.flatMap(d => Object.entries(d)));
+          response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
         }
       }
 
@@ -151,7 +151,7 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
           }
           else {
             for (const [k, v] of Object.entries(response)) {
-              await writeCache(k, v, TOKEN_PRICE_COLLECTION, true);
+              await writeCache(k, { [k]: v }, TOKEN_PRICE_COLLECTION, true);
             }
           }
         }
@@ -164,7 +164,7 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
             const data = await readMultipleCache(ids, 3600, TOKEN_PRICE_COLLECTION);
 
             if (toArray(data).length > 0) {
-              response = Object.fromEntries(data.flatMap(d => Object.entries(d)));
+              response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
             }
           }
         }
