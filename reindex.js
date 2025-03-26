@@ -12,7 +12,7 @@ const updateTokenInfo = require('./services/interval-update/updateTokenInfo');
 const { ENVIRONMENT } = require('./utils/config');
 const { sleep } = require('./utils/operator');
 const { timeDiff } = require('./utils/time');
-const { getBlockTimestamp } = require('../methods/axelar/utils');
+const { getBlockTimestamp } = require('./methods/axelar/utils');
 
 // setup arguments
 const { block } = { ...require('command-line-args')([{ name: 'block', alias: 'b', type: Number }]) };
