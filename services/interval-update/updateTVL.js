@@ -3,7 +3,6 @@ const moment = require('moment');
 
 const { getTVL } = require('../../methods');
 const { getAssets, getITSAssets } = require('../../utils/config');
-const { log } = require('../../utils/logger');
 
 module.exports = async params => {
   const hour = moment().hours();
@@ -21,7 +20,6 @@ module.exports = async params => {
 
   for (const { id } of assetsData) {
     // get TVL of each asset
-    log('debug', 'axelarscan-api', 'updateTVL', { id, hour, minute });
     data[id] = await getTVL({ asset: id, forceCache: true, isIntervalUpdate: true });
   }
 
