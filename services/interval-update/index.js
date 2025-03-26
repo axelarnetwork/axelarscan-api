@@ -9,7 +9,6 @@ module.exports = async () => {
   await Promise.all(['tvl', 'stats', 'config', 'tokenInfo'].map(d => new Promise(async resolve => {
     switch (d) {
       case 'tvl':
-        console.log('checkpoint',{ENVIRONMENT, find: find(ENVIRONMENT, ['mainnet'])})
         resolve(find(ENVIRONMENT, ['mainnet']) && await updateTVL());
         break;
       case 'stats':
