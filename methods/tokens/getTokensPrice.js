@@ -145,23 +145,25 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
         response = await request(TOKEN_API, { path: '/simple/price', params: { ids: ids.join(','), vs_currencies: currency } });
 
         if (response && !response.error) {
-          // caching
-          if (cacheId) {
-            await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION, true);
-          }
-          else {
-            for (const [k, v] of Object.entries(response)) {
-              await writeCache(k, { [k]: v }, TOKEN_PRICE_COLLECTION, true);
+          if (timeDiff(timestamp, 'minutes') < 5) {
+            // caching
+            if (cacheId) {
+              await writeCache(cacheId, response, TOKEN_PRICE_COLLECTION, true);
+            }
+            else {
+              for (const [k, v] of Object.entries(response)) {
+                await writeCache(k, { [k]: v }, TOKEN_PRICE_COLLECTION, true);
+              }
             }
           }
         }
         else {
           // return old data when api is not available
           if (cacheId) {
-            response = await readCache(cacheId, 3600, TOKEN_PRICE_COLLECTION);
+            response = await readCache(cacheId, 4 * 3600, TOKEN_PRICE_COLLECTION);
           }
           else {
-            const data = await readMultipleCache(ids, 3600, TOKEN_PRICE_COLLECTION);
+            const data = await readMultipleCache(ids, 4 * 3600, TOKEN_PRICE_COLLECTION);
 
             if (toArray(data).length > 0) {
               response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
