@@ -22,8 +22,6 @@ exports.handler = async (event = {}, context, callback) => {
   const params = parseParams(req);
   const { method } = { ...params };
 
-  console.log('checkpoint', {params,event})
-
   // when not triggered by API
   if (!method && !event.requestContext) {
     await intervalUpdate();
