@@ -2038,6 +2038,37 @@ mainnet:
       prefix_address: "allo"
       prefix_chain_ids:
         - "allora-"
+    mantra:
+      chain_id: "mantra-1"
+      chain_name: "mantra"
+      endpoints:
+        lcd:
+          - "https://mantra.api.m.stavr.tech"
+          - "https://mantra-mainnet-api.itrocket.net"
+          - "https://api.mantrachain.io"
+        timeout:
+          lcd: 3000
+        use_query: true
+      native_token:
+        name: "Mantra"
+        symbol: "OM"
+        denom: "uom"
+        decimals: 6
+      name: "Mantra"
+      short_name: "MANTRA"
+      image: "/logos/chains/mantra.svg"
+      color: "#f9b69d"
+      explorer:
+        name: "Mantra"
+        url: "https://explorer.mantrachain.io/MANTRA-1"
+        icon: "/logos/explorers/mantra.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+      prefix_address: "mantra"
+      prefix_chain_ids:
+        - "mantra-"
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"

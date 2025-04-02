@@ -239,6 +239,9 @@ LAVA:
 ALLO:
   coingecko_id: "allora"
   decimals: 6
+OM:
+  coingecko_id: "mantra-dao"
+  decimals: 6
 WARD:
   coingecko_id: ""
   decimals: 6
@@ -806,6 +809,10 @@ uc4e:
   redirect: "C4E"
 ulava:
   redirect: "LAVA"
+uallo:
+  redirect: "ALLO"
+uom:
+  redirect: "OM"
 dot-planck:
   redirect: "DOT"
 uusd:
