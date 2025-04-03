@@ -7,7 +7,7 @@ module.exports = async () => {
   // run every 10 minutes
   if (minute % 10 !== 0) return;
 
-  await Promise.all(['transfersStats', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee', 'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume', 'GMPStats', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee', 'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume'].map(d => new Promise(async resolve => {
+  await Promise.all(['transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee', 'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume', 'GMPStats', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee', 'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume'].map(d => new Promise(async resolve => {
     switch (d) {
       case 'transfersTopUsers':
         resolve(await METHODS.transfersTopUsers({ size: 100 }));
