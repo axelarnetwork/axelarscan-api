@@ -4174,12 +4174,12 @@ testnet:
         decimals: 18
       name: "XRP Ledger EVM Test 1"
       short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
+      image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
         url: "https://explorer.testnet.xrplevm.org"
-        icon: "/logos/explorers/xrpl.png"
+        icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
@@ -4200,12 +4200,12 @@ testnet:
         decimals: 18
       name: "XRP Ledger EVM"
       short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
+      image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
         url: "https://explorer.testnet.xrplevm.org"
-        icon: "/logos/explorers/xrpl.png"
+        icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
@@ -4858,12 +4858,12 @@ stagenet:
         decimals: 18
       name: "XRP Ledger EVM"
       short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
+      image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
         url: "https://explorer.testnet.xrplevm.org"
-        icon: "/logos/explorers/xrpl.png"
+        icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
@@ -5301,12 +5301,12 @@ devnet-amplifier:
         decimals: 18
       name: "XRP Ledger EVM Sidechain"
       short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
+      image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
         url: "https://explorer.xrplevm.org"
-        icon: "/logos/explorers/xrpl.png"
+        icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
@@ -5323,12 +5323,12 @@ devnet-amplifier:
         decimals: 18
       name: "XRP Ledger EVM Devnet"
       short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
+      image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
         name: "XRP Ledger"
         url: "https://explorer.xrplevm.org"
-        icon: "/logos/explorers/xrpl.png"
+        icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
