@@ -19,6 +19,7 @@ const interchainChart = require('./interchainChart');
 const interchainTotalVolume = require('./interchainTotalVolume');
 const interchainTotalFee = require('./interchainTotalFee');
 const interchainTotalActiveUsers = require('./interchainTotalActiveUsers');
+const interchainStatsByTime = require('./interchainStatsByTime');
 
 const test = async () => {
   await circularImport();
@@ -42,6 +43,7 @@ const test = async () => {
   await interchainTotalVolume();
   await interchainTotalFee();
   await interchainTotalActiveUsers();
+  await interchainStatsByTime();
 };
 
 test();
