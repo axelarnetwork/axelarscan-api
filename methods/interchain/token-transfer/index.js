@@ -5,6 +5,7 @@ const requestAPI = async (method, params) => await request(createInstance(`${get
 
 module.exports = {
   transfersStats: async params => await requestAPI('transfersStats', params),
+  transfersStatsByTime: async params => await requestAPI('transfersStatsByTime', params),
   transfersChart: async params => await requestAPI('transfersChart', params),
   transfersCumulativeVolume: async params => await requestAPI('transfersCumulativeVolume', params),
   transfersTotalVolume: async params => await requestAPI('transfersTotalVolume', params),
