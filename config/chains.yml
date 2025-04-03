@@ -139,13 +139,13 @@ mainnet:
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
       explorer:
-        name: "FTMScan"
-        url: "https://ftmscan.com"
-        icon: "/logos/explorers/ftmscan.png"
-        block_path: "/block/{block}"
+        name: "Fantom"
+        url: "https://explorer.fantom.network"
+        icon: "/logos/explorers/fantom.png"
+        block_path: "/blocks/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
+        contract_path: "/address/{address}"
+        transaction_path: "/transactions/{tx}"
     moonbeam:
       chain_id: 1284
       chain_name: "Moonbeam"
@@ -2373,13 +2373,13 @@ testnet:
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
       explorer:
-        name: "FTMScan"
-        url: "https://testnet.ftmscan.com"
-        icon: "/logos/explorers/ftmscan.png"
-        block_path: "/block/{block}"
+        name: "Fantom"
+        url: "https://explorer.testnet.fantom.network"
+        icon: "/logos/explorers/fantom.png"
+        block_path: "/blocks/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
+        contract_path: "/address/{address}"
+        transaction_path: "/transactions/{tx}"
     moonbeam:
       chain_id: 1287
       chain_name: "Moonbeam"
@@ -4341,13 +4341,13 @@ stagenet:
       image: "/logos/chains/fantom.svg"
       color: "#1869ff"
       explorer:
-        name: "FTMScan"
-        url: "https://testnet.ftmscan.com"
-        icon: "/logos/explorers/ftmscan.png"
-        block_path: "/block/{block}"
+        name: "Fantom"
+        url: "https://explorer.testnet.fantom.network"
+        icon: "/logos/explorers/fantom.png"
+        block_path: "/blocks/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
+        contract_path: "/address/{address}"
+        transaction_path: "/transactions/{tx}"
     moonbeam:
       chain_id: 1287
       chain_name: "Moonbeam"
