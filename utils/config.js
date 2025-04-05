@@ -51,9 +51,7 @@ const getChains = (types, env = ENVIRONMENT) => {
 const getChainData = (chain, types, env = ENVIRONMENT) => {
   if (!chain) return;
 
-  const chainsData = getChains(types, env);
-  
-  return chainsData.find(d =>
+  return getChains(types, env).find(d =>
     find(removeDoubleQuote(chain), _.concat(d.id, d.chain_id, d.chain_name, d.maintainer_id, d.aliases)) || // check equals
     toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1 // check prefix
   );
@@ -172,7 +170,7 @@ const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
 
   return assetsData.find(d =>
     find(asset, _.concat(d.denom, d.denoms, d.symbol)) || // check equals
-    toArray(Object.values({ ...d.addresses })).findIndex(a => find(asset, [a.ibc_denom, a.symbol])) > -1 // check equals to denom or symbol of each chain
+    toArray(Object.values({ ...d.addresses })).findIndex(a => find(asset, [a.address, a.ibc_denom, a.symbol])) > -1 // check equals to address, denom or symbol of each chain
   );
 };
 
