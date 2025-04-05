@@ -14,7 +14,7 @@ const getLogLevel = () => process.env.LOG_LEVEL || 'debug';
 const getMethods = () => config.methods;
 
 const getChains = (types, env = ENVIRONMENT) => {
-  types = toArray(types);
+  types = toArray(types).map(t => t === 'vm' ? 'amplifier' : t);
 
   // get chains of env and filter by chain types
   return Object.entries({ ...config.chains[env] }).filter(([k, v]) => types.length === 0 || types.includes(k)).flatMap(([k, v]) => Object.entries({ ...v }).map(([_k, _v]) => {
