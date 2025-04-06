@@ -135,7 +135,7 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
         // get tokens price from cache
         const data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
 
-        if (toArray(data).length > 0) {
+        if (toArray(data).length >= ids.length) {
           response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
         }
       }
