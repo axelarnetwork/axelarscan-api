@@ -5305,7 +5305,7 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://explorer.xrplevm.org"
+        url: "https://explorer.devnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
@@ -5327,7 +5327,7 @@ devnet-amplifier:
       color: "#111112"
       explorer:
         name: "XRP Ledger"
-        url: "https://explorer.xrplevm.org"
+        url: "https://explorer.devnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
