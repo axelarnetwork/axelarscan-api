@@ -2678,7 +2678,7 @@ testnet:
           - "https://rpc.testnet.immutable.com"
       native_token:
         name: "ImmutableX"
-        symbol: "tIMX"
+        symbol: "IMX"
         decimals: 18
       name: "Immutable"
       short_name: "IMX"
