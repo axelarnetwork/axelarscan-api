@@ -62,7 +62,7 @@ ALGL:
 IMX:
   coingecko_id: "immutable-x"
   decimals: 18
-TIMX:
+tIMX:
   redirect: "IMX"
 FLOW:
   coingecko_id: "flow"
