@@ -242,6 +242,9 @@ ALLO:
 OM:
   coingecko_id: "mantra-dao"
   decimals: 6
+BABY:
+  coingecko_id: "babylon"
+  decimals: 6
 WARD:
   coingecko_id: ""
   decimals: 6
@@ -813,6 +816,8 @@ uallo:
   redirect: "ALLO"
 uom:
   redirect: "OM"
+ubaby:
+  redirect: "BABY"
 dot-planck:
   redirect: "DOT"
 uusd:

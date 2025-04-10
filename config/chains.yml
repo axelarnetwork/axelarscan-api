@@ -2069,6 +2069,36 @@ mainnet:
       prefix_address: "mantra"
       prefix_chain_ids:
         - "mantra-"
+    babylon:
+      chain_id: "bbn-1"
+      chain_name: "babylon"
+      endpoints:
+        lcd:
+          - "https://babylon-api.polkachu.com"
+          - "https://babylon.nodes.guru/api"
+        timeout:
+          lcd: 3000
+        use_query: true
+      native_token:
+        name: "Babylon"
+        symbol: "BABY"
+        denom: "ubaby"
+        decimals: 6
+      name: "Babylon"
+      short_name: "BABY"
+      image: "/logos/chains/babylon.svg"
+      color: "#ce6532"
+      explorer:
+        name: "Babylon"
+        url: "https://babylon-explorer.xangle.io/mainnet"
+        icon: "/logos/explorers/babylon.png"
+        block_path: "/blocks/{block}/overview"
+        address_path: "/accounts/detail/{address}/transactions"
+        contract_path: "/accounts/detail/{address}/transactions"
+        transaction_path: "/txns/{tx}/overview"
+      prefix_address: "bbn"
+      prefix_chain_ids:
+        - "bbn-"
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"
