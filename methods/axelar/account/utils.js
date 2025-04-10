@@ -12,10 +12,10 @@ const aggregate = async (data, assetsData, options) => {
   const validData = toArray(data).filter(d => isNumber(d.amount));
 
   // get all tokens data
-  const tokensData = toArray(await Promise.all(validData.map(d => new Promise(async resolve => resolve(await getAssetData(d.denom, assetsData))))));
+  const tokensData = await Promise.all(validData.map(d => new Promise(async resolve => resolve(await getAssetData(d.denom, assetsData)))));
 
   // get tokens price
-  const pricesData = { ...(includesValue ? await getTokensPrice({ symbols: tokensData.map(d => d.denom) }) : undefined) };
+  const pricesData = { ...(includesValue ? await getTokensPrice({ symbols: tokensData.map(d => d?.denom) }) : undefined) };
 
   return Object.entries(
     _.groupBy(validData.map((d, i) => {
