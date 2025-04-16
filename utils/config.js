@@ -81,12 +81,24 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
   }
 
   const response = await request(`https://axelar-${env}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
-  if (response?.tokenAddressToAsset) delete response.tokenAddressToAsset;
 
-  if (response?.assets) {
-    // caching
-    await writeCache(cacheId, response);
-    return response;
+  if (response) {
+    // remove unused fields
+    if (response.tokenAddressToAsset) delete response.tokenAddressToAsset;
+    if (response.amplifier_configs) delete response.amplifier_configs;    
+  
+    if (response.chains) {
+      response.chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => {
+        if (v.assets) delete v.assets;
+        return [k, v];
+      }));
+    }
+
+    if (response.assets) {
+      // caching
+      await writeCache(cacheId, response);
+      return response;
+    }
   }
 
   return await readCache(cacheId, 24 * 3600);

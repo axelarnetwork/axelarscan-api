@@ -7,7 +7,7 @@ module.exports = async params => {
   const { asset, height } = { ...params };
 
   // get asset data (default: AXL)
-  const { decimals, addresses } = { ...await getAssetData(asset || (ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl')) };
+  const { decimals, addresses } = { ...(params?.assetData || await getAssetData(asset || (ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'))) };
   const { ibc_denom } = { ...addresses?.axelarnet };
   if (!ibc_denom) return;
 
