@@ -20,20 +20,39 @@ module.exports = async params => {
   const timestamp = height ? await getBlockTimestamp(height) : moment().valueOf();
 
   // get asset data (gateway | ITS)
-  const { denom, name } = { ...(await getAssetData(symbol) || await getITSAssetData(symbol)) };
-
-  // get token price
-  const pricesData = await getTokensPrice({ symbol, timestamp });
-  const { price } = { ...(pricesData[symbol] || Object.values(pricesData).find(d => d.denom === symbol)) };
-
-  const supplyData = await getCirculatingSupply({ symbol, height, debug: true });
-  const circulatingSupply = supplyData?.circulating_supply;
+  const assetData = { ...(await getAssetData(symbol) || await getITSAssetData(symbol)) };
+  const { denom, name } = { ...assetData };
 
   const isAXL = ['uaxl', 'uamplifier'].includes(denom);
-  const totalSupply = isAXL ? await getTotalSupply({ asset: denom, height }) : null;
-  const totalBurned = isAXL ? await getTotalBurned({ height }) : null;
-  const { inflation } = { ...(isAXL ? await getInflation({ height }) : undefined) };
 
+  const [price, supplyData, totalSupply, totalBurned, inflation] = await Promise.all(
+    ['price', 'circulatingSupply', 'totalSupply', 'totalBurned', 'inflation'].map(k => new Promise(async resolve => {
+      switch (k) {
+        case 'price':
+          const pricesData = await getTokensPrice({ symbol, timestamp, assetsData: assetData });
+          const { price } = { ...(pricesData[symbol] || Object.values(pricesData).find(d => d.denom === symbol)) };
+          resolve(price);
+          break;
+        case 'circulatingSupply':
+          resolve(await getCirculatingSupply({ symbol, height, debug: true, assetData }));
+          break;
+        case 'totalSupply':
+          resolve(isAXL ? await getTotalSupply({ asset: denom, height, assetData }) : null);
+          break;
+        case 'totalBurned':
+          resolve(isAXL ? await getTotalBurned({ height, assetsData: assetData }) : null);
+          break;
+        case 'inflation':
+          resolve(isAXL ? (await getInflation({ height }))?.inflation : null);
+          break;
+        default:
+          resolve();
+          break;
+      }
+    }))
+  );
+
+  const circulatingSupply = supplyData?.circulating_supply;
   const updatedAt = supplyData?.updated_at || moment().valueOf();
 
   switch (agent) {

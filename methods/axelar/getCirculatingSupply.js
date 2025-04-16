@@ -39,7 +39,7 @@ module.exports = async params => {
   debug = toBoolean(debug, false);
 
   // get asset data
-  const assetData = await getAssetData(symbol);
+  const assetData = params?.assetData || await getAssetData(symbol);
   const { denom, decimals } = { ...assetData };
 
   let circulatingSupply;
@@ -47,7 +47,7 @@ module.exports = async params => {
   switch (symbol) {
     case 'AXL':
     case 'AMPLIFIER':
-      const totalSupply = await getTotalSupply({ asset: denom, height });
+      const totalSupply = await getTotalSupply({ asset: denom, height, assetData });
       const inflationRewards = totalSupply > max_supply ? parseFloat(toFixed(totalSupply - max_supply, decimals)) : 0;
       const initialUnlocked = parseFloat(toFixed(max_supply * initial_unlocked_percent / 100, decimals));
 

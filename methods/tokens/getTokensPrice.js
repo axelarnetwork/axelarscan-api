@@ -52,7 +52,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
   return tokenData;
 };
 
-module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY }) => {
+module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, assetsData }) => {
   // merge symbols and remove 'burned-' prefix
   symbols = _.uniq(toArray(_.concat(symbols, symbol)).map(s => s.startsWith('burned-') ? s.replace('burned-', '') : s));
 
@@ -60,31 +60,33 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
   const isSymbolsValid = toArray(
     await Promise.all(
       symbols.map(s => new Promise(async resolve =>
-        resolve(await getTokenConfig(s, undefined, true))
+        resolve(await getTokenConfig(s, assetsData, true))
       ))
     )
   ).length > 0;
 
   // get assets data
-  const assetsData = !isSymbolsValid ? undefined :
-    toArray(
-      await Promise.all(['gateway', 'its'].map(type => new Promise(async resolve => {
-        let data;
+  if (!assetsData) {
+    assetsData = !isSymbolsValid ? undefined :
+      toArray(
+        await Promise.all(['gateway', 'its'].map(type => new Promise(async resolve => {
+          let data;
 
-        switch (type) {
-          case 'gateway':
-            data = await getAssets();
-            break;
-          case 'its':
-            data = await getITSAssets();
-            break;
-          default:
-            break;
-        }
+          switch (type) {
+            case 'gateway':
+              data = await getAssets();
+              break;
+            case 'its':
+              data = await getITSAssets();
+              break;
+            default:
+              break;
+          }
 
-        resolve(data);
-      })))
-    ).flatMap(d => d);
+          resolve(data);
+        })))
+      ).flatMap(d => d);
+  }
 
   // get token config of each symbol
   let tokensData = await Promise.all(

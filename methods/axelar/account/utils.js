@@ -15,7 +15,7 @@ const aggregate = async (data, assetsData, options) => {
   const tokensData = await Promise.all(validData.map(d => new Promise(async resolve => resolve(await getAssetData(d.denom, assetsData)))));
 
   // get tokens price
-  const pricesData = { ...(includesValue ? await getTokensPrice({ symbols: tokensData.map(d => d?.denom) }) : undefined) };
+  const pricesData = { ...(includesValue ? await getTokensPrice({ symbols: tokensData.map(d => d?.denom), assetsData }) : undefined) };
 
   return Object.entries(
     _.groupBy(validData.map((d, i) => {
