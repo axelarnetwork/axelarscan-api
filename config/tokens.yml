@@ -245,6 +245,9 @@ OM:
 BABY:
   coingecko_id: "babylon"
   decimals: 6
+JKL:
+  coingecko_id: "jackal-protocol"
+  decimals: 6
 WARD:
   coingecko_id: ""
   decimals: 6
@@ -818,6 +821,8 @@ uom:
   redirect: "OM"
 ubaby:
   redirect: "BABY"
+ujkl:
+  redirect: "JKL"
 dot-planck:
   redirect: "DOT"
 uusd:
