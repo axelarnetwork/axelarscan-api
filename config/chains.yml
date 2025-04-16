@@ -2099,6 +2099,37 @@ mainnet:
       prefix_address: "bbn"
       prefix_chain_ids:
         - "bbn-"
+    jackal:
+      chain_id: "jackal-1"
+      chain_name: "jackal"
+      endpoints:
+        lcd:
+          - "https://api.jackalprotocol.com"
+          - "https://jackal-api.polkachu.com"
+          - "https://m-jackal.api.utsa.tech"
+          - "https://jackal-mainnet-lcd.autostake.com"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Jackal"
+        symbol: "JKL"
+        denom: "ujki"
+        decimals: 6
+      name: "Jackal"
+      short_name: "JKL"
+      image: "/logos/chains/jackal.svg"
+      color: "#dddcce"
+      explorer:
+        name: "Jackal"
+        url: "https://ping.pub/jackal"
+        icon: "/logos/explorers/jackal.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/tx/{tx}"
+      prefix_address: "jkl"
+      prefix_chain_ids:
+        - "jackal-"
     terra-2:
       chain_id: "phoenix-1"
       chain_name: "terra-2"
