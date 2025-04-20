@@ -12,17 +12,35 @@ module.exports = async () => {
       case 'transfersStats':
         resolve(await METHODS.transfersStats({ forceCache: true }));
         break;
-      case 'transfersTopUsers':
-        resolve(await METHODS.transfersTopUsers({ size: 100 }));
-        break;
-      case 'transfersTopUsersByVolume':
-        resolve(await METHODS.transfersTopUsers({ orderBy: 'volume', size: 100 }));
+      case 'transfersStatsByTime':
+        resolve(await METHODS.transfersStatsByTime({ forceCache: true }));
         break;
       case 'transfersChart':
         resolve(await METHODS.transfersChart({ granularity: 'month', forceCache: true }));
         break;
+      case 'transfersCumulativeVolume':
+        resolve(await METHODS.transfersCumulativeVolume({ forceCache: true }));
+        break;
+      case 'transfersTotalVolume':
+        resolve(await METHODS.transfersTotalVolume({ forceCache: true }));
+        break;
+      case 'transfersTotalFee':
+        resolve(await METHODS.transfersTotalFee({ forceCache: true }));
+        break;
+      case 'transfersTotalActiveUsers':
+        resolve(await METHODS.transfersTotalActiveUsers({ forceCache: true }));
+        break;
+      case 'transfersTopUsers':
+        resolve(await METHODS.transfersTopUsers({ size: 100, forceCache: true }));
+        break;
+      case 'transfersTopUsersByVolume':
+        resolve(await METHODS.transfersTopUsers({ orderBy: 'volume', size: 100, forceCache: true }));
+        break;
       case 'GMPStats':
         resolve(await METHODS.GMPStats({ forceCache: true }));
+        break;
+      case 'GMPStatsByTime':
+        resolve(await METHODS.GMPStatsByTime({ forceCache: true }));
         break;
       case 'GMPStatsAVGTimes':
         resolve(await METHODS.GMPStatsAVGTimes({ fromTime: moment().subtract(3, 'months').startOf('day').unix() }));
@@ -30,20 +48,32 @@ module.exports = async () => {
       case 'GMPChart':
         resolve(await METHODS.GMPChart({ granularity: 'month', forceCache: true }));
         break;
+      case 'GMPCumulativeVolume':
+        resolve(await METHODS.GMPCumulativeVolume({ forceCache: true }));
+        break;
+      case 'GMPTotalVolume':
+        resolve(await METHODS.GMPTotalVolume({ forceCache: true }));
+        break;
+      case 'GMPTotalFee':
+        resolve(await METHODS.GMPTotalFee({ forceCache: true }));
+        break;
+      case 'GMPTotalActiveUsers':
+        resolve(await METHODS.GMPTotalActiveUsers({ forceCache: true }));
+        break;
       case 'GMPTopUsers':
-        resolve(await METHODS.GMPTopUsers({ size: 100 }));
+        resolve(await METHODS.GMPTopUsers({ size: 100, forceCache: true }));
         break;
       case 'GMPTopITSUsers':
-        resolve(await METHODS.GMPTopUsers({ assetType: 'its', size: 100 }));
+        resolve(await METHODS.GMPTopUsers({ assetType: 'its', size: 100, forceCache: true }));
         break;
       case 'GMPTopITSUsersByVolume':
-        resolve(await METHODS.GMPTopUsers({ assetType: 'its', orderBy: 'volume', size: 100 }));
+        resolve(await METHODS.GMPTopUsers({ assetType: 'its', orderBy: 'volume', size: 100, forceCache: true }));
         break;
       case 'GMPTopITSAssets':
-        resolve(await METHODS.GMPTopITSAssets({ size: 100 }));
+        resolve(await METHODS.GMPTopITSAssets({ size: 100, forceCache: true }));
         break;
       case 'GMPTopITSAssetsByVolume':
-        resolve(await METHODS.GMPTopITSAssets({ orderBy: 'volume', size: 100 }));
+        resolve(await METHODS.GMPTopITSAssets({ orderBy: 'volume', size: 100, forceCache: true }));
         break;
       default:
         resolve(await METHODS[d]());
