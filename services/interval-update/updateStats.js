@@ -9,17 +9,26 @@ module.exports = async () => {
 
   await Promise.all(['transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee', 'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume', 'GMPStats', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee', 'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume'].map(d => new Promise(async resolve => {
     switch (d) {
+      case 'transfersStats':
+        resolve(await METHODS.transfersStats({ forceCache: true }));
+        break;
       case 'transfersTopUsers':
         resolve(await METHODS.transfersTopUsers({ size: 100 }));
         break;
       case 'transfersTopUsersByVolume':
         resolve(await METHODS.transfersTopUsers({ orderBy: 'volume', size: 100 }));
         break;
+      case 'transfersChart':
+        resolve(await METHODS.transfersChart({ granularity: 'month', forceCache: true }));
+        break;
       case 'GMPStats':
         resolve(await METHODS.GMPStats({ forceCache: true }));
         break;
       case 'GMPStatsAVGTimes':
         resolve(await METHODS.GMPStatsAVGTimes({ fromTime: moment().subtract(3, 'months').startOf('day').unix() }));
+        break;
+      case 'GMPChart':
+        resolve(await METHODS.GMPChart({ granularity: 'month', forceCache: true }));
         break;
       case 'GMPTopUsers':
         resolve(await METHODS.GMPTopUsers({ size: 100 }));
