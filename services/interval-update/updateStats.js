@@ -7,7 +7,12 @@ module.exports = async () => {
   // run every 10 minutes
   if (minute % 10 !== 0) return;
 
-  await Promise.all(['transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee', 'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume', 'GMPStats', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee', 'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume'].map(d => new Promise(async resolve => {
+  await Promise.all([
+    'transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersCumulativeVolume', 'transfersTotalVolume', 'transfersTotalFee',
+    'transfersTotalActiveUsers', 'transfersTopUsers', 'transfersTopUsersByVolume',
+    'GMPStats', 'GMPStatsByChains', 'GMPStatsByContracts', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPCumulativeVolume', 'GMPTotalVolume', 'GMPTotalFee',
+    'GMPTotalActiveUsers', 'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume',
+  ].map(d => new Promise(async resolve => {
     switch (d) {
       case 'transfersStats':
         resolve(await METHODS.transfersStats({ forceCache: true }));
@@ -39,11 +44,17 @@ module.exports = async () => {
       case 'GMPStats':
         resolve(await METHODS.GMPStats({ forceCache: true }));
         break;
+      case 'GMPStatsByChains':
+        resolve(await METHODS.GMPStatsByChains({ forceCache: true }));
+        break;
+      case 'GMPStatsByContracts':
+        resolve(await METHODS.GMPStatsByContracts({ forceCache: true }));
+        break;
       case 'GMPStatsByTime':
         resolve(await METHODS.GMPStatsByTime({ forceCache: true }));
         break;
       case 'GMPStatsAVGTimes':
-        resolve(await METHODS.GMPStatsAVGTimes({ fromTime: moment().subtract(3, 'months').startOf('day').unix() }));
+        resolve(await METHODS.GMPStatsAVGTimes({ fromTime: moment().subtract(1, 'months').startOf('day').unix() }));
         break;
       case 'GMPChart':
         resolve(await METHODS.GMPChart({ granularity: 'month', forceCache: true }));
