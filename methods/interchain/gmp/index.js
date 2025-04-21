@@ -5,6 +5,8 @@ const requestAPI = async (method, params) => await request(createInstance(`${get
 
 module.exports = {
   GMPStats: async params => await requestAPI('GMPStats', params),
+  GMPStatsByChains: async params => await requestAPI('GMPStatsByChains', params),
+  GMPStatsByContracts: async params => await requestAPI('GMPStatsByContracts', params),
   GMPStatsByTime: async params => await requestAPI('GMPStatsByTime', params),
   GMPStatsAVGTimes: async params => await requestAPI('GMPStats', { ...params, avg_times: true }),
   GMPChart: async params => await requestAPI('GMPChart', params),
