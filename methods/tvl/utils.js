@@ -197,6 +197,7 @@ const getContractData = (assetData, chainData) => {
 
   switch (chainData.chain_type) {
     case 'evm':
+    case 'vm':
       data = {
         ...assetData,
         ...addresses?.[chainData.id],

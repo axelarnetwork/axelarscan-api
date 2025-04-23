@@ -9,10 +9,11 @@ const { read } = require('../../services/indexer');
 const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3Config, getTVLConfig } = require('../../utils/config');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
+const { getRPCs } = require('../../utils/chain/amplifier');
 const { readCache, readMultipleCache, writeCache } = require('../../utils/cache');
 const { toHash, getBech32Address, toArray } = require('../../utils/parser');
 const { sleep } = require('../../utils/operator');
-const { lastString } = require('../../utils/string');
+const { lastString, find } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
@@ -31,10 +32,9 @@ module.exports = async params => {
   const itsAssetsData = assetsData.filter(d => d.type === 'its');
 
   // get chains
-  const chainsData = getTVLChains(params, ['evm', 'cosmos']);
-  const evmChainsData = chainsData.filter(d => d.chain_type === 'evm');
+  const chainsData = getTVLChains(params, ['evm', 'cosmos', 'amplifier']);
   const cosmosChainsData = chainsData.filter(d => d.chain_type === 'cosmos');
-  const isAllChains = chainsData.length >= getTVLChains(undefined, ['evm', 'cosmos']).length;
+  const isAllChains = chainsData.length >= getTVLChains(undefined, ['evm', 'cosmos', 'amplifier']).length;
   const isAllCosmosChains = cosmosChainsData.length >= getTVLChains(undefined, ['cosmos']).length;
 
   // get axelar
@@ -89,6 +89,7 @@ module.exports = async params => {
     // flags
     const isNativeOnEVM = !!getChainData(native_chain, 'evm');
     const isNativeOnCosmos = !!getChainData(native_chain, 'cosmos');
+    const isNativeOnAmplifier = !!getChainData(native_chain, 'amplifier');
     const isNativeOnAxelar = native_chain === axelar.id;
     const isCanonicalITS = type === 'its' && Object.values({ ...addresses }).findIndex(d => d.token_manager_type?.startsWith('lockUnlock')) > -1;
 
@@ -157,7 +158,7 @@ module.exports = async params => {
                   } : undefined),
                   // amount
                   supply,
-                  total: isNativeOnCosmos ? 0 : gatewayBalance + supply,
+                  total: isNativeOnCosmos || isNativeOnAmplifier ? 0 : gatewayBalance + supply,
                   // custom contracts
                   custom_contracts_balance: customContractsBalances,
                   total_balance_on_custom_contracts: _.sumBy(customContractsBalances, 'balance'),
@@ -311,6 +312,49 @@ module.exports = async params => {
               }
             } catch (error) {}
             break;
+          case 'vm':
+            try {
+              // create contract data from asset and chain data
+              const contractData = getContractData(assetData, d);
+              const { address, token_manager_address, token_manager_type } = { ...contractData };
+
+              if (address) {
+                // get balance of this asset on gateway
+                const gatewayBalance = type === 'gateway' ? toNumber(await getRPCs(chain)?.getBalance(chain, gateway.address, contractData)) : 0;
+
+                // check token manager type is lockUnlock
+                const isLockUnlock = type === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
+                // get balance of this asset on token manager
+                const tokenManagerBalance = isLockUnlock ? toNumber(await getRPCs(chain)?.getBalance(chain, token_manager_address, contractData)) : 0;
+
+                // for lockUnlock, supply = tokenManagerBalance, otherwise supply = getTokenSupply
+                const supply = (!isNative || type === 'its') && !is_custom ? isLockUnlock ? tokenManagerBalance : toNumber(await getRPCs(chain)?.getTokenSupply(chain, contractData)) : 0;
+
+                tvlData = {
+                  // contract
+                  contract_data: contractData,
+                  // gateway
+                  gateway_address: gateway.address,
+                  gateway_balance: gatewayBalance,
+                  // token manager
+                  ...(isLockUnlock ? {
+                    token_manager_address,
+                    token_manager_type,
+                    token_manager_balance: tokenManagerBalance,
+                  } : undefined),
+                  // amount
+                  supply,
+                  total: isNativeOnEVM || isNativeOnCosmos ? 0 : gatewayBalance + supply,
+                  // link
+                  url: isNumber(d.chain_id) ?
+                    `${url}${(address === ZeroAddress ? address_path : contract_path).replace('{address}', address === ZeroAddress ? gateway.address : address)}${isNative && address !== ZeroAddress ? gateway.address && type === 'gateway' ? `?a=${gateway.address}` : isLockUnlock ? `?a=${token_manager_address}` : '' : ''}` :
+                    `${url}${(isLockUnlock ? address_path : contract_path).replace('{address}', isLockUnlock ? token_manager_address : address)}`,
+                  // status
+                  success: isNumber(isNative && type === 'gateway' ? gatewayBalance : supply),
+                };
+              }
+            } catch (error) {}
+            break;
           default:
             break;
         }
@@ -327,13 +371,14 @@ module.exports = async params => {
             v.supply = 0;
           }
           else {
-            // supply on axelar = total - sum(supply of others cosmos | evm)
+            // supply on axelar = total - sum(supply of others chain type)
             v.supply = v.total - _.sum(Object.entries(tvlsByChain)
-              .filter(([k, v]) => getChainType(k) === (isNativeOnEVM ? 'cosmos' : isNativeOnCosmos ? 'evm' : '')) // filter by chain type
+              .filter(([k, v]) => find(getChainType(k), isNativeOnEVM ? ['cosmos', 'vm'] : isNativeOnCosmos ? ['evm', 'vm'] : ['evm', 'cosmos'])) // filter by chain type
               .map(([k, v]) => toNumber(isSecretSnipChain(k) ? v.total : v.supply))
             );
           }
         }
+
         return [k, v];
       }));
     }
@@ -348,6 +393,11 @@ module.exports = async params => {
       .map(([k, v]) => toNumber(isAllCosmosChains ? isNativeOnCosmos || isSecretSnipChain(k) ? v.supply : v.total : v.escrow_balance))
     );
 
+    let totalOnAmplifier = !(type === 'gateway' || isCanonicalITS) ? 0 : _.sum(Object.entries(tvlsByChain)
+      .filter(([k, v]) => getChainType(k) === 'vm' && !v.token_manager_type?.startsWith('lockUnlock'))
+      .map(([k, v]) => toNumber(v.supply))
+    );
+
     const totalOnContracts = !(type === 'gateway') ? 0 : _.sum(Object.entries(tvlsByChain)
       .filter(([k, v]) => getChainType(k) === 'evm')
       .map(([k, v]) => v.total_balance_on_custom_contracts)
@@ -359,7 +409,7 @@ module.exports = async params => {
     );
 
     const total = totalOnContracts + totalOnTokens + (
-      isNativeOnCosmos || isNativeOnAxelar ? totalOnEVM + totalOnCosmos :
+      isNativeOnCosmos || isNativeOnAxelar ? totalOnEVM + totalOnCosmos + totalOnAmplifier :
       type === 'its' ?
         isCanonicalITS ?
           _.sum(Object.values(tvlsByChain).map(v => toNumber(v.token_manager_balance))) : // lockUnlock token manager balances
@@ -367,8 +417,18 @@ module.exports = async params => {
         _.sum(Object.values(tvlsByChain).map(v => toNumber(isNativeOnEVM ? v.gateway_balance : v.total))) // gateway balances for native on evm, otherwise total
     );
 
-    // total on evm += total when asset is ITS which isn't lockUnlock
-    if (type === 'its' && !isCanonicalITS && isNativeOnEVM) totalOnEVM += total;
+    // when asset is ITS which isn't lockUnlock
+    if (type === 'its' && !isCanonicalITS) {
+      // total on evm += total
+      if (isNativeOnEVM) {
+        totalOnEVM += total;
+      }
+
+      // total on amplifier += total
+      if (isNativeOnAmplifier) {
+        totalOnAmplifier += total;
+      }
+    }
 
     // generate evm escrow address when native on cosmos
     const evmEscrowAddress = isNativeOnCosmos ? getBech32Address(isNativeOnAxelar ? asset : `ibc/${toHash(`transfer/${_.last(tvlsByChain[native_chain]?.ibc_channels)?.channel_id}/${asset}`)}`, axelar.prefix_address, 32) : undefined;
@@ -386,7 +446,7 @@ module.exports = async params => {
       // compare evm escrow balance with total on evm
       evmEscrowBalance > 0 && totalOnEVM > 0 ? Math.abs(evmEscrowBalance - totalOnEVM) * 100 / evmEscrowBalance : null :
       // compare total with total on evm + total on cosmos
-      total > 0 && totalOnEVM + totalOnCosmos > 0 ? Math.abs(total - (totalOnContracts + totalOnTokens) - (totalOnEVM + totalOnCosmos)) * 100 / (total - (totalOnContracts + totalOnTokens)) : null;
+      total > 0 && totalOnEVM + totalOnCosmos + totalOnAmplifier > 0 ? Math.abs(total - (totalOnContracts + totalOnTokens) - (totalOnEVM + totalOnCosmos + totalOnAmplifier)) * 100 / (total - (totalOnContracts + totalOnTokens)) : null;
 
     // price
     const pricesData = await getTokensPrice({ symbol: is_custom && symbol ? symbol : asset });
@@ -401,6 +461,7 @@ module.exports = async params => {
       value: toNumber(total) * toNumber(price),
       total_on_evm: totalOnEVM,
       total_on_cosmos: totalOnCosmos,
+      total_on_amplifier: totalOnAmplifier,
       total_on_contracts: totalOnContracts,
       total_on_tokens: totalOnTokens,
       tvl: tvlsByChain,

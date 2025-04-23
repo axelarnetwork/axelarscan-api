@@ -2253,6 +2253,8 @@ mainnet:
         transaction_path: "/transaction/{tx}"
     stellar:
       chain_name: "stellar"
+      gateway:
+        address: "CD6VSKXB4HY2DWU7EP2PUIYTBJBJ36LDJXEZN4NSXFYF5YP37DDFX6NF"
       multisig_prover:
         address: "axelar1wdgp5xyqjyv5zsq86n6pah2lsmd46mn0gt4055mvvk6mezn9skqs6p93dg"
       voting_verifier:
@@ -2280,6 +2282,8 @@ mainnet:
         cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
+      gateway:
+        address: "0xeb055ffc3237c24e305a2bb760fe6551f6ff7c5fdb68735169c0f528fccab373"
       multisig_prover:
         address: "axelar1v8jrupu2rqpskwgtr69max0ajul92q8z5mdxd505m2hu3xc5jzcqm8zyc6"
       voting_verifier:
@@ -2301,7 +2305,7 @@ mainnet:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
 
 
@@ -4117,6 +4121,8 @@ testnet:
         cannot_link_contract_via_address_path: true
     stellar-2025-q1:
       chain_name: "stellar-2025-q1"
+      gateway:
+        address: "CCSNWHMQSPTW4PS7L32OIMH7Z6NFNCKYZKNFSWRSYX7MK64KHBDZDT5I"
       multisig_prover:
         address: "axelar1cypnpcqk4zpk32stl7dutv3cdnag0q2v5a7dzfxh4jukrzxagxpqgjl5sr"
       voting_verifier:
@@ -4144,6 +4150,8 @@ testnet:
         cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
+      gateway:
+        address: "0x6ddfcdd14a1019d13485a724db892fa0defe580f19c991eaabd690140abb21e4"
       multisig_prover:
         address: "axelar1v8jrupu2rqpskwgtr69max0ajul92q8z5mdxd505m2hu3xc5jzcqm8zyc6"
       voting_verifier:
@@ -4165,7 +4173,7 @@ testnet:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     xrpl-test-1:
       chain_name: "xrpl-test-1"
@@ -4195,6 +4203,8 @@ testnet:
         no_0x: true
     xrpl:
       chain_name: "xrpl"
+      gateway:
+        address: "rNrjh1KGZk2jBR3wPfAQnoidtFFYQKbQn2"
       multisig_prover:
         address: "axelar1k82qfzu3l6rvc7twlp9lpwsnav507czl6xyrk0xv287t4439ymvsl6n470"
       voting_verifier:
@@ -4222,6 +4232,8 @@ testnet:
     xrpl-evm-test-1:
       chain_id: 1449000
       chain_name: "xrpl-evm-test-1"
+      gateway:
+        address: "0xA1eBb6A4b856dF8bf6c3aCa88a9115a9ab3b2E02"
       multisig_prover:
         address: "axelar1fxjzgyhuvst30frp773jnyvy4sj9839t23fkfsfnr3gun0w740uqfhwe4g"
       voting_verifier:
@@ -4248,6 +4260,8 @@ testnet:
     xrpl-evm:
       chain_id: 1449000
       chain_name: "xrpl-evm"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
         address: "axelar198xehj5htckk75s8wcamxerxtdc45669zdqjmr69guveqntj9f6s5rqq55"
       voting_verifier:
@@ -4847,7 +4861,7 @@ stagenet:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     stellar:
       chain_name: "stellar"
@@ -5704,7 +5718,7 @@ devnet-amplifier:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     sui-2:
       chain_name: "sui-2"
@@ -5729,7 +5743,7 @@ devnet-amplifier:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     sui-test:
       chain_name: "sui-test"
@@ -5754,7 +5768,7 @@ devnet-amplifier:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     sui-test2:
       chain_name: "sui-test2"
@@ -5779,7 +5793,7 @@ devnet-amplifier:
         icon: "/logos/explorers/sui.png"
         block_path: "/checkpoint/{block}"
         address_path: "/account/{address}"
-        contract_path: "/account/{address}"
+        contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
     stacks:
       chain_name: "stacks"
