@@ -88,13 +88,15 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
     if (response.amplifier_configs) delete response.amplifier_configs;    
   
     if (response.chains) {
-      response.chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => {
-        if (v.assets) delete v.assets;
-        return [k, v];
-      }));
+      response.chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => [k, { config: v.config }]));
     }
 
     if (response.assets) {
+      response.assets = Object.fromEntries(Object.entries(response.assets).map(([k, v]) => {
+        if (v.details) delete v.details;
+        return [k, v];
+      }));
+
       // caching
       await writeCache(cacheId, response);
       return response;
