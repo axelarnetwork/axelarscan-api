@@ -2221,7 +2221,7 @@ mainnet:
         icon: "/logos/explorers/flow.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     hedera:
       chain_id: 295
@@ -4035,7 +4035,7 @@ testnet:
         icon: "/logos/explorers/flow.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     hedera:
       chain_id: 296
@@ -4808,7 +4808,7 @@ stagenet:
         icon: "/logos/explorers/flow.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     hedera:
       chain_id: 296
@@ -5181,7 +5181,7 @@ devnet-amplifier:
         icon: "/logos/explorers/flow.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
-        contract_path: "/token/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     hedera-testnet:
       chain_id: 296
@@ -5397,6 +5397,28 @@ devnet-amplifier:
         symbol: "XRP"
         decimals: 18
       name: "XRP Ledger EVM Devnet"
+      short_name: "XRPL"
+      image: "/logos/chains/xrplevm.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.devnet.xrplevm.org"
+        icon: "/logos/explorers/xrplevm.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
+    xrpl-evm-2:
+      chain_id: 1440002
+      chain_name: "xrpl-evm-2"
+      endpoints:
+        rpc:
+          - "https://rpc.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM 2"
       short_name: "XRPL"
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
