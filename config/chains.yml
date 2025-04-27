@@ -2307,6 +2307,34 @@ mainnet:
         address_path: "/account/{address}"
         contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
+    xrpl:
+      chain_name: "xrpl"
+      gateway:
+        address: "rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://s1.ripple.com:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://livenet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+        no_0x: true
 
 
 
@@ -4840,6 +4868,8 @@ stagenet:
         transaction_path: "/transaction/{tx}"
     sui:
       chain_name: "sui"
+      gateway:
+        address: "0x0a011637cbd43d101896d12d85cc8701bcb4ec884f556a9a15b1e26c72627853"
       multisig_prover:
         address: "axelar1ktjfpfrlgmh8s76ltjhhv0xcj0st0d0xrjh5rvm3gr5u66x9xvpsm0juw8"
       voting_verifier:
@@ -4892,6 +4922,8 @@ stagenet:
         cannot_link_contract_via_address_path: true
     stellar-2025-q1:
       chain_name: "stellar-2025-q1"
+      gateway:
+        address: "CDERZ3XLJKWZR2NFUNFO5LS7TBDFRHHLMTE2JTE6C7VXGZMGF6DEGXFC"
       multisig_prover:
         address: "axelar1emmjd57gha5vchnysth3g6fsyzyrjm4xhj4dzlg2ulj4dz8p9kxs2l6zvy"
       voting_verifier:
@@ -4920,6 +4952,8 @@ stagenet:
     xrpl-evm:
       chain_id: 1449000
       chain_name: "xrpl-evm"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       multisig_prover:
         address: "axelar18emrfkkz45zuxgk7v2gqrnm59wnnupdakqnmejh0t6krltwzjnxqreejwk"
       voting_verifier:
@@ -5322,6 +5356,8 @@ devnet-amplifier:
         no_0x: true
     xrpl-dev:
       chain_name: "xrpl-dev"
+      gateway:
+        address: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC"
       endpoints:
         rpc:
           - "https://s.devnet.rippletest.net:51234"
@@ -5352,6 +5388,30 @@ devnet-amplifier:
         symbol: "XRP"
         decimals: 6
       name: "XRP Ledger Devnet"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://devnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+        no_0x: true
+    xrpl-2:
+      chain_name: "xrpl-2"
+      gateway:
+        address: "rpaCAkbKhbXAgHJei6tSWH1Vwd2TXt4S76"
+      endpoints:
+        rpc:
+          - "https://s.devnet.rippletest.net:51233"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger 2"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5692,6 +5752,8 @@ devnet-amplifier:
         cannot_link_contract_via_address_path: true
     stellar-2025-q1:
       chain_name: "stellar-2025-q1"
+      gateway:
+        address: "CDWXQAUFE26XOYFWW2M3RSZPBOXHWCGLUTR5NZTFEGOV6YZQJPVARUKX"
       multisig_prover:
         address: "axelar1lgtcv0lfxwaz2prmea2y73lespr3mnwkfjv9kr0q6j7qhvhvwx6s54cesj"
       voting_verifier:
@@ -5744,6 +5806,8 @@ devnet-amplifier:
         transaction_path: "/tx/{tx}"
     sui-2:
       chain_name: "sui-2"
+      gateway:
+        address: "0x988bbe6e98f653887e78912f529247675030334ae4b0fbc1d1f512f0f95b71e4"
       multisig_prover:
         address: "axelar175r02r0d2u9lnjthw8jzk3wrmwfkqenxccw4kz6cnez7v4l2yrlqt9smv5"
       voting_verifier:
