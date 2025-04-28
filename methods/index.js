@@ -6,7 +6,7 @@ const validator = require('./axelar/validator');
 const { getTotalSupply, getCirculatingSupply, getTotalBurned, getTokenInfo, searchTokenInfos, getInflation, getNetworkParameters, getBalances, getDelegations, getRedelegations, getUnbondings, getRewards, getCommissions, getAccountAmounts, getProposals, getProposal } = require('./axelar');
 const tokenTransfer = require('./interchain/token-transfer');
 const GMP = require('./interchain/gmp');
-const { interchainChart, interchainTotalVolume, interchainTotalFee, interchainTotalActiveUsers, interchainStatsByTime } = require('./interchain');
+const { interchainChart, interchainTotalVolume, interchainStatsByTime } = require('./interchain');
 const { getMethods, getChains, getAssets, getITSAssets, getContracts } = require('../utils/config');
 
 const METHODS = {
@@ -35,8 +35,6 @@ const METHODS = {
   getTVLAlert,
   interchainChart,
   interchainTotalVolume,
-  interchainTotalFee,
-  interchainTotalActiveUsers,
   interchainStatsByTime,
   ...validator,
   ...tokenTransfer,

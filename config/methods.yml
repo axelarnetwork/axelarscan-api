@@ -388,14 +388,6 @@ methods:
             type: "float"
             description: "transaction volume"
           -
-            name: "fee"
-            type: "float"
-            description: "transaction fee"
-          -
-            name: "users"
-            type: "integer"
-            description: "number of users"
-          -
             name: "gmp_num_txs"
             type: "integer"
             description: "number of GMP transactions"
@@ -404,14 +396,6 @@ methods:
             type: "float"
             description: "GMP transaction volume"
           -
-            name: "gmp_fee"
-            type: "float"
-            description: "GMP transaction fee"
-          -
-            name: "gmp_users"
-            type: "integer"
-            description: "number of users using GMP"
-          -
             name: "transfers_num_txs"
             type: "integer"
             description: "number of token transfers transactions"
@@ -419,14 +403,6 @@ methods:
             name: "transfers_volume"
             type: "float"
             description: "token transfers transaction volume"
-          -
-            name: "transfers_fee"
-            type: "float"
-            description: "token transfers transaction fee"
-          -
-            name: "transfers_users"
-            type: "integer"
-            description: "number of users using token transfers"
   -
     id: "interchainTotalVolume"
     description: "The API route provides the total volume of the interchain activities through the Axelar network."
@@ -448,50 +424,6 @@ methods:
         name: "value"
         type: "float"
         description: "total volume"
-        primitive: true
-  -
-    id: "interchainTotalFee"
-    description: "The API route provides the total fee of the interchain activities through the Axelar network."
-    parameters:
-      -
-        name: "sourceChain"
-        type: "string"
-      -
-        name: "destinationChain"
-        type: "string"
-      -
-        name: "fromTime"
-        type: "unixtime"
-      -
-        name: "toTime"
-        type: "unixtime"
-    response:
-      -
-        name: "value"
-        type: "float"
-        description: "total fee"
-        primitive: true
-  -
-    id: "interchainTotalActiveUsers"
-    description: "The API route provides the total active users of the interchain activities through the Axelar network."
-    parameters:
-      -
-        name: "sourceChain"
-        type: "string"
-      -
-        name: "destinationChain"
-        type: "string"
-      -
-        name: "fromTime"
-        type: "unixtime"
-      -
-        name: "toTime"
-        type: "unixtime"
-    response:
-      -
-        name: "value"
-        type: "integer"
-        description: "total active users"
         primitive: true
   -
     id: "getTVL"
