@@ -8,10 +8,10 @@ module.exports = async () => {
   if (minute % 10 !== 0) return;
 
   await Promise.all([
-    'transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersTotalVolume',// 'transfersCumulativeVolume', 'transfersTotalFee',
-    'transfersTopUsers', 'transfersTopUsersByVolume',// 'transfersTotalActiveUsers',
-    'GMPStatsByChains', 'GMPStatsByContracts', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPTotalVolume',// 'GMPStats', 'GMPCumulativeVolume', 'GMPTotalFee',
-    'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume',// 'GMPTotalActiveUsers',
+    'transfersStats', 'transfersStatsByTime', 'transfersChart', 'transfersTotalVolume',
+    'transfersTopUsers', 'transfersTopUsersByVolume',
+    'GMPStatsByChains', 'GMPStatsByContracts', 'GMPStatsByTime', 'GMPStatsAVGTimes', 'GMPChart', 'GMPTotalVolume',// 'GMPStats',
+    'GMPTopUsers', 'GMPTopITSUsers', 'GMPTopITSUsersByVolume', 'GMPTopITSAssets', 'GMPTopITSAssetsByVolume',
   ].map(d => new Promise(async resolve => {
     switch (d) {
       case 'transfersStats':
@@ -25,15 +25,6 @@ module.exports = async () => {
         break;
       case 'transfersTotalVolume':
         resolve(await METHODS.transfersTotalVolume({ forceCache: true }));
-        break;
-      case 'transfersCumulativeVolume':
-        resolve(await METHODS.transfersCumulativeVolume({ forceCache: true }));
-        break;
-      case 'transfersTotalFee':
-        resolve(await METHODS.transfersTotalFee({ forceCache: true }));
-        break;
-      case 'transfersTotalActiveUsers':
-        resolve(await METHODS.transfersTotalActiveUsers({ forceCache: true }));
         break;
       case 'transfersTopUsers':
         resolve(await METHODS.transfersTopUsers({ size: 100, forceCache: true }));
@@ -61,15 +52,6 @@ module.exports = async () => {
         break;
       case 'GMPTotalVolume':
         resolve(await METHODS.GMPTotalVolume({ forceCache: true }));
-        break;
-      case 'GMPCumulativeVolume':
-        resolve(await METHODS.GMPCumulativeVolume({ forceCache: true }));
-        break;
-      case 'GMPTotalFee':
-        resolve(await METHODS.GMPTotalFee({ forceCache: true }));
-        break;
-      case 'GMPTotalActiveUsers':
-        resolve(await METHODS.GMPTotalActiveUsers({ forceCache: true }));
         break;
       case 'GMPTopUsers':
         resolve(await METHODS.GMPTopUsers({ size: 100, forceCache: true }));

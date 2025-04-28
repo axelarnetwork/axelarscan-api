@@ -17,8 +17,6 @@ const getTVL = require('./getTVL');
 const getTVLAlert = require('./getTVLAlert');
 const interchainChart = require('./interchainChart');
 const interchainTotalVolume = require('./interchainTotalVolume');
-const interchainTotalFee = require('./interchainTotalFee');
-const interchainTotalActiveUsers = require('./interchainTotalActiveUsers');
 const interchainStatsByTime = require('./interchainStatsByTime');
 
 const test = async () => {
@@ -41,8 +39,6 @@ const test = async () => {
   await getTVLAlert();
   await interchainChart();
   await interchainTotalVolume();
-  await interchainTotalFee();
-  await interchainTotalActiveUsers();
   await interchainStatsByTime();
 };
 
