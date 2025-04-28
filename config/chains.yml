@@ -4093,33 +4093,6 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    stellar:
-      chain_name: "stellar"
-      multisig_prover:
-        address: ""
-      voting_verifier:
-        address: ""
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
     stellar-2024-q4:
       chain_name: "stellar-2024-q4"
       multisig_prover:
@@ -5358,6 +5331,10 @@ devnet-amplifier:
       chain_name: "xrpl-dev"
       gateway:
         address: "rGAbJZEzU6WaYv5y1LfyN7LBBcQJ3TxsKC"
+      multisig_prover:
+        address: "axelar1ys83sedjffmqh70aksejmx3fy3q2d7twm3msurk7wn3l6nkwxp0sfelzhl"
+      voting_verifier:
+        address: "axelar1w0cwqtytmjuhak4v0rd4fy65pugqcxz4g48n6puw55zcy896e6ksn9gkj2"
       endpoints:
         rpc:
           - "https://s.devnet.rippletest.net:51234"
@@ -5400,10 +5377,14 @@ devnet-amplifier:
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
         no_0x: true
-    xrpl-2:
-      chain_name: "xrpl-2"
+    xrpl-dev2:
+      chain_name: "xrpl-dev2"
       gateway:
-        address: "rpaCAkbKhbXAgHJei6tSWH1Vwd2TXt4S76"
+        address: "rPtmTB5wYqzUYi1UJaXggg8pb4GqmGpvfB"
+      multisig_prover:
+        address: "axelar1qqdnsa5vw7sqvme3zx45k4gsnydkuns5gxr8jrzx38w02vktzxzsk43r5k"
+      voting_verifier:
+        address: "axelar1q9lxry68px508u9d85yt5rgemtd6patknrlkp0n3xrptw4ee04mqh5vl69"
       endpoints:
         rpc:
           - "https://s.devnet.rippletest.net:51233"
@@ -5411,7 +5392,7 @@ devnet-amplifier:
         name: "Ripple"
         symbol: "XRP"
         decimals: 6
-      name: "XRP Ledger 2"
+      name: "XRP Ledger Dev 2"
       short_name: "XRPL"
       image: "/logos/chains/xrpl.svg"
       color: "#111112"
@@ -5554,72 +5535,6 @@ devnet-amplifier:
         address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
         contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
         transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-    coti-3:
-      chain_id: 13068200
-      chain_name: "coti-3"
-      endpoints:
-        rpc:
-          - "https://devnet.coti.io/rpc"
-      native_token:
-        name: "Coti"
-        symbol: "COTI2"
-        decimals: 18
-      name: "Coti 3"
-      short_name: "COTI"
-      image: "/logos/chains/coti.svg"
-      color: "#035dbc"
-      explorer:
-        name: "Coti"
-        url: "https://explorer-devnet.coti.io"
-        icon: "/logos/explorers/coti.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/transaction/{tx}"
-    coti-4:
-      chain_id: 13068200
-      chain_name: "coti-4"
-      endpoints:
-        rpc:
-          - "https://devnet.coti.io/rpc"
-      native_token:
-        name: "Coti"
-        symbol: "COTI2"
-        decimals: 18
-      name: "Coti 4"
-      short_name: "COTI"
-      image: "/logos/chains/coti.svg"
-      color: "#035dbc"
-      explorer:
-        name: "Coti"
-        url: "https://explorer-devnet.coti.io"
-        icon: "/logos/explorers/coti.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/transaction/{tx}"
-    coti-6:
-      chain_id: 13068200
-      chain_name: "coti-6"
-      endpoints:
-        rpc:
-          - "https://devnet.coti.io/rpc"
-      native_token:
-        name: "Coti"
-        symbol: "COTI2"
-        decimals: 18
-      name: "Coti 6"
-      short_name: "COTI"
-      image: "/logos/chains/coti.svg"
-      color: "#035dbc"
-      explorer:
-        name: "Coti"
-        url: "https://explorer-devnet.coti.io"
-        icon: "/logos/explorers/coti.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/token/{address}"
-        transaction_path: "/transaction/{tx}"
     coti-7:
       chain_id: 13068200
       chain_name: "coti-7"
@@ -5642,114 +5557,6 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    stellar-test:
-      chain_name: "stellar-test"
-      multisig_prover:
-        address: "axelar1njlpnavy7z942vylfhe7l8chz0dsd0xcupzywp03xe2p7t4n746qga80lw"
-      voting_verifier:
-        address: "axelar1huyudq29jvepa04y7kaq6rwmx6d932wmdrvvdjathmkxc5wkpqqqz0c2h6"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar Test"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-test2:
-      chain_name: "stellar-test2"
-      multisig_prover:
-        address: "axelar1s8unjkst9sjc8csa8xu7sspv4maz8frl34ac2ypny0mylllyuz9qej9lfk"
-      voting_verifier:
-        address: "axelar1y00kk2j8pjx700hedhn3u7dyduy5q9kr37hgge6zxrl46ny0jr7qj046ey"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar Test 2"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2024-q4:
-      chain_name: "stellar-2024-q4"
-      multisig_prover:
-        address: "axelar1knpl88d730hdmlmxfpjl46jxlals0cxwzxp8c8tavrc8g2rduugqtvl6kg"
-      voting_verifier:
-        address: "axelar1fclvpd3kx4udp3nxw88tk8279z36uvmkn6da0jh7fnz6eddh2n2s09n6tg"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2024 Q4"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-test-2025-q1:
-      chain_name: "stellar-test-2025-q1"
-      multisig_prover:
-        address: "axelar1uuja08qdy790ewq9mz0r6t7c4yp9fqccu9f9zssr4tu4k0l52yeqjhckm3"
-      voting_verifier:
-        address: "axelar1s3g877l0pk958vzeyrev9vncklrfht7dx2xv9c4u7zmr0y7jzfmq5cxjqm"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar Test 2025 Q1"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
     stellar-2025-q1:
       chain_name: "stellar-2025-q1"
       gateway:
@@ -5820,56 +5627,6 @@ devnet-amplifier:
         symbol: "SUI"
         decimals: 9
       name: "Sui 2"
-      short_name: "SUI"
-      image: "/logos/chains/sui.svg"
-      color: "#4b7fdc"
-      explorer:
-        name: "Sui"
-        url: "https://suiscan.xyz/testnet"
-        icon: "/logos/explorers/sui.png"
-        block_path: "/checkpoint/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/coin/{address}"
-        transaction_path: "/tx/{tx}"
-    sui-test:
-      chain_name: "sui-test"
-      multisig_prover:
-        address: "axelar1v33yqgzy4sfs0lm7lu7qjxe30wdnssmecm445suyqy55a8mavvfs5y3nwq"
-      voting_verifier:
-        address: "axelar1hxgp37tcyxm6ef0evj37c9muwxw8pxhn82h89ze49ncd49anyfkq9ah8ef"
-      endpoints:
-        rpc:
-          - "https://fullnode.testnet.sui.io"
-      native_token:
-        name: "Sui"
-        symbol: "SUI"
-        decimals: 9
-      name: "Sui Test"
-      short_name: "SUI"
-      image: "/logos/chains/sui.svg"
-      color: "#4b7fdc"
-      explorer:
-        name: "Sui"
-        url: "https://suiscan.xyz/testnet"
-        icon: "/logos/explorers/sui.png"
-        block_path: "/checkpoint/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/coin/{address}"
-        transaction_path: "/tx/{tx}"
-    sui-test2:
-      chain_name: "sui-test2"
-      multisig_prover:
-        address: "axelar1amvmsrszflf43lhfgzcq93a22usvy3w7kqrp25uqghnws3x04jyscutk0w"
-      voting_verifier:
-        address: "axelar1pgzqdnnayxw0t73wea06amp4lpatg34q6wnlyplf2u2edt2veu0qygcpqe"
-      endpoints:
-        rpc:
-          - "https://fullnode.testnet.sui.io"
-      native_token:
-        name: "Sui"
-        symbol: "SUI"
-        decimals: 9
-      name: "Sui Test 2"
       short_name: "SUI"
       image: "/logos/chains/sui.svg"
       color: "#4b7fdc"
