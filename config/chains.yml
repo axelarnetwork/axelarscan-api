@@ -2261,7 +2261,7 @@ mainnet:
         address: "axelar1dalnx2yvmu3g3aau8m7fj426fk9u8dnzlr5azvqmr4x82rtclats8lhjmu"
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/stellar_soroban"
+          - "https://mainnet.sorobanrpc.com"
       native_token:
         name: "Stellar"
         symbol: "XLM"
