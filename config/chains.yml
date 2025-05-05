@@ -2314,9 +2314,9 @@ mainnet:
       gateway:
         address: "rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw"
       multisig_prover:
-        address: ""
+        address: "axelar12k57j826jl8xldyl2hf9hnc9gwf72zl48xfq4qn20sl4kl8unrxsejqvm8"
       voting_verifier:
-        address: ""
+        address: "axelar1lppu77d7h4u7jylw9afctsc2908ea0eh3q6ap82fep5s2qjk9axqvd3sjx"
       endpoints:
         rpc:
           - "https://s1.ripple.com:51234"
@@ -2337,6 +2337,34 @@ mainnet:
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
         no_0x: true
+    xrpl-evm:
+      chain_id: 1440000
+      chain_name: "xrpl-evm"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
+      multisig_prover:
+        address: "axelar198xehj5htckk75s8wcamxerxtdc45669zdqjmr69guveqntj9f6s5rqq55"
+      voting_verifier:
+        address: "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
+      endpoints:
+        rpc:
+          - "https://rpc.xrplevm.org"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 18
+      name: "XRP Ledger EVM"
+      short_name: "XRPL"
+      image: "/logos/chains/xrplevm.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://explorer.xrplevm.org"
+        icon: "/logos/explorers/xrplevm.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
@@ -5413,7 +5441,7 @@ devnet-amplifier:
       chain_name: "xrpl-evm-sidechain"
       endpoints:
         rpc:
-          - "https://rpc.xrplevm.org"
+          - "https://rpc.devnet.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5435,7 +5463,7 @@ devnet-amplifier:
       chain_name: "xrpl-evm-devnet"
       endpoints:
         rpc:
-          - "https://rpc.xrplevm.org"
+          - "https://rpc.devnet.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5457,7 +5485,7 @@ devnet-amplifier:
       chain_name: "xrpl-evm-2"
       endpoints:
         rpc:
-          - "https://rpc.xrplevm.org"
+          - "https://rpc.devnet.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -5687,3 +5715,31 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/transaction/{tx}"
+    plume-2:
+      chain_id: 98867
+      chain_name: "plume-2"
+      gateway:
+        address: "0xA7938970ebF2E35E2789dc8C3019754c2ed762A8"
+      multisig_prover:
+        address: "axelar1mfn6hevkpj54qkkdy2rznp2azgvqff0rt2cegmflxgqfm0nqx20q6aqnp5"
+      voting_verifier:
+        address: "axelar1a4e4aful6hchmxd3cffurz24pca52wmt3pf78rsmzglzujnueqgq7eypgl"
+      endpoints:
+        rpc:
+          - "https://testnet-rpc.plumenetwork.xyz"
+      native_token:
+        name: "Plume"
+        symbol: "PLUME"
+        decimals: 18
+      name: "Plume"
+      short_name: "PLUME"
+      image: "/logos/chains/plume.svg"
+      color: "#ff3c00"
+      explorer:
+        name: "Plume"
+        url: "https://testnet-explorer.plumenetwork.xyz"
+        icon: "/logos/explorers/plume.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"

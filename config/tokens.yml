@@ -283,6 +283,9 @@ XRPL:
 SOL:
   coingecko_id: "solana"
   decimals: 9
+PLUME:
+  coingecko_id: "plume"
+  decimals: 18
 wAXL:
   redirect: "AXL"
 WAXL:
