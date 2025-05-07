@@ -4981,6 +4981,34 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
+    plume:
+      chain_id: 98867
+      chain_name: "plume"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+      multisig_prover:
+        address: "axelar1vs8rvpuyhq40tn4suq4jamx3fe9gqlszds0z8s39ta4txz95ryws8xnpk0"
+      voting_verifier:
+        address: "axelar1t49krzwl0sc6z8qwdst5d7kmgn3xutjtp4ku8u2c06quy7w8hp4q5zsqn2"
+      endpoints:
+        rpc:
+          - "https://testnet-rpc.plumenetwork.xyz"
+      native_token:
+        name: "Plume"
+        symbol: "PLUME"
+        decimals: 18
+      name: "Plume"
+      short_name: "PLUME"
+      image: "/logos/chains/plume.svg"
+      color: "#ff3c00"
+      explorer:
+        name: "Plume"
+        url: "https://testnet-explorer.plumenetwork.xyz"
+        icon: "/logos/explorers/plume.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
