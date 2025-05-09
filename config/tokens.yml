@@ -286,6 +286,9 @@ SOL:
 PLUME:
   coingecko_id: "plume"
   decimals: 18
+HYPE:
+  coingecko_id: "hyperliquid"
+  decimals: 18
 wAXL:
   redirect: "AXL"
 WAXL:

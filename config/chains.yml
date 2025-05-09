@@ -2358,7 +2358,7 @@ mainnet:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -4282,7 +4282,7 @@ testnet:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.testnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -4310,7 +4310,7 @@ testnet:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.testnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -4974,7 +4974,7 @@ stagenet:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.testnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -5479,7 +5479,7 @@ devnet-amplifier:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.devnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -5501,7 +5501,7 @@ devnet-amplifier:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.devnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -5523,7 +5523,7 @@ devnet-amplifier:
       image: "/logos/chains/xrplevm.svg"
       color: "#111112"
       explorer:
-        name: "XRP Ledger"
+        name: "XRP Ledger EVM"
         url: "https://explorer.devnet.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
@@ -5770,4 +5770,32 @@ devnet-amplifier:
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    hyperliquild:
+      chain_id: 998
+      chain_name: "hyperliquild"
+      gateway:
+        address: "0x8bCF77225946Fe5c44013CC241076b3995CA1018"
+      multisig_prover:
+        address: "axelar1e2qgvqhkpd89uu89lctrfdlmp3vdd8r43aydqcm0jctrue30tvhsgpdcvn"
+      voting_verifier:
+        address: "axelar1y3a6fmhw6ytt3zglnd5sdrvzghlu89j9fq454gsq295jt5fr84jsr9wd6l"
+      endpoints:
+        rpc:
+          - "https://rpc.hyperliquid-testnet.xyz/evm"
+      native_token:
+        name: "Hyperliquild"
+        symbol: "HYPE"
+        decimals: 18
+      name: "Hyperliquild"
+      short_name: "HYPE"
+      image: "/logos/chains/hyperliquild.svg"
+      color: "#94fee3"
+      explorer:
+        name: "Hyperliquild"
+        url: "https://app.hyperliquid-testnet.xyz/explorer"
+        icon: "/logos/explorers/hyperliquild.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
