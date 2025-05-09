@@ -5771,9 +5771,9 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-    hyperliquild:
+    hyperliquid:
       chain_id: 998
-      chain_name: "hyperliquild"
+      chain_name: "hyperliquid"
       gateway:
         address: "0x8bCF77225946Fe5c44013CC241076b3995CA1018"
       multisig_prover:
@@ -5784,17 +5784,17 @@ devnet-amplifier:
         rpc:
           - "https://rpc.hyperliquid-testnet.xyz/evm"
       native_token:
-        name: "Hyperliquild"
+        name: "Hyperliquid"
         symbol: "HYPE"
         decimals: 18
-      name: "Hyperliquild"
+      name: "Hyperliquid"
       short_name: "HYPE"
-      image: "/logos/chains/hyperliquild.svg"
+      image: "/logos/chains/hyperliquid.svg"
       color: "#94fee3"
       explorer:
-        name: "Hyperliquild"
+        name: "Hyperliquid"
         url: "https://app.hyperliquid-testnet.xyz/explorer"
-        icon: "/logos/explorers/hyperliquild.png"
+        icon: "/logos/explorers/hyperliquid.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
