@@ -4207,32 +4207,6 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/coin/{address}"
         transaction_path: "/tx/{tx}"
-    xrpl-test-1:
-      chain_name: "xrpl-test-1"
-      multisig_prover:
-        address: "axelar18wq8qjlq6vfg2jw2fmvgyphjxrndc7529wq07pvlpnk0j2uvv5fqqqr4gv"
-      voting_verifier:
-        address: "axelar1nwv2cmp4lmwujpaq9t8t4w2xvcewv49jfzxy7apz4lz60h5ycd6qkjt4fr"
-      endpoints:
-        rpc:
-          - "https://s.altnet.rippletest.net:51234"
-      native_token:
-        name: "Ripple"
-        symbol: "XRP"
-        decimals: 6
-      name: "XRP Ledger Test 1"
-      short_name: "XRPL"
-      image: "/logos/chains/xrpl.svg"
-      color: "#111112"
-      explorer:
-        name: "XRP Ledger"
-        url: "https://testnet.xrpl.org"
-        icon: "/logos/explorers/xrpl.png"
-        block_path: "/ledgers/{block}"
-        address_path: "/accounts/{address}"
-        contract_path: "/accounts/{address}"
-        transaction_path: "/transactions/{tx}"
-        no_0x: true
     xrpl:
       chain_name: "xrpl"
       gateway:
@@ -4261,34 +4235,6 @@ testnet:
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
         no_0x: true
-    xrpl-evm-test-1:
-      chain_id: 1449000
-      chain_name: "xrpl-evm-test-1"
-      gateway:
-        address: "0xA1eBb6A4b856dF8bf6c3aCa88a9115a9ab3b2E02"
-      multisig_prover:
-        address: "axelar1fxjzgyhuvst30frp773jnyvy4sj9839t23fkfsfnr3gun0w740uqfhwe4g"
-      voting_verifier:
-        address: "axelar1wn27x0th9amw5z59tssn5f9hwraevla8xx7ksur570npfpkckr9s257vet"
-      endpoints:
-        rpc:
-          - "https://rpc.testnet.xrplevm.org"
-      native_token:
-        name: "Ripple"
-        symbol: "XRP"
-        decimals: 18
-      name: "XRP Ledger EVM Test 1"
-      short_name: "XRPL"
-      image: "/logos/chains/xrplevm.svg"
-      color: "#111112"
-      explorer:
-        name: "XRP Ledger EVM"
-        url: "https://explorer.testnet.xrplevm.org"
-        icon: "/logos/explorers/xrplevm.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/address/{address}"
-        transaction_path: "/tx/{tx}"
     xrpl-evm:
       chain_id: 1449000
       chain_name: "xrpl-evm"
@@ -5008,6 +4954,34 @@ stagenet:
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    hyperliquid:
+      chain_id: 998
+      chain_name: "hyperliquid"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+      multisig_prover:
+        address: "axelar12cmpmynpn38tvg0t57lc8wd8cvw724sz95kr80a08mhghztex5lqfk2yv5"
+      voting_verifier:
+        address: "axelar1n72sdsdclpffc0jw5mf7vc97zpy6czqw9glmcqhm8sp73nczu57sn3kplc"
+      endpoints:
+        rpc:
+          - "https://rpc.hyperliquid-testnet.xyz/evm"
+      native_token:
+        name: "Hyperliquid"
+        symbol: "HYPE"
+        decimals: 18
+      name: "Hyperliquid"
+      short_name: "HYPE"
+      image: "/logos/chains/hyperliquid.svg"
+      color: "#94fee3"
+      explorer:
+        name: "Hyperliquid"
+        url: "https://app.hyperliquid-testnet.xyz/explorer"
+        icon: "/logos/explorers/hyperliquid.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
 
 
@@ -5770,32 +5744,4 @@ devnet-amplifier:
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
-        transaction_path: "/tx/{tx}"
-    hyperliquid:
-      chain_id: 998
-      chain_name: "hyperliquid"
-      gateway:
-        address: "0x8bCF77225946Fe5c44013CC241076b3995CA1018"
-      multisig_prover:
-        address: "axelar1e2qgvqhkpd89uu89lctrfdlmp3vdd8r43aydqcm0jctrue30tvhsgpdcvn"
-      voting_verifier:
-        address: "axelar1y3a6fmhw6ytt3zglnd5sdrvzghlu89j9fq454gsq295jt5fr84jsr9wd6l"
-      endpoints:
-        rpc:
-          - "https://rpc.hyperliquid-testnet.xyz/evm"
-      native_token:
-        name: "Hyperliquid"
-        symbol: "HYPE"
-        decimals: 18
-      name: "Hyperliquid"
-      short_name: "HYPE"
-      image: "/logos/chains/hyperliquid.svg"
-      color: "#94fee3"
-      explorer:
-        name: "Hyperliquid"
-        url: "https://app.hyperliquid-testnet.xyz/explorer"
-        icon: "/logos/explorers/hyperliquid.png"
-        block_path: "/block/{block}"
-        address_path: "/address/{address}"
-        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
