@@ -5773,3 +5773,31 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    berachain:
+      chain_id: 80069
+      chain_name: "berachain"
+      gateway:
+        address: ""
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://bepolia.rpc.berachain.com"
+      native_token:
+        name: "Berachain"
+        symbol: "BERA"
+        decimals: 18
+      name: "Berachain"
+      short_name: "BERA"
+      image: "/logos/chains/berachain.svg"
+      color: "#814625"
+      explorer:
+        name: "Berascan"
+        url: "https://testnet.berascan.com"
+        icon: "/logos/explorers/berachain.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
