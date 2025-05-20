@@ -289,6 +289,9 @@ PLUME:
 HYPE:
   coingecko_id: "hyperliquid"
   decimals: 18
+BERA:
+  coingecko_id: "berachain-bera"
+  decimals: 18
 wAXL:
   redirect: "AXL"
 WAXL:
