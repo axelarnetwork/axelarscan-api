@@ -4927,6 +4927,34 @@ stagenet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    xrpl:
+      chain_name: "xrpl"
+      gateway:
+        address: "rpjRVZbKbb5UmSEcgp6C6U4GzQQF4mEpbR"
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://s.altnet.rippletest.net:51234"
+      native_token:
+        name: "Ripple"
+        symbol: "XRP"
+        decimals: 6
+      name: "XRP Ledger"
+      short_name: "XRPL"
+      image: "/logos/chains/xrpl.svg"
+      color: "#111112"
+      explorer:
+        name: "XRP Ledger"
+        url: "https://testnet.xrpl.org"
+        icon: "/logos/explorers/xrpl.png"
+        block_path: "/ledgers/{block}"
+        address_path: "/accounts/{address}"
+        contract_path: "/accounts/{address}"
+        transaction_path: "/transactions/{tx}"
+        no_0x: true
     xrpl-evm:
       chain_id: 1449000
       chain_name: "xrpl-evm"
