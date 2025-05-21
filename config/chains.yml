@@ -4932,9 +4932,9 @@ stagenet:
       gateway:
         address: "rpjRVZbKbb5UmSEcgp6C6U4GzQQF4mEpbR"
       multisig_prover:
-        address: ""
+        address: "axelar17mnfwue8mw5t2q9gmndz3m50070fmm0ffa0tunh2dujmuy398rtsrjyw2k"
       voting_verifier:
-        address: ""
+        address: "axelar1ecj3spvgkkmngslmvlft25cpws836x5t9y45qyzl5ezh2ny60fes4h2kq6"
       endpoints:
         rpc:
           - "https://s.altnet.rippletest.net:51234"
