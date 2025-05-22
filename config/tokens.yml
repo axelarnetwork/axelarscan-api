@@ -252,7 +252,10 @@ WARD:
   coingecko_id: ""
   decimals: 6
 NIL:
-  coingecko_id: ""
+  coingecko_id: "nillion"
+  decimals: 6
+ZIG:
+  coingecko_id: "zignaly"
   decimals: 6
 WHALE:
   coingecko_id: "white-whale"
