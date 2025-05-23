@@ -295,6 +295,9 @@ HYPE:
 BERA:
   coingecko_id: "berachain-bera"
   decimals: 18
+MON:
+  coingecko_id: "monad"
+  decimals: 18
 wAXL:
   redirect: "AXL"
 WAXL:
