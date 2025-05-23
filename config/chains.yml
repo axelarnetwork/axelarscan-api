@@ -5832,6 +5832,8 @@ devnet-amplifier:
     berachain:
       chain_id: 80069
       chain_name: "berachain"
+      gateway:
+        address: "0xA7938970ebF2E35E2789dc8C3019754c2ed762A8"
       multisig_prover:
         address: "axelar1xdg6lezehttusu8zfr5jnshn7d3k2jjzlmr43m6ssmxd048zjv6s4h5unj"
       voting_verifier:
