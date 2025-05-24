@@ -5857,3 +5857,31 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    monad:
+      chain_id: 10143
+      chain_name: "monad"
+      gateway:
+        address: "0xA0c562047BcD4007ED3c38556c1C29429daC15F4"
+      multisig_prover:
+        address: "axelar1drccpywtcuf7hm7xyper9ktlpmtjlq37v5ps8ax59lel4csv0xdq3gyaaj"
+      voting_verifier:
+        address: "axelar1yrenh2gnkgrv23mlpxke2gce6rhfsqhyzzlsgqxrla7x565md2yq7lsjet"
+      endpoints:
+        rpc:
+          - "https://testnet-rpc.monad.xyz"
+      native_token:
+        name: "Monad"
+        symbol: "MON"
+        decimals: 18
+      name: "Monad"
+      short_name: "MON"
+      image: "/logos/chains/monad.svg"
+      color: "#836ef9"
+      explorer:
+        name: "Monad"
+        url: "https://testnet.monadexplorer.com"
+        icon: "/logos/explorers/monad.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
