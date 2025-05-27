@@ -2314,9 +2314,9 @@ mainnet:
       gateway:
         address: "rfmS3zqrQrka8wVyhXifEeyTwe8AMz2Yhw"
       multisig_prover:
-        address: "axelar12k57j826jl8xldyl2hf9hnc9gwf72zl48xfq4qn20sl4kl8unrxsejqvm8"
+        address: "axelar15mhhuf887t6nfx2t0vuc6kx9w2uk65h939awmz6n7r6ggzyf659st25hff"
       voting_verifier:
-        address: "axelar1lppu77d7h4u7jylw9afctsc2908ea0eh3q6ap82fep5s2qjk9axqvd3sjx"
+        address: "axelar14rd4uyrqyl0tw75gjn8zqfppmy08t3x3wrsujeqp37l0hghduanscfvkz6"
       endpoints:
         rpc:
           - "https://s1.ripple.com:51234"
