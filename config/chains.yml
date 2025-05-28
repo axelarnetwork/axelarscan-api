@@ -4291,6 +4291,34 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
+    plume:
+      chain_id: 98867
+      chain_name: "plume"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
+      multisig_prover:
+        address: "axelar1ll4yhqtldlgqwqthyffqln3cyr2f8ydzhv0djpjyp6sk4v5k4kqqrs60s7"
+      voting_verifier:
+        address: "axelar1nrdqke6tcxjuymg5gyd9x3yg35n3wrgarnj3sqskp98z2xnvlx9q82f63t"
+      endpoints:
+        rpc:
+          - "https://testnet-rpc.plumenetwork.xyz"
+      native_token:
+        name: "Plume"
+        symbol: "PLUME"
+        decimals: 18
+      name: "Plume"
+      short_name: "PLUME"
+      image: "/logos/chains/plume.svg"
+      color: "#ff3c00"
+      explorer:
+        name: "Plume"
+        url: "https://testnet-explorer.plumenetwork.xyz"
+        icon: "/logos/explorers/plume.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     hyperliquid:
       chain_id: 998
       chain_name: "hyperliquid"
