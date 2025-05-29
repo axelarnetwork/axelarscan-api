@@ -5129,9 +5129,9 @@ stagenet:
       gateway:
         address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
       multisig_prover:
-        address: "axelar1drccpywtcuf7hm7xyper9ktlpmtjlq37v5ps8ax59lel4csv0xdq3gyaaj"
+        address: "axelar1xvqw6ts27k74ak0av7rszmedcz2rprqenayqk2gptfjhnl7rw3lqylln83"
       voting_verifier:
-        address: "axelar1yrenh2gnkgrv23mlpxke2gce6rhfsqhyzzlsgqxrla7x565md2yq7lsjet"
+        address: "axelar1v72l84ar9nhl7xt44hn374xm60a7huhfnulh65aagtk55x8uzpsqfdr6tq"
       endpoints:
         rpc:
           - "https://testnet-rpc.monad.xyz"
