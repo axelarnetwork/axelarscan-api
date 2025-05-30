@@ -4347,6 +4347,34 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
+    berachain:
+      chain_id: 80069
+      chain_name: "berachain"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
+      multisig_prover:
+        address: "axelar1k483q898t5w0acqzxhdjlsmnpgcxxa49ye8m46757n8mtk70ugtsu927xw"
+      voting_verifier:
+        address: "axelar1xx6xdw6mwmfl6u2jygq0zfx2q6uyc8emtt29j9wg78l2l4p739nqmwsgal"
+      endpoints:
+        rpc:
+          - "https://bepolia.rpc.berachain.com"
+      native_token:
+        name: "Berachain"
+        symbol: "BERA"
+        decimals: 18
+      name: "Berachain"
+      short_name: "BERA"
+      image: "/logos/chains/berachain.svg"
+      color: "#814625"
+      explorer:
+        name: "Berascan"
+        url: "https://testnet.berascan.com"
+        icon: "/logos/explorers/berachain.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
 
 
 
