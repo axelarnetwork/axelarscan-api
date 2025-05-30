@@ -320,15 +320,15 @@ module.exports = async params => {
 
               if (address) {
                 // get balance of this asset on gateway
-                const gatewayBalance = type === 'gateway' ? toNumber(await getRPCs(chain)?.getBalance(chain, gateway.address, contractData)) : 0;
+                const gatewayBalance = type === 'gateway' ? toNumber(await getRPCs(chain)?.getBalance(gateway.address, contractData)) : 0;
 
                 // check token manager type is lockUnlock
                 const isLockUnlock = type === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
                 // get balance of this asset on token manager
-                const tokenManagerBalance = isLockUnlock ? toNumber(await getRPCs(chain)?.getBalance(chain, token_manager_address, contractData)) : 0;
+                const tokenManagerBalance = isLockUnlock ? toNumber(await getRPCs(chain)?.getBalance(token_manager_address, contractData)) : 0;
 
                 // for lockUnlock, supply = tokenManagerBalance, otherwise supply = getTokenSupply
-                const supply = (!isNative || type === 'its') && !is_custom ? isLockUnlock ? tokenManagerBalance : toNumber(await getRPCs(chain)?.getTokenSupply(chain, contractData)) : 0;
+                const supply = (!isNative || type === 'its') && !is_custom ? isLockUnlock ? tokenManagerBalance : toNumber(await getRPCs(chain)?.getTokenSupply(contractData)) : 0;
 
                 tvlData = {
                   // contract

@@ -35,6 +35,18 @@ const getRPCs = chain => {
                   } catch (error) {}
                 }
                 break;
+              case 'xrpl':
+                for (const rpc of rpcs) {
+                  try {
+                    const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'account_info', params: [{ account: address }], id: 0 } }) };
+
+                    if (result?.account_data?.Balance) {
+                      output = formatUnits(result.account_data.Balance, decimals, false);
+                      break;
+                    }
+                  } catch (error) {}
+                }
+                break;
               default:
                 if (isNumber(chain_id)) {
                   output = await getBalance(chain, address, contractData);
