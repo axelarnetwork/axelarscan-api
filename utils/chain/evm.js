@@ -4,10 +4,11 @@ const { getChainData } = require('../config');
 const { request } = require('../http');
 const { toArray } = require('../parser');
 const { toNumber, toBigNumber, formatUnits } = require('../number');
+const { isNativeTokenAddress } = require('../../methods/tvl/utils');
 
 const createRPCProvider = (url, chainId) => new JsonRpcProvider(url, chainId ? toNumber(chainId) : undefined);
 const getProvider = chain => {
-  const { chain_id, deprecated, endpoints } = { ...getChainData(chain, 'evm') };
+  const { chain_id, deprecated, endpoints } = { ...(getChainData(chain, 'evm') || getChainData(chain, 'amplifier')) };
   const rpcs = toArray(endpoints?.rpc);
 
   if (rpcs.length > 0 && !deprecated) {
@@ -29,7 +30,7 @@ const getProvider = chain => {
 };
 
 const getBalance = async (chain, address, contractData) => {
-  const { rpc } = { ...getChainData(chain, 'evm')?.endpoints };
+  const { rpc } = { ...(getChainData(chain, 'evm') || getChainData(chain, 'amplifier'))?.endpoints };
   if (!(rpc && address)) return;
 
   const { decimals } = { ...contractData };
@@ -43,7 +44,7 @@ const getBalance = async (chain, address, contractData) => {
   // post request to rpcs
   for (const url of toArray(rpc)) {
     try {
-      const { result } = { ...await request(url, { method: 'post', params: { jsonrpc: '2.0', method: contract_address === ZeroAddress ? 'eth_getBalance' : 'eth_call', params: contract_address === ZeroAddress ? [address, 'latest'] : [{ to: contract_address, data: `${keccak256(toUtf8Bytes('balanceOf(address)')).substring(0, 10)}000000000000000000000000${address.substring(2)}` }, 'latest'], id: 0 } }) };
+      const { result } = { ...await request(url, { method: 'post', params: { jsonrpc: '2.0', method: isNativeTokenAddress(contract_address) ? 'eth_getBalance' : 'eth_call', params: isNativeTokenAddress(contract_address) ? [address, 'latest'] : [{ to: contract_address, data: `${keccak256(toUtf8Bytes('balanceOf(address)')).substring(0, 10)}000000000000000000000000${address.substring(2)}` }, 'latest'], id: 0 } }) };
 
       if (result) {
         balance = toBigNumber(result);
@@ -57,7 +58,7 @@ const getBalance = async (chain, address, contractData) => {
     try {
       const provider = getProvider(chain);
 
-      if (contract_address === ZeroAddress) {
+      if (isNativeTokenAddress(contract_address)) {
         balance = await provider.getBalance(address);
       }
       else {
@@ -71,9 +72,13 @@ const getBalance = async (chain, address, contractData) => {
 };
 
 const getTokenSupply = async (chain, contractData) => {
-  const { rpc } = { ...getChainData(chain, 'evm')?.endpoints };
+  const { rpc } = { ...(getChainData(chain, 'evm') || getChainData(chain, 'amplifier'))?.endpoints };
   const { address, decimals } = { ...contractData };
   if (!(rpc && address && address !== ZeroAddress)) return;
+
+  if (isNativeTokenAddress(address)) {
+    return getBalance(chain, address, contractData);
+  }
 
   let supply;
 

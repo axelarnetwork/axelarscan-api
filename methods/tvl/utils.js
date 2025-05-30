@@ -226,6 +226,8 @@ const isSecretSnipChain = chain => chain === 'secret-snip';
 
 const isSecretChain = chain => chain === 'secret';
 
+const isNativeTokenAddress = address => [ZeroAddress, '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'].includes(address);
+
 module.exports = {
   normalizeParams,
   generateDenomForAsset,
@@ -240,4 +242,5 @@ module.exports = {
   getChainType,
   isSecretSnipChain,
   isSecretChain,
+  isNativeTokenAddress,
 };
