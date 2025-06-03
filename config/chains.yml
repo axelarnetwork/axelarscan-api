@@ -1988,6 +1988,7 @@ mainnet:
       endpoints:
         lcd:
           - "https://api.elys.network"
+          - "https://elys-mainnet-api.itrocket.net"
         timeout:
           lcd: 3000
         use_query: true
@@ -2002,7 +2003,7 @@ mainnet:
       color: "#363738"
       explorer:
         name: "Elys"
-        url: "https://ping.pub/elys"
+        url: "https://mainnet.itrocket.net/elys"
         icon: "/logos/explorers/elys.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
@@ -3643,6 +3644,7 @@ testnet:
       endpoints:
         lcd:
           - "https://api.testnet.elys.network"
+          - "https://elys-testnet-api.itrocket.net"
         timeout:
           lcd: 3000
         use_query: true
@@ -3657,7 +3659,7 @@ testnet:
       color: "#363738"
       explorer:
         name: "Elys"
-        url: "https://testnet.ping.pub/elys"
+        url: "https://testnet.itrocket.net/elys"
         icon: "/logos/explorers/elys.png"
         block_path: "/block/{block}"
         address_path: "/account/{address}"
