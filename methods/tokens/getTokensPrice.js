@@ -1,11 +1,12 @@
 const _ = require('lodash');
 const moment = require('moment');
 
+const { read } = require('../../services/indexer');
 const { TOKEN_PRICE_COLLECTION, TOKEN_API, CURRENCY, getAssets, getAssetData, getITSAssets, getITSAssetData, getTokens, getCustomTVLConfig } = require('../../utils/config');
-const { readCache, readMultipleCache, writeCache } = require('../../utils/cache');
+const { readCache, readMultipleCache, writeCache, normalizeCacheId } = require('../../utils/cache');
 const { request } = require('../../utils/http');
 const { toCase, toArray } = require('../../utils/parser');
-const { lastString } = require('../../utils/string');
+const { lastString, find } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { timeDiff } = require('../../utils/time');
 
@@ -52,7 +53,7 @@ const getTokenConfig = async (symbol, assetsData, noRequest = false) => {
   return tokenData;
 };
 
-module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, assetsData }) => {
+module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURRENCY, assetsData, forceCache = false }) => {
   // merge symbols and remove 'burned-' prefix
   symbols = _.uniq(toArray(_.concat(symbols, symbol)).map(s => s.startsWith('burned-') ? s.replace('burned-', '') : s));
 
@@ -135,9 +136,25 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
       }
       else {
         // get tokens price from cache
-        const data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
+        let data;
 
-        if (toArray(data).length >= ids.length) {
+        if (ids.length > 50) {
+          data = (await read(TOKEN_PRICE_COLLECTION, {
+            bool: {
+              must: [{ range: { updated_at: { gte: moment().subtract(300, 'seconds').valueOf() } } }],
+            },
+          }, { size: ids.length * 10 }))?.data;
+
+          if (data) {
+            const cacheIds = ids.map(id => normalizeCacheId(id));
+            data = data.filter(d => find(d.id, cacheIds));
+          }
+        }
+        else {
+          data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
+        }
+
+        if (toArray(data).length >= (ids.length - (forceCache ? 0 : 3))) {
           response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
         }
       }

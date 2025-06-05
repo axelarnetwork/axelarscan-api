@@ -10,7 +10,7 @@ const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3C
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
 const { getRPCs } = require('../../utils/chain/amplifier');
-const { readCache, readMultipleCache, writeCache } = require('../../utils/cache');
+const { readCache, readMultipleCache, writeCache, normalizeCacheId } = require('../../utils/cache');
 const { toHash, getBech32Address, toArray } = require('../../utils/parser');
 const { sleep } = require('../../utils/operator');
 const { lastString, find } = require('../../utils/string');
@@ -54,7 +54,23 @@ module.exports = async params => {
   // use cache when no forceCache and get multiple assets or isIntervalUpdate
   if (!forceCache ? assetsData.length > 1 && isAllChains : isIntervalUpdate) {
     // get tvl of assets from cache
-    const data = await readMultipleCache(assetsData.map(d => d.id), CACHE_AGE, TOKEN_TVL_COLLECTION);
+    let data;
+
+    if (assetsData.length > 200) {
+      data = (await read(TOKEN_TVL_COLLECTION, {
+        bool: {
+          must: [{ range: { updated_at: { gte: moment().subtract(CACHE_AGE, 'seconds').valueOf() } } }],
+        },
+      }, { size: assetsData.length + 50 }))?.data;
+
+      if (data) {
+        const cacheIds = assetsData.map(d => normalizeCacheId(d.id));
+        data = data.filter(d => find(d.id, cacheIds));
+      }
+    }
+    else {
+      data = await readMultipleCache(assetsData.map(d => d.id), CACHE_AGE, TOKEN_TVL_COLLECTION);
+    }
 
     if (toArray(data).length > 0) {
       cachesData = {
