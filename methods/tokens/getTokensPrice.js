@@ -154,7 +154,7 @@ module.exports = async ({ symbols, symbol, timestamp = moment(), currency = CURR
           data = await readMultipleCache(ids, 300, TOKEN_PRICE_COLLECTION);
         }
 
-        if (toArray(data).length >= (ids.length - (forceCache ? 0 : 3))) {
+        if (toArray(data).length >= (ids.length - (ids.length > 50 && !forceCache ? 3 : 0))) {
           response = Object.fromEntries(data.flatMap(d => Object.entries(d.data)));
         }
       }
