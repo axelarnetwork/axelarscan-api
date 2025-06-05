@@ -71,9 +71,7 @@ const getChainByS3ConfigChain = chain => {
   return getChainData(chain)?.id || chain;
 };
 
-const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
-  const cacheId = 's3config';
-
+const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId = 's3configAssets') => {
   // get s3 config from cache
   if (!forceCache) {
     const cache = await readCache(cacheId, 900);
@@ -83,13 +81,22 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
   const response = await request(`https://axelar-${env}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
 
   if (response) {
+    const chainsCacheId = 's3configChains';
+    const assetsCacheId = 's3configAssets';
+
+    let chains;
+
+    if (response.chains) {
+      chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => [k, { config: { ibc: v.config?.ibc } }]));
+
+      // caching chains config
+      await writeCache(chainsCacheId, { chains });
+    }
+
     // remove unused fields
     if (response.tokenAddressToAsset) delete response.tokenAddressToAsset;
-    if (response.amplifier_configs) delete response.amplifier_configs;    
-  
-    if (response.chains) {
-      response.chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => [k, { config: v.config }]));
-    }
+    if (response.amplifier_configs) delete response.amplifier_configs;
+    if (response.chains) delete response.chains;
 
     if (response.assets) {
       response.assets = Object.fromEntries(Object.entries(response.assets).map(([k, v]) => {
@@ -97,17 +104,36 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false) => {
         return [k, v];
       }));
 
-      // caching
-      await writeCache(cacheId, response);
-      return response;
+      // caching assets config
+      await writeCache(assetsCacheId, response);
+    }
+
+    // return config
+    switch (cacheId) {
+      case chainsCacheId:
+        if (chains) {
+          return { chains };
+        }
+        break;
+      case assetsCacheId:
+        if (response.assets) {
+          return response;
+        }
+        break;
+      default:
+        break;
     }
   }
 
   return await readCache(cacheId, 24 * 3600);
 };
 
+const getAxelarS3ChainsConfig = async (env = ENVIRONMENT, forceCache = false) => await getAxelarS3Config(env, forceCache, 's3configChains');
+
+const getAxelarS3AssetsConfig = async (env = ENVIRONMENT, forceCache = false) => await getAxelarS3Config(env, forceCache, 's3configAssets');
+
 const getAssets = async (env = ENVIRONMENT) => {
-  const response = await getAxelarS3Config(env);
+  const response = await getAxelarS3AssetsConfig(env);
 
   // assetsData from config
   const assetsData = _.cloneDeep({ ...config.assets[env] });
@@ -189,7 +215,7 @@ const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
 };
 
 const getITSAssets = async (env = ENVIRONMENT) => {
-  const response = await getAxelarS3Config(env);
+  const response = await getAxelarS3AssetsConfig(env);
 
   // ITS assets
   return Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
@@ -241,6 +267,8 @@ module.exports = {
   getChains,
   getChainData,
   getAxelarS3Config,
+  getAxelarS3ChainsConfig,
+  getAxelarS3AssetsConfig,
   getAssets,
   getAssetData,
   getITSAssets,
