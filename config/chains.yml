@@ -2366,6 +2366,34 @@ mainnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
+    plume:
+      chain_id: 98866
+      chain_name: "plume"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
+      multisig_prover:
+        address: "axelar1ll4yhqtldlgqwqthyffqln3cyr2f8ydzhv0djpjyp6sk4v5k4kqqrs60s7"
+      voting_verifier:
+        address: "axelar1nrdqke6tcxjuymg5gyd9x3yg35n3wrgarnj3sqskp98z2xnvlx9q82f63t"
+      endpoints:
+        rpc:
+          - "https://rpc.plume.org"
+      native_token:
+        name: "Plume"
+        symbol: "PLUME"
+        decimals: 18
+      name: "Plume"
+      short_name: "PLUME"
+      image: "/logos/chains/plume.svg"
+      color: "#ff3c00"
+      explorer:
+        name: "Plume"
+        url: "https://explorer.plume.org"
+        icon: "/logos/explorers/plume.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     berachain:
       chain_id: 80094
       chain_name: "berachain"
@@ -4332,7 +4360,7 @@ testnet:
         address: "axelar1nrdqke6tcxjuymg5gyd9x3yg35n3wrgarnj3sqskp98z2xnvlx9q82f63t"
       endpoints:
         rpc:
-          - "https://testnet-rpc.plumenetwork.xyz"
+          - "https://testnet-rpc.plume.org"
       native_token:
         name: "Plume"
         symbol: "PLUME"
@@ -4343,7 +4371,7 @@ testnet:
       color: "#ff3c00"
       explorer:
         name: "Plume"
-        url: "https://testnet-explorer.plumenetwork.xyz"
+        url: "https://testnet-explorer.plume.org"
         icon: "/logos/explorers/plume.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
@@ -5108,7 +5136,7 @@ stagenet:
         address: "axelar1t49krzwl0sc6z8qwdst5d7kmgn3xutjtp4ku8u2c06quy7w8hp4q5zsqn2"
       endpoints:
         rpc:
-          - "https://testnet-rpc.plumenetwork.xyz"
+          - "https://testnet-rpc.plume.org"
       native_token:
         name: "Plume"
         symbol: "PLUME"
@@ -5119,7 +5147,7 @@ stagenet:
       color: "#ff3c00"
       explorer:
         name: "Plume"
-        url: "https://testnet-explorer.plumenetwork.xyz"
+        url: "https://testnet-explorer.plume.org"
         icon: "/logos/explorers/plume.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
@@ -5954,7 +5982,7 @@ devnet-amplifier:
         address: "axelar1a4e4aful6hchmxd3cffurz24pca52wmt3pf78rsmzglzujnueqgq7eypgl"
       endpoints:
         rpc:
-          - "https://testnet-rpc.plumenetwork.xyz"
+          - "https://testnet-rpc.plume.org"
       native_token:
         name: "Plume"
         symbol: "PLUME"
@@ -5965,7 +5993,7 @@ devnet-amplifier:
       color: "#ff3c00"
       explorer:
         name: "Plume"
-        url: "https://testnet-explorer.plumenetwork.xyz"
+        url: "https://testnet-explorer.plume.org"
         icon: "/logos/explorers/plume.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
