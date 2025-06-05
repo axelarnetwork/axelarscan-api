@@ -9,7 +9,7 @@ module.exports = () => {
   describe('getTokensPrice', () => {
     it('Should receive price of tokens', async () => {
       const symbols = ['ETH', 'MATIC', 'POL'];
-      const response = await getTokensPrice({ symbols });
+      const response = await getTokensPrice({ symbols, forceCache: true });
 
       expect(Object.keys(response)).to.have.lengthOf(symbols.length);
 
