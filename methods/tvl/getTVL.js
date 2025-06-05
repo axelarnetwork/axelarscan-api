@@ -6,7 +6,7 @@ const saveIBCChannels = require('./saveIBCChannels');
 const { normalizeParams, getCustomContractsData, getCustomTokensData, getTVLAssets, getTVLChains, getContractData, getChainType, isSecretSnipChain, isSecretChain } = require('./utils');
 const { getTokensPrice, getTokenCirculatingSupply } = require('../tokens');
 const { read } = require('../../services/indexer');
-const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3Config, getTVLConfig } = require('../../utils/config');
+const { TOKEN_TVL_COLLECTION, IBC_CHANNEL_COLLECTION, getChainData, getAxelarS3ChainsConfig, getTVLConfig } = require('../../utils/config');
 const { getBalance, getTokenSupply } = require('../../utils/chain/evm');
 const { getCosmosBalance, getIBCSupply } = require('../../utils/chain/cosmos');
 const { getRPCs } = require('../../utils/chain/amplifier');
@@ -85,7 +85,7 @@ module.exports = async params => {
   }
 
   // get s3 config
-  const axelars3Config = await getAxelarS3Config();
+  const axelarS3ChainsConfig = await getAxelarS3ChainsConfig();
 
   // results
   const data = [];
@@ -205,7 +205,7 @@ module.exports = async params => {
 
                   while (!wasRun) {
                     // channel id from axelar s3 config
-                    const { channelId } = { ...axelars3Config?.chains?.[chain]?.config?.ibc?.fromAxelar };
+                    const { channelId } = { ...axelarS3ChainsConfig?.chains?.[chain]?.config?.ibc?.fromAxelar };
 
                     const { data } = { ...await read(IBC_CHANNEL_COLLECTION, {
                       bool: {
