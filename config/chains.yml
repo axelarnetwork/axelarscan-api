@@ -2232,9 +2232,9 @@ mainnet:
       gateway:
         address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
       multisig_prover:
-        address: ""
+        address: "axelar1e7z2faehrvpwl3apq3srr8djp386urvm2fgw3yafmju6slphhe8skecrwk"
       voting_verifier:
-        address: ""
+        address: "axelar1q8q8qq59yv9wmhcreu5ykt4azsk83ttve4e7jyavt32k6jq862xsqexnfh"
       endpoints:
         rpc:
           - "https://mainnet.hashio.io/api"
