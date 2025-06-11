@@ -132,7 +132,11 @@ const getAxelarS3ChainsConfig = async (env = ENVIRONMENT, forceCache = false) =>
 
 const getAxelarS3AssetsConfig = async (env = ENVIRONMENT, forceCache = false) => await getAxelarS3Config(env, forceCache, 's3configAssets');
 
-const getAssets = async (env = ENVIRONMENT) => {
+const getAssets = async (env = ENVIRONMENT, cacheId = 'assets') => {
+  // get assets from cache
+  const cache = await readCache(cacheId, 600);
+  if (cache) return cache;
+
   const response = await getAxelarS3AssetsConfig(env);
 
   // assetsData from config
@@ -196,8 +200,13 @@ const getAssets = async (env = ENVIRONMENT) => {
   // filter duplicate assets
   const assetsDataEntries = Object.entries(assetsData).filter(([k, v]) => !find(k, Object.values(assetsData).flatMap(d => toArray(d.denoms))));
 
-  // return assets list
-  return assetsDataEntries.map(([k, v]) => ({ ...v, id: k }));
+  // create assets list
+  const data = assetsDataEntries.map(([k, v]) => ({ ...v, id: k }));
+
+  // caching assets
+  await writeCache(cacheId, data);
+
+  return data;
 };
 
 const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
@@ -214,11 +223,15 @@ const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   );
 };
 
-const getITSAssets = async (env = ENVIRONMENT) => {
+const getITSAssets = async (env = ENVIRONMENT, cacheId = 'itsAssets') => {
+  // get its assets from cache
+  const cache = await readCache(cacheId, 600);
+  if (cache) return cache;
+
   const response = await getAxelarS3AssetsConfig(env);
 
   // ITS assets
-  return Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
+  const data = Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
     id: d.id,
     symbol: d.prettySymbol,
     name: d.name,
@@ -229,6 +242,11 @@ const getITSAssets = async (env = ENVIRONMENT) => {
     native_chain: getChainByS3ConfigChain(d.originAxelarChainId),
     chains: d.chains,
   }));
+
+  // caching its assets
+  await writeCache(cacheId, data);
+
+  return data;
 };
 
 const getITSAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
