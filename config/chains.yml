@@ -2349,7 +2349,7 @@ mainnet:
         address: "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
       endpoints:
         rpc:
-          - "https://rpc.xrplevm.org"
+          - "https://rpc-mainnet.aws.peersyst.tech"
       native_token:
         name: "Ripple"
         symbol: "XRP"
@@ -2360,7 +2360,7 @@ mainnet:
       color: "#111112"
       explorer:
         name: "XRP Ledger EVM"
-        url: "https://explorer.xrplevm.org"
+        url: "https://explorer-mainnet.aws.peersyst.tech"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
