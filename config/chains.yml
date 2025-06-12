@@ -5014,33 +5014,31 @@ stagenet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    sui:
-      chain_name: "sui"
-      gateway:
-        address: "0x0a011637cbd43d101896d12d85cc8701bcb4ec884f556a9a15b1e26c72627853"
+    solana:
+      chain_name: "solana"
       multisig_prover:
-        address: "axelar1ktjfpfrlgmh8s76ltjhhv0xcj0st0d0xrjh5rvm3gr5u66x9xvpsm0juw8"
+        address: "axelar1y4uv7n2a6qdnv4w8h5qs7nsepzeehsj68wyqgecuh5cay02sk4qs702yjm"
       voting_verifier:
-        address: "axelar1x8rqw5l5gzye7d063zupr5zlelfvjxq5z6rr7wy643ufuflhl6xqhgr5wt"
+        address: "axelar1e0ndz9668a953a507x04c74wsp0sxfcjj2gtvum733lqp95rvz6slmgx2q"
       endpoints:
         rpc:
-          - "https://fullnode.testnet.sui.io"
+          - "https://api.devnet.solana.com"
       native_token:
-        name: "Sui"
-        symbol: "SUI"
+        name: "Solana"
+        symbol: "SOL"
         decimals: 9
-      name: "Sui"
-      short_name: "SUI"
-      image: "/logos/chains/sui.svg"
-      color: "#4b7fdc"
+      name: "Solana"
+      short_name: "SOL"
+      image: "/logos/chains/solana.svg"
+      color: "#8d4df7"
       explorer:
-        name: "Sui"
-        url: "https://suiscan.xyz/testnet"
-        icon: "/logos/explorers/sui.png"
-        block_path: "/checkpoint/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/coin/{address}"
-        transaction_path: "/tx/{tx}"
+        name: "Solana"
+        url: "https://explorer.solana.com?cluster=devnet"
+        icon: "/logos/explorers/solana.png"
+        block_path: "/block/{block}?cluster=devnet"
+        address_path: "/address/{address}?cluster=devnet"
+        contract_path: "/address/{address}?cluster=devnet"
+        transaction_path: "/tx/{tx}?cluster=devnet"
     stellar:
       chain_name: "stellar"
       multisig_prover:
@@ -5097,6 +5095,33 @@ stagenet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    sui:
+      chain_name: "sui"
+      gateway:
+        address: "0x0a011637cbd43d101896d12d85cc8701bcb4ec884f556a9a15b1e26c72627853"
+      multisig_prover:
+        address: "axelar1ktjfpfrlgmh8s76ltjhhv0xcj0st0d0xrjh5rvm3gr5u66x9xvpsm0juw8"
+      voting_verifier:
+        address: "axelar1x8rqw5l5gzye7d063zupr5zlelfvjxq5z6rr7wy643ufuflhl6xqhgr5wt"
+      endpoints:
+        rpc:
+          - "https://fullnode.testnet.sui.io"
+      native_token:
+        name: "Sui"
+        symbol: "SUI"
+        decimals: 9
+      name: "Sui"
+      short_name: "SUI"
+      image: "/logos/chains/sui.svg"
+      color: "#4b7fdc"
+      explorer:
+        name: "Sui"
+        url: "https://suiscan.xyz/testnet"
+        icon: "/logos/explorers/sui.png"
+        block_path: "/checkpoint/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/coin/{address}"
+        transaction_path: "/tx/{tx}"
     xrpl:
       chain_name: "xrpl"
       gateway:
