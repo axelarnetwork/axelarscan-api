@@ -5097,6 +5097,35 @@ stagenet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
+    stellar-2025-q2:
+      chain_name: "stellar-2025-q2"
+      gateway:
+        address: ""
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q2"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
     sui:
       chain_name: "sui"
       gateway:
@@ -5915,6 +5944,35 @@ devnet-amplifier:
         symbol: "XLM"
         decimals: 7
       name: "Stellar 2025 Q1"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
+    stellar-2025-q2:
+      chain_name: "stellar-2025-q2"
+      gateway:
+        address: ""
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q2"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
