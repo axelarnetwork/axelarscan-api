@@ -4210,33 +4210,6 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    stellar-2024-q4:
-      chain_name: "stellar-2024-q4"
-      multisig_prover:
-        address: "axelar1924grg9sj5ty5sa5vn0mur3t6tkuwg4u8hxgvshq8qg9p049se0qyryte0"
-      voting_verifier:
-        address: "axelar1j82crkl36gezwlch3ngkcyva9gjrqsz4vr76u3uvazdl7z70sfdsx30ma2"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2024 Q4"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
     stellar-2025-q1:
       chain_name: "stellar-2025-q1"
       gateway:
@@ -4253,6 +4226,35 @@ testnet:
         symbol: "XLM"
         decimals: 7
       name: "Stellar 2025 Q1"
+      short_name: "XLM"
+      image: "/logos/chains/stellar.svg"
+      color: "#0f0f0f"
+      explorer:
+        name: "Stellar"
+        url: "https://stellar.expert/explorer/testnet"
+        icon: "/logos/explorers/stellar.png"
+        block_path: "/ledger/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/contract/{address}"
+        transaction_path: "/tx/{tx}"
+        no_0x: true
+        cannot_link_contract_via_address_path: true
+    stellar-2025-q2:
+      chain_name: "stellar-2025-q2"
+      gateway:
+        address: ""
+      multisig_prover:
+        address: ""
+      voting_verifier:
+        address: ""
+      endpoints:
+        rpc:
+          - "https://soroban-testnet.stellar.org"
+      native_token:
+        name: "Stellar"
+        symbol: "XLM"
+        decimals: 7
+      name: "Stellar 2025 Q2"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
