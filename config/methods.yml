@@ -130,7 +130,7 @@ methods:
             description: "parameters for EVM wallet connection"
   -
     id: "getAssets"
-    description: "The API route provides all assets information supported on the Axelar network."
+    description: "This API route provides information on the gateway assets supported by the Axelar network."
     response:
       -
         name: "data"
