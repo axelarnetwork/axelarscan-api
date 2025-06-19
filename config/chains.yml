@@ -4242,11 +4242,11 @@ testnet:
     stellar-2025-q2:
       chain_name: "stellar-2025-q2"
       gateway:
-        address: ""
+        address: "CC6A3G4NUHC3B34UGG4HUPRCIGCM6J2U6XUQ7KSTC3NP6DRZDKCCETGA"
       multisig_prover:
-        address: ""
+        address: "axelar1dferc8u2zktd0p6qgql65f93n8trf8q3nk9pg4r9d3mhlent2vkqqtxjzg"
       voting_verifier:
-        address: ""
+        address: "axelar1fd7p32zk35cvv6dvzusz38qdtv0qq57senfg4eupl3myufxphfgse2dlxu"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
