@@ -2262,6 +2262,8 @@ mainnet:
         address: "axelar1wdgp5xyqjyv5zsq86n6pah2lsmd46mn0gt4055mvvk6mezn9skqs6p93dg"
       voting_verifier:
         address: "axelar1dalnx2yvmu3g3aau8m7fj426fk9u8dnzlr5azvqmr4x82rtclats8lhjmu"
+      interchain_token_service_hub:
+        address: "axelar1aqcj54lzz0rk22gvqgcn8fr5tx4rzwdv5wv5j9dmnacgefvd7wzsy2j2mr"
       endpoints:
         rpc:
           - "https://mainnet.sorobanrpc.com"
@@ -4218,6 +4220,8 @@ testnet:
         address: "axelar1cypnpcqk4zpk32stl7dutv3cdnag0q2v5a7dzfxh4jukrzxagxpqgjl5sr"
       voting_verifier:
         address: "axelar1a4wt84rllhuwpdvymj4tql6cugfsmdmau9ufmzcm329yx9st96eqx05uam"
+      interchain_token_service_hub:
+        address: "axelar1aqcj54lzz0rk22gvqgcn8fr5tx4rzwdv5wv5j9dmnacgefvd7wzsy2j2mr"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
@@ -4247,6 +4251,8 @@ testnet:
         address: "axelar1en9uxx7xxc8axk9aykp0p0xjumsnrshwfaleaxm8fruywp2qlr7q8swh6q"
       voting_verifier:
         address: "axelar155sagr90fr0mkyvnf8v3zusjtnufpf0rfzfkrmckr33d62xhc05sn2sdzd"
+      interchain_token_service_hub:
+        address: "axelar1aqcj54lzz0rk22gvqgcn8fr5tx4rzwdv5wv5j9dmnacgefvd7wzsy2j2mr"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
@@ -5076,6 +5082,8 @@ stagenet:
         address: "axelar1emmjd57gha5vchnysth3g6fsyzyrjm4xhj4dzlg2ulj4dz8p9kxs2l6zvy"
       voting_verifier:
         address: "axelar1f7unnl3uu8mgjecmaasv5p3e6khx2u99th9lhkhl2l9e05ldrzwq3vu33h"
+      interchain_token_service_hub:
+        address: "axelar1aqcj54lzz0rk22gvqgcn8fr5tx4rzwdv5wv5j9dmnacgefvd7wzsy2j2mr"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
@@ -5105,6 +5113,8 @@ stagenet:
         address: "axelar1lcwxwkqc6uvecm3z952sw564td99sl8pzctrca96l0s5uqugde3sw0pv9m"
       voting_verifier:
         address: "axelar1uz4f8wsp9rjs50fuvtqme4tsc23qrlpgpgc2wmp4q6nt9u4fh9pstahq04"
+      interchain_token_service_hub:
+        address: "axelar1aqcj54lzz0rk22gvqgcn8fr5tx4rzwdv5wv5j9dmnacgefvd7wzsy2j2mr"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
