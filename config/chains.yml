@@ -4239,14 +4239,14 @@ testnet:
         transaction_path: "/tx/{tx}"
         no_0x: true
         cannot_link_contract_via_address_path: true
-    stellar-2025-q2:
-      chain_name: "stellar-2025-q2"
+    stellar-2025-q2-2:
+      chain_name: "stellar-2025-q2-2"
       gateway:
-        address: "CC6A3G4NUHC3B34UGG4HUPRCIGCM6J2U6XUQ7KSTC3NP6DRZDKCCETGA"
+        address: "CDH6CCFM4RMOUKSTTM2J376A64XOYS3HHVC3ZUVSLQIQVYFURDSET4VN"
       multisig_prover:
-        address: "axelar1dferc8u2zktd0p6qgql65f93n8trf8q3nk9pg4r9d3mhlent2vkqqtxjzg"
+        address: "axelar1en9uxx7xxc8axk9aykp0p0xjumsnrshwfaleaxm8fruywp2qlr7q8swh6q"
       voting_verifier:
-        address: "axelar1fd7p32zk35cvv6dvzusz38qdtv0qq57senfg4eupl3myufxphfgse2dlxu"
+        address: "axelar155sagr90fr0mkyvnf8v3zusjtnufpf0rfzfkrmckr33d62xhc05sn2sdzd"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
