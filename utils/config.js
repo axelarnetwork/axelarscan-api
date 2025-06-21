@@ -5,7 +5,7 @@ const _ = require('lodash');
 const { readCache, writeCache } = require('./cache');
 const { request } = require('./http');
 const { toArray } = require('./parser');
-const { capitalize, removeDoubleQuote, find } = require('./string');
+const { capitalize, removeDoubleQuote, headString, find } = require('./string');
 const { isNumber } = require('./number');
 
 const ENVIRONMENT = process.env.ENVIRONMENT || 'testnet';
@@ -78,7 +78,7 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId 
     if (cache) return cache;
   }
 
-  const response = await request(`https://axelar-${env}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
+  const response = await request(`https://axelar-${headString(env)}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
 
   if (response) {
     const chainsCacheId = 's3configChains';
