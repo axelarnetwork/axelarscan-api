@@ -5531,7 +5531,7 @@ devnet-amplifier:
         name: "Avalanche"
         symbol: "AVAX"
         decimals: 18
-      name: "Avalanche Fuji"
+      name: "Avalanche Test"
       short_name: "AVAX"
       image: "/logos/chains/avalanche.svg"
       color: "#e84143"
