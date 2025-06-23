@@ -5514,6 +5514,35 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    avalanche-test:
+      chain_id: 43113
+      chain_name: "avalanche-test"
+      gateway:
+        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
+      multisig_prover:
+        address: "axelar1p22kz5jr7a9ruu8ypg40smual0uagl64dwvz5xt042vu8fa7l7dsl3wx8q"
+      voting_verifier:
+        address: "axelar1252ahkw208d08ls64atp2pql4cnl9naxy7ahhq3lrthvq3spseys26l8xj"
+      endpoints:
+        rpc:
+          - "https://api.avax-test.network/ext/bc/C/rpc"
+          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+      native_token:
+        name: "Avalanche"
+        symbol: "AVAX"
+        decimals: 18
+      name: "Avalanche Fuji"
+      short_name: "AVAX"
+      image: "/logos/chains/avalanche.svg"
+      color: "#e84143"
+      explorer:
+        name: "Snowtrace"
+        url: "https://testnet.snowtrace.io"
+        icon: "/logos/explorers/snowtrace.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
     optimism-sepolia:
       chain_id: 11155420
       chain_name: "optimism-sepolia"
@@ -6092,6 +6121,34 @@ devnet-amplifier:
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    hyperliquid:
+      chain_id: 998
+      chain_name: "hyperliquid"
+      gateway:
+        address: "0x8bCF77225946Fe5c44013CC241076b3995CA1018"
+      multisig_prover:
+        address: "axelar1jrkdwa2vjzkrgr8k2q8ja56eq6yrcd7tzz59jygw5tm4w9gl6q0sjxdxgf"
+      voting_verifier:
+        address: "axelar1qz0ap5mf26pt7hdycz7efjn9l5tl4azxyg2knhrm6s3r2v84fmcqp0uxcv"
+      endpoints:
+        rpc:
+          - "https://rpc.hyperliquid-testnet.xyz/evm"
+      native_token:
+        name: "Hyperliquid"
+        symbol: "HYPE"
+        decimals: 18
+      name: "Hyperliquid"
+      short_name: "HYPE"
+      image: "/logos/chains/hyperliquid.svg"
+      color: "#94fee3"
+      explorer:
+        name: "Hyperliquid"
+        url: "https://app.hyperliquid-testnet.xyz/explorer"
+        icon: "/logos/explorers/hyperliquid.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
     berachain:
       chain_id: 80069
