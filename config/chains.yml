@@ -2424,7 +2424,7 @@ mainnet:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
-   berachain:
+    berachain:
       chain_id: 80094
       chain_name: "berachain"
       gateway:
