@@ -2351,7 +2351,7 @@ mainnet:
         address: "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
       endpoints:
         rpc:
-          - "https://rpc-mainnet.aws.peersyst.tech"
+          - "https://rpc.xrplevm.org"
       native_token:
         name: "Ripple"
         symbol: "XRP"
