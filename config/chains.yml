@@ -2362,7 +2362,7 @@ mainnet:
       color: "#111112"
       explorer:
         name: "XRP Ledger EVM"
-        url: "https://explorer-mainnet.aws.peersyst.tech"
+        url: "https://explorer.xrplevm.org"
         icon: "/logos/explorers/xrplevm.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
