@@ -233,6 +233,7 @@ const getITSAssets = async (env = ENVIRONMENT, cacheId = 'itsAssets') => {
   // ITS assets
   const data = Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
     id: d.id,
+    type: d.type,
     symbol: d.prettySymbol,
     name: d.name,
     decimals: d.decimals,
