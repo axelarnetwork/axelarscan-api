@@ -298,6 +298,9 @@ BERA:
 MON:
   coingecko_id: "monad"
   decimals: 18
+TON:
+  coingecko_id: "the-open-network"
+  decimals: 9
 wAXL:
   redirect: "AXL"
 WAXL:
@@ -838,6 +841,8 @@ ubaby:
   redirect: "BABY"
 ujkl:
   redirect: "JKL"
+ubld:
+  redirect: "BLD"
 dot-planck:
   redirect: "DOT"
 uusd:

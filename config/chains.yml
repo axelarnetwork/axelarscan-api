@@ -6230,3 +6230,24 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    ton2:
+      chain_name: "ton2"
+      endpoints:
+        rpc:
+          - "https://testnet.toncenter.com"
+      native_token:
+        name: "Ton"
+        symbol: "TON"
+        decimals: 9
+      name: "Ton 2"
+      short_name: "TON"
+      image: "/logos/chains/ton.svg"
+      color: "#0098e9"
+      explorer:
+        name: "Ton"
+        url: "https://testnet.tonscan.org"
+        icon: "/logos/explorers/ton.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/address/{address}"
+        transaction_path: "/tx/{tx}"
