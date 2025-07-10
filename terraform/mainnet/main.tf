@@ -108,6 +108,7 @@ resource "aws_lambda_function" "function" {
       DD_SITE               = "datadoghq.com"
       DD_API_KEY_SECRET_ARN = "arn:aws:secretsmanager:us-east-2:${var.aws_account}:secret:DdApiKeySecret-gJ9EIYVknJGu-HYZ3nM"
       DD_TRACE_ENABLED      = false
+      DD_ENHANCED_METRICS   = false
       DD_ENV                = var.environment
       DD_SERVICE            = "${var.package_name}-${var.environment}"
       DD_VERSION            = "${var.app_version}"
