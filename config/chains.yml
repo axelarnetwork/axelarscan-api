@@ -3379,6 +3379,34 @@ testnet:
       prefix_address: "umee"
       prefix_chain_ids:
         - "canon-"
+    agoric:
+      chain_id: "agoricdev-25"
+      chain_name: "agoric"
+      endpoints:
+        lcd:
+          - "https://devnet.api.agoric.net"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Agoric"
+        symbol: "BLD"
+        denom: "ubld"
+        decimals: 6
+      name: "Agoric"
+      short_name: "BLD"
+      image: "/logos/chains/agoric.svg"
+      color: "#bb2d40"
+      explorer:
+        name: "Agoric"
+        url: "https://devnet.agoric.explorers.guru"
+        icon: "/logos/explorers/agoric.png"
+        block_path: "/block/{block}"
+        address_path: "/account/{address}"
+        contract_path: "/account/{address}"
+        transaction_path: "/transaction/{tx}"
+      prefix_address: "agoric"
+      prefix_chain_ids:
+        - "agoricdev-"
     xpla:
       chain_id: "cube_47-5"
       chain_name: "xpla"
