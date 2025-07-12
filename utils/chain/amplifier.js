@@ -1,8 +1,8 @@
 const { getBalance, getTokenSupply } = require('./evm');
 const { getChainData } = require('../config');
 const { request } = require('../http');
-const { toArray } = require('../parser');
-const { isNumber, formatUnits } = require('../number');
+const { split, toArray } = require('../parser');
+const { isNumber, toNumber, formatUnits } = require('../number');
 
 const getRPCs = chain => {
   const { chain_id, deprecated, endpoints } = { ...getChainData(chain, 'amplifier') };
@@ -38,11 +38,26 @@ const getRPCs = chain => {
               case 'xrpl':
                 for (const rpc of rpcs) {
                   try {
-                    const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'account_info', params: [{ account: address }], id: 0 } }) };
+                    // tokenAddress {currency}.{account}
+                    const [currency, account] = split(contract_address, { delimiter: '.' });
 
-                    if (result?.account_data?.Balance) {
-                      output = formatUnits(result.account_data.Balance, decimals, false);
-                      break;
+                    // others assets
+                    if (currency && account) {
+                      const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'gateway_balances', params: [{ account }], id: 0 } }) };
+
+                      if (result?.obligations) {
+                        output = toNumber(result.obligations[currency]);
+                        break;
+                      }
+                    }
+                    // XRP
+                    else {
+                      const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'account_info', params: [{ account: address }], id: 0 } }) };
+
+                      if (result?.account_data?.Balance) {
+                        output = formatUnits(result.account_data.Balance, decimals, false);
+                        break;
+                      }
                     }
                   } catch (error) {}
                 }
