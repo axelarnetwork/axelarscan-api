@@ -339,7 +339,7 @@ module.exports = async params => {
                 const gatewayBalance = type === 'gateway' ? toNumber(await getRPCs(chain)?.getBalance(gateway.address, contractData)) : 0;
 
                 // check token manager type is lockUnlock
-                const isLockUnlock = type === 'its' && token_manager_address && token_manager_type?.startsWith('lockUnlock');
+                const isLockUnlock = type === 'its' && token_manager_address && (token_manager_type?.startsWith('lockUnlock') || ['xrpl'].includes(chain));
                 // get balance of this asset on token manager
                 const tokenManagerBalance = isLockUnlock ? toNumber(await getRPCs(chain)?.getBalance(token_manager_address, contractData)) : 0;
 
