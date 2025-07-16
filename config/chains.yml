@@ -5959,7 +5959,7 @@ devnet-amplifier:
       chain_name: "solana"
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/solana_devnet"
+          - "https://api.devnet.solana.com"
       native_token:
         name: "Solana"
         symbol: "SOL"
@@ -5970,33 +5970,12 @@ devnet-amplifier:
       color: "#8d4df7"
       explorer:
         name: "Solana"
-        url: "https://solscan.io"
+        url: "https://explorer.solana.com?cluster=devnet"
         icon: "/logos/explorers/solana.png"
-        block_path: "/block/{block}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-    solana-devnet:
-      chain_name: "solana-devnet"
-      endpoints:
-        rpc:
-          - "https://rpc.ankr.com/solana_devnet"
-      native_token:
-        name: "Solana"
-        symbol: "SOL"
-        decimals: 9
-      name: "Solana Devnet"
-      short_name: "SOL"
-      image: "/logos/chains/solana.svg"
-      color: "#8d4df7"
-      explorer:
-        name: "Solana"
-        url: "https://solscan.io"
-        icon: "/logos/explorers/solana.png"
-        block_path: "/block/{block}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        address_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        contract_path: "/account/{address}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
-        transaction_path: "/tx/{tx}?cluster=custom&customUrl=https://rpc.ankr.com/solana_devnet"
+        block_path: "/block/{block}?cluster=devnet"
+        address_path: "/address/{address}?cluster=devnet"
+        contract_path: "/address/{address}?cluster=devnet"
+        transaction_path: "/tx/{tx}?cluster=devnet"
     coti-7:
       chain_id: 13068200
       chain_name: "coti-7"
