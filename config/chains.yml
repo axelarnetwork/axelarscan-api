@@ -2199,6 +2199,34 @@ mainnet:
       prefix_address: "terra"
       prefix_chain_ids:
         - "columbus-"
+    zigchain:
+      chain_id: "zigchain-1"
+      chain_name: "zigchain"
+      endpoints:
+        lcd:
+          - "https://api.zigchain.com"
+        timeout:
+          lcd: 3000
+      native_token:
+        name: "Zig"
+        symbol: "ZIG"
+        denom: "uzig"
+        decimals: 6
+      name: "Zigchain"
+      short_name: "ZIG"
+      image: "/logos/chains/zigchain.svg"
+      color: "#3c70c0"
+      explorer:
+        name: "Zigchain"
+        url: "https://app.range.org"
+        icon: "/logos/explorers/zigchain.png"
+        address_path: "" # Not supported by the explorer
+        contract_path: "" # Not supported by the explorer
+        transaction_path: "/tx/zigchain/{tx}"
+      prefix_address: "zig"
+      prefix_chain_ids:
+        - "zig-"
+
   amplifier:
     flow:
       chain_id: 747
