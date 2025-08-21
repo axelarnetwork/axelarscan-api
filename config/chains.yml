@@ -2226,7 +2226,6 @@ mainnet:
       prefix_address: "zig"
       prefix_chain_ids:
         - "zig-"
-
   amplifier:
     flow:
       chain_id: 747
