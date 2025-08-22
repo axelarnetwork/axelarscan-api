@@ -4298,35 +4298,6 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    stellar-2025-q2-2:
-      chain_name: "stellar-2025-q2-2"
-      gateway:
-        address: "CDH6CCFM4RMOUKSTTM2J376A64XOYS3HHVC3ZUVSLQIQVYFURDSET4VN"
-      multisig_prover:
-        address: "axelar1en9uxx7xxc8axk9aykp0p0xjumsnrshwfaleaxm8fruywp2qlr7q8swh6q"
-      voting_verifier:
-        address: "axelar155sagr90fr0mkyvnf8v3zusjtnufpf0rfzfkrmckr33d62xhc05sn2sdzd"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2025 Q2"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
     stellar-2025-q3:
       chain_name: "stellar-2025-q3"
       gateway:
@@ -5131,91 +5102,6 @@ stagenet:
         address_path: "/address/{address}?cluster=devnet"
         contract_path: "/address/{address}?cluster=devnet"
         transaction_path: "/tx/{tx}?cluster=devnet"
-    stellar:
-      chain_name: "stellar"
-      multisig_prover:
-        address: "axelar1mvy2775qkhv69ejm6h8dyrsf8kd6ctt2gxse3c24re5qeeck89cq0kmy92"
-      voting_verifier:
-        address: "axelar14srynuyye43998r24t7n0qjnwa6u2559un6vmvsa6tlj5crazgfq59cqy9"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2025-q1:
-      chain_name: "stellar-2025-q1"
-      gateway:
-        address: "CDERZ3XLJKWZR2NFUNFO5LS7TBDFRHHLMTE2JTE6C7VXGZMGF6DEGXFC"
-      multisig_prover:
-        address: "axelar1emmjd57gha5vchnysth3g6fsyzyrjm4xhj4dzlg2ulj4dz8p9kxs2l6zvy"
-      voting_verifier:
-        address: "axelar1f7unnl3uu8mgjecmaasv5p3e6khx2u99th9lhkhl2l9e05ldrzwq3vu33h"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2025 Q1"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2025-q2:
-      chain_name: "stellar-2025-q2"
-      gateway:
-        address: "CBWOIP73N564BMMKMFABWMS3HDYVGOSKEZEJRUDQY7NODS2VATMOLWFT"
-      multisig_prover:
-        address: "axelar1lcwxwkqc6uvecm3z952sw564td99sl8pzctrca96l0s5uqugde3sw0pv9m"
-      voting_verifier:
-        address: "axelar1uz4f8wsp9rjs50fuvtqme4tsc23qrlpgpgc2wmp4q6nt9u4fh9pstahq04"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2025 Q2"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
     stellar-2025-q3:
       chain_name: "stellar-2025-q3"
       gateway:
