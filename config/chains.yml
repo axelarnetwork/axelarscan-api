@@ -5125,7 +5125,7 @@ stagenet:
       color: "#8d4df7"
       explorer:
         name: "Solana"
-        url: "https://explorer.solana.com?cluster=devnet"
+        url: "https://explorer.solana.com"
         icon: "/logos/explorers/solana.png"
         block_path: "/block/{block}?cluster=devnet"
         address_path: "/address/{address}?cluster=devnet"
@@ -6004,7 +6004,7 @@ devnet-amplifier:
       color: "#8d4df7"
       explorer:
         name: "Solana"
-        url: "https://explorer.solana.com?cluster=devnet"
+        url: "https://explorer.solana.com"
         icon: "/logos/explorers/solana.png"
         block_path: "/block/{block}?cluster=devnet"
         address_path: "/address/{address}?cluster=devnet"
