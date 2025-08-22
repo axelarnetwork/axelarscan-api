@@ -2220,6 +2220,7 @@ mainnet:
         name: "Zigchain"
         url: "https://app.range.org"
         icon: "/logos/explorers/zigchain.png"
+        block_path: "" # Not supported by the explorer
         address_path: "" # Not supported by the explorer
         contract_path: "" # Not supported by the explorer
         transaction_path: "/tx/zigchain/{tx}"
