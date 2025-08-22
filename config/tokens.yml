@@ -851,3 +851,5 @@ uluna:
   redirect: "LUNAC"
 uausdc:
   redirect: "aUSDC"
+unit-zig:
+  redirect: "ZIG"
