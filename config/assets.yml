@@ -4396,7 +4396,7 @@ mainnet:
         ibc_denom: "uluna"
   unit-zig:
     denom: "unit-zig"
-    native_chain: "zigchain"
+    native_chain: "ethereum"
     name: "ZigCoin"
     symbol: "ZIG"
     decimals: 18
