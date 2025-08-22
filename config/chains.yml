@@ -2225,7 +2225,7 @@ mainnet:
         transaction_path: "/tx/zigchain/{tx}"
       prefix_address: "zig"
       prefix_chain_ids:
-        - "zig-"
+        - "zigchain-"
   amplifier:
     flow:
       chain_id: 747
