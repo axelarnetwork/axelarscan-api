@@ -4394,6 +4394,21 @@ mainnet:
         symbol: "axlLUNC"
       terra:
         ibc_denom: "uluna"
+  unit-zig:
+    denom: "unit-zig"
+    native_chain: "ethereum"
+    name: "ZigCoin"
+    symbol: "ZIG"
+    decimals: 18
+    image: "/logos/assets/zig.svg"
+    addresses:
+      ethereum:
+        address: "0xb2617246d0c6c0087f18703d576831899ca94f01"
+        symbol: "ZIG"
+      zigchain:
+        ibc_denom: "ibc/9BEE293E6559ED860CC702685996F394D4991D6DFFD60A19ABC3723E6F34788A"
+        symbol: "ZIG"
+
 
 
 
