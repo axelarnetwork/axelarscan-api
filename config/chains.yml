@@ -4298,14 +4298,14 @@ testnet:
         address_path: "/account/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/transaction/{tx}"
-    stellar-2025-q1:
-      chain_name: "stellar-2025-q1"
+    stellar-2025-q3:
+      chain_name: "stellar-2025-q3"
       gateway:
-        address: "CCSNWHMQSPTW4PS7L32OIMH7Z6NFNCKYZKNFSWRSYX7MK64KHBDZDT5I"
+        address: "CBFGW56YVDPERRDORQ3CLYE2PJKXNRCS72WPYNDFG4XD23DJJA2EOIT6"
       multisig_prover:
-        address: "axelar1cypnpcqk4zpk32stl7dutv3cdnag0q2v5a7dzfxh4jukrzxagxpqgjl5sr"
+        address: "axelar1aux2l6er84m6gtayqdwqhz4rl0txqdlj3v7szr72j7etve3jmpks7x4euy"
       voting_verifier:
-        address: "axelar1a4wt84rllhuwpdvymj4tql6cugfsmdmau9ufmzcm329yx9st96eqx05uam"
+        address: "axelar18y8p7dxesmxttvdzp5sqjksqrnh9xg32gtfqnkkucvv9de38f69qfn6ph3"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
@@ -4313,36 +4313,7 @@ testnet:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar 2025 Q1"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2025-q2-2:
-      chain_name: "stellar-2025-q2-2"
-      gateway:
-        address: "CDH6CCFM4RMOUKSTTM2J376A64XOYS3HHVC3ZUVSLQIQVYFURDSET4VN"
-      multisig_prover:
-        address: "axelar1en9uxx7xxc8axk9aykp0p0xjumsnrshwfaleaxm8fruywp2qlr7q8swh6q"
-      voting_verifier:
-        address: "axelar155sagr90fr0mkyvnf8v3zusjtnufpf0rfzfkrmckr33d62xhc05sn2sdzd"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2025 Q2"
+      name: "Stellar 2025 Q3"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
@@ -5131,41 +5102,14 @@ stagenet:
         address_path: "/address/{address}?cluster=devnet"
         contract_path: "/address/{address}?cluster=devnet"
         transaction_path: "/tx/{tx}?cluster=devnet"
-    stellar:
-      chain_name: "stellar"
-      multisig_prover:
-        address: "axelar1mvy2775qkhv69ejm6h8dyrsf8kd6ctt2gxse3c24re5qeeck89cq0kmy92"
-      voting_verifier:
-        address: "axelar14srynuyye43998r24t7n0qjnwa6u2559un6vmvsa6tlj5crazgfq59cqy9"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2025-q1:
-      chain_name: "stellar-2025-q1"
+    stellar-2025-q3:
+      chain_name: "stellar-2025-q3"
       gateway:
-        address: "CDERZ3XLJKWZR2NFUNFO5LS7TBDFRHHLMTE2JTE6C7VXGZMGF6DEGXFC"
+        address: "CDTJW72QN6NDH626I2HRRWV7PVQ47G36ZJXYQN4NP646PNI4FYW5BCGS"
       multisig_prover:
-        address: "axelar1emmjd57gha5vchnysth3g6fsyzyrjm4xhj4dzlg2ulj4dz8p9kxs2l6zvy"
+        address: "axelar1960k48ezdumanv3hjf22cvp2a9zwr5skn34xgtrkhfjjhk7k4htsd4l8ze"
       voting_verifier:
-        address: "axelar1f7unnl3uu8mgjecmaasv5p3e6khx2u99th9lhkhl2l9e05ldrzwq3vu33h"
+        address: "axelar1jgp9mfalnwk0p9xfycyrrc69e9kw5l2qytvs0tz6znv5ke89q0psgcyarh"
       endpoints:
         rpc:
           - "https://soroban-testnet.stellar.org"
@@ -5173,36 +5117,7 @@ stagenet:
         name: "Stellar"
         symbol: "XLM"
         decimals: 7
-      name: "Stellar 2025 Q1"
-      short_name: "XLM"
-      image: "/logos/chains/stellar.svg"
-      color: "#0f0f0f"
-      explorer:
-        name: "Stellar"
-        url: "https://stellar.expert/explorer/testnet"
-        icon: "/logos/explorers/stellar.png"
-        block_path: "/ledger/{block}"
-        address_path: "/account/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-        no_0x: true
-        cannot_link_contract_via_address_path: true
-    stellar-2025-q2:
-      chain_name: "stellar-2025-q2"
-      gateway:
-        address: "CBWOIP73N564BMMKMFABWMS3HDYVGOSKEZEJRUDQY7NODS2VATMOLWFT"
-      multisig_prover:
-        address: "axelar1lcwxwkqc6uvecm3z952sw564td99sl8pzctrca96l0s5uqugde3sw0pv9m"
-      voting_verifier:
-        address: "axelar1uz4f8wsp9rjs50fuvtqme4tsc23qrlpgpgc2wmp4q6nt9u4fh9pstahq04"
-      endpoints:
-        rpc:
-          - "https://soroban-testnet.stellar.org"
-      native_token:
-        name: "Stellar"
-        symbol: "XLM"
-        decimals: 7
-      name: "Stellar 2025 Q2"
+      name: "Stellar 2025 Q3"
       short_name: "XLM"
       image: "/logos/chains/stellar.svg"
       color: "#0f0f0f"
