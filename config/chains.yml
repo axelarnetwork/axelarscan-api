@@ -5595,15 +5595,15 @@ devnet-amplifier:
         address_path: "/address/{address}"
         contract_path: "/address/{address}"
         transaction_path: "/tx/{tx}"
-    hedera-testnet:
+    hedera-2:
       chain_id: 296
-      chain_name: "hedera-testnet"
+      chain_name: "hedera-2"
       gateway:
-        address: "0xF128c84c3326727c3e155168daAa4C0156B87AD1"
+        address: "0xaa9bA4a879c042Cb08965567F04e5456327c0C55"
       multisig_prover:
-        address: ""
+        address: "axelar19fjnml82lf0getvpltnpht5szs0t6cpmxh9zqpfhp0pqgpygp7rsvfg4j0"
       voting_verifier:
-        address: ""
+        address: "axelar1kq5um903jwaza0hl6a20myz60ldenuw202965dydrj372xwg64uqpe6g23"
       endpoints:
         rpc:
           - "https://testnet.hashio.io/api"
