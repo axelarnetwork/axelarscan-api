@@ -5644,8 +5644,8 @@ devnet-amplifier:
         address_path: "/accounts/{address}"
         contract_path: "/accounts/{address}"
         transaction_path: "/transactions/{tx}"
-    starknet:
-      chain_name: "starknet"
+    starknet-devnet-v2:
+      chain_name: "starknet-devnet-v2"
       endpoints:
         rpc:
           - "https://starknet-sepolia.public.blastapi.io"
@@ -5654,51 +5654,7 @@ devnet-amplifier:
         name: "Ethereum"
         symbol: "ETH"
         decimals: 18
-      name: "Starknet"
-      short_name: "STRK"
-      image: "/logos/chains/starknet.svg"
-      color: "#0c0c4f"
-      explorer:
-        name: "Starknet"
-        url: "https://sepolia.starkscan.co"
-        icon: "/logos/explorers/starknet.png"
-        block_path: "/block/{block}"
-        address_path: "/contract/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-    starknet-devnet:
-      chain_name: "starknet-devnet"
-      endpoints:
-        rpc:
-          - "https://starknet-sepolia.public.blastapi.io"
-          - "https://rpc.starknet-testnet.lava.build"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Starknet Devnet"
-      short_name: "STRK"
-      image: "/logos/chains/starknet.svg"
-      color: "#0c0c4f"
-      explorer:
-        name: "Starknet"
-        url: "https://sepolia.starkscan.co"
-        icon: "/logos/explorers/starknet.png"
-        block_path: "/block/{block}"
-        address_path: "/contract/{address}"
-        contract_path: "/contract/{address}"
-        transaction_path: "/tx/{tx}"
-    starknet-devnet-v1:
-      chain_name: "starknet-devnet-v1"
-      endpoints:
-        rpc:
-          - "https://starknet-sepolia.public.blastapi.io"
-          - "https://rpc.starknet-testnet.lava.build"
-      native_token:
-        name: "Ethereum"
-        symbol: "ETH"
-        decimals: 18
-      name: "Starknet Devnet V1"
+      name: "Starknet Devnet V2"
       short_name: "STRK"
       image: "/logos/chains/starknet.svg"
       color: "#0c0c4f"
