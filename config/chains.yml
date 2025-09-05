@@ -2808,10 +2808,7 @@ testnet:
         address: "0x999117D44220F33e0441fbAb2A5aDB8FF485c54D"
       endpoints:
         rpc:
-          - "https://rpc.ankr.com/filecoin_testnet"
-          - "https://api.calibration.node.glif.io/rpc/v1"
-          - "https://filecoin-calibration.chainstacklabs.com/rpc/v1"
-          - "https://filecoin-calibration.chainup.net/rpc/v1"
+          - "https://api.calibration.node.glif.io/rpc/v2"
       native_token:
         name: "Filecoin"
         symbol: "FIL"
