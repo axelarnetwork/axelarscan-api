@@ -283,6 +283,8 @@ XRP:
   decimals: 18
 XRPL:
   redirect: "XRP"
+mXRP:
+  redirect: "XRP"
 SOL:
   coingecko_id: "solana"
   decimals: 9
@@ -640,8 +642,6 @@ WEGLD-a28c59:
 USDX:
   coingecko_id: "usdx-money-usdx"
   decimals: 18
-
-
 
 uaxl:
   redirect: "AXL"
