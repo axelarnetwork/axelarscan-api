@@ -183,7 +183,7 @@ mainnet:
         rpc:
           - "https://arb1.lava.build"
           - "https://endpoints.omniatech.io/v1/arbitrum/one/public"
-          - "https://arbitrum-one.public.blastapi.io"
+          - "https://arbitrum.drpc.org"
           - "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
           - "https://1rpc.io/arb"
       native_token:
@@ -264,7 +264,7 @@ mainnet:
       endpoints:
         rpc:
           - "https://rpc.mantle.xyz"
-          - "https://mantle-mainnet.public.blastapi.io"
+          - "https://mantle.drpc.org"
       native_token:
         name: "Mantle"
         symbol: "MNT"
@@ -502,7 +502,7 @@ mainnet:
         rpc:
           - "https://rpc.blast.io"
           - "https://blast-rpc.publicnode.com"
-          - "https://blastl2-mainnet.public.blastapi.io"
+          - "https://blast-sepolia.drpc.org"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
@@ -2520,7 +2520,7 @@ testnet:
           - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
           - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
           - "https://bsc-testnet.blockpi.network/v1/rpc/public"
-          - "https://bsc-testnet.public.blastapi.io"
+          - "https://bsc-testnet.drpc.org"
       native_token:
         name: "BNB"
         symbol: "BNB"
@@ -2571,7 +2571,7 @@ testnet:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -2597,7 +2597,7 @@ testnet:
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
-          - "https://fantom-testnet.public.blastapi.io"
+          - "https://fantom-testnet.drpc.org"
       native_token:
         name: "Fantom"
         symbol: "FTM"
@@ -2624,7 +2624,7 @@ testnet:
         rpc:
           - "https://rpc.api.moonbase.moonbeam.network"
           - "https://rpc.testnet.moonbeam.network"
-          - "https://moonbase-alpha.public.blastapi.io"
+          - "https://moonbase-alpha.drpc.org"
       native_token:
         name: "Dev"
         symbol: "DEV"
@@ -4218,7 +4218,7 @@ testnet:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -4559,7 +4559,7 @@ stagenet:
           - "https://data-seed-prebsc-2-s1.bnbchain.org:8545"
           - "https://data-seed-prebsc-1-s2.bnbchain.org:8545"
           - "https://bsc-testnet.blockpi.network/v1/rpc/public"
-          - "https://bsc-testnet.public.blastapi.io"
+          - "https://bsc-testnet.drpc.org"
       native_token:
         name: "BNB"
         symbol: "BNB"
@@ -4610,7 +4610,7 @@ stagenet:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -4636,7 +4636,7 @@ stagenet:
       endpoints:
         rpc:
           - "https://rpc.testnet.fantom.network"
-          - "https://fantom-testnet.public.blastapi.io"
+          - "https://fantom-testnet.drpc.org"
       native_token:
         name: "Fantom"
         symbol: "FTM"
@@ -4663,7 +4663,7 @@ stagenet:
         rpc:
           - "https://rpc.api.moonbase.moonbeam.network"
           - "https://rpc.testnet.moonbeam.network"
-          - "https://moonbase-alpha.public.blastapi.io"
+          - "https://moonbase-alpha.drpc.org"
       native_token:
         name: "Dev"
         symbol: "DEV"
@@ -4997,7 +4997,7 @@ stagenet:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -5360,7 +5360,7 @@ devnet-amplifier:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -5485,7 +5485,7 @@ devnet-amplifier:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
@@ -5514,7 +5514,7 @@ devnet-amplifier:
       endpoints:
         rpc:
           - "https://api.avax-test.network/ext/bc/C/rpc"
-          - "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche-fuji.drpc.org"
       native_token:
         name: "Avalanche"
         symbol: "AVAX"
