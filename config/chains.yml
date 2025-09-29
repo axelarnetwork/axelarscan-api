@@ -40,7 +40,7 @@ mainnet:
         address: "0x304acf330bbE08d1e512eefaa92F6a57871fD895"
       endpoints:
         rpc:
-          - "https://bsc-mainnet.public.blastapi.io"
+          - "https://bsc.drpc.org"
           - "https://api.zan.top/bsc-mainnet"
           - "https://bsc-rpc.publicnode.com"
           # - "https://bsc-dataseed1.defibit.io"
@@ -98,7 +98,7 @@ mainnet:
         address: "0x5029C0EFf6C34351a0CEc334542cDb22c7928f78"
       endpoints:
         rpc:
-          - "https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc"
+          - "https://avalanche.drpc.org"
           - "https://avalanche-c-chain-rpc.publicnode.com"
           - "https://1rpc.io/avax/c"
       native_token:
@@ -125,7 +125,7 @@ mainnet:
         address: "0x304acf330bbE08d1e512eefaa92F6a57871fD895"
       endpoints:
         rpc:
-          - "https://fantom-mainnet.public.blastapi.io"
+          - "https://fantom.drpc.org"
           - "https://fantom-rpc.publicnode.com"
           - "https://rpc3.fantom.network"
           - "https://rpc2.fantom.network"
@@ -155,7 +155,7 @@ mainnet:
       endpoints:
         rpc:
           - "https://rpc.api.moonbeam.network"
-          - "https://moonbeam.public.blastapi.io"
+          - "https://moonbeam.drpc.org"
           - "https://1rpc.io/glmr"
       native_token:
         name: "Moonbeam"
@@ -5641,7 +5641,7 @@ devnet-amplifier:
       chain_name: "starknet-devnet-v1"
       endpoints:
         rpc:
-          - "https://starknet-sepolia.public.blastapi.io"
+          - "https://starknet-sepolia.drpc.org"
           - "https://rpc.starknet-testnet.lava.build"
       native_token:
         name: "Ethereum"
@@ -5663,7 +5663,7 @@ devnet-amplifier:
       chain_name: "starknet-devnet-v2"
       endpoints:
         rpc:
-          - "https://starknet-sepolia.public.blastapi.io"
+          - "https://starknet-sepolia.drpc.org"
           - "https://rpc.starknet-testnet.lava.build"
       native_token:
         name: "Ethereum"
