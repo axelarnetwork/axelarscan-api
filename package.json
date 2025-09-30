@@ -41,7 +41,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "clean": "rm -rf dist",
-    "dev": "node index.js",
+    "dev": "cd local && sam local start-api --port 3000",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint . --fix",
