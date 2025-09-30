@@ -21,8 +21,8 @@ jobs:
       opensearch:
         image: opensearchproject/opensearch:2.11.0
         env:
-          cluster.name: gmp-api-cluster
-          node.name: gmp-api-node
+          cluster.name: axelarscan-api-cluster
+          node.name: axelarscan-api-node
           discovery.type: single-node
           bootstrap.memory_lock: true
           "OPENSEARCH_JAVA_OPTS": "-Xms512m -Xmx512m"
@@ -75,18 +75,3 @@ jobs:
           echo "Running Prettier format check..."
           pnpm run format:check
           echo "Format check completed"
-
-      - name: Run tests (non-blocking)
-        run: |
-          echo "Running Jest tests..."
-          echo "Test results will be logged but won't fail the pipeline"
-
-          # Run tests and capture output, but don't fail the pipeline
-          if pnpm test --forceExit 2>&1 | tee test-results.log; then
-            echo "✅ All tests passed!"
-          else
-            echo "❌ Some tests failed, but continuing with pipeline..."
-            echo "Test failures logged above"
-          fi
-
-          echo "Test execution completed"
