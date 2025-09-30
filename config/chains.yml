@@ -502,7 +502,7 @@ mainnet:
         rpc:
           - "https://rpc.blast.io"
           - "https://blast-rpc.publicnode.com"
-          - "https://blast-sepolia.drpc.org"
+          - "https://blast.drpc.org"
       native_token:
         name: "Ethereum"
         symbol: "ETH"
