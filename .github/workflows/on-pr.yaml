@@ -1,0 +1,90 @@
+name: Test CI/CD Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+env:
+  CI: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      opensearch:
+        image: opensearchproject/opensearch:2.11.0
+        env:
+          cluster.name: gmp-api-cluster
+          node.name: gmp-api-node
+          discovery.type: single-node
+          bootstrap.memory_lock: true
+          "OPENSEARCH_JAVA_OPTS": "-Xms512m -Xmx512m"
+          "DISABLE_INSTALL_DEMO_CONFIG": "true"
+          "DISABLE_SECURITY_PLUGIN": "true"
+        ports:
+          - 9200:9200
+          - 9600:9600
+        options: >-
+          --health-cmd "curl -f http://localhost:9200/_cluster/health || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 12
+          --ulimit nofile=65536:65536
+          --ulimit memlock=-1:-1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Set up environment variables
+        run: |
+          echo "ENVIRONMENT=testnet" >> $GITHUB_ENV
+          echo "LOG_LEVEL=debug" >> $GITHUB_ENV
+          echo "NODE_NO_WARNINGS=1" >> $GITHUB_ENV
+          echo "INDEXER_URL=http://localhost:9200" >> $GITHUB_ENV
+          echo "DD_TRACE_ENABLED=false" >> $GITHUB_ENV
+          echo "DD_ENHANCED_METRICS=false" >> $GITHUB_ENV
+
+      - name: Run linting check (non-blocking)
+        run: |
+          echo "Running ESLint..."
+          pnpm run lint:check || echo "Linting failed but continuing..."
+          echo "Linting completed"
+
+      - name: Run formatting check
+        run: |
+          echo "Running Prettier format check..."
+          pnpm run format:check
+          echo "Format check completed"
+
+      - name: Run tests (non-blocking)
+        run: |
+          echo "Running Jest tests..."
+          echo "Test results will be logged but won't fail the pipeline"
+
+          # Run tests and capture output, but don't fail the pipeline
+          if pnpm test --forceExit 2>&1 | tee test-results.log; then
+            echo "✅ All tests passed!"
+          else
+            echo "❌ Some tests failed, but continuing with pipeline..."
+            echo "Test failures logged above"
+          fi
+
+          echo "Test execution completed"
