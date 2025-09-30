@@ -13,7 +13,7 @@ This directory contains files for running the Axelarscan API locally using AWS S
 
 ## Environment Setup
 
-Copy `.env.example` into `.env.local` and adjust variables if needed.
+Copy `.env.example` into `.env` and adjust variables if needed.
 
 ## Usage
 
