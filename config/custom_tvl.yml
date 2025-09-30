@@ -5,49 +5,41 @@
 
 mainnet:
   custom_contracts:
-    -
-      address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
+    - address: "0xBa5E35E26Ae59c7aea6F029B68c6460De2d13eB6"
       chain: "ethereum"
       assets:
-        -
-          address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+        - address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
           symbol: "USDC"
           decimals: 6
           image: "/logos/assets/usdc.svg"
           coingecko_id: "usd-coin"
-        -
-          address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        - address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
           symbol: "USDT"
           decimals: 6
           image: "/logos/assets/usdt.svg"
           coingecko_id: "tether"
-        -
-          address: "0x0000000000000000000000000000000000000000"
+        - address: "0x0000000000000000000000000000000000000000"
           symbol: "ETH"
           decimals: 18
           image: "/logos/assets/eth.svg"
           coingecko_id: "ethereum"
-        -
-          address: "0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF"
+        - address: "0xF57e7e7C23978C3cAEC3C3548E3D615c346e79fF"
           symbol: "IMX"
           decimals: 18
           image: "/logos/assets/imx.svg"
           coingecko_id: "immutable-x"
-        -
-          address: "0x9AB7bb7FdC60f4357ECFef43986818A2A3569c62"
+        - address: "0x9AB7bb7FdC60f4357ECFef43986818A2A3569c62"
           symbol: "GOG"
           decimals: 18
           image: "/logos/assets/gog.svg"
           coingecko_id: "guild-of-guardians"
-        -
-          address: "0xc9E503562d0Db0A2629288a5D3b1c94Ea7741869"
+        - address: "0xc9E503562d0Db0A2629288a5D3b1c94Ea7741869"
           symbol: "MCG"
           decimals: 18
           image: "/logos/assets/mcg.svg"
           coingecko_id: "metalcore"
   custom_tokens:
-    -
-      symbol: "wstETH"
+    - symbol: "wstETH"
       decimals: 18
       image: "/logos/assets/wsteth.svg"
       coingecko_id: "staked-ether"

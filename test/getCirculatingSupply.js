@@ -12,7 +12,9 @@ module.exports = () => {
       expect(await getCirculatingSupply()).to.be.a('number');
 
       if (ENVIRONMENT === 'mainnet') {
-        expect(await getCirculatingSupply({ symbol: 'axlUSDC' })).to.be.a('number');
+        expect(await getCirculatingSupply({ symbol: 'axlUSDC' })).to.be.a(
+          'number'
+        );
       }
     }).timeout(30000);
   });

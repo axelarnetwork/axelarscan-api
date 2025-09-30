@@ -13,14 +13,28 @@ module.exports = async params => {
   if (!id) return;
 
   // get proposal data
-  const { proposal } = { ...await request(getLCDInstance(), { path: `/cosmos/gov/v1beta1/proposals/${id}` }) };
+  const { proposal } = {
+    ...(await request(getLCDInstance(), {
+      path: `/cosmos/gov/v1beta1/proposals/${id}`,
+    })),
+  };
 
-  const { proposal_id, content, status, submit_time, deposit_end_time, voting_start_time, voting_end_time, total_deposit, final_tally_result } = { ...proposal };
+  const {
+    proposal_id,
+    content,
+    status,
+    submit_time,
+    deposit_end_time,
+    voting_start_time,
+    voting_end_time,
+    total_deposit,
+    final_tally_result,
+  } = { ...proposal };
   const { plan } = { ...content };
   const { height } = { ...plan };
 
   // get votes of this proposal
-  const { data } = { ...await getVotes(params) };
+  const { data } = { ...(await getVotes(params)) };
 
   // get assets data
   const assetsData = proposal ? await getAssets() : undefined;
@@ -37,17 +51,29 @@ module.exports = async params => {
     deposit_end_time: moment(deposit_end_time).valueOf(),
     voting_start_time: moment(voting_start_time).valueOf(),
     voting_end_time: moment(voting_end_time).valueOf(),
-    total_deposit: await Promise.all(toArray(total_deposit).map(d => new Promise(async resolve => {
-      // get asset data of the deposit asset
-      const { symbol, decimals } = { ...await getAssetData(d.denom, assetsData) };
+    total_deposit: await Promise.all(
+      toArray(total_deposit).map(
+        d =>
+          new Promise(async resolve => {
+            // get asset data of the deposit asset
+            const { symbol, decimals } = {
+              ...(await getAssetData(d.denom, assetsData)),
+            };
 
-      resolve({
-        ...d,
-        symbol,
-        amount: formatUnits(d.amount, decimals || 6, false),
-      });
-    }))),
-    final_tally_result: Object.fromEntries(Object.entries({ ...final_tally_result }).map(([k, v]) => [k, formatUnits(v, 6, false)])),
+            resolve({
+              ...d,
+              symbol,
+              amount: formatUnits(d.amount, decimals || 6, false),
+            });
+          })
+      )
+    ),
+    final_tally_result: Object.fromEntries(
+      Object.entries({ ...final_tally_result }).map(([k, v]) => [
+        k,
+        formatUnits(v, 6, false),
+      ])
+    ),
     votes: toArray(data),
   };
 };

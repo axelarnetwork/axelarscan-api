@@ -14,46 +14,57 @@ const getLogLevel = () => process.env.LOG_LEVEL || 'debug';
 const getMethods = () => config.methods;
 
 const getChains = (types, env = ENVIRONMENT) => {
-  types = toArray(types).map(t => t === 'vm' ? 'amplifier' : t);
+  types = toArray(types).map(t => (t === 'vm' ? 'amplifier' : t));
 
   // get chains of env and filter by chain types
-  return Object.entries({ ...config.chains[env] }).filter(([k, v]) => types.length === 0 || types.includes(k)).flatMap(([k, v]) => Object.entries({ ...v }).map(([_k, _v]) => {
-    let provider_params;
+  return Object.entries({ ...config.chains[env] })
+    .filter(([k, v]) => types.length === 0 || types.includes(k))
+    .flatMap(([k, v]) =>
+      Object.entries({ ...v }).map(([_k, _v]) => {
+        let provider_params;
 
-    switch (k) {
-      case 'evm':
-      case 'amplifier':
-        if (isNumber(_v.chain_id)) {
-          provider_params = [{
-            chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
-            chainName: `${_v.name} ${capitalize(env)}`,
-            rpcUrls: toArray(_v.endpoints?.rpc),
-            nativeCurrency: _v.native_token,
-            blockExplorerUrls: toArray(_v.explorer?.url),
-          }];
+        switch (k) {
+          case 'evm':
+          case 'amplifier':
+            if (isNumber(_v.chain_id)) {
+              provider_params = [
+                {
+                  chainId: toBeHex(_v.chain_id).replace('0x0', '0x'),
+                  chainName: `${_v.name} ${capitalize(env)}`,
+                  rpcUrls: toArray(_v.endpoints?.rpc),
+                  nativeCurrency: _v.native_token,
+                  blockExplorerUrls: toArray(_v.explorer?.url),
+                },
+              ];
+            }
+            break;
+          default:
+            break;
         }
-        break;
-      default:
-        break;
-    }
 
-    return {
-      ..._v,
-      id: _k,
-      chain_type: k === 'amplifier' ? 'vm' : k,
-      provider_params,
-      no_inflation: !!_v.deprecated,
-      no_tvl: _v.no_tvl || !!_v.deprecated,
-    };
-  })).filter(d => !d.disabled);
+        return {
+          ..._v,
+          id: _k,
+          chain_type: k === 'amplifier' ? 'vm' : k,
+          provider_params,
+          no_inflation: !!_v.deprecated,
+          no_tvl: _v.no_tvl || !!_v.deprecated,
+        };
+      })
+    )
+    .filter(d => !d.disabled);
 };
 
 const getChainData = (chain, types, env = ENVIRONMENT) => {
   if (!chain) return;
 
-  return getChains(types, env).find(d =>
-    find(removeDoubleQuote(chain), _.concat(d.id, d.chain_id, d.chain_name, d.maintainer_id, d.aliases)) || // check equals
-    toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1 // check prefix
+  return getChains(types, env).find(
+    d =>
+      find(
+        removeDoubleQuote(chain),
+        _.concat(d.id, d.chain_id, d.chain_name, d.maintainer_id, d.aliases)
+      ) || // check equals
+      toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1 // check prefix
   );
 };
 
@@ -71,14 +82,20 @@ const getChainByS3ConfigChain = chain => {
   return getChainData(chain)?.id || chain;
 };
 
-const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId = 's3configAssets') => {
+const getAxelarS3Config = async (
+  env = ENVIRONMENT,
+  forceCache = false,
+  cacheId = 's3configAssets'
+) => {
   // get s3 config from cache
   if (!forceCache) {
     const cache = await readCache(cacheId, 900);
     if (cache) return cache;
   }
 
-  const response = await request(`https://axelar-${headString(env)}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`);
+  const response = await request(
+    `https://axelar-${headString(env)}.s3.us-east-2.amazonaws.com/configs/${env}-config-1.x.json`
+  );
 
   if (response) {
     const chainsCacheId = 's3configChains';
@@ -87,7 +104,12 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId 
     let chains;
 
     if (response.chains) {
-      chains = Object.fromEntries(Object.entries(response.chains).map(([k, v]) => [k, { config: { ibc: v.config?.ibc } }]));
+      chains = Object.fromEntries(
+        Object.entries(response.chains).map(([k, v]) => [
+          k,
+          { config: { ibc: v.config?.ibc } },
+        ])
+      );
 
       // caching chains config
       await writeCache(chainsCacheId, { chains });
@@ -99,10 +121,12 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId 
     if (response.chains) delete response.chains;
 
     if (response.assets) {
-      response.assets = Object.fromEntries(Object.entries(response.assets).map(([k, v]) => {
-        if (v.details) delete v.details;
-        return [k, v];
-      }));
+      response.assets = Object.fromEntries(
+        Object.entries(response.assets).map(([k, v]) => {
+          if (v.details) delete v.details;
+          return [k, v];
+        })
+      );
 
       // caching assets config
       await writeCache(assetsCacheId, response);
@@ -128,9 +152,11 @@ const getAxelarS3Config = async (env = ENVIRONMENT, forceCache = false, cacheId 
   return await readCache(cacheId, 24 * 3600);
 };
 
-const getAxelarS3ChainsConfig = async (env = ENVIRONMENT, forceCache = false) => await getAxelarS3Config(env, forceCache, 's3configChains');
+const getAxelarS3ChainsConfig = async (env = ENVIRONMENT, forceCache = false) =>
+  await getAxelarS3Config(env, forceCache, 's3configChains');
 
-const getAxelarS3AssetsConfig = async (env = ENVIRONMENT, forceCache = false) => await getAxelarS3Config(env, forceCache, 's3configAssets');
+const getAxelarS3AssetsConfig = async (env = ENVIRONMENT, forceCache = false) =>
+  await getAxelarS3Config(env, forceCache, 's3configAssets');
 
 const getAssets = async (env = ENVIRONMENT, cacheId = 'assets') => {
   // get assets from cache
@@ -143,8 +169,14 @@ const getAssets = async (env = ENVIRONMENT, cacheId = 'assets') => {
   const assetsData = _.cloneDeep({ ...config.assets[env] });
 
   // gateway assets
-  for (const d of Object.values({ ...response?.assets }).filter(d => d.type === 'gateway')) {
-    const existingDenom = _.head(Object.entries({ ...config.assets[env] }).find(([k, v]) => find(d.id, _.concat(v.denom, v.denoms))));
+  for (const d of Object.values({ ...response?.assets }).filter(
+    d => d.type === 'gateway'
+  )) {
+    const existingDenom = _.head(
+      Object.entries({ ...config.assets[env] }).find(([k, v]) =>
+        find(d.id, _.concat(v.denom, v.denoms))
+      )
+    );
 
     // denom from existing config or s3 config
     const denom = existingDenom || d.id;
@@ -162,9 +194,16 @@ const getAssets = async (env = ENVIRONMENT, cacheId = 'assets') => {
       addresses = {
         ...addresses,
         [chain]: {
-          symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : v.symbol || symbol,
-          address: (v.tokenAddress?.startsWith('0x') ? v.tokenAddress : undefined) || address,
-          ibc_denom: (v.tokenAddress === d.id || v.tokenAddress?.includes('/') ? v.tokenAddress : undefined) || ibc_denom,
+          symbol: d.id.endsWith('-uusdc')
+            ? assetsData[denom]?.symbol
+            : v.symbol || symbol,
+          address:
+            (v.tokenAddress?.startsWith('0x') ? v.tokenAddress : undefined) ||
+            address,
+          ibc_denom:
+            (v.tokenAddress === d.id || v.tokenAddress?.includes('/')
+              ? v.tokenAddress
+              : undefined) || ibc_denom,
         },
       };
     }
@@ -189,16 +228,26 @@ const getAssets = async (env = ENVIRONMENT, cacheId = 'assets') => {
       denom,
       native_chain: nativeChain,
       name: d.name || d.prettySymbol,
-      symbol: d.id.endsWith('-uusdc') ? assetsData[denom]?.symbol : d.prettySymbol,
+      symbol: d.id.endsWith('-uusdc')
+        ? assetsData[denom]?.symbol
+        : d.prettySymbol,
       decimals: d.decimals,
-      image: existingDenom ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/') : `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
+      image: existingDenom
+        ? d.iconUrl?.replace('/images/tokens/', '/logos/assets/')
+        : `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
       coingecko_id: d.coingeckoId,
       addresses,
     };
   }
 
   // filter duplicate assets
-  const assetsDataEntries = Object.entries(assetsData).filter(([k, v]) => !find(k, Object.values(assetsData).flatMap(d => toArray(d.denoms))));
+  const assetsDataEntries = Object.entries(assetsData).filter(
+    ([k, v]) =>
+      !find(
+        k,
+        Object.values(assetsData).flatMap(d => toArray(d.denoms))
+      )
+  );
 
   // create assets list
   const data = assetsDataEntries.map(([k, v]) => ({ ...v, id: k }));
@@ -215,11 +264,14 @@ const getAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   // handle get burned asset
   if (asset.startsWith('burned-')) asset = asset.replace('burned-', '');
 
-  assetsData = toArray(assetsData || await getAssets(env));
+  assetsData = toArray(assetsData || (await getAssets(env)));
 
-  return assetsData.find(d =>
-    find(asset, _.concat(d.denom, d.denoms, d.symbol)) || // check equals
-    toArray(Object.values({ ...d.addresses })).findIndex(a => find(asset, [a.address, a.ibc_denom, a.symbol])) > -1 // check equals to address, denom or symbol of each chain
+  return assetsData.find(
+    d =>
+      find(asset, _.concat(d.denom, d.denoms, d.symbol)) || // check equals
+      toArray(Object.values({ ...d.addresses })).findIndex(a =>
+        find(asset, [a.address, a.ibc_denom, a.symbol])
+      ) > -1 // check equals to address, denom or symbol of each chain
   );
 };
 
@@ -231,18 +283,22 @@ const getITSAssets = async (env = ENVIRONMENT, cacheId = 'itsAssets') => {
   const response = await getAxelarS3AssetsConfig(env);
 
   // ITS assets
-  const data = Object.values({ ...response?.assets }).filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical'])).map(d => ({
-    id: d.id,
-    type: d.type,
-    symbol: d.prettySymbol,
-    name: d.name,
-    decimals: d.decimals,
-    image: `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
-    coingecko_id: d.coingeckoId,
-    addresses: _.uniq(toArray(Object.values({ ...d.chains }).map(c => c.tokenAddress))),
-    native_chain: getChainByS3ConfigChain(d.originAxelarChainId),
-    chains: d.chains,
-  }));
+  const data = Object.values({ ...response?.assets })
+    .filter(d => find(d.type, ['customInterchain', 'interchain', 'canonical']))
+    .map(d => ({
+      id: d.id,
+      type: d.type,
+      symbol: d.prettySymbol,
+      name: d.name,
+      decimals: d.decimals,
+      image: `${d.iconUrl?.startsWith('http') ? '' : response.resources?.staticAssetHost}${d.iconUrl}`,
+      coingecko_id: d.coingeckoId,
+      addresses: _.uniq(
+        toArray(Object.values({ ...d.chains }).map(c => c.tokenAddress))
+      ),
+      native_chain: getChainByS3ConfigChain(d.originAxelarChainId),
+      chains: d.chains,
+    }));
 
   // caching its assets
   await writeCache(cacheId, data);
@@ -253,10 +309,12 @@ const getITSAssets = async (env = ENVIRONMENT, cacheId = 'itsAssets') => {
 const getITSAssetData = async (asset, assetsData, env = ENVIRONMENT) => {
   if (!asset) return;
 
-  assetsData = toArray(assetsData || await getITSAssets(env));
+  assetsData = toArray(assetsData || (await getITSAssets(env)));
 
   // check equals
-  return assetsData.find(d => find(asset, _.concat(d.id, d.symbol, d.addresses)));
+  return assetsData.find(d =>
+    find(asset, _.concat(d.id, d.symbol, d.addresses))
+  );
 };
 
 const getTokens = () => config.tokens;
@@ -264,12 +322,15 @@ const getSupplyConfig = (env = ENVIRONMENT) => config.supply[env];
 const getTVLConfig = (env = ENVIRONMENT) => config.tvl[env];
 const getCustomTVLConfig = (env = ENVIRONMENT) => config.custom_tvl[env];
 
-const getContracts = async (env = ENVIRONMENT) => await request(`${getGMPAPI(env)}/getContracts`);
+const getContracts = async (env = ENVIRONMENT) =>
+  await request(`${getGMPAPI(env)}/getContracts`);
 
 const getEndpoints = (env = ENVIRONMENT) => config.endpoints[env];
-const getLCD = (archive = false, env = ENVIRONMENT) => (archive && getEndpoints(env)?.lcd_archive) || getEndpoints(env)?.lcd;
+const getLCD = (archive = false, env = ENVIRONMENT) =>
+  (archive && getEndpoints(env)?.lcd_archive) || getEndpoints(env)?.lcd;
 const getValidatorAPI = (env = ENVIRONMENT) => getEndpoints(env)?.validator_api;
-const getTokenTransferAPI = (env = ENVIRONMENT) => getEndpoints(env)?.token_transfer_api;
+const getTokenTransferAPI = (env = ENVIRONMENT) =>
+  getEndpoints(env)?.token_transfer_api;
 const getGMPAPI = (env = ENVIRONMENT) => getEndpoints(env)?.gmp_api;
 const getAppURL = (env = ENVIRONMENT) => getEndpoints(env)?.app;
 

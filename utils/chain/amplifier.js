@@ -5,7 +5,9 @@ const { split, toArray } = require('../parser');
 const { isNumber, toNumber, formatUnits } = require('../number');
 
 const getRPCs = chain => {
-  const { chain_id, deprecated, endpoints } = { ...getChainData(chain, 'amplifier') };
+  const { chain_id, deprecated, endpoints } = {
+    ...getChainData(chain, 'amplifier'),
+  };
   const rpcs = toArray(endpoints?.rpc);
 
   if (rpcs.length > 0 && !deprecated) {
@@ -26,10 +28,24 @@ const getRPCs = chain => {
               case 'sui':
                 for (const rpc of rpcs) {
                   try {
-                    const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'suix_getBalance', params: [address, contract_address], id: 0 } }) };
+                    const { result } = {
+                      ...(await request(rpc, {
+                        method: 'post',
+                        params: {
+                          jsonrpc: '2.0',
+                          method: 'suix_getBalance',
+                          params: [address, contract_address],
+                          id: 0,
+                        },
+                      })),
+                    };
 
                     if (result?.totalBalance) {
-                      output = formatUnits(result.totalBalance, decimals, false);
+                      output = formatUnits(
+                        result.totalBalance,
+                        decimals,
+                        false
+                      );
                       break;
                     }
                   } catch (error) {}
@@ -39,11 +55,23 @@ const getRPCs = chain => {
                 for (const rpc of rpcs) {
                   try {
                     // tokenAddress {currency}.{account}
-                    const [currency, account] = split(contract_address, { delimiter: '.' });
+                    const [currency, account] = split(contract_address, {
+                      delimiter: '.',
+                    });
 
                     // others assets
                     if (currency && account) {
-                      const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'gateway_balances', params: [{ account }], id: 0 } }) };
+                      const { result } = {
+                        ...(await request(rpc, {
+                          method: 'post',
+                          params: {
+                            jsonrpc: '2.0',
+                            method: 'gateway_balances',
+                            params: [{ account }],
+                            id: 0,
+                          },
+                        })),
+                      };
 
                       if (result?.obligations) {
                         output = toNumber(result.obligations[currency]);
@@ -52,10 +80,24 @@ const getRPCs = chain => {
                     }
                     // XRP
                     else {
-                      const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'account_info', params: [{ account: address }], id: 0 } }) };
+                      const { result } = {
+                        ...(await request(rpc, {
+                          method: 'post',
+                          params: {
+                            jsonrpc: '2.0',
+                            method: 'account_info',
+                            params: [{ account: address }],
+                            id: 0,
+                          },
+                        })),
+                      };
 
                       if (result?.account_data?.Balance) {
-                        output = formatUnits(result.account_data.Balance, decimals, false);
+                        output = formatUnits(
+                          result.account_data.Balance,
+                          decimals,
+                          false
+                        );
                         break;
                       }
                     }
@@ -82,7 +124,17 @@ const getRPCs = chain => {
               case 'sui':
                 for (const rpc of rpcs) {
                   try {
-                    const { result } = { ...await request(rpc, { method: 'post', params: { jsonrpc: '2.0', method: 'suix_getTotalSupply', params: [address], id: 0 } }) };
+                    const { result } = {
+                      ...(await request(rpc, {
+                        method: 'post',
+                        params: {
+                          jsonrpc: '2.0',
+                          method: 'suix_getTotalSupply',
+                          params: [address],
+                          id: 0,
+                        },
+                      })),
+                    };
 
                     if (result?.value) {
                       output = formatUnits(result.value, decimals, false);

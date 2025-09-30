@@ -12,31 +12,50 @@ const aggregate = async (data, assetsData, options) => {
   const validData = toArray(data).filter(d => isNumber(d.amount));
 
   // get all tokens data
-  const tokensData = await Promise.all(validData.map(d => new Promise(async resolve => resolve(await getAssetData(d.denom, assetsData)))));
+  const tokensData = await Promise.all(
+    validData.map(
+      d =>
+        new Promise(async resolve =>
+          resolve(await getAssetData(d.denom, assetsData))
+        )
+    )
+  );
 
   // get tokens price
-  const pricesData = { ...(includesValue ? await getTokensPrice({ symbols: tokensData.map(d => d?.denom), assetsData }) : undefined) };
+  const pricesData = {
+    ...(includesValue
+      ? await getTokensPrice({
+          symbols: tokensData.map(d => d?.denom),
+          assetsData,
+        })
+      : undefined),
+  };
 
   return Object.entries(
-    _.groupBy(validData.map((d, i) => {
-      const assetData = tokensData[i];
-      const { denom, symbol, decimals } = { ...assetData };
+    _.groupBy(
+      validData.map((d, i) => {
+        const assetData = tokensData[i];
+        const { denom, symbol, decimals } = { ...assetData };
 
-      const amount = formatUnits(d.amount, decimals || 6);
-      const { price } = { ...(pricesData[denom] || Object.values(pricesData).find(d => d.denom === denom)) };
-      const value = isNumber(price) ? amount * price : undefined;
+        const amount = formatUnits(d.amount, decimals || 6);
+        const { price } = {
+          ...(pricesData[denom] ||
+            Object.values(pricesData).find(d => d.denom === denom)),
+        };
+        const value = isNumber(price) ? amount * price : undefined;
 
-      return {
-        ...d,
-        symbol,
-        amount,
-        price,
-        value,
-        asset_data: assetData,
-      };
-    }), 'denom')
-  )
-  .map(([k, v]) => ({
+        return {
+          ...d,
+          symbol,
+          amount,
+          price,
+          value,
+          asset_data: assetData,
+        };
+      }),
+      'denom'
+    )
+  ).map(([k, v]) => ({
     denom: k,
     ..._.head(v),
     amount: _.sumBy(v, 'amount'),

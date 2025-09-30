@@ -8,7 +8,11 @@ const getBlockTimestamp = async height => {
   if (!height) return;
 
   while (true) {
-    const { block } = { ...await request(getLCDInstance(height), { path: `/cosmos/base/tendermint/v1beta1/blocks/${height}` }) };
+    const { block } = {
+      ...(await request(getLCDInstance(height), {
+        path: `/cosmos/base/tendermint/v1beta1/blocks/${height}`,
+      })),
+    };
     const { time } = { ...block?.header };
 
     // return timestamp from response

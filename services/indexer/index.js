@@ -1,6 +1,10 @@
 const _ = require('lodash');
 
-const { normalizeSearchObjects, normalizeSearchParams, removeFieldsFromParams } = require('./utils');
+const {
+  normalizeSearchObjects,
+  normalizeSearchParams,
+  removeFieldsFromParams,
+} = require('./utils');
 const { createInstance, request } = require('../../utils/http');
 const { sleep } = require('../../utils/operator');
 const { toArray } = require('../../utils/parser');
@@ -20,7 +24,17 @@ const crud = async params => {
 
   // normalize params
   params = normalizeSearchParams(params);
-  const { collection, id, method, from, size, sort, use_raw_data, update_only, track_total_hits } = { ...params };
+  const {
+    collection,
+    id,
+    method,
+    from,
+    size,
+    sort,
+    use_raw_data,
+    update_only,
+    track_total_hits,
+  } = { ...params };
   let { path } = { ...params };
   params = normalizeSearchObjects(removeFieldsFromParams(params));
 
@@ -42,22 +56,41 @@ const crud = async params => {
       path = path || `/${collection}/_doc/${id}`;
 
       if (path.includes('/_update_by_query')) {
-        response = await request(indexer, { method: 'post', path, params, auth });
-      }
-      else {
-        response = await request(indexer, { method: path.includes('_update') ? 'post' : 'put', path, params: path.includes('_update') ? { doc: params } : params, auth });
+        response = await request(indexer, {
+          method: 'post',
+          path,
+          params,
+          auth,
+        });
+      } else {
+        response = await request(indexer, {
+          method: path.includes('_update') ? 'post' : 'put',
+          path,
+          params: path.includes('_update') ? { doc: params } : params,
+          auth,
+        });
         const { error } = { ...response };
 
         // retry with update / insert
         if (error) {
-          path = path.replace(path.includes('_doc') ? '_doc' : '_update', path.includes('_doc') ? '_update' : '_doc');
+          path = path.replace(
+            path.includes('_doc') ? '_doc' : '_update',
+            path.includes('_doc') ? '_update' : '_doc'
+          );
 
           if (update_only && path.includes('_doc')) {
-            const { _id, _source } = { ...await request(indexer, { path, auth }) };
+            const { _id, _source } = {
+              ...(await request(indexer, { path, auth })),
+            };
             if (_source) path = path.replace('_doc', '_update');
           }
 
-          response = await request(indexer, { method: path.includes('_update') ? 'post' : 'put', path, params: path.includes('_update') ? { doc: params } : params, auth });
+          response = await request(indexer, {
+            method: path.includes('_update') ? 'post' : 'put',
+            path,
+            params: path.includes('_update') ? { doc: params } : params,
+            auth,
+          });
         }
       }
       break;
@@ -65,22 +98,37 @@ const crud = async params => {
     case 'search':
       path = path || `/${collection}/_search`;
 
-      const query = use_raw_data ? params : {
-        query: {
-          bool: {
-            must: Object.entries({ ...params }).filter(([k, v]) => !['query', 'aggs', 'from', 'size', 'sort', 'fields', '_source'].includes(k)).map(([k, v]) => {
-              switch (k) {
-                case 'id':
-                  if (!v && id) v = id;
-                  break;
-                default:
-                  break;
-              }
-              return { match: { [k]: v } };
-            }),
-          },
-        },
-      };
+      const query = use_raw_data
+        ? params
+        : {
+            query: {
+              bool: {
+                must: Object.entries({ ...params })
+                  .filter(
+                    ([k, v]) =>
+                      ![
+                        'query',
+                        'aggs',
+                        'from',
+                        'size',
+                        'sort',
+                        'fields',
+                        '_source',
+                      ].includes(k)
+                  )
+                  .map(([k, v]) => {
+                    switch (k) {
+                      case 'id':
+                        if (!v && id) v = id;
+                        break;
+                      default:
+                        break;
+                    }
+                    return { match: { [k]: v } };
+                  }),
+              },
+            },
+          };
 
       if (path.endsWith('/_search')) {
         query.from = toNumber(from);
@@ -89,7 +137,12 @@ const crud = async params => {
         query.track_total_hits = track_total_hits;
       }
 
-      response = await request(indexer, { method: 'post', path, params: query, auth });
+      response = await request(indexer, {
+        method: 'post',
+        path,
+        params: query,
+        auth,
+      });
       const { hits, aggregations } = { ...response };
 
       if (hits?.hits || aggregations) {
@@ -106,7 +159,12 @@ const crud = async params => {
     case 'delete':
     case 'remove':
       path = path || `/${collection}/_doc/${id}`;
-      response = await request(indexer, { method: 'delete', path, params, auth });
+      response = await request(indexer, {
+        method: 'delete',
+        path,
+        params,
+        auth,
+      });
       break;
     default:
       break;
@@ -116,11 +174,17 @@ const crud = async params => {
   if (response?.error) {
     if (!['get', 'delete', 'remove'].includes(method)) {
       // log error from opensearch
-      log('debug', 'indexer', 'request to opensearch', { params: _params, error: response.error });
+      log('debug', 'indexer', 'request to opensearch', {
+        params: _params,
+        error: response.error,
+      });
     }
 
     // retry
-    if (isString(response.error) && response.error.includes('getaddrinfo EBUSY')) {
+    if (
+      isString(response.error) &&
+      response.error.includes('getaddrinfo EBUSY')
+    ) {
       // sleep before retry
       await sleep(2 * 1000);
       return await crud(_params);
@@ -132,12 +196,44 @@ const crud = async params => {
   return response;
 };
 
-const get = async (collection, id) => await crud({ method: 'get', collection, id });
-const read = async (collection, query, params) => await crud({ method: 'query', collection, query, use_raw_data: true, ...params });
-const write = async (collection, id, data, update_only = false, is_update = true) => await crud({ method: 'set', collection, id, path: is_update ? `/${collection}/_update/${id}` : undefined, update_only, ...data });
-const remove = async (collection, id) => await crud({ method: 'delete', collection, id });
-const deleteByQuery = async (collection, query, params) => await crud({ method: 'query', collection, path: `/${collection}/_delete_by_query`, query, use_raw_data: true, ...params });
-const getMapping = async collection => await crud({ method: 'get', collection, path: `/${collection}/_mapping` });
+const get = async (collection, id) =>
+  await crud({ method: 'get', collection, id });
+const read = async (collection, query, params) =>
+  await crud({
+    method: 'query',
+    collection,
+    query,
+    use_raw_data: true,
+    ...params,
+  });
+const write = async (
+  collection,
+  id,
+  data,
+  update_only = false,
+  is_update = true
+) =>
+  await crud({
+    method: 'set',
+    collection,
+    id,
+    path: is_update ? `/${collection}/_update/${id}` : undefined,
+    update_only,
+    ...data,
+  });
+const remove = async (collection, id) =>
+  await crud({ method: 'delete', collection, id });
+const deleteByQuery = async (collection, query, params) =>
+  await crud({
+    method: 'query',
+    collection,
+    path: `/${collection}/_delete_by_query`,
+    query,
+    use_raw_data: true,
+    ...params,
+  });
+const getMapping = async collection =>
+  await crud({ method: 'get', collection, path: `/${collection}/_mapping` });
 
 module.exports = {
   crud,

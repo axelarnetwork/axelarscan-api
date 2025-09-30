@@ -13,10 +13,17 @@ module.exports = async params => {
   if (!(symbol && timestamp)) return;
 
   // {symbol}_{timestamp}
-  const id = toCase([symbol, moment(timestamp).utc().startOf('day').valueOf()].join('_'), 'lower');
+  const id = toCase(
+    [symbol, moment(timestamp).utc().startOf('day').valueOf()].join('_'),
+    'lower'
+  );
 
   // index token info
-  await write(TOKEN_INFO_COLLECTION, id, { id, ...data, granularity: getGranularity(timestamp) });
+  await write(TOKEN_INFO_COLLECTION, id, {
+    id,
+    ...data,
+    granularity: getGranularity(timestamp),
+  });
 
   return data;
 };

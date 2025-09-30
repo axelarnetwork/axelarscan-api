@@ -8,7 +8,7 @@ const { getInflation } = require('../methods');
 module.exports = () => {
   describe('getInflation', () => {
     it('Should receive inflation', async () => {
-      const { inflation } = { ...await getInflation() };
+      const { inflation } = { ...(await getInflation()) };
 
       expect(inflation).to.be.a('number');
     }).timeout(30000);

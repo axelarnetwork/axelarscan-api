@@ -3,11 +3,38 @@ const _ = require('lodash');
 const { getTokensPrice } = require('./tokens');
 const { getTVL, getTVLAlert } = require('./tvl');
 const validator = require('./axelar/validator');
-const { getTotalSupply, getCirculatingSupply, getTotalBurned, getTokenInfo, searchTokenInfos, getInflation, getNetworkParameters, getBalances, getDelegations, getRedelegations, getUnbondings, getRewards, getCommissions, getAccountAmounts, getProposals, getProposal } = require('./axelar');
+const {
+  getTotalSupply,
+  getCirculatingSupply,
+  getTotalBurned,
+  getTokenInfo,
+  searchTokenInfos,
+  getInflation,
+  getNetworkParameters,
+  getBalances,
+  getDelegations,
+  getRedelegations,
+  getUnbondings,
+  getRewards,
+  getCommissions,
+  getAccountAmounts,
+  getProposals,
+  getProposal,
+} = require('./axelar');
 const tokenTransfer = require('./interchain/token-transfer');
 const GMP = require('./interchain/gmp');
-const { interchainChart, interchainTotalVolume, interchainStatsByTime } = require('./interchain');
-const { getMethods, getChains, getAssets, getITSAssets, getContracts } = require('../utils/config');
+const {
+  interchainChart,
+  interchainTotalVolume,
+  interchainStatsByTime,
+} = require('./interchain');
+const {
+  getMethods,
+  getChains,
+  getAssets,
+  getITSAssets,
+  getContracts,
+} = require('../utils/config');
 
 const METHODS = {
   getChains: () => getChains(),
@@ -51,12 +78,16 @@ METHODS.getMethods = async () => {
       const { inherit } = { ...parameter };
 
       if (inherit) {
-        const inheritParameters = methods.find(d => d.id === inherit)?.parameters;
+        const inheritParameters = methods.find(
+          d => d.id === inherit
+        )?.parameters;
 
         // recursive parse inherit parameters
-        results = _.concat(results, parseParameters(inheritParameters, methods));
-      }
-      else {
+        results = _.concat(
+          results,
+          parseParameters(inheritParameters, methods)
+        );
+      } else {
         results = _.concat(results, parameter);
       }
     }
@@ -83,14 +114,20 @@ METHODS.getMethods = async () => {
               const { type, properties } = { ...v };
 
               if (type) {
-                fields.push({ name: k, type: type === 'text' ? 'string' : type });
-              }
-              else if (properties) {
+                fields.push({
+                  name: k,
+                  type: type === 'text' ? 'string' : type,
+                });
+              } else if (properties) {
                 // recursive parse entries
-                fields.push({ name: k, type: 'object', attributes: parseEntries(properties) });
+                fields.push({
+                  name: k,
+                  type: 'object',
+                  attributes: parseEntries(properties),
+                });
               }
             }
- 
+
             return fields;
           };
 
@@ -103,9 +140,11 @@ METHODS.getMethods = async () => {
         }
 
         // recursive parsing when inherit
-        results = _.concat(results, await parseResponse(inheritFields, methods));
-      }
-      else {
+        results = _.concat(
+          results,
+          await parseResponse(inheritFields, methods)
+        );
+      } else {
         results = _.concat(results, field);
       }
     }
@@ -119,11 +158,18 @@ METHODS.getMethods = async () => {
   return {
     ...methodsConfig,
     // parse methods from yml config
-    methods: await Promise.all(methods.map(d => new Promise(async resolve => resolve({
-      ...d,
-      parameters: parseParameters(d.parameters, methods),
-      response: await parseResponse(d.response, methods),
-    })))),
+    methods: await Promise.all(
+      methods.map(
+        d =>
+          new Promise(async resolve =>
+            resolve({
+              ...d,
+              parameters: parseParameters(d.parameters, methods),
+              response: await parseResponse(d.response, methods),
+            })
+          )
+      )
+    ),
   };
 };
 

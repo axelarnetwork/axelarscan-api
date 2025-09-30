@@ -12,17 +12,32 @@ module.exports = async params => {
   if (!address?.startsWith('axelar')) return;
 
   // get rewards of this address
-  const { rewards, total } = { ...await request(getLCDInstance(height), { path: `/cosmos/distribution/v1beta1/delegators/${address}/rewards` }) };
+  const { rewards, total } = {
+    ...(await request(getLCDInstance(height), {
+      path: `/cosmos/distribution/v1beta1/delegators/${address}/rewards`,
+    })),
+  };
 
   // get assets data when has rewards
   assetsData = assetsData || (rewards ? await getAssets() : undefined);
 
   return {
-    rewards: await aggregate(toArray(rewards).flatMap(d => d.reward), assetsData),
+    rewards: await aggregate(
+      toArray(rewards).flatMap(d => d.reward),
+      assetsData
+    ),
     rewards_by_validator: Object.fromEntries(
-      await Promise.all(toArray(rewards).map(d => new Promise(async resolve =>
-        resolve([d.validator_address, await aggregate(d.reward, assetsData)])
-      )))
+      await Promise.all(
+        toArray(rewards).map(
+          d =>
+            new Promise(async resolve =>
+              resolve([
+                d.validator_address,
+                await aggregate(d.reward, assetsData),
+              ])
+            )
+        )
+      )
     ),
     total: await aggregate(total, assetsData),
   };

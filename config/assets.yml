@@ -4409,9 +4409,6 @@ mainnet:
         ibc_denom: "ibc/9BEE293E6559ED860CC702685996F394D4991D6DFFD60A19ABC3723E6F34788A"
         symbol: "ZIG"
 
-
-
-
 testnet:
   uaxl:
     denom: "uaxl"
@@ -5804,8 +5801,6 @@ testnet:
       terra:
         ibc_denom: "uluna"
 
-
-
 stagenet:
   uaxl:
     denom: "uaxl"
@@ -5817,8 +5812,6 @@ stagenet:
     addresses:
       axelarnet:
         ibc_denom: "uaxl"
-
-
 
 devnet-amplifier:
   uamplifier:
