@@ -17,28 +17,6 @@ jobs:
       matrix:
         node-version: ["20.19.4"]
 
-    services:
-      opensearch:
-        image: opensearchproject/opensearch:2.11.0
-        env:
-          cluster.name: axelarscan-api-cluster
-          node.name: axelarscan-api-node
-          discovery.type: single-node
-          bootstrap.memory_lock: true
-          "OPENSEARCH_JAVA_OPTS": "-Xms512m -Xmx512m"
-          "DISABLE_INSTALL_DEMO_CONFIG": "true"
-          "DISABLE_SECURITY_PLUGIN": "true"
-        ports:
-          - 9200:9200
-          - 9600:9600
-        options: >-
-          --health-cmd "curl -f http://localhost:9200/_cluster/health || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 12
-          --ulimit nofile=65536:65536
-          --ulimit memlock=-1:-1
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
