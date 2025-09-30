@@ -4,9 +4,9 @@ COPY --from=public.ecr.aws/datadog/lambda-extension:55 /opt/extensions/ /opt/ext
 
 COPY . ${LAMBDA_TASK_ROOT}
 
-RUN npm install yarn --global
-RUN npm install datadog-lambda-js dd-trace
+RUN corepack enable pnpm
+RUN pnpm install datadog-lambda-js dd-trace
 
-RUN yarn
+RUN pnpm install --frozen-lockfile
 
 CMD [ "index.handler" ]

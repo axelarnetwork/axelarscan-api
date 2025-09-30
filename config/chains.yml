@@ -2477,8 +2477,6 @@ mainnet:
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
 
-
-
 testnet:
   evm:
     ethereum-sepolia:
@@ -4516,8 +4514,6 @@ testnet:
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
 
-
-
 stagenet:
   evm:
     ethereum-sepolia:
@@ -5319,8 +5315,6 @@ stagenet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
-
-
 
 devnet-amplifier:
   evm:

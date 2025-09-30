@@ -18,7 +18,10 @@ const getLCDs = (chain, nLCDs, timeout) => {
 
           for (const lcd of _.slice(lcds, 0, nLCDs || lcds.length)) {
             try {
-              const response = await request(createInstance(lcd, { timeout, gzip: true }), { path, params });
+              const response = await request(
+                createInstance(lcd, { timeout, gzip: true }),
+                { path, params }
+              );
 
               // has response without error
               if (response && !response.error) {
@@ -46,9 +49,17 @@ const getCosmosBalance = async (chain, address, contractData) => {
   let valid = false;
 
   for (const denom of denoms) {
-    for (const path of ['/cosmos/bank/v1beta1/balances/{address}/by_denom', '/cosmos/bank/v1beta1/balances/{address}/{denom}']) {
+    for (const path of [
+      '/cosmos/bank/v1beta1/balances/{address}/by_denom',
+      '/cosmos/bank/v1beta1/balances/{address}/{denom}',
+    ]) {
       try {
-        const response = await lcds.query(path.replace('{address}', address).replace('{denom}', encodeURIComponent(denom)), { denom });
+        const response = await lcds.query(
+          path
+            .replace('{address}', address)
+            .replace('{denom}', encodeURIComponent(denom)),
+          { denom }
+        );
         const { amount } = { ...response?.balance };
         balance = amount;
 
@@ -75,7 +86,11 @@ const getIBCSupply = async (chain, contractData) => {
 
   // get supply by request /supply/{denom}
   if (!ibc_denom.includes('ibc/')) {
-    const { amount } = { ...await lcds.query(`/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`) };
+    const { amount } = {
+      ...(await lcds.query(
+        `/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`
+      )),
+    };
 
     supply = amount?.amount;
     valid = isNumber(supply) && supply !== '0';
@@ -87,10 +102,15 @@ const getIBCSupply = async (chain, contractData) => {
 
     while (nextKey) {
       // get supply by /supply
-      const response = await lcds.query('/cosmos/bank/v1beta1/supply', { 'pagination.limit': 3000, 'pagination.key': isString(nextKey) ? nextKey : undefined });
+      const response = await lcds.query('/cosmos/bank/v1beta1/supply', {
+        'pagination.limit': 3000,
+        'pagination.key': isString(nextKey) ? nextKey : undefined,
+      });
 
       // find amount of this denom from response
-      supply = toArray(response?.supply).find(d => equalsIgnoreCase(d.denom, ibc_denom))?.amount;
+      supply = toArray(response?.supply).find(d =>
+        equalsIgnoreCase(d.denom, ibc_denom)
+      )?.amount;
 
       nextKey = response?.pagination?.next_key;
 

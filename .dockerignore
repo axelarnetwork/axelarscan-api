@@ -2,7 +2,6 @@ terraform
 .gitignore
 README.md
 LICENSE
-yarn.lock
 .env.example
 .env
 .git

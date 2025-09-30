@@ -17,9 +17,11 @@ const hexToBech32 = (address, prefix = 'axelar') => {
   }
 };
 
-const bech32ToBech32 = (address, prefix) => bech32.encode(prefix, bech32.decode(address).words);
+const bech32ToBech32 = (address, prefix) =>
+  bech32.encode(prefix, bech32.decode(address).words);
 
-const getBech32Address = (string, prefix = 'axelar', length = 20) => hexToBech32(toHash(string, length), prefix);
+const getBech32Address = (string, prefix = 'axelar', length = 20) =>
+  hexToBech32(toHash(string, length), prefix);
 
 const toJson = string => {
   if (!string) return null;
@@ -56,14 +58,25 @@ const getOptions = options => {
 };
 
 const split = (string, options) => {
-  const { delimiter, toCase: _toCase, filterBlank } = { ...getOptions(options) };
-  return (typeof string !== 'string' && ![undefined, null].includes(string) ? [string] : (typeof string === 'string' ? string : '').split(delimiter).map(s => toCase(s, _toCase))).filter(s => !filterBlank || s);
+  const {
+    delimiter,
+    toCase: _toCase,
+    filterBlank,
+  } = { ...getOptions(options) };
+  return (
+    typeof string !== 'string' && ![undefined, null].includes(string)
+      ? [string]
+      : (typeof string === 'string' ? string : '')
+          .split(delimiter)
+          .map(s => toCase(s, _toCase))
+  ).filter(s => !filterBlank || s);
 };
 
 const toArray = (x, options) => {
   options = getOptions(options);
   const { toCase: _toCase, filterBlank } = { ...options };
-  if (Array.isArray(x)) return x.map(_x => toCase(_x, _toCase)).filter(_x => !filterBlank || _x);
+  if (Array.isArray(x))
+    return x.map(_x => toCase(_x, _toCase)).filter(_x => !filterBlank || _x);
   return split(x, options);
 };
 

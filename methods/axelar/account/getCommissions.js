@@ -22,7 +22,11 @@ module.exports = async params => {
   }
 
   // get commission of this validator
-  const { commission } = { ...await request(getLCDInstance(height), { path: `/cosmos/distribution/v1beta1/validators/${address}/commission` }) };
+  const { commission } = {
+    ...(await request(getLCDInstance(height), {
+      path: `/cosmos/distribution/v1beta1/validators/${address}/commission`,
+    })),
+  };
 
   // get assets data when has commission
   assetsData = assetsData || (commission ? await getAssets() : undefined);

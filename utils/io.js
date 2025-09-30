@@ -6,14 +6,28 @@ const parseParams = req => {
   return { ...query, ...body, method };
 };
 
-const parseError = error => ({ error: true, code: 400, message: error?.message });
+const parseError = error => ({
+  error: true,
+  code: 400,
+  message: error?.message,
+});
 
 const finalizeResponse = (response, params, startTime = moment()) => {
   // on error, add parameters to response
-  if (response?.error) response = { ...response, method: response.method || params.method, params: response.params || params };
+  if (response?.error)
+    response = {
+      ...response,
+      method: response.method || params.method,
+      params: response.params || params,
+    };
 
   // add time spent to response
-  if (response && typeof response === 'object' && !Array.isArray(response) && !['getGMPDataMapping', 'getTransfersDataMapping'].includes(params.method)) {
+  if (
+    response &&
+    typeof response === 'object' &&
+    !Array.isArray(response) &&
+    !['getGMPDataMapping', 'getTransfersDataMapping'].includes(params.method)
+  ) {
     response = { ...response, time_spent: moment().diff(startTime) };
   }
 

@@ -17,32 +17,41 @@ module.exports = async params => {
 
   while (nextKey) {
     // get redelegations of this address
-    const { redelegation_responses, pagination } = { ...await request(getLCDInstance(height), { path: `/cosmos/staking/v1beta1/delegators/${address}/redelegations`, params: { 'pagination.key': isString(nextKey) ? nextKey : undefined } }) };
+    const { redelegation_responses, pagination } = {
+      ...(await request(getLCDInstance(height), {
+        path: `/cosmos/staking/v1beta1/delegators/${address}/redelegations`,
+        params: { 'pagination.key': isString(nextKey) ? nextKey : undefined },
+      })),
+    };
 
     data = _.orderBy(
-      _.concat(data, toArray(redelegation_responses).flatMap(d => {
-        const { redelegation } = { ...d };
-        const { entries } = { ...redelegation };
+      _.concat(
+        data,
+        toArray(redelegation_responses).flatMap(d => {
+          const { redelegation } = { ...d };
+          const { entries } = { ...redelegation };
 
-        return toArray(entries).map(e => {
-          const { creation_height } = { ...e };
-          let { initial_balance, shares_dst } = { ...e };
+          return toArray(entries).map(e => {
+            const { creation_height } = { ...e };
+            let { initial_balance, shares_dst } = { ...e };
 
-          initial_balance = formatUnits(initial_balance, 6);
-          shares_dst = formatUnits(shares_dst, 6);
+            initial_balance = formatUnits(initial_balance, 6);
+            shares_dst = formatUnits(shares_dst, 6);
 
-          return {
-            ...redelegation,
-            entries: undefined,
-            ...e,
-            creation_height: toNumber(creation_height),
-            initial_balance,
-            shares_dst,
-            amount: shares_dst - initial_balance,
-          };
-        });
-      })),
-      ['creation_height', 'amount'], ['desc', 'desc'],
+            return {
+              ...redelegation,
+              entries: undefined,
+              ...e,
+              creation_height: toNumber(creation_height),
+              initial_balance,
+              shares_dst,
+              amount: shares_dst - initial_balance,
+            };
+          });
+        })
+      ),
+      ['creation_height', 'amount'],
+      ['desc', 'desc']
     );
 
     nextKey = pagination?.next_key;

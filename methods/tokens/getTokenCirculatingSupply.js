@@ -12,7 +12,12 @@ module.exports = async coingeckoId => {
   if (cache) return cache.data;
 
   // get circulating supply from api
-  const { market_data } = { ...await request(TOKEN_API, { path: `/coins/${coingeckoId}`, params: { localization: 'false' } }) };
+  const { market_data } = {
+    ...(await request(TOKEN_API, {
+      path: `/coins/${coingeckoId}`,
+      params: { localization: 'false' },
+    })),
+  };
 
   if (isNumber(market_data?.circulating_supply)) {
     const circulatingSupply = toNumber(market_data.circulating_supply);

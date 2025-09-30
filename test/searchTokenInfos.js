@@ -8,7 +8,7 @@ const { searchTokenInfos } = require('../methods');
 module.exports = () => {
   describe('searchTokenInfos', () => {
     it('Should receive token info data', async () => {
-      const { data } = { ...await searchTokenInfos() };
+      const { data } = { ...(await searchTokenInfos()) };
 
       data.forEach(d => {
         expect(d.timestamp).to.be.a('number');

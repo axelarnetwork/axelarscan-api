@@ -16,8 +16,6 @@ variables.tf
 
 # production
 /build
-package-lock.json
-yarn.lock
 *.zip*
 
 # misc

@@ -10,7 +10,9 @@ module.exports = async () => {
   if (cache) return cache;
 
   // get rates from api
-  const { rates } = { ...await request(TOKEN_API, { path: '/exchange_rates' }) };
+  const { rates } = {
+    ...(await request(TOKEN_API, { path: '/exchange_rates' })),
+  };
 
   if (rates) {
     // caching

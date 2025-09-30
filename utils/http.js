@@ -2,7 +2,9 @@ const axios = require('axios');
 
 const { isString } = require('./string');
 
-const parseError = error => ({ error: error?.response?.data || error?.message });
+const parseError = error => ({
+  error: error?.response?.data || error?.message,
+});
 
 const createInstance = (url, options) => {
   if (!url) return;
@@ -29,18 +31,26 @@ const request = async (instance, options) => {
     switch (method) {
       case 'post':
         headers = auth ? { auth } : undefined;
-        response = await instance.post(path, params, headers).catch(error => parseError(error));
+        response = await instance
+          .post(path, params, headers)
+          .catch(error => parseError(error));
         break;
       case 'put':
         headers = auth ? { auth } : undefined;
-        response = await instance.put(path, params, headers).catch(error => parseError(error));
+        response = await instance
+          .put(path, params, headers)
+          .catch(error => parseError(error));
         break;
       case 'delete':
-        response = await instance.delete(path, { params, auth }).catch(error => parseError(error));
+        response = await instance
+          .delete(path, { params, auth })
+          .catch(error => parseError(error));
         break;
       case 'get':
       default:
-        response = await instance.get(path, { params, auth }).catch(error => parseError(error));
+        response = await instance
+          .get(path, { params, auth })
+          .catch(error => parseError(error));
         break;
     }
   } catch (error) {}
