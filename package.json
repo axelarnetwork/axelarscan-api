@@ -38,7 +38,16 @@
     "url": "git+https://github.com/axelarnetwork/axelarscan-api.git"
   },
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "clean": "rm -rf dist",
     "dev": "node index.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "lint:format": "pnpm lint && pnpm format",
+    "prebuild": "npm run clean",
     "start": "node index.js",
     "test": "NODE_NO_WARNINGS=1 mocha"
   },
