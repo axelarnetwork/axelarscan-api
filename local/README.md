@@ -41,6 +41,7 @@ node local/setup-indexer.js --no-ibc-populate
 ```
 
 This script will:
+
 - Create required OpenSearch indices: `ibc_channels`, `token_tvls`, `token_prices`, `token_infos`
 - Set up correct field mappings (e.g., `chain_id` as `text` for IBC queries)
 - Populate IBC channel data from Axelar testnet (unless `--no-ibc-populate` is used)
@@ -77,6 +78,7 @@ node local/run-updates.js tokenInfo
 ```
 
 **Modes:**
+
 - **Bulk mode** (`node local/run-updates.js`): Single getTVL call processing all assets at once (faster, matches HTTP behavior)
 - **Per-asset mode** (`node local/run-updates.js tvl`): Processes each asset individually (better for debugging, incremental caching)
 

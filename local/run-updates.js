@@ -4,7 +4,7 @@
   Run the background update services locally to pre-populate cache data.
 
   Usage:
-    node local/run-updates.js                    # Run all updates (bulk TVL + other services)
+    node local/run-updates.js                    # Run all updates (per-asset TVL + other services)
     node local/run-updates.js tvl                # Only run TVL updates (per-asset mode)
     node local/run-updates.js tvl --asset=uaxl   # Update specific asset only
     node local/run-updates.js tokensPrice        # Only run token price updates
@@ -13,8 +13,8 @@
     node local/run-updates.js tokenInfo          # Only run token info updates
 
   Modes:
-    - Bulk mode (default): Single getTVL call processing all assets at once
-    - Per-asset mode (tvl): Processes each asset individually for granular caching
+    - Per-asset mode (default): Processes each asset individually for granular caching
+    - Specific asset mode: Updates only the specified asset
 */
 
 require('dotenv').config();

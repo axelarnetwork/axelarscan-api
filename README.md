@@ -38,17 +38,20 @@ The TVL system is built using caching and background processing.
 #### Caching Strategy
 
 **Production Behavior:**
+
 - Background job processes assets in 10 groups over 10-minute intervals
 - Each asset is calculated individually and cached immediately
 - API calls return cached data (sub-second response times)
 - Only processes ~3 assets per 6-minute window
 
 **Cache Parameters:**
+
 - `forceCache: true` - Forces fresh calculation, bypasses cache
 - `isIntervalUpdate: true` - Indicates background job execution
 - `customAssetsOnly: true` - Processes only custom/contract assets
 
 **Cache Collections:**
+
 - `token_tvls` - Individual asset TVL data
 - `ibc_channels` - Inter-blockchain communication channel data
 - `token_prices` - Token price information
@@ -66,6 +69,7 @@ The TVL system is built using caching and background processing.
 For local development setup and usage instructions, see [local/README.md](local/README.md).
 
 Quick start:
+
 ```bash
 # Setup OpenSearch indices and populate IBC data
 node local/setup-indexer.js
