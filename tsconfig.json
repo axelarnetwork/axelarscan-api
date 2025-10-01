@@ -14,12 +14,9 @@
     "declaration": false,
     "sourceMap": false,
     "removeComments": true,
-    "noEmitOnError": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "types": ["node", "aws-lambda", "jest"]
   },
   "include": ["**/*.ts", "**/*.js"],
