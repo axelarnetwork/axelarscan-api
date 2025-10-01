@@ -101,6 +101,7 @@ After spinning up the Docker containers, you can access the dashboard at [http:/
 - `template.yaml` - SAM template for local development
 - `sam-wrapper.js` - Wrapper function that converts responses to API Gateway format
 - `docker-compose.local.yml` - Docker Compose file to run OpenSearch and OpenSearch Dashboards locally
+- `dev.js` - Script to start the local API development server
 - `setup-indexer.js` - Script to create required OpenSearch indices and populate IBC channel data
 - `run-updates.js` - Script to run background update services and pre-populate cache data
 
