@@ -104,7 +104,7 @@ resource "aws_lambda_function" "function" {
       INDEXER_USERNAME      = var.indexer_username
       INDEXER_PASSWORD      = var.indexer_password
       LOG_LEVEL             = var.log_level
-      DD_LAMBDA_HANDLER     = "index.handler"
+      DD_LAMBDA_HANDLER     = "dist/index.handler"
       DD_SITE               = "datadoghq.com"
       DD_API_KEY_SECRET_ARN = "arn:aws:secretsmanager:us-east-2:${var.aws_account}:secret:DdApiKeySecret-gJ9EIYVknJGu-HYZ3nM"
       DD_TRACE_ENABLED      = false
