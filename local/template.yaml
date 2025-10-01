@@ -22,7 +22,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ../
-      Handler: local/sam-wrapper.handler
+      Handler: dist/local/sam-wrapper.handler
       Events:
         Api:
           Type: Api

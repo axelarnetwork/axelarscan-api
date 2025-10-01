@@ -40,16 +40,22 @@ jobs:
           echo "NODE_NO_WARNINGS=1" >> $GITHUB_ENV
           echo "INDEXER_URL=http://localhost:9200" >> $GITHUB_ENV
           echo "DD_TRACE_ENABLED=false" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          echo "Building Docker image..."
+          docker build --platform linux/amd64 -t axelarscan-api:test .
+          echo "Docker image built successfully"
           echo "DD_ENHANCED_METRICS=false" >> $GITHUB_ENV
 
       - name: Run linting check (non-blocking)
         run: |
           echo "Running ESLint..."
-          pnpm run lint:check || echo "Linting failed but continuing..."
+          pnpm lint:check || echo "Linting failed but continuing..."
           echo "Linting completed"
 
       - name: Run formatting check
         run: |
           echo "Running Prettier format check..."
-          pnpm run format:check
+          pnpm format:check
           echo "Format check completed"
