@@ -32,7 +32,10 @@ After starting OpenSearch, you need to create the required indices and populate 
 ```bash
 # Setup all required indices and populate IBC channels
 node local/setup-indexer.js
+```
 
+Alternatively, you can run the following:
+```bash
 # Or recreate all indices (useful if you have mapping issues)
 node local/setup-indexer.js --recreate
 
@@ -46,24 +49,18 @@ This script will:
 - Set up correct field mappings (e.g., `chain_id` as `text` for IBC queries)
 - Populate IBC channel data from Axelar testnet (unless `--no-ibc-populate` is used)
 
-### Start the local API
-
-```bash
-pnpm dev
-```
-
-The API will be available at [http://localhost:3000](http://localhost:3000).
-
-You can visit it to browse all the available methods.
-
-### Pre-populate Cache Data (Recommended)
+### Pre-populate Cache Data
 
 Run the background update service to pre-calculate and cache TVL data, just like production:
 
 ```bash
 # Run all background updates (bulk TVL + other services)
 node local/run-updates.js
+```
 
+Alternatively, run one of the following:
+
+```bash
 # Run only TVL updates (per-asset mode for granular caching)
 node local/run-updates.js tvl
 
@@ -76,6 +73,16 @@ node local/run-updates.js stats
 node local/run-updates.js config
 node local/run-updates.js tokenInfo
 ```
+
+### Start the local API
+
+```bash
+pnpm dev
+```
+
+The API will be available at [http://localhost:3000](http://localhost:3000).
+
+You can visit it to browse all the available methods.
 
 **Modes:**
 
