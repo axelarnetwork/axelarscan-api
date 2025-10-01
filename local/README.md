@@ -35,6 +35,7 @@ node local/setup-indexer.js
 ```
 
 Alternatively, you can run the following:
+
 ```bash
 # Or recreate all indices (useful if you have mapping issues)
 node local/setup-indexer.js --recreate
