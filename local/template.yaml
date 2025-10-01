@@ -1,0 +1,49 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Axelarscan API Lambda Function
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: nodejs20.x
+    Environment:
+      Variables:
+        ENVIRONMENT: testnet
+        LOG_LEVEL: debug
+        NODE_NO_WARNINGS: 1
+        INDEXER_URL: http://host.docker.internal:9200
+        DD_TRACE_ENABLED: false
+        DD_ENHANCED_METRICS: false
+        DD_API_KEY_SECRET_ARN: ""
+
+Resources:
+  AxelarscanApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: local/sam-wrapper.handler
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            PayloadFormatVersion: "1.0"
+        RootApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+            PayloadFormatVersion: "1.0"
+
+Outputs:
+  AxelarscanApi:
+    Description: "API Gateway endpoint URL for Axelarscan API function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  AxelarscanApiFunction:
+    Description: "Axelarscan API Lambda Function ARN"
+    Value: !GetAtt AxelarscanApiFunction.Arn
+  AxelarscanApiFunctionIamRole:
+    Description: "Implicit IAM Role created for Axelarscan API function"
+    Value: !GetAtt AxelarscanApiFunctionRole.Arn
