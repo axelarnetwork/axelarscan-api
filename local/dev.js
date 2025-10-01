@@ -6,7 +6,7 @@
   Usage:
     node local/dev.js
     # Or with custom port:
-    node local/dev.js --port 3001
+    node local/dev.js --port=3001
 
   The API will be available at http://localhost:3000 (or your custom port).
 */
