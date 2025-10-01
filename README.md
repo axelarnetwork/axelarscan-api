@@ -1,5 +1,80 @@
 # Axelarscan API
 
+A comprehensive API service for Axelar's blockchain data, providing TVL calculations, token information, cross-chain analytics, and real-time blockchain data management.
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+#### 1. Install Node Version Manager (nvm)
+
+Follow the instructions on [its repo](https://github.com/nvm-sh/nvm).
+
+#### 2. Install Node.js and pnpm
+
+```bash
+# Install the project's version
+nvm use
+
+# Verify installation
+node --version  # Should show v20.19.4
+
+# Enable pnpm
+corepack enable pnpm
+```
+
+#### 3. Install Dependencies
+
+```bash
+pnpm i
+```
+
+### Development Tools
+
+#### TypeScript Support
+
+This project has TypeScript support configured:
+
+```bash
+# Build TypeScript files
+pnpm run build
+
+# Build and watch for changes
+pnpm run build:watch
+
+# Clean build output
+pnpm run clean
+```
+
+The built files are located in the `dist` directory.
+
+#### Local Development
+
+For local development, refer to the [local](./local) directory.
+
+#### Linting and Formatting
+
+This project uses ESLint for linting and Prettier for code formatting:
+
+```bash
+# Check linting
+pnpm run lint:check
+
+# Fix linting issues automatically
+pnpm run lint
+
+# Check code formatting
+pnpm run format:check
+
+# Format code automatically
+pnpm run format
+
+# Run both linting and formatting
+pnpm run lint:format
+```
+
 ## API Endpoints
 
 - mainnet: [https://api.axelarscan.io/api](https://api.axelarscan.io/api)
