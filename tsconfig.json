@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022"],
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": false,
+    "sourceMap": false,
+    "removeComments": true,
+    "noEmitOnError": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node", "aws-lambda", "jest"]
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".aws-sam",
+    "test",
+    "**/*.test.js",
+    "**/*.test.ts"
+  ]
+}
