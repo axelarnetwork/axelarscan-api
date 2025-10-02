@@ -2973,6 +2973,31 @@ testnet:
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
         transaction_path: "/tx/{tx}"
+    celo-sepolia:
+      chain_id: 11142220
+      chain_name: "celo-sepolia"
+      maintainer_id: "celo-sepolia"
+      gateway:
+        address: "0xe432150cce91c13a887f7D836923d5597adD8E31"
+      endpoints:
+        rpc:
+          - "https://forno.celo-sepolia.celo-testnet.org/"
+      native_token:
+        name: "Celo"
+        symbol: "CELO"
+        decimals: 18
+      name: "Celo"
+      short_name: "CELO"
+      image: "/logos/chains/celo.svg"
+      color: "#35d07f"
+      explorer:
+        name: "Celo Sepolia explorer"
+        url: "https://celo-sepolia.blockscout.com/"
+        icon: "/logos/explorers/celoscan.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
   cosmos:
     axelarnet:
       chain_id: "axelar-testnet-lisbon-3"
@@ -4904,6 +4929,31 @@ stagenet:
         name: "Blast"
         url: "https://testnet.blastscan.io"
         icon: "/logos/explorers/blast.png"
+        block_path: "/block/{block}"
+        address_path: "/address/{address}"
+        contract_path: "/token/{address}"
+        transaction_path: "/tx/{tx}"
+    celo-sepolia:
+      chain_id: 11142220
+      chain_name: "celo-sepolia"
+      maintainer_id: "celo-sepolia"
+      gateway:
+        address: "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+      endpoints:
+        rpc:
+          - "https://forno.celo-sepolia.celo-testnet.org/"
+      native_token:
+        name: "Celo"
+        symbol: "CELO"
+        decimals: 18
+      name: "Celo"
+      short_name: "CELO"
+      image: "/logos/chains/celo.svg"
+      color: "#35d07f"
+      explorer:
+        name: "Celo Sepolia explorer"
+        url: "https://celo-sepolia.blockscout.com/"
+        icon: "/logos/explorers/celoscan.png"
         block_path: "/block/{block}"
         address_path: "/address/{address}"
         contract_path: "/token/{address}"
