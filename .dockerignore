@@ -1,9 +1,44 @@
-terraform
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build artifacts (dist will be created during build)
+
+# Development files
+.git
 .gitignore
 README.md
-LICENSE
-.env.example
-.env
-.git
+.eslintrc*
+.prettierrc*
+eslint.config.js
+
+# Test files
 test
-node_modules
+**/*.test.js
+**/*.test.ts
+**/*.spec.js
+**/*.spec.ts
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Terraform files
+terraform
+
+# Local development
+local
+
+# AWS SAM
+.aws-sam
+
+# Logs
+*.log
+
+LICENSE
