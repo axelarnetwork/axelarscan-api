@@ -2207,7 +2207,7 @@ mainnet:
         name: "Zig"
         symbol: "ZIG"
         denom: "uzig"
-        decimals: 6
+        decimals: 18
       name: "Zigchain"
       short_name: "ZIG"
       image: "/logos/chains/zigchain.svg"
@@ -4097,7 +4097,7 @@ testnet:
         name: "Zig"
         symbol: "ZIG"
         denom: "uzig"
-        decimals: 6
+        decimals: 18
       name: "Zigchain"
       short_name: "ZIG"
       image: "/logos/chains/zigchain.svg"
