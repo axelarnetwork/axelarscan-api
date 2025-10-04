@@ -256,7 +256,7 @@ NIL:
   decimals: 6
 ZIG:
   coingecko_id: "zignaly"
-  decimals: 6
+  decimals: 18
 WHALE:
   coingecko_id: "white-whale"
   decimals: 6
