@@ -40,6 +40,34 @@ type SupplyAvailableEnv = keyof SupplyJson;
 type TVLAvailableEnv = keyof TVLJson;
 type CustomTVLAvailableEnv = keyof CustomTVLJson;
 
+// Narrowed config types for EVM/Amplifier chains
+type EvmConfig = ValueOf<(typeof chains)[keyof typeof chains]['evm']>;
+type AmplifierConfig = ValueOf<
+  (typeof chains)[keyof typeof chains]['amplifier']
+>;
+type ProviderChainConfig = (EvmConfig | AmplifierConfig) & {
+  chain_id: number | string;
+  name: string;
+  native_token: {
+    name: string;
+    symbol: string;
+    decimals: number;
+    denom?: string;
+  };
+  endpoints?: { rpc?: string[] };
+  explorer?: { url?: string | string[] };
+  deprecated?: boolean;
+  no_tvl?: boolean;
+};
+type CommonChain = {
+  deprecated?: boolean;
+  no_tvl?: boolean;
+  disabled?: boolean;
+};
+
+const isProviderGroup = (chainType: string): chainType is 'evm' | 'amplifier' =>
+  chainType === 'evm' || chainType === 'amplifier';
+
 type ProviderParams = {
   chainId: string;
   chainName: string;
@@ -125,50 +153,42 @@ const getChains = (
   // get chains of env and filter by chain types
   return Object.entries(chains[env] || {})
     .filter(
-      ([k]) =>
-        processedTypes.length === 0 || processedTypes.includes(k as ChainType)
+      ([chainType]) =>
+        processedTypes.length === 0 ||
+        processedTypes.includes(chainType as ChainType)
     )
-    .flatMap(([k, v]) =>
-      Object.entries(v || {}).map(([_k, _v]) => {
-        const chainConfig = _v as AnyChainConfig;
+    .flatMap(([chainType, chainTypeConfig]) =>
+      Object.entries(chainTypeConfig || {}).map(([chainId, chainConfig]) => {
+        const base = chainConfig as CommonChain & Record<string, unknown>;
         let provider_params: ProviderParams[] | undefined;
 
-        switch (k) {
-          case 'evm':
-          case 'amplifier':
-            if (isNumber((chainConfig as any).chain_id)) {
-              provider_params = [
-                {
-                  chainId: toBeHex((chainConfig as any).chain_id).replace(
-                    '0x0',
-                    '0x'
-                  ),
-                  chainName: `${(chainConfig as any).name} ${capitalize(env)}`,
-                  rpcUrls: toArray((chainConfig as any).endpoints?.rpc),
-                  nativeCurrency: (chainConfig as any).native_token,
-                  blockExplorerUrls: toArray(
-                    (chainConfig as any).explorer?.url
-                  ),
-                },
-              ];
-            }
-            break;
-          default:
-            break;
+        if (isProviderGroup(chainType)) {
+          const providerConfig = chainConfig as ProviderChainConfig;
+          if (isNumber(providerConfig.chain_id)) {
+            provider_params = [
+              {
+                chainId: toBeHex(providerConfig.chain_id).replace('0x0', '0x'),
+                chainName: `${providerConfig.name} ${capitalize(env)}`,
+                rpcUrls: toArray(providerConfig.endpoints?.rpc),
+                nativeCurrency: providerConfig.native_token,
+                blockExplorerUrls: toArray(providerConfig.explorer?.url),
+              },
+            ];
+          }
         }
 
         return {
-          ...(chainConfig as Record<string, unknown>),
-          id: _k,
-          chain_type: k === 'amplifier' ? 'vm' : k,
+          ...base,
+          id: chainId,
+          chain_type:
+            chainType === 'amplifier' ? 'vm' : (chainType as ChainType),
           provider_params,
-          no_inflation: !!(chainConfig as any).deprecated,
-          no_tvl:
-            (chainConfig as any).no_tvl || !!(chainConfig as any).deprecated,
+          no_inflation: !!base.deprecated,
+          no_tvl: !!base.no_tvl || !!base.deprecated,
         } as ProcessedChain;
       })
     )
-    .filter(d => !d.disabled);
+    .filter(chain => !chain.disabled);
 };
 
 const getChainData = (
@@ -179,12 +199,20 @@ const getChainData = (
   if (!chain) return;
 
   return getChains(types, env).find(
-    d =>
+    chainConfig =>
       find(
         removeDoubleQuote(chain),
-        _.concat(d.id, d.chain_id, d.chain_name, d.maintainer_id, d.aliases)
+        _.concat(
+          chainConfig.id,
+          chainConfig.chain_id,
+          chainConfig.chain_name,
+          chainConfig.maintainer_id,
+          chainConfig.aliases
+        )
       ) || // check equals
-      toArray(d.prefix_chain_ids).findIndex(p => chain.startsWith(p)) > -1 // check prefix
+      toArray(chainConfig.prefix_chain_ids).findIndex(prefix =>
+        chain.startsWith(prefix)
+      ) > -1 // check prefix
   );
 };
 
