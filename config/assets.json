@@ -1478,10 +1478,7 @@
     },
     "eth-wei": {
       "denom": "eth-wei",
-      "denoms": [
-        "weth-wei",
-        "eth"
-      ],
+      "denoms": ["weth-wei", "eth"],
       "native_chain": "ethereum",
       "name": "Wrapped Ether",
       "symbol": "WETH",
@@ -2262,10 +2259,7 @@
     },
     "bnb-wei": {
       "denom": "bnb-wei",
-      "denoms": [
-        "wbnb-wei",
-        "bnb"
-      ],
+      "denoms": ["wbnb-wei", "bnb"],
       "native_chain": "binance",
       "name": "Wrapped BNB",
       "symbol": "WBNB",
@@ -2418,10 +2412,7 @@
     },
     "matic-wei": {
       "denom": "matic-wei",
-      "denoms": [
-        "wmatic-wei",
-        "matic"
-      ],
+      "denoms": ["wmatic-wei", "matic"],
       "native_chain": "polygon",
       "name": "Wrapped Matic",
       "symbol": "WMATIC",
@@ -2551,10 +2542,7 @@
     },
     "avax-wei": {
       "denom": "avax-wei",
-      "denoms": [
-        "wavax-wei",
-        "avax"
-      ],
+      "denoms": ["wavax-wei", "avax"],
       "native_chain": "avalanche",
       "name": "Wrapped AVAX",
       "symbol": "WAVAX",
@@ -2696,10 +2684,7 @@
     },
     "ftm-wei": {
       "denom": "ftm-wei",
-      "denoms": [
-        "wftm-wei",
-        "ftm"
-      ],
+      "denoms": ["wftm-wei", "ftm"],
       "native_chain": "fantom",
       "name": "Wrapped Fantom",
       "symbol": "WFTM",
@@ -2841,10 +2826,7 @@
     },
     "glmr-wei": {
       "denom": "glmr-wei",
-      "denoms": [
-        "wglmr-wei",
-        "glmr"
-      ],
+      "denoms": ["wglmr-wei", "glmr"],
       "native_chain": "moonbeam",
       "name": "Wrapped Moonbeam",
       "symbol": "WGLMR",
@@ -3100,10 +3082,7 @@
     },
     "fil-wei": {
       "denom": "fil-wei",
-      "denoms": [
-        "wfil-wei",
-        "fil"
-      ],
+      "denoms": ["wfil-wei", "fil"],
       "native_chain": "filecoin",
       "name": "Filecoin",
       "symbol": "WFIL",
@@ -6271,11 +6250,7 @@
     },
     "eth-wei": {
       "denom": "eth-wei",
-      "denoms": [
-        "eth-wei",
-        "weth-wei",
-        "eth"
-      ],
+      "denoms": ["eth-wei", "weth-wei", "eth"],
       "native_chain": "ethereum-2",
       "name": "Wrapped Ether",
       "symbol": "WETH",
@@ -6510,10 +6485,7 @@
     },
     "bnb-wei": {
       "denom": "bnb-wei",
-      "denoms": [
-        "wbnb-wei",
-        "bnb"
-      ],
+      "denoms": ["wbnb-wei", "bnb"],
       "native_chain": "binance",
       "name": "Wrapped BNB",
       "symbol": "WBNB",
@@ -6711,10 +6683,7 @@
     },
     "matic-wei": {
       "denom": "matic-wei",
-      "denoms": [
-        "wmatic-wei",
-        "matic"
-      ],
+      "denoms": ["wmatic-wei", "matic"],
       "native_chain": "polygon",
       "name": "Wrapped Matic",
       "symbol": "WMATIC",
@@ -6916,10 +6885,7 @@
     },
     "avax-wei": {
       "denom": "avax-wei",
-      "denoms": [
-        "wavax-wei",
-        "avax"
-      ],
+      "denoms": ["wavax-wei", "avax"],
       "native_chain": "avalanche",
       "name": "Wrapped AVAX",
       "symbol": "WAVAX",
@@ -7121,10 +7087,7 @@
     },
     "ftm-wei": {
       "denom": "ftm-wei",
-      "denoms": [
-        "wftm-wei",
-        "ftm"
-      ],
+      "denoms": ["wftm-wei", "ftm"],
       "native_chain": "fantom",
       "name": "Wrapped Fantom",
       "symbol": "WFTM",
@@ -7330,10 +7293,7 @@
     },
     "dev-wei": {
       "denom": "dev-wei",
-      "denoms": [
-        "wdev-wei",
-        "dev"
-      ],
+      "denoms": ["wdev-wei", "dev"],
       "native_chain": "moonbeam",
       "name": "Wrapped Dev",
       "symbol": "WDEV",
@@ -7535,10 +7495,7 @@
     },
     "fil-wei": {
       "denom": "fil-wei",
-      "denoms": [
-        "wfil-wei",
-        "fil"
-      ],
+      "denoms": ["wfil-wei", "fil"],
       "native_chain": "filecoin",
       "name": "Filecoin",
       "symbol": "WFIL",
@@ -7636,10 +7593,7 @@
     },
     "celo-wei": {
       "denom": "celo-wei",
-      "denoms": [
-        "celo-wei",
-        "celo"
-      ],
+      "denoms": ["celo-wei", "celo"],
       "native_chain": "celo",
       "name": "Celo",
       "symbol": "CELO",

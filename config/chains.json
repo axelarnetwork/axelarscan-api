@@ -278,9 +278,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://developer-access-mainnet.base.org"
-          ]
+          "rpc": ["https://developer-access-mainnet.base.org"]
         },
         "native_token": {
           "name": "Ethereum",
@@ -309,10 +307,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.mantle.xyz",
-            "https://mantle.drpc.org"
-          ]
+          "rpc": ["https://rpc.mantle.xyz", "https://mantle.drpc.org"]
         },
         "native_token": {
           "name": "Mantle",
@@ -341,10 +336,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://forno.celo.org",
-            "https://1rpc.io/celo"
-          ]
+          "rpc": ["https://forno.celo.org", "https://1rpc.io/celo"]
         },
         "native_token": {
           "name": "Celo",
@@ -406,9 +398,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://api.chain.love/rpc/v2"
-          ]
+          "rpc": ["https://api.chain.love/rpc/v2"]
         },
         "native_token": {
           "name": "Filecoin",
@@ -471,9 +461,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.parachain.centrifuge.io"
-          ]
+          "rpc": ["https://fullnode.parachain.centrifuge.io"]
         },
         "native_token": {
           "name": "Centrifuge",
@@ -502,9 +490,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.scroll.io"
-          ]
+          "rpc": ["https://rpc.scroll.io"]
         },
         "native_token": {
           "name": "Ethereum",
@@ -533,9 +519,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.immutable.com"
-          ]
+          "rpc": ["https://rpc.immutable.com"]
         },
         "native_token": {
           "name": "ImmutableX",
@@ -564,9 +548,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.frax.com"
-          ]
+          "rpc": ["https://rpc.frax.com"]
         },
         "native_token": {
           "name": "Frax Ether",
@@ -625,9 +607,7 @@
       "axelarnet": {
         "chain_id": "axelar-dojo-1",
         "chain_name": "Axelarnet",
-        "aliases": [
-          "axelar"
-        ],
+        "aliases": ["axelar"],
         "router": {
           "address": "axelar1d9atnamjjhtc46zmzyc202llqs0rhtxnphs6mkjurekath3mkgtq7hsk93"
         },
@@ -673,9 +653,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "axelar",
-        "prefix_chain_ids": [
-          "axelar-"
-        ]
+        "prefix_chain_ids": ["axelar-"]
       },
       "osmosis": {
         "chain_id": "osmosis-1",
@@ -714,9 +692,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "osmo",
-        "prefix_chain_ids": [
-          "osmosis-"
-        ]
+        "prefix_chain_ids": ["osmosis-"]
       },
       "cosmoshub": {
         "chain_id": "cosmoshub-4",
@@ -755,9 +731,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "cosmos",
-        "prefix_chain_ids": [
-          "cosmoshub-"
-        ]
+        "prefix_chain_ids": ["cosmoshub-"]
       },
       "juno": {
         "chain_id": "juno-1",
@@ -794,17 +768,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "juno",
-        "prefix_chain_ids": [
-          "juno-"
-        ]
+        "prefix_chain_ids": ["juno-"]
       },
       "emoney": {
         "chain_id": "emoney-3",
         "chain_name": "e-money",
         "endpoints": {
-          "lcd": [
-            "https://emoney.validator.network/api"
-          ],
+          "lcd": ["https://emoney.validator.network/api"],
           "timeout": {
             "lcd": 3000
           }
@@ -830,9 +800,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "emoney",
-        "prefix_chain_ids": [
-          "emoney-"
-        ]
+        "prefix_chain_ids": ["emoney-"]
       },
       "injective": {
         "chain_id": "injective-1",
@@ -870,9 +838,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "inj",
-        "prefix_chain_ids": [
-          "injective-"
-        ]
+        "prefix_chain_ids": ["injective-"]
       },
       "crescent": {
         "chain_id": "crescent-1",
@@ -907,9 +873,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "cre",
-        "prefix_chain_ids": [
-          "crescent-"
-        ]
+        "prefix_chain_ids": ["crescent-"]
       },
       "kujira": {
         "chain_id": "kaiyo-1",
@@ -945,9 +909,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "kujira",
-        "prefix_chain_ids": [
-          "kaiyo-"
-        ]
+        "prefix_chain_ids": ["kaiyo-"]
       },
       "secret-snip": {
         "chain_id": "secret-4",
@@ -984,9 +946,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "secret",
-        "prefix_chain_ids": [
-          "secret-"
-        ]
+        "prefix_chain_ids": ["secret-"]
       },
       "secret": {
         "chain_id": "secret-4",
@@ -1023,9 +983,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "secret",
-        "prefix_chain_ids": [
-          "secret-"
-        ]
+        "prefix_chain_ids": ["secret-"]
       },
       "sei": {
         "chain_id": "pacific-1",
@@ -1064,9 +1022,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "sei",
-        "prefix_chain_ids": [
-          "pacific-"
-        ]
+        "prefix_chain_ids": ["pacific-"]
       },
       "stargaze": {
         "chain_id": "stargaze-1",
@@ -1104,9 +1060,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "stars",
-        "prefix_chain_ids": [
-          "stargaze-"
-        ]
+        "prefix_chain_ids": ["stargaze-"]
       },
       "assetmantle": {
         "chain_id": "mantle-1",
@@ -1143,9 +1097,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "mantle",
-        "prefix_chain_ids": [
-          "mantle-"
-        ]
+        "prefix_chain_ids": ["mantle-"]
       },
       "fetch": {
         "chain_id": "fetchhub-4",
@@ -1180,9 +1132,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "fetch",
-        "prefix_chain_ids": [
-          "fetchhub-"
-        ]
+        "prefix_chain_ids": ["fetchhub-"]
       },
       "ki": {
         "chain_id": "kichain-2",
@@ -1219,9 +1169,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "ki",
-        "prefix_chain_ids": [
-          "kichain-"
-        ]
+        "prefix_chain_ids": ["kichain-"]
       },
       "evmos": {
         "chain_id": "evmos_9001-2",
@@ -1259,17 +1207,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "evmos",
-        "prefix_chain_ids": [
-          "evmos_"
-        ]
+        "prefix_chain_ids": ["evmos_"]
       },
       "aura": {
         "chain_id": "xstaxy-1",
         "chain_name": "aura",
         "endpoints": {
-          "lcd": [
-            "https://lcd.aura.network"
-          ],
+          "lcd": ["https://lcd.aura.network"],
           "timeout": {
             "lcd": 3000
           }
@@ -1294,9 +1238,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "aura",
-        "prefix_chain_ids": [
-          "xstaxy-"
-        ]
+        "prefix_chain_ids": ["xstaxy-"]
       },
       "comdex": {
         "chain_id": "comdex-1",
@@ -1333,9 +1275,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "comdex",
-        "prefix_chain_ids": [
-          "comdex-"
-        ]
+        "prefix_chain_ids": ["comdex-"]
       },
       "persistence": {
         "chain_id": "core-1",
@@ -1371,9 +1311,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "persistence",
-        "prefix_chain_ids": [
-          "core-"
-        ]
+        "prefix_chain_ids": ["core-"]
       },
       "regen": {
         "chain_id": "regen-1",
@@ -1408,9 +1346,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "regen",
-        "prefix_chain_ids": [
-          "regen-"
-        ]
+        "prefix_chain_ids": ["regen-"]
       },
       "umee": {
         "chain_id": "umee-1",
@@ -1445,9 +1381,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "umee",
-        "prefix_chain_ids": [
-          "umee-"
-        ]
+        "prefix_chain_ids": ["umee-"]
       },
       "agoric": {
         "chain_id": "agoric-3",
@@ -1483,9 +1417,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "agoric",
-        "prefix_chain_ids": [
-          "agoric-"
-        ]
+        "prefix_chain_ids": ["agoric-"]
       },
       "xpla": {
         "chain_id": "dimension_37-1",
@@ -1522,16 +1454,12 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "xpla",
-        "prefix_chain_ids": [
-          "dimension_"
-        ]
+        "prefix_chain_ids": ["dimension_"]
       },
       "acre": {
         "chain_id": "acre_9052-1",
         "chain_name": "acre",
-        "aliases": [
-          "acrechain"
-        ],
+        "aliases": ["acrechain"],
         "endpoints": {
           "lcd": [
             "https://lcd-acre.synergynodes.com",
@@ -1561,9 +1489,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "acre",
-        "prefix_chain_ids": [
-          "acre_"
-        ]
+        "prefix_chain_ids": ["acre_"]
       },
       "stride": {
         "chain_id": "stride-1",
@@ -1602,9 +1528,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "stride",
-        "prefix_chain_ids": [
-          "stride-"
-        ]
+        "prefix_chain_ids": ["stride-"]
       },
       "carbon": {
         "chain_id": "carbon-1",
@@ -1641,9 +1565,7 @@
           "transaction_path": "/transaction/{tx}?net=main"
         },
         "prefix_address": "swth",
-        "prefix_chain_ids": [
-          "carbon-"
-        ]
+        "prefix_chain_ids": ["carbon-"]
       },
       "sommelier": {
         "chain_id": "sommelier-3",
@@ -1680,9 +1602,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "somm",
-        "prefix_chain_ids": [
-          "sommelier-"
-        ]
+        "prefix_chain_ids": ["sommelier-"]
       },
       "neutron": {
         "chain_id": "neutron-1",
@@ -1719,9 +1639,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "neutron",
-        "prefix_chain_ids": [
-          "neutron-"
-        ]
+        "prefix_chain_ids": ["neutron-"]
       },
       "rebus": {
         "chain_id": "reb_1111-1",
@@ -1759,9 +1677,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "rebus",
-        "prefix_chain_ids": [
-          "reb_"
-        ]
+        "prefix_chain_ids": ["reb_"]
       },
       "archway": {
         "chain_id": "archway-1",
@@ -1797,9 +1713,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "archway",
-        "prefix_chain_ids": [
-          "archway-"
-        ]
+        "prefix_chain_ids": ["archway-"]
       },
       "provenance": {
         "chain_id": "pio-mainnet-1",
@@ -1835,9 +1749,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "pb",
-        "prefix_chain_ids": [
-          "pio-"
-        ]
+        "prefix_chain_ids": ["pio-"]
       },
       "ixo": {
         "chain_id": "ixo-5",
@@ -1875,9 +1787,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "ixo",
-        "prefix_chain_ids": [
-          "ixo-"
-        ]
+        "prefix_chain_ids": ["ixo-"]
       },
       "migaloo": {
         "chain_id": "migaloo-1",
@@ -1911,9 +1821,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "migaloo",
-        "prefix_chain_ids": [
-          "migaloo-"
-        ]
+        "prefix_chain_ids": ["migaloo-"]
       },
       "teritori": {
         "chain_id": "teritori-1",
@@ -1948,9 +1856,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "tori",
-        "prefix_chain_ids": [
-          "teritori-"
-        ]
+        "prefix_chain_ids": ["teritori-"]
       },
       "haqq": {
         "chain_id": "haqq_11235-1",
@@ -1984,9 +1890,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "haqq",
-        "prefix_chain_ids": [
-          "haqq_"
-        ]
+        "prefix_chain_ids": ["haqq_"]
       },
       "celestia": {
         "chain_id": "celestia",
@@ -2024,18 +1928,14 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "celestia",
-        "prefix_chain_ids": [
-          "celestia"
-        ]
+        "prefix_chain_ids": ["celestia"]
       },
       "ojo": {
         "chain_id": "agamotto",
         "chain_name": "ojo",
         "unstable": true,
         "endpoints": {
-          "lcd": [
-            "https://api.agamotto-val-stage-0.ojo.network"
-          ],
+          "lcd": ["https://api.agamotto-val-stage-0.ojo.network"],
           "timeout": {
             "lcd": 3000
           }
@@ -2060,9 +1960,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "ojo",
-        "prefix_chain_ids": [
-          "agamotto"
-        ]
+        "prefix_chain_ids": ["agamotto"]
       },
       "chihuahua": {
         "chain_id": "chihuahua-1",
@@ -2104,9 +2002,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "chihuahua",
-        "prefix_chain_ids": [
-          "chihuahua-"
-        ]
+        "prefix_chain_ids": ["chihuahua-"]
       },
       "saga": {
         "chain_id": "ssc-1",
@@ -2144,9 +2040,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "saga",
-        "prefix_chain_ids": [
-          "ssc-"
-        ]
+        "prefix_chain_ids": ["ssc-"]
       },
       "dymension": {
         "chain_id": "dymension_1100-1",
@@ -2180,17 +2074,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "dym",
-        "prefix_chain_ids": [
-          "dymension_"
-        ]
+        "prefix_chain_ids": ["dymension_"]
       },
       "fxcore": {
         "chain_id": "fxcore",
         "chain_name": "fxcore",
         "endpoints": {
-          "lcd": [
-            "https://fx-rest.functionx.io:1317"
-          ],
+          "lcd": ["https://fx-rest.functionx.io:1317"],
           "timeout": {
             "lcd": 3000
           }
@@ -2215,9 +2105,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "fx",
-        "prefix_chain_ids": [
-          "fxcore"
-        ]
+        "prefix_chain_ids": ["fxcore"]
       },
       "c4e": {
         "chain_id": "perun-1",
@@ -2252,9 +2140,7 @@
           "transaction_path": "/transactions/{tx}"
         },
         "prefix_address": "c4e",
-        "prefix_chain_ids": [
-          "perun-"
-        ]
+        "prefix_chain_ids": ["perun-"]
       },
       "bitsong": {
         "chain_id": "bitsong-2b",
@@ -2290,9 +2176,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "bitsong",
-        "prefix_chain_ids": [
-          "bitsong-"
-        ]
+        "prefix_chain_ids": ["bitsong-"]
       },
       "nolus": {
         "chain_id": "pirin-1",
@@ -2330,9 +2214,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "nolus",
-        "prefix_chain_ids": [
-          "pirin-"
-        ]
+        "prefix_chain_ids": ["pirin-"]
       },
       "lava": {
         "chain_id": "lava-mainnet-1",
@@ -2370,17 +2252,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "lava@",
-        "prefix_chain_ids": [
-          "lava-mainnet-"
-        ]
+        "prefix_chain_ids": ["lava-mainnet-"]
       },
       "xion": {
         "chain_id": "xion-mainnet-1",
         "chain_name": "xion",
         "endpoints": {
-          "lcd": [
-            "https://api.xion-mainnet-1.burnt.com"
-          ],
+          "lcd": ["https://api.xion-mainnet-1.burnt.com"],
           "timeout": {
             "lcd": 3000
           },
@@ -2407,9 +2285,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "xion",
-        "prefix_chain_ids": [
-          "xion-"
-        ]
+        "prefix_chain_ids": ["xion-"]
       },
       "elys": {
         "chain_id": "elys-1",
@@ -2444,17 +2320,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "elys",
-        "prefix_chain_ids": [
-          "elys-"
-        ]
+        "prefix_chain_ids": ["elys-"]
       },
       "allora": {
         "chain_id": "allora-mainnet-1",
         "chain_name": "allora",
         "endpoints": {
-          "lcd": [
-            "https://allora-api.mainnet.allora.network"
-          ],
+          "lcd": ["https://allora-api.mainnet.allora.network"],
           "timeout": {
             "lcd": 3000
           },
@@ -2480,9 +2352,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "allo",
-        "prefix_chain_ids": [
-          "allora-"
-        ]
+        "prefix_chain_ids": ["allora-"]
       },
       "mantra": {
         "chain_id": "mantra-1",
@@ -2518,9 +2388,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "mantra",
-        "prefix_chain_ids": [
-          "mantra-"
-        ]
+        "prefix_chain_ids": ["mantra-"]
       },
       "babylon": {
         "chain_id": "bbn-1",
@@ -2555,9 +2423,7 @@
           "transaction_path": "/txns/{tx}/overview"
         },
         "prefix_address": "bbn",
-        "prefix_chain_ids": [
-          "bbn-"
-        ]
+        "prefix_chain_ids": ["bbn-"]
       },
       "jackal": {
         "chain_id": "jackal-1",
@@ -2593,9 +2459,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "jkl",
-        "prefix_chain_ids": [
-          "jackal-"
-        ]
+        "prefix_chain_ids": ["jackal-"]
       },
       "terra-2": {
         "chain_id": "phoenix-1",
@@ -2631,16 +2495,12 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "terra",
-        "prefix_chain_ids": [
-          "phoenix-"
-        ]
+        "prefix_chain_ids": ["phoenix-"]
       },
       "terra": {
         "chain_id": "columbus-5",
         "chain_name": "terra",
-        "aliases": [
-          "terra classic"
-        ],
+        "aliases": ["terra classic"],
         "endpoints": {
           "lcd": [
             "https://columbus-lcd.terra.dev",
@@ -2672,17 +2532,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "terra",
-        "prefix_chain_ids": [
-          "columbus-"
-        ]
+        "prefix_chain_ids": ["columbus-"]
       },
       "zigchain": {
         "chain_id": "zigchain-1",
         "chain_name": "zigchain",
         "endpoints": {
-          "lcd": [
-            "https://api.zigchain.com"
-          ],
+          "lcd": ["https://api.zigchain.com"],
           "timeout": {
             "lcd": 3000
           }
@@ -2707,9 +2563,7 @@
           "transaction_path": "/tx/zigchain/{tx}"
         },
         "prefix_address": "zig",
-        "prefix_chain_ids": [
-          "zigchain-"
-        ]
+        "prefix_chain_ids": ["zigchain-"]
       }
     },
     "amplifier": {
@@ -2726,9 +2580,7 @@
           "address": "axelar1kkqdsqvwq9a7p9fj0w89wpx2m2t0vrxl782aslhq0kdw2xxd2aesv3un04"
         },
         "endpoints": {
-          "rpc": [
-            "https://mainnet.evm.nodes.onflow.org"
-          ]
+          "rpc": ["https://mainnet.evm.nodes.onflow.org"]
         },
         "native_token": {
           "name": "Flow",
@@ -2762,9 +2614,7 @@
           "address": "axelar1q8q8qq59yv9wmhcreu5ykt4azsk83ttve4e7jyavt32k6jq862xsqexnfh"
         },
         "endpoints": {
-          "rpc": [
-            "https://mainnet.hashio.io/api"
-          ]
+          "rpc": ["https://mainnet.hashio.io/api"]
         },
         "native_token": {
           "name": "Hedera",
@@ -2797,9 +2647,7 @@
           "address": "axelar1dalnx2yvmu3g3aau8m7fj426fk9u8dnzlr5azvqmr4x82rtclats8lhjmu"
         },
         "endpoints": {
-          "rpc": [
-            "https://mainnet.sorobanrpc.com"
-          ]
+          "rpc": ["https://mainnet.sorobanrpc.com"]
         },
         "native_token": {
           "name": "Stellar",
@@ -2834,9 +2682,7 @@
           "address": "axelar1sykyha8kzf35kc5hplqk76kdufntjn6w45ntwlevwxp74dqr3rvsq7fazh"
         },
         "endpoints": {
-          "rpc": [
-            "https://sui-rpc.publicnode.com"
-          ]
+          "rpc": ["https://sui-rpc.publicnode.com"]
         },
         "native_token": {
           "name": "Sui",
@@ -2869,9 +2715,7 @@
           "address": "axelar14rd4uyrqyl0tw75gjn8zqfppmy08t3x3wrsujeqp37l0hghduanscfvkz6"
         },
         "endpoints": {
-          "rpc": [
-            "https://s1.ripple.com:51234"
-          ]
+          "rpc": ["https://s1.ripple.com:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -2906,9 +2750,7 @@
           "address": "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -2942,9 +2784,7 @@
           "address": "axelar1nrdqke6tcxjuymg5gyd9x3yg35n3wrgarnj3sqskp98z2xnvlx9q82f63t"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.plume.org"
-          ]
+          "rpc": ["https://rpc.plume.org"]
         },
         "native_token": {
           "name": "Plume",
@@ -2978,9 +2818,7 @@
           "address": "axelar1n64vk7l3zagh2eadkuhl7602lxluu86dn9smfxyp7c2e4v8pqj5sv4ypjr"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.hyperliquid.xyz/evm"
-          ]
+          "rpc": ["https://rpc.hyperliquid.xyz/evm"]
         },
         "native_token": {
           "name": "Hyperliquid",
@@ -3014,9 +2852,7 @@
           "address": "axelar1xx6xdw6mwmfl6u2jygq0zfx2q6uyc8emtt29j9wg78l2l4p739nqmwsgal"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.berachain.com"
-          ]
+          "rpc": ["https://rpc.berachain.com"]
         },
         "native_token": {
           "name": "Berachain",
@@ -3117,9 +2953,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc-amoy.polygon.technology"
-          ]
+          "rpc": ["https://rpc-amoy.polygon.technology"]
         },
         "native_token": {
           "name": "Polygon",
@@ -3342,9 +3176,7 @@
           "address": "0xC8D18F85cB0Cee5C95eC29c69DeaF6cea972349c"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.sepolia.mantle.xyz"
-          ]
+          "rpc": ["https://rpc.sepolia.mantle.xyz"]
         },
         "native_token": {
           "name": "Mantle",
@@ -3373,9 +3205,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://alfajores-forno.celo-testnet.org"
-          ]
+          "rpc": ["https://alfajores-forno.celo-testnet.org"]
         },
         "native_token": {
           "name": "Celo",
@@ -3404,9 +3234,7 @@
           "address": "0xC8D18F85cB0Cee5C95eC29c69DeaF6cea972349c"
         },
         "endpoints": {
-          "rpc": [
-            "https://evm.testnet.kava.io"
-          ]
+          "rpc": ["https://evm.testnet.kava.io"]
         },
         "native_token": {
           "name": "Kava",
@@ -3436,9 +3264,7 @@
           "address": "0x999117D44220F33e0441fbAb2A5aDB8FF485c54D"
         },
         "endpoints": {
-          "rpc": [
-            "https://api.calibration.node.glif.io/rpc/v2"
-          ]
+          "rpc": ["https://api.calibration.node.glif.io/rpc/v2"]
         },
         "native_token": {
           "name": "Filecoin",
@@ -3500,9 +3326,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.demo.k-f.dev"
-          ]
+          "rpc": ["https://fullnode.demo.k-f.dev"]
         },
         "native_token": {
           "name": "Algol",
@@ -3563,9 +3387,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.immutable.com"
-          ]
+          "rpc": ["https://rpc.testnet.immutable.com"]
         },
         "native_token": {
           "name": "ImmutableX",
@@ -3594,9 +3416,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.frax.com"
-          ]
+          "rpc": ["https://rpc.testnet.frax.com"]
         },
         "native_token": {
           "name": "Frax Ether",
@@ -3657,9 +3477,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://forno.celo-sepolia.celo-testnet.org/"
-          ]
+          "rpc": ["https://forno.celo-sepolia.celo-testnet.org/"]
         },
         "native_token": {
           "name": "Celo",
@@ -3685,9 +3503,7 @@
       "axelarnet": {
         "chain_id": "axelar-testnet-lisbon-3",
         "chain_name": "Axelarnet",
-        "aliases": [
-          "axelar"
-        ],
+        "aliases": ["axelar"],
         "router": {
           "address": "axelar1d9atnamjjhtc46zmzyc202llqs0rhtxnphs6mkjurekath3mkgtq7hsk93"
         },
@@ -3732,17 +3548,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "axelar",
-        "prefix_chain_ids": [
-          "axelar-"
-        ]
+        "prefix_chain_ids": ["axelar-"]
       },
       "osmosis": {
         "chain_id": "osmo-test-5",
         "chain_name": "osmosis-7",
         "endpoints": {
-          "lcd": [
-            "https://lcd.osmotest5.osmosis.zone"
-          ],
+          "lcd": ["https://lcd.osmotest5.osmosis.zone"],
           "timeout": {
             "lcd": 3000
           },
@@ -3769,18 +3581,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "osmo",
-        "prefix_chain_ids": [
-          "osmosis-",
-          "osmo-test-"
-        ]
+        "prefix_chain_ids": ["osmosis-", "osmo-test-"]
       },
       "cosmoshub": {
         "chain_id": "vega-testnet",
         "chain_name": "cosmoshub",
         "endpoints": {
-          "lcd": [
-            "https://rest.sentry-01.theta-testnet.polypore.xyz"
-          ],
+          "lcd": ["https://rest.sentry-01.theta-testnet.polypore.xyz"],
           "timeout": {
             "lcd": 3000
           },
@@ -3807,9 +3614,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "cosmos",
-        "prefix_chain_ids": [
-          "theta-testnet-"
-        ]
+        "prefix_chain_ids": ["theta-testnet-"]
       },
       "juno": {
         "chain_name": "juno",
@@ -3844,17 +3649,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "juno",
-        "prefix_chain_ids": [
-          "uni-"
-        ]
+        "prefix_chain_ids": ["uni-"]
       },
       "crescent": {
         "chain_id": "mooncat-1-1",
         "chain_name": "crescent",
         "endpoints": {
-          "lcd": [
-            "https://testnet-endpoint.crescent.network/api/crescent"
-          ],
+          "lcd": ["https://testnet-endpoint.crescent.network/api/crescent"],
           "timeout": {
             "lcd": 3000
           }
@@ -3880,9 +3681,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "cre",
-        "prefix_chain_ids": [
-          "mooncat-"
-        ]
+        "prefix_chain_ids": ["mooncat-"]
       },
       "kujira": {
         "chain_id": "harpoon-4",
@@ -3916,17 +3715,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "kujira",
-        "prefix_chain_ids": [
-          "harpoon-"
-        ]
+        "prefix_chain_ids": ["harpoon-"]
       },
       "secret": {
         "chain_id": "secret-snip-3",
         "chain_name": "secret",
         "endpoints": {
-          "lcd": [
-            "https://api.pulsar3.scrttestnet.com"
-          ],
+          "lcd": ["https://api.pulsar3.scrttestnet.com"],
           "timeout": {
             "lcd": 3000
           },
@@ -3952,9 +3747,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "secret",
-        "prefix_chain_ids": [
-          "pulsar-"
-        ]
+        "prefix_chain_ids": ["pulsar-"]
       },
       "sei": {
         "chain_id": "atlantic-1",
@@ -3989,18 +3782,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "sei",
-        "prefix_chain_ids": [
-          "atlantic-",
-          "sei-testnet-"
-        ]
+        "prefix_chain_ids": ["atlantic-", "sei-testnet-"]
       },
       "fetch": {
         "chain_id": "dorado-1",
         "chain_name": "fetch",
         "endpoints": {
-          "lcd": [
-            "https://rest-dorado.fetch.ai"
-          ],
+          "lcd": ["https://rest-dorado.fetch.ai"],
           "timeout": {
             "lcd": 3000
           }
@@ -4025,9 +3813,7 @@
           "transaction_path": "/transactions/{tx}"
         },
         "prefix_address": "fetch",
-        "prefix_chain_ids": [
-          "dorado-"
-        ]
+        "prefix_chain_ids": ["dorado-"]
       },
       "evmos": {
         "chain_id": "evmos_9000-4",
@@ -4063,17 +3849,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "evmos",
-        "prefix_chain_ids": [
-          "evmos_"
-        ]
+        "prefix_chain_ids": ["evmos_"]
       },
       "aura": {
         "chain_id": "euphoria-2",
         "chain_name": "aura",
         "endpoints": {
-          "lcd": [
-            "https://lcd.serenity.aura.network"
-          ],
+          "lcd": ["https://lcd.serenity.aura.network"],
           "timeout": {
             "lcd": 3000
           }
@@ -4098,17 +3880,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "aura",
-        "prefix_chain_ids": [
-          "euphoria-"
-        ]
+        "prefix_chain_ids": ["euphoria-"]
       },
       "comdex": {
         "chain_id": "comdex-test2",
         "chain_name": "comdex-2",
         "endpoints": {
-          "lcd": [
-            "https://meteor.rest.comdex.one"
-          ],
+          "lcd": ["https://meteor.rest.comdex.one"],
           "timeout": {
             "lcd": 3000
           }
@@ -4133,9 +3911,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "comdex",
-        "prefix_chain_ids": [
-          "meteor-"
-        ]
+        "prefix_chain_ids": ["meteor-"]
       },
       "persistence": {
         "chain_id": "test-core-1",
@@ -4170,17 +3946,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "persistence",
-        "prefix_chain_ids": [
-          "test-core-"
-        ]
+        "prefix_chain_ids": ["test-core-"]
       },
       "umee": {
         "chain_id": "canon-4",
         "chain_name": "umee",
         "endpoints": {
-          "lcd": [
-            "https://canon-4.api.network.umee.cc"
-          ],
+          "lcd": ["https://canon-4.api.network.umee.cc"],
           "timeout": {
             "lcd": 3000
           }
@@ -4206,17 +3978,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "umee",
-        "prefix_chain_ids": [
-          "canon-"
-        ]
+        "prefix_chain_ids": ["canon-"]
       },
       "agoric": {
         "chain_id": "agoricdev-25",
         "chain_name": "agoric",
         "endpoints": {
-          "lcd": [
-            "https://devnet.api.agoric.net"
-          ],
+          "lcd": ["https://devnet.api.agoric.net"],
           "timeout": {
             "lcd": 3000
           }
@@ -4241,17 +4009,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "agoric",
-        "prefix_chain_ids": [
-          "agoricdev-"
-        ]
+        "prefix_chain_ids": ["agoricdev-"]
       },
       "xpla": {
         "chain_id": "cube_47-5",
         "chain_name": "xpla",
         "endpoints": {
-          "lcd": [
-            "https://cube-lcd.xpla.dev"
-          ],
+          "lcd": ["https://cube-lcd.xpla.dev"],
           "timeout": {
             "lcd": 3000
           },
@@ -4277,16 +4041,12 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "xpla",
-        "prefix_chain_ids": [
-          "cube_"
-        ]
+        "prefix_chain_ids": ["cube_"]
       },
       "acre": {
         "chain_id": "bamboo_9051-2",
         "chain_name": "acre",
-        "aliases": [
-          "acrechain"
-        ],
+        "aliases": ["acrechain"],
         "endpoints": {
           "lcd": [
             "https://lcd-testnet2-acre.synergynodes.com",
@@ -4317,17 +4077,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "acre",
-        "prefix_chain_ids": [
-          "bamboo_"
-        ]
+        "prefix_chain_ids": ["bamboo_"]
       },
       "burnt-2": {
         "chain_id": "xion-testnet-1",
         "chain_name": "burnt-2",
         "endpoints": {
-          "lcd": [
-            "https://api.xion-testnet-1.burnt.com"
-          ],
+          "lcd": ["https://api.xion-testnet-1.burnt.com"],
           "timeout": {
             "lcd": 3000
           },
@@ -4353,9 +4109,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "xion",
-        "prefix_chain_ids": [
-          "xion-"
-        ]
+        "prefix_chain_ids": ["xion-"]
       },
       "carbon": {
         "chain_name": "carbon",
@@ -4388,17 +4142,13 @@
           "transaction_path": "/transaction/{tx}?net=test"
         },
         "prefix_address": "swth",
-        "prefix_chain_ids": [
-          "carbon-"
-        ]
+        "prefix_chain_ids": ["carbon-"]
       },
       "odin": {
         "chain_id": "odin-testnet-havi-1",
         "chain_name": "odin",
         "endpoints": {
-          "lcd": [
-            "https://node.odin-freya-website.odinprotocol.io/a/api"
-          ],
+          "lcd": ["https://node.odin-freya-website.odinprotocol.io/a/api"],
           "timeout": {
             "lcd": 3000
           }
@@ -4423,17 +4173,13 @@
           "transaction_path": "/transactions/{tx}"
         },
         "prefix_address": "odin",
-        "prefix_chain_ids": [
-          "odin-"
-        ]
+        "prefix_chain_ids": ["odin-"]
       },
       "sommelier": {
         "chain_id": "chardonnay",
         "chain_name": "sommelier",
         "endpoints": {
-          "lcd": [
-            "http://chardonnay0.somm.fi:1317"
-          ],
+          "lcd": ["http://chardonnay0.somm.fi:1317"],
           "timeout": {
             "lcd": 3000
           }
@@ -4458,9 +4204,7 @@
           "transaction_path": "/txs/{tx}"
         },
         "prefix_address": "somm",
-        "prefix_chain_ids": [
-          "chardonnay"
-        ]
+        "prefix_chain_ids": ["chardonnay"]
       },
       "neutron": {
         "chain_id": "pion-1",
@@ -4497,17 +4241,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "neutron",
-        "prefix_chain_ids": [
-          "pion-"
-        ]
+        "prefix_chain_ids": ["pion-"]
       },
       "provenance": {
         "chain_id": "pio-testnet-1",
         "chain_name": "provenance",
         "endpoints": {
-          "lcd": [
-            "https://api.test.provenance.io"
-          ],
+          "lcd": ["https://api.test.provenance.io"],
           "timeout": {
             "lcd": 3000
           }
@@ -4532,17 +4272,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "tp",
-        "prefix_chain_ids": [
-          "pio-"
-        ]
+        "prefix_chain_ids": ["pio-"]
       },
       "impacthub": {
         "chain_id": "pandora-8",
         "chain_name": "impacthub",
         "endpoints": {
-          "lcd": [
-            "https://testnet.ixo.earth/rest"
-          ],
+          "lcd": ["https://testnet.ixo.earth/rest"],
           "timeout": {
             "lcd": 3000
           }
@@ -4567,17 +4303,13 @@
           "transaction_path": "/transactions/{tx}"
         },
         "prefix_address": "ixo",
-        "prefix_chain_ids": [
-          "pandora-"
-        ]
+        "prefix_chain_ids": ["pandora-"]
       },
       "teritori-2": {
         "chain_id": "teritori-test-6",
         "chain_name": "teritori-2",
         "endpoints": {
-          "lcd": [
-            "https://rest.testnet.teritori.com"
-          ],
+          "lcd": ["https://rest.testnet.teritori.com"],
           "timeout": {
             "lcd": 3000
           }
@@ -4602,17 +4334,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "tori",
-        "prefix_chain_ids": [
-          "teritori-"
-        ]
+        "prefix_chain_ids": ["teritori-"]
       },
       "haqq": {
         "chain_id": "haqq_54211-3",
         "chain_name": "haqq",
         "endpoints": {
-          "lcd": [
-            "https://rest.cosmos.testedge2.haqq.network"
-          ],
+          "lcd": ["https://rest.cosmos.testedge2.haqq.network"],
           "timeout": {
             "lcd": 3000
           }
@@ -4637,17 +4365,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "haqq",
-        "prefix_chain_ids": [
-          "haqq_"
-        ]
+        "prefix_chain_ids": ["haqq_"]
       },
       "celestia": {
         "chain_id": "mocha-4",
         "chain_name": "celestia",
         "endpoints": {
-          "lcd": [
-            "https://rest-celestia-mocha.architectnodes.com"
-          ],
+          "lcd": ["https://rest-celestia-mocha.architectnodes.com"],
           "timeout": {
             "lcd": 3000
           }
@@ -4673,9 +4397,7 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "celestia",
-        "prefix_chain_ids": [
-          "mocha-"
-        ]
+        "prefix_chain_ids": ["mocha-"]
       },
       "elys": {
         "chain_id": "elystestnet-1",
@@ -4710,17 +4432,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "elys",
-        "prefix_chain_ids": [
-          "elystestnet-"
-        ]
+        "prefix_chain_ids": ["elystestnet-"]
       },
       "ojo": {
         "chain_id": "agamotto",
         "chain_name": "ojo",
         "endpoints": {
-          "lcd": [
-            "https://api.ditto-val-stage-0.ojo.network"
-          ],
+          "lcd": ["https://api.ditto-val-stage-0.ojo.network"],
           "timeout": {
             "lcd": 3000
           }
@@ -4745,17 +4463,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "ojo",
-        "prefix_chain_ids": [
-          "agamotto"
-        ]
+        "prefix_chain_ids": ["agamotto"]
       },
       "saga": {
         "chain_id": "ssc-testnet-1",
         "chain_name": "saga",
         "endpoints": {
-          "lcd": [
-            "https://testnet-ssc-lcd.sagarpc.io"
-          ],
+          "lcd": ["https://testnet-ssc-lcd.sagarpc.io"],
           "timeout": {
             "lcd": 3000
           },
@@ -4782,17 +4496,13 @@
           "asset_path": "/assets/ibc/{ibc_denom}"
         },
         "prefix_address": "saga",
-        "prefix_chain_ids": [
-          "ssc-testnet-"
-        ]
+        "prefix_chain_ids": ["ssc-testnet-"]
       },
       "dymension": {
         "chain_id": "blumbus_111-1",
         "chain_name": "dymension",
         "endpoints": {
-          "lcd": [
-            "https://blumbus.api.silknodes.io"
-          ],
+          "lcd": ["https://blumbus.api.silknodes.io"],
           "timeout": {
             "lcd": 3000
           }
@@ -4817,17 +4527,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "dym",
-        "prefix_chain_ids": [
-          "blumbus_"
-        ]
+        "prefix_chain_ids": ["blumbus_"]
       },
       "nibiru": {
         "chain_id": "nibiru-testnet-1",
         "chain_name": "nibiru",
         "endpoints": {
-          "lcd": [
-            "https://lcd.testnet-1.nibiru.fi"
-          ],
+          "lcd": ["https://lcd.testnet-1.nibiru.fi"],
           "timeout": {
             "lcd": 3000
           }
@@ -4852,17 +4558,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "nibi",
-        "prefix_chain_ids": [
-          "nibiru-testnet-"
-        ]
+        "prefix_chain_ids": ["nibiru-testnet-"]
       },
       "fxcore": {
         "chain_id": "dhobyghaut",
         "chain_name": "fxcore",
         "endpoints": {
-          "lcd": [
-            "https://testnet-fx-rest.functionx.io:1317"
-          ],
+          "lcd": ["https://testnet-fx-rest.functionx.io:1317"],
           "timeout": {
             "lcd": 3000
           }
@@ -4887,17 +4589,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "fx",
-        "prefix_chain_ids": [
-          "dhobyghaut"
-        ]
+        "prefix_chain_ids": ["dhobyghaut"]
       },
       "c4e": {
         "chain_id": "babajaga-1",
         "chain_name": "c4e",
         "endpoints": {
-          "lcd": [
-            "https://lcd-testnet.c4e.io"
-          ],
+          "lcd": ["https://lcd-testnet.c4e.io"],
           "timeout": {
             "lcd": 3000
           }
@@ -4922,9 +4620,7 @@
           "transaction_path": "/transactions/{tx}"
         },
         "prefix_address": "c4e",
-        "prefix_chain_ids": [
-          "babajaga-"
-        ]
+        "prefix_chain_ids": ["babajaga-"]
       },
       "lava": {
         "chain_id": "lava-testnet-2",
@@ -4958,17 +4654,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "lava@",
-        "prefix_chain_ids": [
-          "lava-testnet-"
-        ]
+        "prefix_chain_ids": ["lava-testnet-"]
       },
       "warden": {
         "chain_id": "buenavista-1",
         "chain_name": "warden",
         "endpoints": {
-          "lcd": [
-            "https://api.buenavista.wardenprotocol.org"
-          ],
+          "lcd": ["https://api.buenavista.wardenprotocol.org"],
           "timeout": {
             "lcd": 3000
           },
@@ -4994,9 +4686,7 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "warden",
-        "prefix_chain_ids": [
-          "buenavista-"
-        ]
+        "prefix_chain_ids": ["buenavista-"]
       },
       "nillion": {
         "chain_id": "nillion-chain-testnet-1",
@@ -5030,17 +4720,13 @@
           "transaction_path": "/transaction/{tx}"
         },
         "prefix_address": "nillion",
-        "prefix_chain_ids": [
-          "nillion-chain-testnet-"
-        ]
+        "prefix_chain_ids": ["nillion-chain-testnet-"]
       },
       "zigchain-2": {
         "chain_id": "zig-test-2",
         "chain_name": "zigchain-2",
         "endpoints": {
-          "lcd": [
-            "https://testnet-api.zigchain.com"
-          ],
+          "lcd": ["https://testnet-api.zigchain.com"],
           "timeout": {
             "lcd": 3000
           }
@@ -5065,17 +4751,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "zig",
-        "prefix_chain_ids": [
-          "zig-test-"
-        ]
+        "prefix_chain_ids": ["zig-test-"]
       },
       "terra-3": {
         "chain_id": "pisco-1",
         "chain_name": "terra-3",
         "endpoints": {
-          "lcd": [
-            "https://pisco-lcd.terra.dev"
-          ],
+          "lcd": ["https://pisco-lcd.terra.dev"],
           "timeout": {
             "lcd": 3000
           }
@@ -5100,17 +4782,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "terra",
-        "prefix_chain_ids": [
-          "pisco-"
-        ]
+        "prefix_chain_ids": ["pisco-"]
       },
       "terra-2": {
         "deprecated": true,
         "chain_name": "terra-2",
         "endpoints": {
-          "lcd": [
-            "https://pisco-lcd.terra.dev"
-          ],
+          "lcd": ["https://pisco-lcd.terra.dev"],
           "timeout": {
             "lcd": 3000
           }
@@ -5135,19 +4813,13 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "terra",
-        "prefix_chain_ids": [
-          "pisco-"
-        ]
+        "prefix_chain_ids": ["pisco-"]
       },
       "terra": {
         "chain_name": "terra",
-        "aliases": [
-          "terra classic"
-        ],
+        "aliases": ["terra classic"],
         "endpoints": {
-          "lcd": [
-            "https://bombay-lcd.terra.dev"
-          ],
+          "lcd": ["https://bombay-lcd.terra.dev"],
           "timeout": {
             "lcd": 3000
           }
@@ -5172,9 +4844,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "terra",
-        "prefix_chain_ids": [
-          "bombay-"
-        ]
+        "prefix_chain_ids": ["bombay-"]
       }
     },
     "amplifier": {
@@ -5266,9 +4936,7 @@
           "address": "axelar1kkqdsqvwq9a7p9fj0w89wpx2m2t0vrxl782aslhq0kdw2xxd2aesv3un04"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.evm.nodes.onflow.org"
-          ]
+          "rpc": ["https://testnet.evm.nodes.onflow.org"]
         },
         "native_token": {
           "name": "Flow",
@@ -5302,9 +4970,7 @@
           "address": "axelar1ce9rcvw8htpwukc048z9kqmyk5zz52d5a7zqn9xlq2pg0mxul9mqxlx2cq"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.hashio.io/api"
-          ]
+          "rpc": ["https://testnet.hashio.io/api"]
         },
         "native_token": {
           "name": "Hedera",
@@ -5337,9 +5003,7 @@
           "address": "axelar18y8p7dxesmxttvdzp5sqjksqrnh9xg32gtfqnkkucvv9de38f69qfn6ph3"
         },
         "endpoints": {
-          "rpc": [
-            "https://soroban-testnet.stellar.org"
-          ]
+          "rpc": ["https://soroban-testnet.stellar.org"]
         },
         "native_token": {
           "name": "Stellar",
@@ -5374,9 +5038,7 @@
           "address": "axelar1sykyha8kzf35kc5hplqk76kdufntjn6w45ntwlevwxp74dqr3rvsq7fazh"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.testnet.sui.io"
-          ]
+          "rpc": ["https://fullnode.testnet.sui.io"]
         },
         "native_token": {
           "name": "Sui",
@@ -5409,9 +5071,7 @@
           "address": "axelar1pnynr6wnmchutkv6490mdqqxkz54fnrtmq8krqhvglhsqhmu7wzsnc86sy"
         },
         "endpoints": {
-          "rpc": [
-            "https://s.altnet.rippletest.net:51234"
-          ]
+          "rpc": ["https://s.altnet.rippletest.net:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -5446,9 +5106,7 @@
           "address": "axelar1q8kn9t39ddpce42atk0d6wpdudr6djqxmz689m3nxy92ck0nnftqxfsuyk"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.testnet.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -5482,9 +5140,7 @@
           "address": "axelar1nrdqke6tcxjuymg5gyd9x3yg35n3wrgarnj3sqskp98z2xnvlx9q82f63t"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.plume.org"
-          ]
+          "rpc": ["https://testnet-rpc.plume.org"]
         },
         "native_token": {
           "name": "Plume",
@@ -5518,9 +5174,7 @@
           "address": "axelar1n64vk7l3zagh2eadkuhl7602lxluu86dn9smfxyp7c2e4v8pqj5sv4ypjr"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.hyperliquid-testnet.xyz/evm"
-          ]
+          "rpc": ["https://rpc.hyperliquid-testnet.xyz/evm"]
         },
         "native_token": {
           "name": "Hyperliquid",
@@ -5554,9 +5208,7 @@
           "address": "axelar1xx6xdw6mwmfl6u2jygq0zfx2q6uyc8emtt29j9wg78l2l4p739nqmwsgal"
         },
         "endpoints": {
-          "rpc": [
-            "https://bepolia.rpc.berachain.com"
-          ]
+          "rpc": ["https://bepolia.rpc.berachain.com"]
         },
         "native_token": {
           "name": "Berachain",
@@ -5590,9 +5242,7 @@
           "address": "axelar1u080xgqqu9zhl4e9hf2ktdny4pq6kc2pmh6u6mlv8nw5zjvcetvqqjzeu0"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.monad.xyz"
-          ]
+          "rpc": ["https://testnet-rpc.monad.xyz"]
         },
         "native_token": {
           "name": "Monad",
@@ -5693,9 +5343,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc-amoy.polygon.technology"
-          ]
+          "rpc": ["https://rpc-amoy.polygon.technology"]
         },
         "native_token": {
           "name": "Polygon",
@@ -5918,9 +5566,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.sepolia.mantle.xyz"
-          ]
+          "rpc": ["https://rpc.sepolia.mantle.xyz"]
         },
         "native_token": {
           "name": "Mantle",
@@ -5949,9 +5595,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://evm.testnet.kava.io"
-          ]
+          "rpc": ["https://evm.testnet.kava.io"]
         },
         "native_token": {
           "name": "Kava",
@@ -6013,9 +5657,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.demo.k-f.dev"
-          ]
+          "rpc": ["https://fullnode.demo.k-f.dev"]
         },
         "native_token": {
           "name": "Algol",
@@ -6044,9 +5686,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.frax.com"
-          ]
+          "rpc": ["https://rpc.testnet.frax.com"]
         },
         "native_token": {
           "name": "Frax Ether",
@@ -6107,9 +5747,7 @@
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
         },
         "endpoints": {
-          "rpc": [
-            "https://forno.celo-sepolia.celo-testnet.org/"
-          ]
+          "rpc": ["https://forno.celo-sepolia.celo-testnet.org/"]
         },
         "native_token": {
           "name": "Celo",
@@ -6135,10 +5773,7 @@
       "axelarnet": {
         "chain_id": "axelar-stagenet-1",
         "chain_name": "Axelarnet",
-        "aliases": [
-          "axelar",
-          "axelardef"
-        ],
+        "aliases": ["axelar", "axelardef"],
         "router": {
           "address": "axelar1saq5hcztvd26vvkquv4dzn8e0uu967nuyxtcful3pvv7ajsw4kmq72xft9"
         },
@@ -6182,9 +5817,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "axelar",
-        "prefix_chain_ids": [
-          "axelar-"
-        ]
+        "prefix_chain_ids": ["axelar-"]
       }
     },
     "amplifier": {
@@ -6276,9 +5909,7 @@
           "address": "axelar1adz8u3q5mdfp73weg3f65e8ce5jvq4dwlqqm3lxqyy4pjf77nwtql8gjwr"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.evm.nodes.onflow.org"
-          ]
+          "rpc": ["https://testnet.evm.nodes.onflow.org"]
         },
         "native_token": {
           "name": "Flow",
@@ -6312,9 +5943,7 @@
           "address": "axelar1h8gx392pzlj6ff5lv3kc9jwegu0wwqjrur7ht93frus5czape9ns3j3d0a"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.hashio.io/api"
-          ]
+          "rpc": ["https://testnet.hashio.io/api"]
         },
         "native_token": {
           "name": "Hedera",
@@ -6344,9 +5973,7 @@
           "address": "axelar1e0ndz9668a953a507x04c74wsp0sxfcjj2gtvum733lqp95rvz6slmgx2q"
         },
         "endpoints": {
-          "rpc": [
-            "https://api.devnet.solana.com"
-          ]
+          "rpc": ["https://api.devnet.solana.com"]
         },
         "native_token": {
           "name": "Solana",
@@ -6379,9 +6006,7 @@
           "address": "axelar1jgp9mfalnwk0p9xfycyrrc69e9kw5l2qytvs0tz6znv5ke89q0psgcyarh"
         },
         "endpoints": {
-          "rpc": [
-            "https://soroban-testnet.stellar.org"
-          ]
+          "rpc": ["https://soroban-testnet.stellar.org"]
         },
         "native_token": {
           "name": "Stellar",
@@ -6416,9 +6041,7 @@
           "address": "axelar1x8rqw5l5gzye7d063zupr5zlelfvjxq5z6rr7wy643ufuflhl6xqhgr5wt"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.testnet.sui.io"
-          ]
+          "rpc": ["https://fullnode.testnet.sui.io"]
         },
         "native_token": {
           "name": "Sui",
@@ -6451,9 +6074,7 @@
           "address": "axelar1ecj3spvgkkmngslmvlft25cpws836x5t9y45qyzl5ezh2ny60fes4h2kq6"
         },
         "endpoints": {
-          "rpc": [
-            "https://s.altnet.rippletest.net:51234"
-          ]
+          "rpc": ["https://s.altnet.rippletest.net:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -6488,9 +6109,7 @@
           "address": "axelar1hmdnsrs8c8v8mr7vxg3rzdzxasxdpfj09muxakhth73sywg929qsczjscj"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.testnet.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -6524,9 +6143,7 @@
           "address": "axelar1t49krzwl0sc6z8qwdst5d7kmgn3xutjtp4ku8u2c06quy7w8hp4q5zsqn2"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.plume.org"
-          ]
+          "rpc": ["https://testnet-rpc.plume.org"]
         },
         "native_token": {
           "name": "Plume",
@@ -6560,9 +6177,7 @@
           "address": "axelar1n72sdsdclpffc0jw5mf7vc97zpy6czqw9glmcqhm8sp73nczu57sn3kplc"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.hyperliquid-testnet.xyz/evm"
-          ]
+          "rpc": ["https://rpc.hyperliquid-testnet.xyz/evm"]
         },
         "native_token": {
           "name": "Hyperliquid",
@@ -6596,9 +6211,7 @@
           "address": "axelar18xzlzgjcypassfs3sglfn7u8re3kuafxf233c2e8fyu7muxe8xmskeyg92"
         },
         "endpoints": {
-          "rpc": [
-            "https://bepolia.rpc.berachain.com"
-          ]
+          "rpc": ["https://bepolia.rpc.berachain.com"]
         },
         "native_token": {
           "name": "Berachain",
@@ -6632,9 +6245,7 @@
           "address": "axelar1v72l84ar9nhl7xt44hn374xm60a7huhfnulh65aagtk55x8uzpsqfdr6tq"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.monad.xyz"
-          ]
+          "rpc": ["https://testnet-rpc.monad.xyz"]
         },
         "native_token": {
           "name": "Monad",
@@ -6761,9 +6372,7 @@
       "axelarnet": {
         "chain_id": "devnet-amplifier",
         "chain_name": "Axelarnet",
-        "aliases": [
-          "axelar"
-        ],
+        "aliases": ["axelar"],
         "router": {
           "address": "axelar14jjdxqhuxk803e9pq64w4fgf385y86xxhkpzswe9crmu6vxycezst0zq8y"
         },
@@ -6777,9 +6386,7 @@
           "address": "axelar19jxy26z0qnnspa45y5nru0l5rmy9d637z5km2ndjxthfxf5qaswst9290r"
         },
         "endpoints": {
-          "lcd": [
-            "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"
-          ],
+          "lcd": ["http://devnet-amplifier.archive-node-lcd.axelarscan.io:80"],
           "timeout": {
             "lcd": 3000
           }
@@ -6804,9 +6411,7 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "axelar",
-        "prefix_chain_ids": [
-          "devnet-amplifier"
-        ]
+        "prefix_chain_ids": ["devnet-amplifier"]
       }
     },
     "amplifier": {
@@ -6972,9 +6577,7 @@
           "address": "axelar1hn4hf23pqy2s2yacs4cuzjqe72hxn0rtxugy2vq485l7cngtcavqu9d0zq"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.evm.nodes.onflow.org"
-          ]
+          "rpc": ["https://testnet.evm.nodes.onflow.org"]
         },
         "native_token": {
           "name": "Flow",
@@ -7008,9 +6611,7 @@
           "address": "axelar1kq5um903jwaza0hl6a20myz60ldenuw202965dydrj372xwg64uqpe6g23"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet.hashio.io/api"
-          ]
+          "rpc": ["https://testnet.hashio.io/api"]
         },
         "native_token": {
           "name": "Hedera Testnet",
@@ -7034,9 +6635,7 @@
       "multiversx": {
         "chain_name": "multiversx",
         "endpoints": {
-          "rpc": [
-            "https://devnet-gateway.multiversx.com"
-          ]
+          "rpc": ["https://devnet-gateway.multiversx.com"]
         },
         "native_token": {
           "name": "MultiversX",
@@ -7114,9 +6713,7 @@
       "xrpl": {
         "chain_name": "xrpl",
         "endpoints": {
-          "rpc": [
-            "https://s.devnet.rippletest.net:51234"
-          ]
+          "rpc": ["https://s.devnet.rippletest.net:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7150,9 +6747,7 @@
           "address": "axelar1w0cwqtytmjuhak4v0rd4fy65pugqcxz4g48n6puw55zcy896e6ksn9gkj2"
         },
         "endpoints": {
-          "rpc": [
-            "https://s.devnet.rippletest.net:51234"
-          ]
+          "rpc": ["https://s.devnet.rippletest.net:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7177,9 +6772,7 @@
       "xrpl-devnet": {
         "chain_name": "xrpl-devnet",
         "endpoints": {
-          "rpc": [
-            "https://s.devnet.rippletest.net:51234"
-          ]
+          "rpc": ["https://s.devnet.rippletest.net:51234"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7213,9 +6806,7 @@
           "address": "axelar1q9lxry68px508u9d85yt5rgemtd6patknrlkp0n3xrptw4ee04mqh5vl69"
         },
         "endpoints": {
-          "rpc": [
-            "https://s.devnet.rippletest.net:51233"
-          ]
+          "rpc": ["https://s.devnet.rippletest.net:51233"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7241,9 +6832,7 @@
         "chain_id": 1440002,
         "chain_name": "xrpl-evm-sidechain",
         "endpoints": {
-          "rpc": [
-            "https://rpc.devnet.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.devnet.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7268,9 +6857,7 @@
         "chain_id": 1440002,
         "chain_name": "xrpl-evm-devnet",
         "endpoints": {
-          "rpc": [
-            "https://rpc.devnet.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.devnet.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7295,9 +6882,7 @@
         "chain_id": 1440002,
         "chain_name": "xrpl-evm-2",
         "endpoints": {
-          "rpc": [
-            "https://rpc.devnet.xrplevm.org"
-          ]
+          "rpc": ["https://rpc.devnet.xrplevm.org"]
         },
         "native_token": {
           "name": "Ripple",
@@ -7357,9 +6942,7 @@
           "address": "axelar1lts2hclvjcm898r53st0shr2qrlg3p2t3s8a8dkn2sxek9jh204ql0k8f6"
         },
         "endpoints": {
-          "rpc": [
-            "https://api.devnet.solana.com"
-          ]
+          "rpc": ["https://api.devnet.solana.com"]
         },
         "native_token": {
           "name": "Solana",
@@ -7384,9 +6967,7 @@
         "chain_id": 13068200,
         "chain_name": "coti-7",
         "endpoints": {
-          "rpc": [
-            "https://devnet.coti.io/rpc"
-          ]
+          "rpc": ["https://devnet.coti.io/rpc"]
         },
         "native_token": {
           "name": "Coti",
@@ -7419,9 +7000,7 @@
           "address": "axelar1w78434ta3l83fstf743xh9v5vkh4k203x2rh7l6w093n4s4vzv0suz09g3"
         },
         "endpoints": {
-          "rpc": [
-            "https://soroban-testnet.stellar.org"
-          ]
+          "rpc": ["https://soroban-testnet.stellar.org"]
         },
         "native_token": {
           "name": "Stellar",
@@ -7453,9 +7032,7 @@
           "address": "axelar1ac43p98m4pfv7zxrce3e99gwy5nf2crnwg3mu5rmxs09zvy2py9sxrgm8m"
         },
         "endpoints": {
-          "rpc": [
-            "https://fullnode.testnet.sui.io"
-          ]
+          "rpc": ["https://fullnode.testnet.sui.io"]
         },
         "native_token": {
           "name": "Sui",
@@ -7488,9 +7065,7 @@
           "address": "axelar1s8auce7fhjd4840czcfgjw4c47epatvqdx2m7kr9qdt9ds62qnzq5uj2k5"
         },
         "endpoints": {
-          "rpc": [
-            "https://sui-testnet-rpc.publicnode.com"
-          ]
+          "rpc": ["https://sui-testnet-rpc.publicnode.com"]
         },
         "native_token": {
           "name": "Sui",
@@ -7520,9 +7095,7 @@
           "address": "axelar1mjlvl44v8er50nxjxcuugd4prafzxj4r84q84pf3ntgte6crnywsrk0s5e"
         },
         "endpoints": {
-          "rpc": [
-            "https://api.testnet.hiro.so"
-          ]
+          "rpc": ["https://api.testnet.hiro.so"]
         },
         "native_token": {
           "name": "Stacks",
@@ -7546,9 +7119,7 @@
       "aleo-2": {
         "chain_name": "aleo-2",
         "endpoints": {
-          "rpc": [
-            "https://testnet3.aleorpc.com"
-          ]
+          "rpc": ["https://testnet3.aleorpc.com"]
         },
         "native_token": {
           "name": "Aleo",
@@ -7582,9 +7153,7 @@
           "address": "axelar1a4e4aful6hchmxd3cffurz24pca52wmt3pf78rsmzglzujnueqgq7eypgl"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.plume.org"
-          ]
+          "rpc": ["https://testnet-rpc.plume.org"]
         },
         "native_token": {
           "name": "Plume",
@@ -7618,9 +7187,7 @@
           "address": "axelar1qz0ap5mf26pt7hdycz7efjn9l5tl4azxyg2knhrm6s3r2v84fmcqp0uxcv"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.hyperliquid-testnet.xyz/evm"
-          ]
+          "rpc": ["https://rpc.hyperliquid-testnet.xyz/evm"]
         },
         "native_token": {
           "name": "Hyperliquid",
@@ -7654,9 +7221,7 @@
           "address": "axelar1uypvvkd820cs4t6y47hqszawegwyrxaxr9ehpla74e98g0rezr5sw9lj4z"
         },
         "endpoints": {
-          "rpc": [
-            "https://bepolia.rpc.berachain.com"
-          ]
+          "rpc": ["https://bepolia.rpc.berachain.com"]
         },
         "native_token": {
           "name": "Berachain",
@@ -7690,9 +7255,7 @@
           "address": "axelar1yrenh2gnkgrv23mlpxke2gce6rhfsqhyzzlsgqxrla7x565md2yq7lsjet"
         },
         "endpoints": {
-          "rpc": [
-            "https://testnet-rpc.monad.xyz"
-          ]
+          "rpc": ["https://testnet-rpc.monad.xyz"]
         },
         "native_token": {
           "name": "Monad",
@@ -7716,9 +7279,7 @@
       "ton2": {
         "chain_name": "ton2",
         "endpoints": {
-          "rpc": [
-            "https://testnet.toncenter.com"
-          ]
+          "rpc": ["https://testnet.toncenter.com"]
         },
         "native_token": {
           "name": "Ton",
