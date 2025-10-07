@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "percent_diff_escrow_supply_threshold": 5,
+    "percent_diff_total_supply_threshold": 5,
+    "alert_asset_escrow_value_threshold": 800000,
+    "alert_asset_value_threshold": 3000000
+  }
+}
