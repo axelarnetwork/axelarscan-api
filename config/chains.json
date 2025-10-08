@@ -2538,7 +2538,10 @@
         "chain_id": "zigchain-1",
         "chain_name": "zigchain",
         "endpoints": {
-          "lcd": ["https://api.zigchain.com"],
+          "lcd": [
+            "https://public-zigchain-lcd.numia.xyz",
+            "https://api.zigchain.com"
+          ],
           "timeout": {
             "lcd": 3000
           }
