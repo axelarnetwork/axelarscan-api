@@ -3500,6 +3500,35 @@
           "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "memento-demo": {
+        "chain_id": 2129,
+        "chain_name": "memento-demo",
+        "maintainer_id": "memento-demo",
+        "gateway": {
+          "address": "0x51bC41E390E7d8271ef3594713C14ab933E37001"
+        },
+        "endpoints": {
+          "rpc": ["https://memento-demo.common-prefix.workers.dev/"]
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Memento",
+        "short_name": "MEMENTO",
+        "image": "/logos/chains/memento.svg",
+        "color": "#d06435",
+        "explorer": {
+          "name": "Memento Testnet Explorer",
+          "url": "https://private-explorer.memento.zeeve.online",
+          "icon": "/logos/explorers/memento.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
       }
     },
     "cosmos": {
