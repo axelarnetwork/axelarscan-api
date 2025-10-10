@@ -5244,6 +5244,12 @@
         "gateway": {
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
+        "multisig_prover": {
+          "address": "axelar1huplwem2amlects7n06llvl46m5tfm33vtty6p82d7lmka5kmmhsrdywf4"
+        },
+        "voting_verifier": {
+          "address": "axelar1ccyfamfvzvheec5c4knvq0l5g42knemfrnaq6t6znuwskt963k5smr9aam"
+        },
         "endpoints": {
           "rpc": ["https://forno.celo-sepolia.celo-testnet.org/"]
         },
@@ -5272,6 +5278,12 @@
         "maintainer_id": "memento-demo",
         "gateway": {
           "address": "0x51bC41E390E7d8271ef3594713C14ab933E37001"
+        },
+        "multisig_prover": {
+          "address": "axelar13s3xyvcjpetwdfyc9q2hh9nc3hdvf7cvtkh33qk0g8adjjjgrk6qeacv67"
+        },
+        "voting_verifier": {
+          "address": "axelar1uekdelqqxxuq5e6jxttlaxrhq3aq2ksn45h9lvtljc6hayeqe95qss5s6v"
         },
         "endpoints": {
           "rpc": ["https://memento-demo.common-prefix.workers.dev/"]
@@ -6275,6 +6287,12 @@
         "maintainer_id": "celo-sepolia",
         "gateway": {
           "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+        },
+        "multisig_prover": {
+          "address": "axelar1x8jqrc49pqrn7arxxsyaa57egpwllu3kes4576y7djrlyygp7dqsdnalyc"
+        },
+        "voting_verifier": {
+          "address": "axelar1pexeladrveekp689w67j94ftcvxhcqwy2ly6w4ntn8caz26r3waqxy54kz"
         },
         "endpoints": {
           "rpc": ["https://forno.celo-sepolia.celo-testnet.org/"]
