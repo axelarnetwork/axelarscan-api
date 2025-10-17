@@ -5286,7 +5286,7 @@
           "address": "axelar1uekdelqqxxuq5e6jxttlaxrhq3aq2ksn45h9lvtljc6hayeqe95qss5s6v"
         },
         "endpoints": {
-          "rpc": ["https://memento-demo.common-prefix.workers.dev/"]
+          "rpc": []
         },
         "native_token": {
           "name": "Ethereum",
