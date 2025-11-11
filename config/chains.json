@@ -2899,7 +2899,7 @@
         "name": "Monad",
         "short_name": "MON",
         "image": "/logos/chains/monad.svg",
-        "color": "#814625",
+        "color": "#836ef9",
         "explorer": {
           "name": "",
           "url": "",
@@ -5224,7 +5224,7 @@
           "rpc": ["https://testnet-rpc.monad.xyz"]
         },
         "native_token": {
-          "name": "Monad",
+          "name": "Mon",
           "symbol": "MON",
           "decimals": 18
         },
