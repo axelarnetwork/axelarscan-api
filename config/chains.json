@@ -2875,6 +2875,40 @@
           "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "monad": {
+        "chain_id": 143,
+        "chain_name": "monad",
+        "gateway": {
+          "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
+        },
+        "multisig_prover": {
+          "address": "axelar1dt6apz0m2lkuls3ah2h7zw277r0v50668fxytqtdxv83yzs4n69qlutnpk"
+        },
+        "voting_verifier": {
+          "address": "axelar1u080xgqqu9zhl4e9hf2ktdny4pq6kc2pmh6u6mlv8nw5zjvcetvqqjzeu0"
+        },
+        "endpoints": {
+          "rpc": ["https://rpc.monad.xyz/"]
+        },
+        "native_token": {
+          "name": "Mon",
+          "symbol": "MON",
+          "decimals": 18
+        },
+        "name": "Monad",
+        "short_name": "MON",
+        "image": "/logos/chains/monad.svg",
+        "color": "#814625",
+        "explorer": {
+          "name": "",
+          "url": "",
+          "icon": "/logos/explorers/monad.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
       }
     }
   },
