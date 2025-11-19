@@ -42,5 +42,5 @@ module.exports = async params => {
     if (nextKey && supply) break;
   }
 
-  return formatUnits(supply, decimals);
+  return supply ? formatUnits(supply, decimals) : undefined;
 };
