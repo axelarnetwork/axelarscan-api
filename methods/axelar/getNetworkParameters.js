@@ -24,16 +24,41 @@ module.exports = async params => {
                     )?.params,
                   ]);
                   break;
-                case 'bankSupply':
-                  resolve([
-                    k,
-                    (
-                      await request(instance, {
-                        path: `/cosmos/bank/v1beta1/supply/${ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'}`,
-                      })
-                    )?.amount,
-                  ]);
+                case 'bankSupply': {
+                  const denom =
+                    ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl';
+                  let supply;
+                  let nextKey = true;
+                  const {
+                    equalsIgnoreCase,
+                    isString,
+                  } = require('../../utils/string');
+
+                  while (nextKey) {
+                    const response = await request(instance, {
+                      path: '/cosmos/bank/v1beta1/supply',
+                      params: {
+                        'pagination.limit': 3000,
+                        'pagination.key': isString(nextKey)
+                          ? nextKey
+                          : undefined,
+                      },
+                    });
+
+                    // find amount of this denom from response
+                    supply = toArray(response?.supply).find(d =>
+                      equalsIgnoreCase(d.denom, denom)
+                    )?.amount;
+
+                    nextKey = response?.pagination?.next_key;
+
+                    // break when already got supply
+                    if (nextKey && supply) break;
+                  }
+
+                  resolve([k, supply ? { amount: supply } : null]);
                   break;
+                }
                 case 'stakingPool':
                   resolve([
                     k,
