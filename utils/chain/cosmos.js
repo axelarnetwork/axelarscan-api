@@ -49,26 +49,19 @@ const getCosmosBalance = async (chain, address, contractData) => {
   let valid = false;
 
   for (const denom of denoms) {
-    for (const path of [
-      '/cosmos/bank/v1beta1/balances/{address}/by_denom',
-      '/cosmos/bank/v1beta1/balances/{address}/{denom}',
-    ]) {
-      try {
-        const response = await lcds.query(
-          path
-            .replace('{address}', address)
-            .replace('{denom}', encodeURIComponent(denom)),
-          { denom }
-        );
-        const { amount } = { ...response?.balance };
-        balance = amount;
+    try {
+      const response = await lcds.query(
+        `/cosmos/bank/v1beta1/balances/${address}/by_denom`,
+        { denom }
+      );
+      const { amount } = { ...response?.balance };
+      balance = amount;
 
-        if (balance) {
-          valid = true;
-          break;
-        }
-      } catch (error) {}
-    }
+      if (balance) {
+        valid = true;
+        break;
+      }
+    } catch (error) {}
 
     if (valid) break;
   }
@@ -83,51 +76,36 @@ const getIBCSupply = async (chain, contractData) => {
 
   let supply;
   let valid = false;
+  let responsive = false;
+  let nextKey = true;
 
-  // get supply by request /supply/{denom}
-  if (!ibc_denom.includes('ibc/')) {
-    const { amount } = {
-      ...(await lcds.query(
-        `/cosmos/bank/v1beta1/supply/${encodeURIComponent(ibc_denom)}`
-      )),
-    };
+  while (nextKey) {
+    // get supply by /supply
+    const response = await lcds.query('/cosmos/bank/v1beta1/supply', {
+      'pagination.limit': 3000,
+      'pagination.key': isString(nextKey) ? nextKey : undefined,
+    });
 
-    supply = amount?.amount;
-    valid = isNumber(supply) && supply !== '0';
+    // find amount of this denom from response
+    supply = toArray(response?.supply).find(d =>
+      equalsIgnoreCase(d.denom, ibc_denom)
+    )?.amount;
+
+    nextKey = response?.pagination?.next_key;
+
+    // set responsive = true when supply is number or got response of last page
+    responsive = isNumber(supply) || (!!response?.supply && !nextKey);
+
+    // break when already got supply
+    if (nextKey && isNumber(supply)) break;
   }
 
-  if (!valid) {
-    let responsive = false;
-    let nextKey = true;
-
-    while (nextKey) {
-      // get supply by /supply
-      const response = await lcds.query('/cosmos/bank/v1beta1/supply', {
-        'pagination.limit': 3000,
-        'pagination.key': isString(nextKey) ? nextKey : undefined,
-      });
-
-      // find amount of this denom from response
-      supply = toArray(response?.supply).find(d =>
-        equalsIgnoreCase(d.denom, ibc_denom)
-      )?.amount;
-
-      nextKey = response?.pagination?.next_key;
-
-      // set responsive = true when supply is number or got response of last page
-      responsive = isNumber(supply) || (!!response?.supply && !nextKey);
-
-      // break when already got supply
-      if (nextKey && isNumber(supply)) break;
-    }
-
-    if (!(isNumber(supply) && supply !== '0') && responsive) {
-      // set 0 when denom isn't exists
-      supply = '0';
-    }
-
-    valid = isNumber(supply);
+  if (!(isNumber(supply) && supply !== '0') && responsive) {
+    // set 0 when denom isn't exists
+    supply = '0';
   }
+
+  valid = isNumber(supply);
 
   return valid ? formatUnits(supply, decimals || 6, false) : undefined;
 };
