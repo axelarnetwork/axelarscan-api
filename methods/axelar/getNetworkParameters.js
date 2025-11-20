@@ -45,6 +45,8 @@ module.exports = async params => {
                       },
                     });
 
+                    if (!response?.supply) break;
+
                     // find amount of this denom from response
                     supply = toArray(response?.supply).find(d =>
                       equalsIgnoreCase(d.denom, denom)
