@@ -2,6 +2,7 @@ const { getLCDInstance } = require('./utils');
 const { ENVIRONMENT } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
+const { equalsIgnoreCase, isString } = require('../../utils/string');
 
 module.exports = async params => {
   const { height } = { ...params };
@@ -29,10 +30,6 @@ module.exports = async params => {
                     ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl';
                   let supply;
                   let nextKey = true;
-                  const {
-                    equalsIgnoreCase,
-                    isString,
-                  } = require('../../utils/string');
 
                   while (nextKey) {
                     const response = await request(instance, {

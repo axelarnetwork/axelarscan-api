@@ -2,6 +2,8 @@ const { getLCDInstance } = require('./utils');
 const { ENVIRONMENT, getAssetData } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { formatUnits } = require('../../utils/number');
+const { equalsIgnoreCase, isString } = require('../../utils/string');
+const { toArray } = require('../../utils/parser');
 
 module.exports = async params => {
   const { asset, height } = { ...params };
@@ -19,8 +21,6 @@ module.exports = async params => {
   // request /supply and search for denom
   let supply;
   let nextKey = true;
-  const { equalsIgnoreCase, isString } = require('../../utils/string');
-  const { toArray } = require('../../utils/parser');
 
   while (nextKey) {
     const response = await request(getLCDInstance(height), {
