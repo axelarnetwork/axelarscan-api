@@ -2,6 +2,7 @@ const { getLCDInstance } = require('./utils');
 const { ENVIRONMENT } = require('../../utils/config');
 const { request } = require('../../utils/http');
 const { toArray } = require('../../utils/parser');
+const { equalsIgnoreCase, isString } = require('../../utils/string');
 
 module.exports = async params => {
   const { height } = { ...params };
@@ -24,16 +25,39 @@ module.exports = async params => {
                     )?.params,
                   ]);
                   break;
-                case 'bankSupply':
-                  resolve([
-                    k,
-                    (
-                      await request(instance, {
-                        path: `/cosmos/bank/v1beta1/supply/${ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl'}`,
-                      })
-                    )?.amount,
-                  ]);
+                case 'bankSupply': {
+                  const denom =
+                    ENVIRONMENT === 'devnet-amplifier' ? 'uamplifier' : 'uaxl';
+                  let supply;
+                  let nextKey = true;
+
+                  while (nextKey) {
+                    const response = await request(instance, {
+                      path: '/cosmos/bank/v1beta1/supply',
+                      params: {
+                        'pagination.limit': 3000,
+                        'pagination.key': isString(nextKey)
+                          ? nextKey
+                          : undefined,
+                      },
+                    });
+
+                    if (!response?.supply) break;
+
+                    // find supply object of this denom from response
+                    supply = toArray(response?.supply).find(d =>
+                      equalsIgnoreCase(d.denom, denom)
+                    );
+
+                    nextKey = response?.pagination?.next_key;
+
+                    // break when already got supply
+                    if (nextKey && supply) break;
+                  }
+
+                  resolve([k, supply || null]);
                   break;
+                }
                 case 'stakingPool':
                   resolve([
                     k,

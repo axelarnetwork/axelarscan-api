@@ -668,8 +668,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Osmosis",
@@ -707,8 +706,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Cosmos",
@@ -814,8 +812,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Injective",
@@ -922,8 +919,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Secret",
@@ -959,8 +955,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Secret",
@@ -1036,8 +1031,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Stargaze",
@@ -1183,8 +1177,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Evmos",
@@ -1430,8 +1423,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "XPLA",
@@ -1542,8 +1534,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Carbon",
@@ -1615,8 +1606,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Neutron",
@@ -1689,8 +1679,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Archway",
@@ -1763,8 +1752,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "IXO",
@@ -1978,8 +1966,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Chihuahua",
@@ -2016,8 +2003,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Saga",
@@ -2191,8 +2177,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Nolus",
@@ -2261,8 +2246,7 @@
           "lcd": ["https://api.xion-mainnet-1.burnt.com"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Xion",
@@ -2297,8 +2281,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Elys",
@@ -2329,8 +2312,7 @@
           "lcd": ["https://allora-api.mainnet.allora.network"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Allora",
@@ -2365,8 +2347,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Mantra",
@@ -2400,8 +2381,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Babylon",
@@ -3536,8 +3516,7 @@
           "lcd": ["https://lcd.osmotest5.osmosis.zone"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Osmosis",
@@ -3569,8 +3548,7 @@
           "lcd": ["https://rest.sentry-01.theta-testnet.polypore.xyz"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Cosmos",
@@ -3703,8 +3681,7 @@
           "lcd": ["https://api.pulsar3.scrttestnet.com"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Secret",
@@ -3804,8 +3781,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Evmos",
@@ -3997,8 +3973,7 @@
           "lcd": ["https://cube-lcd.xpla.dev"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "XPLA",
@@ -4065,8 +4040,7 @@
           "lcd": ["https://api.xion-testnet-1.burnt.com"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Xion",
@@ -4098,8 +4072,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Carbon",
@@ -4196,8 +4169,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Neutron",
@@ -4388,8 +4360,7 @@
           ],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Elys",
@@ -4451,8 +4422,7 @@
           "lcd": ["https://testnet-ssc-lcd.sagarpc.io"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Saga",
@@ -4642,8 +4612,7 @@
           "lcd": ["https://api.buenavista.wardenprotocol.org"],
           "timeout": {
             "lcd": 3000
-          },
-          "use_query": true
+          }
         },
         "native_token": {
           "name": "Warden",

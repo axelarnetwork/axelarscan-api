@@ -17,7 +17,7 @@ module.exports = async params => {
     // get votes of this proposal
     const { votes, pagination } = {
       ...(await request(getLCDInstance(), {
-        path: `/cosmos/gov/v1beta1/proposals/${id}/votes`,
+        path: `/cosmos/gov/v1/proposals/${id}/votes`,
         params: { 'pagination.key': isString(nextKey) ? nextKey : undefined },
       })),
     };
@@ -28,13 +28,21 @@ module.exports = async params => {
         toArray(votes).map(d => {
           // normalize
           d.proposal_id = toNumber(d.proposal_id);
-          d.option = d.option?.replace('VOTE_OPTION_', '');
 
           d.options = toArray(d.options).map(d => ({
             ...d,
             option: d.option?.replace('VOTE_OPTION_', ''),
             weight: toNumber(d.weight),
           }));
+
+          const normalizedOption = d.option?.replace('VOTE_OPTION_', '');
+          const fallbackOption =
+            d.options?.length > 0
+              ? (d.options.find(o => o.weight === 1) || d.options[0])?.option
+              : undefined;
+
+          // use the explicitly provided option if available, otherwise fall back
+          d.option = normalizedOption || fallbackOption;
 
           return d;
         })
