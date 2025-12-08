@@ -8,7 +8,7 @@ const { isNumber, formatUnits } = require('../number');
 
 /**
  * Shared utility to handle Cosmos SDK v0.50+ query parameter conversion and fallback.
- * Tries query= first (new SDK), falls back to events= (old SDK) if needed.
+ * Tries query= first (> v0.50), falls back to events= (< v0.50) if needed.
  *
  * @param {string} path - The request path
  * @param {object} params - The request parameters

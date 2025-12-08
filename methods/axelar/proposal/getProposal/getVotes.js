@@ -35,15 +35,14 @@ module.exports = async params => {
             weight: toNumber(d.weight),
           }));
 
-          // if no .option, get it from .options
-          if (!d.option && d.options?.length > 0) {
-            // try to get the option with weight 1, or get the first one
-            d.option = (
-              d.options.find(o => o.weight === 1) || d.options[0]
-            )?.option;
-          } else {
-            d.option = d.option?.replace('VOTE_OPTION_', '');
-          }
+          const normalizedOption = d.option?.replace('VOTE_OPTION_', '');
+          const fallbackOption =
+            d.options?.length > 0
+              ? (d.options.find(o => o.weight === 1) || d.options[0])?.option
+              : undefined;
+
+          // use the explicitly provided option if available, otherwise fall back
+          d.option = normalizedOption || fallbackOption;
 
           return d;
         })
