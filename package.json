@@ -55,5 +55,5 @@
     "start": "node dist/index.js",
     "test": "NODE_NO_WARNINGS=1 mocha"
   },
-  "version": "1.1.0"
+  "version": "1.2.0"
 }
