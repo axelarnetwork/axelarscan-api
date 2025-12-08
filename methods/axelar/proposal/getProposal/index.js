@@ -15,7 +15,7 @@ module.exports = async params => {
   // get proposal data
   const { proposal } = {
     ...(await request(getLCDInstance(), {
-      path: `/cosmos/gov/v1/proposals/${id}`,
+      path: `/cosmos/gov/v1beta1/proposals/${id}`,
     })),
   };
 
