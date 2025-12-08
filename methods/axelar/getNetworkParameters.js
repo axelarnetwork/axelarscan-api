@@ -44,10 +44,10 @@ module.exports = async params => {
 
                     if (!response?.supply) break;
 
-                    // find amount of this denom from response
+                    // find supply object of this denom from response
                     supply = toArray(response?.supply).find(d =>
                       equalsIgnoreCase(d.denom, denom)
-                    )?.amount;
+                    );
 
                     nextKey = response?.pagination?.next_key;
 
@@ -55,7 +55,7 @@ module.exports = async params => {
                     if (nextKey && supply) break;
                   }
 
-                  resolve([k, supply ? { amount: supply } : null]);
+                  resolve([k, supply || null]);
                   break;
                 }
                 case 'stakingPool':
