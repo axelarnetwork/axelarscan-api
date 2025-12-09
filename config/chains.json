@@ -6954,16 +6954,16 @@
           "transaction_path": "/tx/{tx}"
         }
       },
-      "solana-12": {
-        "chain_name": "solana-12",
+      "solana-14": {
+        "chain_name": "solana-14",
         "gateway": {
-          "address": "gtw3LYHmSe3y1cRqCeBuTpyB4KDQHfaqqHQs6Rw19DX"
+          "address": "gtwiF7Bamsq5zBQCnKjK7kHfmBQe7StQE9VPucWrtmA"
         },
         "multisig_prover": {
-          "address": "axelar19ya79dpwl3nfmq44r5hh7t7nm37z0r3egkfxraltr696e3wtgegqnssprn"
+          "address": "axelar19z0yzazs0tc35mk5sc0w0tm7kru45mtqnjcftc8xqngeqxjj9yts9gfu6s"
         },
         "voting_verifier": {
-          "address": "axelar1rumy2paal47vfarnehaygfkvdchd3lrttkredrugpwnju6zug9pquej6l3"
+          "address": "axelar1cm7tmafwrslpsr5239js5ypcdpdqzm2uv2vur4kxqh7zlj78ht8q679jl3"
         },
         "endpoints": {
           "rpc": ["https://api.devnet.solana.com"]
