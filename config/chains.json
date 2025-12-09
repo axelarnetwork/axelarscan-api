@@ -5953,36 +5953,6 @@
           "transaction_path": "/transaction/{tx}"
         }
       },
-      "solana": {
-        "chain_name": "solana",
-        "multisig_prover": {
-          "address": "axelar1y4uv7n2a6qdnv4w8h5qs7nsepzeehsj68wyqgecuh5cay02sk4qs702yjm"
-        },
-        "voting_verifier": {
-          "address": "axelar1e0ndz9668a953a507x04c74wsp0sxfcjj2gtvum733lqp95rvz6slmgx2q"
-        },
-        "endpoints": {
-          "rpc": ["https://api.devnet.solana.com"]
-        },
-        "native_token": {
-          "name": "Solana",
-          "symbol": "SOL",
-          "decimals": 9
-        },
-        "name": "Solana",
-        "short_name": "SOL",
-        "image": "/logos/chains/solana.svg",
-        "color": "#8d4df7",
-        "explorer": {
-          "name": "Solana",
-          "url": "https://explorer.solana.com",
-          "icon": "/logos/explorers/solana.png",
-          "block_path": "/block/{block}?cluster=devnet",
-          "address_path": "/address/{address}?cluster=devnet",
-          "contract_path": "/address/{address}?cluster=devnet",
-          "transaction_path": "/tx/{tx}?cluster=devnet"
-        }
-      },
       "stellar-2025-q3": {
         "chain_name": "stellar-2025-q3",
         "gateway": {
