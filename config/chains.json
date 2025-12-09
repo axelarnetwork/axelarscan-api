@@ -2881,8 +2881,8 @@
         "image": "/logos/chains/monad.svg",
         "color": "#836ef9",
         "explorer": {
-          "name": "",
-          "url": "",
+          "name": "MonadVision",
+          "url": "https://monadvision.com",
           "icon": "/logos/explorers/monad.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
