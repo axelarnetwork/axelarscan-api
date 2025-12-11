@@ -20,8 +20,11 @@ module.exports = async () => {
     // get all proposals
     const { proposals, pagination } = {
       ...(await request(getLCDInstance(), {
-        path: `/cosmos/gov/v1beta1/proposals?pagination.limit=${PROPOSALS_PAGINATION_LIMIT}`,
-        params: { 'pagination.key': isString(nextKey) ? nextKey : undefined },
+        path: '/cosmos/gov/v1beta1/proposals',
+        params: {
+          'pagination.limit': PROPOSALS_PAGINATION_LIMIT,
+          'pagination.key': isString(nextKey) ? nextKey : undefined,
+        },
       })),
     };
 
