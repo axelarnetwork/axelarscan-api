@@ -8,6 +8,8 @@ const { toArray } = require('../../../../utils/parser');
 const { isString, lastString } = require('../../../../utils/string');
 const { toNumber, formatUnits } = require('../../../../utils/number');
 
+const PROPOSALS_PAGINATION_LIMIT = 50;
+
 module.exports = async () => {
   const assetsData = await getAssets();
 
@@ -19,7 +21,10 @@ module.exports = async () => {
     const { proposals, pagination } = {
       ...(await request(getLCDInstance(), {
         path: '/cosmos/gov/v1beta1/proposals',
-        params: { 'pagination.key': isString(nextKey) ? nextKey : undefined },
+        params: {
+          'pagination.limit': PROPOSALS_PAGINATION_LIMIT,
+          'pagination.key': isString(nextKey) ? nextKey : undefined,
+        },
       })),
     };
 
