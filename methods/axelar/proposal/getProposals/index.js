@@ -20,7 +20,7 @@ module.exports = async () => {
     // get all proposals
     const { proposals, pagination } = {
       ...(await request(getLCDInstance(), {
-        path: '/cosmos/gov/v1beta1/proposals',
+        path: '/cosmos/gov/v1/proposals',
         params: {
           'pagination.limit': PROPOSALS_PAGINATION_LIMIT,
           'pagination.key': isString(nextKey) ? nextKey : undefined,
@@ -36,20 +36,37 @@ module.exports = async () => {
             toArray(proposals).map(
               d =>
                 new Promise(async resolve => {
-                  // normalize
-                  if (d.content) delete d.content.wasm_byte_code;
+                  // extract content from legacy wrapper if present (v1 response for old proposals)
+                  const legacyMsg = toArray(d.messages).find(
+                    m => m?.['@type'] === '/cosmos.gov.v1.MsgExecLegacyContent'
+                  );
+                  let content =
+                    legacyMsg?.content || d.content || d.messages?.[0];
 
-                  d.proposal_id = toNumber(d.proposal_id);
-                  d.type = lastString(d.content?.['@type'], '.')?.replace(
+                  // for new v1 proposals, inject title/summary from proposal root into content
+                  if (!legacyMsg && !d.content && d.title) {
+                    content = {
+                      ...content,
+                      title: d.title,
+                      description: d.summary,
+                    };
+                  }
+
+                  // normalize
+                  if (content) delete content.wasm_byte_code;
+
+                  // handle both v1 (id) and v1beta1 (proposal_id)
+                  d.proposal_id = toNumber(d.id || d.proposal_id);
+                  d.type = lastString(content?.['@type'], '.')?.replace(
                     'Proposal',
                     ''
                   );
 
                   d.content = {
-                    ...d.content,
-                    plan: d.content?.plan && {
-                      ...d.content.plan,
-                      height: toNumber(d.content.plan.height),
+                    ...content,
+                    plan: content?.plan && {
+                      ...content.plan,
+                      height: toNumber(content.plan.height),
                     },
                   };
 
@@ -77,10 +94,16 @@ module.exports = async () => {
                     )
                   );
 
+                  // normalize tally result (v1 uses *_count, v1beta1 doesn't)
+                  const tally = { ...d.final_tally_result };
                   d.final_tally_result = Object.fromEntries(
-                    Object.entries({ ...d.final_tally_result }).map(
-                      ([k, v]) => [k, formatUnits(v, 6, false)]
-                    )
+                    Object.entries({
+                      yes: tally.yes_count || tally.yes,
+                      abstain: tally.abstain_count || tally.abstain,
+                      no: tally.no_count || tally.no,
+                      no_with_veto:
+                        tally.no_with_veto_count || tally.no_with_veto,
+                    }).map(([k, v]) => [k, formatUnits(v, 6, false)])
                   );
 
                   resolve(d);

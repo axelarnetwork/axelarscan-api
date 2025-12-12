@@ -15,13 +15,29 @@ module.exports = async params => {
   // get proposal data
   const { proposal } = {
     ...(await request(getLCDInstance(), {
-      path: `/cosmos/gov/v1beta1/proposals/${id}`,
+      path: `/cosmos/gov/v1/proposals/${id}`,
     })),
   };
 
+  // extract content from legacy wrapper if present (v1 response for old proposals)
+  const legacyMsg = toArray(proposal?.messages).find(
+    m => m?.['@type'] === '/cosmos.gov.v1.MsgExecLegacyContent'
+  );
+  let content =
+    legacyMsg?.content || proposal?.content || proposal?.messages?.[0];
+
+  // for new v1 proposals, inject title/summary from proposal root into content
+  if (!legacyMsg && !proposal?.content && proposal?.title) {
+    content = {
+      ...content,
+      title: proposal.title,
+      description: proposal.summary,
+    };
+  }
+
   const {
+    id: proposalId,
     proposal_id,
-    content,
     status,
     submit_time,
     deposit_end_time,
@@ -39,8 +55,17 @@ module.exports = async params => {
   // get assets data
   const assetsData = proposal ? await getAssets() : undefined;
 
+  // normalize tally result (v1 uses *_count, v1beta1 doesn't)
+  const tally = { ...final_tally_result };
+  const normalizedTally = {
+    yes: tally.yes_count || tally.yes,
+    abstain: tally.abstain_count || tally.abstain,
+    no: tally.no_count || tally.no,
+    no_with_veto: tally.no_with_veto_count || tally.no_with_veto,
+  };
+
   return {
-    proposal_id: toNumber(proposal_id),
+    proposal_id: toNumber(proposalId || proposal_id),
     type: lastString(content?.['@type'], '.')?.replace('Proposal', ''),
     content: {
       ...content,
@@ -69,7 +94,7 @@ module.exports = async params => {
       )
     ),
     final_tally_result: Object.fromEntries(
-      Object.entries({ ...final_tally_result }).map(([k, v]) => [
+      Object.entries(normalizedTally).map(([k, v]) => [
         k,
         formatUnits(v, 6, false),
       ])
