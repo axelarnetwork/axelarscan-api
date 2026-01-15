@@ -5177,17 +5177,17 @@
           "transaction_path": "/tx/{tx}"
         }
       },
-      "monad": {
+      "monad-3": {
         "chain_id": 10143,
-        "chain_name": "monad",
+        "chain_name": "monad-3",
         "gateway": {
-          "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
+          "address": "0x1dd10E8909E248e554AA614e7b86fABE1d8f9E77"
         },
         "multisig_prover": {
-          "address": "axelar1dt6apz0m2lkuls3ah2h7zw277r0v50668fxytqtdxv83yzs4n69qlutnpk"
+          "address": "axelar162vcvdwa4ga6aq90juclh8ssaus5dq4kw6jz89wugr0gkczr6wussc47th"
         },
         "voting_verifier": {
-          "address": "axelar1u080xgqqu9zhl4e9hf2ktdny4pq6kc2pmh6u6mlv8nw5zjvcetvqqjzeu0"
+          "address": "axelar12ruanxwnzfymj52gr93lg70g2pe3yxvzy7g0yrhj66vtdrg7snsqhzwq0r"
         },
         "endpoints": {
           "rpc": ["https://testnet-rpc.monad.xyz"]
@@ -6185,40 +6185,6 @@
           "name": "Berascan",
           "url": "https://testnet.berascan.com",
           "icon": "/logos/explorers/berachain.png",
-          "block_path": "/block/{block}",
-          "address_path": "/address/{address}",
-          "contract_path": "/token/{address}",
-          "transaction_path": "/tx/{tx}"
-        }
-      },
-      "monad": {
-        "chain_id": 10143,
-        "chain_name": "monad",
-        "gateway": {
-          "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
-        },
-        "multisig_prover": {
-          "address": "axelar1xvqw6ts27k74ak0av7rszmedcz2rprqenayqk2gptfjhnl7rw3lqylln83"
-        },
-        "voting_verifier": {
-          "address": "axelar1v72l84ar9nhl7xt44hn374xm60a7huhfnulh65aagtk55x8uzpsqfdr6tq"
-        },
-        "endpoints": {
-          "rpc": ["https://testnet-rpc.monad.xyz"]
-        },
-        "native_token": {
-          "name": "Monad",
-          "symbol": "MON",
-          "decimals": 18
-        },
-        "name": "Monad",
-        "short_name": "MON",
-        "image": "/logos/chains/monad.svg",
-        "color": "#836ef9",
-        "explorer": {
-          "name": "Monad",
-          "url": "https://testnet.monadexplorer.com",
-          "icon": "/logos/explorers/monad.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/token/{address}",
