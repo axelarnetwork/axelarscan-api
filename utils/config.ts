@@ -220,6 +220,7 @@ const getChainByS3ConfigChain = (chain: string): string => {
   const chainsMapping: ChainsMapping = {
     testnet: {
       terra: 'terra-3',
+      monad: 'monad-3',
     },
   };
 
