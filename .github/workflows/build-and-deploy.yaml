@@ -137,6 +137,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    secrets: inherit
     with:
       tag: ${{ needs.build-and-push-docker-image.outputs.tag }}
       environment: ${{ matrix.environment }}
