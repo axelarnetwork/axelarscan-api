@@ -103,10 +103,4 @@ jobs:
 
       - name: Terraform Apply
         working-directory: terraform/${{ env.ENVIRONMENT }}
-        env:
-          TF_VAR_tag: ${{ steps.deployment-tag.outputs.tag }}
-          TF_VAR_aws_region: ${{ env.AWS_REGION }}
-          TF_VAR_aws_account_id: ${{ env.AWS_ACCOUNT_ID }}
-          TF_VAR_datadog_api_key_secret_arn: ${{ secrets.DATADOG_API_KEY_SECRET_ARN }}
-          TF_VAR_indexer_secret_arn: ${{ steps.tf-vars.outputs.indexer_secret_arn }}
         run: terraform apply -auto-approve tfplan
