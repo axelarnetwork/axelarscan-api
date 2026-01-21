@@ -91,7 +91,7 @@ resource "aws_iam_role" "lambda_role" {
 resource "aws_lambda_function" "function" {
   function_name = "${var.package_name}-${var.environment}"
   package_type  = "Image"
-  image_uri     = "${var.aws_account}.dkr.ecr.us-east-2.amazonaws.com/axelarscan-api:v${var.app_version}"
+  image_uri     = "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.ecr_repository_name}:${var.tag}"
   role          = aws_iam_role.lambda_role.arn
   timeout       = 840
   memory_size   = 512
@@ -100,18 +100,16 @@ resource "aws_lambda_function" "function" {
     variables = {
       NODE_NO_WARNINGS      = 1
       ENVIRONMENT           = var.environment
-      INDEXER_URL           = var.indexer_url
-      INDEXER_USERNAME      = var.indexer_username
-      INDEXER_PASSWORD      = var.indexer_password
+      INDEXER_SECRET_ARN    = var.indexer_secret_arn
       LOG_LEVEL             = var.log_level
       DD_LAMBDA_HANDLER     = "dist/index.handler"
       DD_SITE               = "datadoghq.com"
-      DD_API_KEY_SECRET_ARN = "arn:aws:secretsmanager:us-east-2:${var.aws_account}:secret:DdApiKeySecret-gJ9EIYVknJGu-HYZ3nM"
+      DD_API_KEY_SECRET_ARN = var.datadog_api_key_secret_arn
       DD_TRACE_ENABLED      = false
       DD_ENHANCED_METRICS   = false
       DD_ENV                = var.environment
       DD_SERVICE            = "${var.package_name}-${var.environment}"
-      DD_VERSION            = "${var.app_version}"
+      DD_VERSION            = var.tag
     }
   }
   image_config {

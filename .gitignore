@@ -11,8 +11,8 @@ node_modules
 # terraform
 .terraform
 .terraform.*
-# terraform.*
-variables.tf
+terraform.tfvars
+*.tfplan
 
 # production
 /build

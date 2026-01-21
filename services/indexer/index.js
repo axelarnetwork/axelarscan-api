@@ -11,13 +11,12 @@ const { toArray } = require('../../utils/parser');
 const { isString } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
 const { log } = require('../../utils/logger');
-
-const INDEXER_URL = process.env.INDEXER_URL;
-const INDEXER_USERNAME = process.env.INDEXER_USERNAME;
-const INDEXER_PASSWORD = process.env.INDEXER_PASSWORD;
+const { getIndexerConfig } = require('../../utils/secrets');
 
 const crud = async params => {
-  if (!(INDEXER_URL && params?.collection)) return;
+  const config = await getIndexerConfig();
+
+  if (!(config?.url && params?.collection)) return;
 
   // clone initial params
   const _params = _.cloneDeep(params);
@@ -38,8 +37,8 @@ const crud = async params => {
   let { path } = { ...params };
   params = normalizeSearchObjects(removeFieldsFromParams(params));
 
-  const indexer = createInstance(INDEXER_URL, { timeout: 30000, gzip: true });
-  const auth = { username: INDEXER_USERNAME, password: INDEXER_PASSWORD };
+  const indexer = createInstance(config.url, { timeout: 30000, gzip: true });
+  const auth = { username: config.username, password: config.password };
 
   let response;
   switch (method) {

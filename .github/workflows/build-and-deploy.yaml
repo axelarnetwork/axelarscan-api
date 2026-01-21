@@ -1,0 +1,142 @@
+name: Build/Push/Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+# Prevent multiple concurrent runs per branch (serialize builds and deploys on the same ref)
+concurrency:
+  group: build-docker-image-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-push-docker-image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      id-token: write
+      contents: read
+    outputs:
+      tag: ${{ steps.image-tag.outputs.tag }}
+    env:
+      REPOSITORY: axelarscan-api
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/ghwf-${{ github.event.repository.name }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076 # v2.0.1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+
+      - name: Determine tag
+        id: image-tag
+        run: |
+          # Use commit SHA as image tag
+          IMAGE_TAG="${{ github.sha }}"
+          echo "tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+          echo "Using commit SHA as tag: ${IMAGE_TAG}"
+
+      - name: Check if this commit is still the latest on the branch
+        run: |
+          set -euo pipefail # exit on error, unset variables, and pipefail
+
+          CURRENT_SHA="${{ github.sha }}"
+          BRANCH="${GITHUB_REF_NAME}"
+
+          # Get the latest commit SHA from the remote branch
+          REMOTE_SHA=$(git ls-remote origin "refs/heads/${BRANCH}" | cut -f1)
+
+          if [ -z "${REMOTE_SHA}" ]; then
+            echo "Error: Could not determine remote SHA for branch ${BRANCH}."
+            exit 1
+          fi
+
+          echo "Current workflow commit: ${CURRENT_SHA}"
+          echo "Latest commit on origin/${BRANCH}: ${REMOTE_SHA}"
+
+          if [ "${CURRENT_SHA}" != "${REMOTE_SHA}" ]; then
+            echo "Error: This workflow is stale (commit ${CURRENT_SHA} is no longer the latest on ${BRANCH})."
+            echo "A newer commit (${REMOTE_SHA}) has been pushed. Failing this workflow to prevent deploying outdated code."
+            exit 1
+          fi
+
+          echo "This commit is still the latest on ${BRANCH}. Proceeding with build."
+
+      - name: Verify image tag and registry
+        id: verify-tag
+        run: |
+          ECR_REGISTRY="${{ steps.login-ecr.outputs.registry }}"
+          IMAGE_TAG="${{ steps.image-tag.outputs.tag }}"
+          echo "ECR_REGISTRY=${ECR_REGISTRY}"
+          echo "REPOSITORY=${REPOSITORY}"
+          echo "IMAGE_TAG=${IMAGE_TAG}"
+          if [ -z "${ECR_REGISTRY}" ] || [ -z "${REPOSITORY}" ] || [ -z "${IMAGE_TAG}" ]; then
+            echo "Error: One or more required variables are empty"
+            exit 1
+          fi
+          FULL_TAG="${ECR_REGISTRY}/${REPOSITORY}:${IMAGE_TAG}"
+          echo "Full image tag: ${FULL_TAG}"
+          echo "full_tag=${FULL_TAG}" >> $GITHUB_OUTPUT
+
+      - name: Check if image already exists
+        id: image-check
+        continue-on-error: true
+        run: |
+          IMAGE_TAG="${{ steps.image-tag.outputs.tag }}"
+          if aws ecr describe-images \
+            --repository-name ${REPOSITORY} \
+            --image-ids imageTag=${IMAGE_TAG} \
+            --region ${AWS_REGION} \
+            &>/dev/null; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Image ${IMAGE_TAG} already exists in ECR, skipping build"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Image ${IMAGE_TAG} does not exist, will build"
+          fi
+
+      - name: Build and push Docker image
+        if: steps.image-check.outputs.exists != 'true'
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          provenance: false
+          tags: ${{ steps.verify-tag.outputs.full_tag }}
+          labels: |
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ steps.image-tag.outputs.tag }}
+
+  deploy:
+    needs: build-and-push-docker-image
+    strategy:
+      fail-fast: false
+      matrix:
+        environment:
+          - devnet-amplifier
+          - stagenet
+          - testnet
+          - mainnet
+    uses: ./.github/workflows/deploy.yaml
+    permissions:
+      id-token: write
+      contents: read
+    with:
+      tag: ${{ needs.build-and-push-docker-image.outputs.tag }}
+      environment: ${{ matrix.environment }}
