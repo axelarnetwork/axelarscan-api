@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - ocsi-24-axelarscan-api
 
 # Prevent multiple concurrent runs per branch (serialize builds and deploys on the same ref)
 concurrency:
