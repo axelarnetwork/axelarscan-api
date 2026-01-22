@@ -132,6 +132,7 @@ jobs:
         environment:
           - devnet-amplifier
           - stagenet
+          - testnet
     uses: ./.github/workflows/deploy.yaml
     permissions:
       id-token: write
