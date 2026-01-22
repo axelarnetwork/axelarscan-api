@@ -1,0 +1,106 @@
+name: Deploy Axelarscan API
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Docker image tag to deploy (must be a full 40-character git commit SHA)"
+        required: true
+        type: string
+      environment:
+        description: "Terraform environment to deploy (e.g. devnet-amplifier, stagenet, testnet, mainnet)"
+        required: true
+        type: choice
+        options:
+          - devnet-amplifier
+          - stagenet
+          - testnet
+          - mainnet
+  workflow_call:
+    inputs:
+      tag:
+        description: "Docker image tag to deploy (must be a full 40-character git commit SHA)"
+        required: true
+        type: string
+      environment:
+        description: "Terraform environment to deploy (e.g. devnet-amplifier, stagenet, testnet, mainnet)"
+        required: true
+        type: string
+
+# Ensure only one deployment per environment runs at a time (queues subsequent deployments per env)
+concurrency:
+  group: deploy-axelarscan-api-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # if workflow_dispatch, run only on main branch
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      ENVIRONMENT: ${{ inputs.environment }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Determine tag
+        id: deployment-tag
+        run: |
+          # Use the provided tag input (works for both workflow_call and workflow_dispatch)
+          TAG="${{ inputs.tag }}"
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "Deployment tag: ${TAG}"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/ghwf-${{ github.event.repository.name }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        with:
+          terraform_version: 1.6.6
+
+      - name: Terraform Init
+        working-directory: terraform/${{ env.ENVIRONMENT }}
+        run: terraform init
+
+      - name: Set Terraform Variables
+        id: tf-vars
+        run: |
+          # Set indexer secret ARN based on environment
+          case "${{ env.ENVIRONMENT }}" in
+            "devnet-amplifier")
+              echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_DEVNET_AMPLIFIER }}" >> $GITHUB_OUTPUT
+              ;;
+            "stagenet")
+              echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_STAGENET }}" >> $GITHUB_OUTPUT
+              ;;
+            "testnet")
+              echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_TESTNET }}" >> $GITHUB_OUTPUT
+              ;;
+            "mainnet")
+              echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_MAINNET }}" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Terraform Plan
+        working-directory: terraform/${{ env.ENVIRONMENT }}
+        env:
+          TF_VAR_tag: ${{ steps.deployment-tag.outputs.tag }}
+          TF_VAR_aws_region: ${{ env.AWS_REGION }}
+          TF_VAR_aws_account_id: ${{ env.AWS_ACCOUNT_ID }}
+          TF_VAR_datadog_api_key_secret_arn: ${{ secrets.DATADOG_API_KEY_SECRET_ARN }}
+          TF_VAR_indexer_secret_arn: ${{ steps.tf-vars.outputs.indexer_secret_arn }}
+        run: terraform plan -out=tfplan -no-color
+
+      - name: Terraform Apply
+        working-directory: terraform/${{ env.ENVIRONMENT }}
+        run: terraform apply -auto-approve tfplan
