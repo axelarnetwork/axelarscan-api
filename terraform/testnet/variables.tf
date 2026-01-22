@@ -35,7 +35,7 @@ variable "environment" {
 variable "log_level" {
   description = "Log level"
   type        = string
-  default     = "debug"
+  default     = "info"
 }
 
 variable "ecr_repository_name" {
