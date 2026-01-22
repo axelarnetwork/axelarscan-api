@@ -100,6 +100,7 @@ resource "aws_lambda_function" "function" {
     variables = {
       NODE_NO_WARNINGS      = 1
       ENVIRONMENT           = var.environment
+      AWS_REGION            = var.aws_region
       INDEXER_SECRET_ARN    = var.indexer_secret_arn
       LOG_LEVEL             = var.log_level
       DD_LAMBDA_HANDLER     = "dist/index.handler"
