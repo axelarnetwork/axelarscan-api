@@ -130,6 +130,7 @@ jobs:
       fail-fast: false
       matrix:
         environment:
+          - devnet-amplifier
           - stagenet
     uses: ./.github/workflows/deploy.yaml
     permissions:
