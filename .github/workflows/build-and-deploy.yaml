@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - ocsi-24-axelarscan-api
-      - todo
 
 # Prevent multiple concurrent runs per branch (serialize builds and deploys on the same ref)
 concurrency:
@@ -134,6 +133,7 @@ jobs:
           - devnet-amplifier
           - stagenet
           - testnet
+          - mainnet
     uses: ./.github/workflows/deploy.yaml
     permissions:
       id-token: write
