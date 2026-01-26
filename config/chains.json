@@ -4939,16 +4939,16 @@
           "transaction_path": "/transaction/{tx}"
         }
       },
-      "stellar-2025-q3": {
-        "chain_name": "stellar-2025-q3",
+      "stellar-2026-q1-2": {
+        "chain_name": "stellar-2026-q1-2",
         "gateway": {
-          "address": "CBFGW56YVDPERRDORQ3CLYE2PJKXNRCS72WPYNDFG4XD23DJJA2EOIT6"
+          "address": "CB2JYOOZPHO43R57TC5PXV22QICKIDC5NKRF62BZG2J6JYFUIQPIAYY3"
         },
         "multisig_prover": {
-          "address": "axelar1aux2l6er84m6gtayqdwqhz4rl0txqdlj3v7szr72j7etve3jmpks7x4euy"
+          "address": "axelar14xy6t4gnl26jxe3z2lqk24nnu3q0f7khlrpns9d00q9dvaqjzqmqp93ahp"
         },
         "voting_verifier": {
-          "address": "axelar18y8p7dxesmxttvdzp5sqjksqrnh9xg32gtfqnkkucvv9de38f69qfn6ph3"
+          "address": "axelar1wmwnuj0609q5sd6xfl9xvptcprsas6vr95z2kxjsnanc7suchntqgk3flu"
         },
         "endpoints": {
           "rpc": ["https://soroban-testnet.stellar.org"]
@@ -4958,7 +4958,7 @@
           "symbol": "XLM",
           "decimals": 7
         },
-        "name": "Stellar 2025 Q3",
+        "name": "Stellar 2026 Q1",
         "short_name": "XLM",
         "image": "/logos/chains/stellar.svg",
         "color": "#0f0f0f",
