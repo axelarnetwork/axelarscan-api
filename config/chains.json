@@ -381,7 +381,7 @@
         "color": "#ff433e",
         "explorer": {
           "name": "Kava",
-          "url": "https://explorer.kava.io",
+          "url": "https://kavascan.io",
           "icon": "/logos/explorers/kava.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
@@ -3235,7 +3235,7 @@
         "color": "#ff433e",
         "explorer": {
           "name": "Kava",
-          "url": "https://explorer.testnet.kava.io",
+          "url": "https://testnet.kavascan.io",
           "icon": "/logos/explorers/kava.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
@@ -5626,7 +5626,7 @@
         "color": "#ff433e",
         "explorer": {
           "name": "Kava",
-          "url": "https://explorer.testnet.kava.io",
+          "url": "https://testnet.kavascan.io",
           "icon": "/logos/explorers/kava.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
