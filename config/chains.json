@@ -5177,6 +5177,40 @@
           "transaction_path": "/tx/{tx}"
         }
       },
+      "arc-8": {
+        "chain_id": 5042002,
+        "chain_name": "arc-8",
+        "gateway": {
+          "address": "0xAfde45488D741a946E2376aDf5cf94F6a2918F48"
+        },
+        "multisig_prover": {
+          "address": "axelar1nsjl6hldse4agnjf9pm29hjetyvaxgwm2638z3qd27d32hsqygyqtsluqj"
+        },
+        "voting_verifier": {
+          "address": "axelar1qxyyfs4jynsmtu2ajjh4lmz2a9drzr6e7gzf2wcz4nc8qt96mlyqk9f6s4"
+        },
+        "endpoints": {
+          "rpc": ["https://rpc.testnet.arc.network"]
+        },
+        "native_token": {
+          "name": "USDC",
+          "symbol": "USDC",
+          "decimals": 18
+        },
+        "name": "Arc",
+        "short_name": "USDC",
+        "image": "/logos/chains/arc.svg",
+        "color": "#2775ca",
+        "explorer": {
+          "name": "Arc Testnet Explorer",
+          "url": "https://testnet.arcscan.app",
+          "icon": "/logos/explorers/arc.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
+      },
       "monad-3": {
         "chain_id": 10143,
         "chain_name": "monad-3",
