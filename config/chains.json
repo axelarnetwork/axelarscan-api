@@ -5198,7 +5198,7 @@
           "decimals": 18
         },
         "name": "Arc",
-        "short_name": "USDC",
+        "short_name": "ARC",
         "image": "/logos/chains/arc.svg",
         "color": "#2775ca",
         "explorer": {
