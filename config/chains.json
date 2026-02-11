@@ -3674,11 +3674,11 @@
         "prefix_address": "kujira",
         "prefix_chain_ids": ["harpoon-"]
       },
-      "secret": {
-        "chain_id": "secret-snip-3",
+      "secret-4": {
+        "chain_id": "secret-4",
         "chain_name": "secret",
         "endpoints": {
-          "lcd": ["https://api.pulsar3.scrttestnet.com"],
+          "lcd": ["https://pulsar.lcd.secretnodes.com"],
           "timeout": {
             "lcd": 3000
           }
@@ -3703,7 +3703,38 @@
           "transaction_path": "/tx/{tx}"
         },
         "prefix_address": "secret",
-        "prefix_chain_ids": ["pulsar-"]
+        "prefix_chain_ids": ["secret-"]
+      },
+      "secret-snip-4": {
+        "chain_id": "secret-snip-4",
+        "chain_name": "secret snip",
+        "endpoints": {
+          "lcd": ["https://pulsar.lcd.secretnodes.com"],
+          "timeout": {
+            "lcd": 3000
+          }
+        },
+        "native_token": {
+          "name": "Secret",
+          "symbol": "SCRT",
+          "denom": "uscrt",
+          "decimals": 6
+        },
+        "name": "Secret",
+        "short_name": "SCRT",
+        "image": "/logos/chains/secret.svg",
+        "color": "#000000",
+        "explorer": {
+          "name": "Secret",
+          "url": "https://testnet.ping.pub/secret",
+          "icon": "/logos/explorers/secret.png",
+          "block_path": "/block/{block}",
+          "address_path": "/account/{address}",
+          "contract_path": "/account/{address}",
+          "transaction_path": "/tx/{tx}"
+        },
+        "prefix_address": "secret",
+        "prefix_chain_ids": ["secret-"]
       },
       "sei": {
         "chain_id": "atlantic-1",
