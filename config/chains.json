@@ -6290,6 +6290,39 @@
           "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "solana-stagenet-3": {
+        "chain_name": "solana-stagenet-3",
+        "gateway": {
+          "address": "gtwYHfHHipAoj8Hfp3cGr3vhZ8f3UtptGCQLqjBkaSZ"
+        },
+        "multisig_prover": {
+          "address": "axelar1swvhlmhh4ken5sja0upjmrttzl20ptuppyk4k8gx73qpqqu5dqvslqvcje"
+        },
+        "voting_verifier": {
+          "address": "axelar10hnv3yfzn5fxrefqa0rmw6n37n3vpgfceh0z24y2yzdqumvrch6qhvwfyq"
+        },
+        "endpoints": {
+          "rpc": ["https://api.testnet.solana.com"]
+        },
+        "native_token": {
+          "name": "Solana",
+          "symbol": "SOL",
+          "decimals": 9
+        },
+        "name": "Solana",
+        "short_name": "SOL",
+        "image": "/logos/chains/solana.svg",
+        "color": "#8d4df7",
+        "explorer": {
+          "name": "Solana Testnet Explorer",
+          "url": "https://explorer.solana.com",
+          "icon": "/logos/explorers/solana.png",
+          "block_path": "/block/{block}?cluster=testnet",
+          "address_path": "/address/{address}?cluster=testnet",
+          "contract_path": "/address/{address}?cluster=testnet",
+          "transaction_path": "/tx/{tx}?cluster=testnet"
+        }
       }
     }
   },
