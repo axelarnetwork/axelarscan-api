@@ -2889,6 +2889,39 @@
           "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "solana": {
+        "chain_name": "solana",
+        "gateway": {
+          "address": "gtwqvLL93XK7pC2eMvfGamqokvs19AytzaVhrL2iKiz"
+        },
+        "multisig_prover": {
+          "address": "axelar1xdtjwhenmy80wckuntd2npd3zeqayy0q0l5dfy48g6wmu3p48pgqknnc9g"
+        },
+        "voting_verifier": {
+          "address": "axelar19gut3kvqf57gnu5ylq474qfgk4gg5ly89cs5kk4mde688lc5adsq6qyz4h"
+        },
+        "endpoints": {
+          "rpc": ["https://api.mainnet-beta.solana.com"]
+        },
+        "native_token": {
+          "name": "Solana",
+          "symbol": "SOL",
+          "decimals": 9
+        },
+        "name": "Solana",
+        "short_name": "SOL",
+        "image": "/logos/chains/solana.svg",
+        "color": "#8d4df7",
+        "explorer": {
+          "name": "Solana",
+          "url": "https://explorer.solana.com",
+          "icon": "/logos/explorers/solana.png",
+          "block_path": "/block/{block}?cluster=mainnet-beta",
+          "address_path": "/address/{address}?cluster=mainnet-beta",
+          "contract_path": "/address/{address}?cluster=mainnet-beta",
+          "transaction_path": "/tx/{tx}?cluster=mainnet-beta"
+        }
       }
     }
   },
