@@ -2917,10 +2917,10 @@
           "name": "Solana",
           "url": "https://explorer.solana.com",
           "icon": "/logos/explorers/solana.png",
-          "block_path": "/block/{block}?cluster=mainnet-beta",
-          "address_path": "/address/{address}?cluster=mainnet-beta",
-          "contract_path": "/address/{address}?cluster=mainnet-beta",
-          "transaction_path": "/tx/{tx}?cluster=mainnet-beta"
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/address/{address}",
+          "transaction_path": "/tx/{tx}"
         }
       }
     }
