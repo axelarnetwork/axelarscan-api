@@ -3056,38 +3056,6 @@
           "transaction_path": "/tx/{tx}"
         }
       },
-      "fantom": {
-        "chain_id": 4002,
-        "chain_name": "Fantom",
-        "maintainer_id": "fantom",
-        "gateway": {
-          "address": "0x97837985Ec0494E7b9C71f5D3f9250188477ae14"
-        },
-        "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.fantom.network",
-            "https://fantom-testnet.drpc.org"
-          ]
-        },
-        "native_token": {
-          "name": "Fantom",
-          "symbol": "FTM",
-          "decimals": 18
-        },
-        "name": "Fantom",
-        "short_name": "FTM",
-        "image": "/logos/chains/fantom.svg",
-        "color": "#1869ff",
-        "explorer": {
-          "name": "Fantom",
-          "url": "https://explorer.testnet.fantom.network",
-          "icon": "/logos/explorers/fantom.png",
-          "block_path": "/blocks/{block}",
-          "address_path": "/address/{address}",
-          "contract_path": "/address/{address}",
-          "transaction_path": "/transactions/{tx}"
-        }
-      },
       "moonbeam": {
         "chain_id": 1287,
         "chain_name": "Moonbeam",
@@ -3452,38 +3420,6 @@
           "name": "Fraxtal",
           "url": "https://holesky.fraxscan.com",
           "icon": "/logos/explorers/fraxtal.png",
-          "block_path": "/block/{block}",
-          "address_path": "/address/{address}",
-          "contract_path": "/token/{address}",
-          "transaction_path": "/tx/{tx}"
-        }
-      },
-      "blast-sepolia": {
-        "chain_id": 168587773,
-        "chain_name": "blast-sepolia",
-        "maintainer_id": "blast-sepolia",
-        "gateway": {
-          "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
-        },
-        "endpoints": {
-          "rpc": [
-            "https://sepolia.blast.io",
-            "https://blast-sepolia.blockpi.network/v1/rpc/public"
-          ]
-        },
-        "native_token": {
-          "name": "Ethereum",
-          "symbol": "ETH",
-          "decimals": 18
-        },
-        "name": "Blast",
-        "short_name": "BLAST",
-        "image": "/logos/chains/blast.svg",
-        "color": "#fefb1c",
-        "explorer": {
-          "name": "Blast",
-          "url": "https://testnet.blastscan.io",
-          "icon": "/logos/explorers/blast.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/token/{address}",
@@ -5545,38 +5481,6 @@
           "transaction_path": "/tx/{tx}"
         }
       },
-      "fantom": {
-        "chain_id": 4002,
-        "chain_name": "Fantom",
-        "maintainer_id": "fantom",
-        "gateway": {
-          "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
-        },
-        "endpoints": {
-          "rpc": [
-            "https://rpc.testnet.fantom.network",
-            "https://fantom-testnet.drpc.org"
-          ]
-        },
-        "native_token": {
-          "name": "Fantom",
-          "symbol": "FTM",
-          "decimals": 18
-        },
-        "name": "Fantom",
-        "short_name": "FTM",
-        "image": "/logos/chains/fantom.svg",
-        "color": "#1869ff",
-        "explorer": {
-          "name": "Fantom",
-          "url": "https://explorer.testnet.fantom.network",
-          "icon": "/logos/explorers/fantom.png",
-          "block_path": "/blocks/{block}",
-          "address_path": "/address/{address}",
-          "contract_path": "/address/{address}",
-          "transaction_path": "/transactions/{tx}"
-        }
-      },
       "moonbeam": {
         "chain_id": 1287,
         "chain_name": "Moonbeam",
@@ -5850,38 +5754,6 @@
           "name": "Fraxtal",
           "url": "https://holesky.fraxscan.com",
           "icon": "/logos/explorers/fraxtal.png",
-          "block_path": "/block/{block}",
-          "address_path": "/address/{address}",
-          "contract_path": "/token/{address}",
-          "transaction_path": "/tx/{tx}"
-        }
-      },
-      "blast-sepolia": {
-        "chain_id": 168587773,
-        "chain_name": "blast-sepolia",
-        "maintainer_id": "blast-sepolia",
-        "gateway": {
-          "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
-        },
-        "endpoints": {
-          "rpc": [
-            "https://sepolia.blast.io",
-            "https://blast-sepolia.blockpi.network/v1/rpc/public"
-          ]
-        },
-        "native_token": {
-          "name": "Ethereum",
-          "symbol": "ETH",
-          "decimals": 18
-        },
-        "name": "Blast",
-        "short_name": "BLAST",
-        "image": "/logos/chains/blast.svg",
-        "color": "#fefb1c",
-        "explorer": {
-          "name": "Blast",
-          "url": "https://testnet.blastscan.io",
-          "icon": "/logos/explorers/blast.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/token/{address}",
