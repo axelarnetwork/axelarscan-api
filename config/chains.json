@@ -5311,6 +5311,42 @@
           "transaction_path": "/tx/{tx}"
         }
       },
+      "memento-demo": {
+        "deprecated": true,
+        "chain_id": 2129,
+        "chain_name": "memento-demo",
+        "maintainer_id": "memento-demo",
+        "gateway": {
+          "address": "0x51bC41E390E7d8271ef3594713C14ab933E37001"
+        },
+        "multisig_prover": {
+          "address": "axelar13s3xyvcjpetwdfyc9q2hh9nc3hdvf7cvtkh33qk0g8adjjjgrk6qeacv67"
+        },
+        "voting_verifier": {
+          "address": "axelar1uekdelqqxxuq5e6jxttlaxrhq3aq2ksn45h9lvtljc6hayeqe95qss5s6v"
+        },
+        "endpoints": {
+          "rpc": []
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Memento",
+        "short_name": "MEMENTO",
+        "image": "/logos/chains/memento.svg",
+        "color": "#d06435",
+        "explorer": {
+          "name": "Memento Testnet Explorer",
+          "url": "https://private-explorer.memento.zeeve.online",
+          "icon": "/logos/explorers/memento.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
+      },
       "solana": {
         "chain_name": "solana",
         "gateway": {
@@ -6956,6 +6992,34 @@
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/address/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
+      },
+      "zkstack-memento": {
+        "deprecated": true,
+        "chain_id": 12052024,
+        "chain_name": "zkstack-memento",
+        "endpoints": {
+          "rpc": [
+            "https://test-rpc.mementoblockchain.com/IRkghvI3FfEArEJMr4zC/rpc"
+          ]
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Memento",
+        "short_name": "MMT",
+        "image": "/logos/chains/memento.svg",
+        "color": "#0072bc",
+        "explorer": {
+          "name": "Memento",
+          "url": "https://test-explorer.mementoblockchain.com",
+          "icon": "/logos/explorers/memento.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
       },
