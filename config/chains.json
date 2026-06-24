@@ -452,6 +452,7 @@
         }
       },
       "centrifuge": {
+        "deprecated": true,
         "chain_id": 2031,
         "chain_name": "centrifuge",
         "maintainer_id": "centrifuge",
@@ -2551,6 +2552,7 @@
     },
     "amplifier": {
       "flow": {
+        "deprecated": true,
         "chain_id": 747,
         "chain_name": "flow",
         "gateway": {
@@ -2755,6 +2757,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98866,
         "chain_name": "plume",
         "gateway": {
@@ -2823,6 +2826,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80094,
         "chain_name": "berachain",
         "gateway": {
@@ -3339,6 +3343,7 @@
         }
       },
       "centrifuge-2": {
+        "deprecated": true,
         "chain_id": 2090,
         "chain_name": "centrifuge-2",
         "maintainer_id": "centrifuge-2",
@@ -4936,6 +4941,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -5140,6 +5146,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume",
         "gateway": {
@@ -5208,6 +5215,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
@@ -5798,6 +5806,7 @@
         }
       },
       "centrifuge": {
+        "deprecated": true,
         "chain_id": 2090,
         "chain_name": "centrifuge",
         "maintainer_id": "centrifuge",
@@ -6017,6 +6026,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -6221,6 +6231,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume",
         "gateway": {
@@ -6289,6 +6300,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
@@ -6689,6 +6701,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -7265,6 +7278,7 @@
         }
       },
       "plume-2": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume-2",
         "gateway": {
@@ -7333,6 +7347,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
