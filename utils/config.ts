@@ -191,6 +191,43 @@ const getChains = (
     .filter(chain => !chain.disabled);
 };
 
+interface IBCChannelEnd {
+  portId?: string;
+  channelId?: string;
+}
+
+interface IBCChannels {
+  fromAxelar?: IBCChannelEnd;
+  toAxelar?: IBCChannelEnd;
+}
+
+// enrich cosmos chains with their IBC channels (from/to Axelar) from the axelar s3 config
+const getChainsWithIBCChannels = async (
+  types?: ChainType | ChainType[],
+  env: Environment = ENVIRONMENT
+): Promise<ProcessedChain[]> => {
+  const chainsData = getChains(types, env);
+
+  // get ibc channels from axelar s3 chains config
+  const s3ChainsConfig = await getAxelarS3ChainsConfig(env);
+
+  // map ibc channels by chain id
+  const ibcByChainId: Record<string, IBCChannels> = {};
+  for (const [chain, value] of Object.entries(s3ChainsConfig?.chains || {})) {
+    const ibc = (value as { config?: { ibc?: IBCChannels } })?.config?.ibc;
+    if (ibc?.fromAxelar || ibc?.toAxelar) {
+      ibcByChainId[getChainByS3ConfigChain(chain)] = ibc;
+    }
+  }
+
+  // attach ibc channels to cosmos chains
+  return chainsData.map(chain =>
+    chain.chain_type === 'cosmos' && ibcByChainId[chain.id]
+      ? { ...chain, ibc: ibcByChainId[chain.id] }
+      : chain
+  );
+};
+
 const getChainData = (
   chain: string,
   types: ChainType | ChainType[],
@@ -539,6 +576,7 @@ export {
   getAxelarS3Config,
   getChainData,
   getChains,
+  getChainsWithIBCChannels,
   getContracts,
   getCustomTVLConfig,
   getEndpoints,
