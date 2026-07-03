@@ -910,6 +910,7 @@
         "prefix_chain_ids": ["kaiyo-"]
       },
       "secret-snip": {
+        "deprecated": true,
         "chain_id": "secret-4",
         "chain_name": "secret-snip",
         "endpoints": {
@@ -946,6 +947,7 @@
         "prefix_chain_ids": ["secret-"]
       },
       "secret": {
+        "deprecated": true,
         "chain_id": "secret-4",
         "chain_name": "secret",
         "endpoints": {
