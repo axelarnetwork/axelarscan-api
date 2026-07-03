@@ -5353,6 +5353,7 @@
         }
       },
       "memento-demo": {
+        "deprecated": true,
         "chain_id": 2129,
         "chain_name": "memento-demo",
         "maintainer_id": "memento-demo",
@@ -7041,6 +7042,7 @@
         }
       },
       "zkstack-memento": {
+        "deprecated": true,
         "chain_id": 12052024,
         "chain_name": "zkstack-memento",
         "endpoints": {
