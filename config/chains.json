@@ -770,6 +770,7 @@
         "prefix_chain_ids": ["juno-"]
       },
       "emoney": {
+        "deprecated": true,
         "chain_id": "emoney-3",
         "chain_name": "e-money",
         "endpoints": {
@@ -839,6 +840,7 @@
         "prefix_chain_ids": ["injective-"]
       },
       "crescent": {
+        "deprecated": true,
         "chain_id": "crescent-1",
         "chain_name": "crescent",
         "endpoints": {
@@ -1060,6 +1062,7 @@
         "prefix_chain_ids": ["stargaze-"]
       },
       "assetmantle": {
+        "deprecated": true,
         "chain_id": "mantle-1",
         "chain_name": "assetmantle",
         "endpoints": {
@@ -1132,6 +1135,7 @@
         "prefix_chain_ids": ["fetchhub-"]
       },
       "ki": {
+        "deprecated": true,
         "chain_id": "kichain-2",
         "chain_name": "ki",
         "endpoints": {
@@ -1206,6 +1210,7 @@
         "prefix_chain_ids": ["evmos_"]
       },
       "aura": {
+        "deprecated": true,
         "chain_id": "xstaxy-1",
         "chain_name": "aura",
         "endpoints": {
@@ -1237,6 +1242,7 @@
         "prefix_chain_ids": ["xstaxy-"]
       },
       "comdex": {
+        "deprecated": true,
         "chain_id": "comdex-1",
         "chain_name": "comdex",
         "endpoints": {
@@ -1452,6 +1458,7 @@
         "prefix_chain_ids": ["dimension_"]
       },
       "acre": {
+        "deprecated": true,
         "chain_id": "acre_9052-1",
         "chain_name": "acre",
         "aliases": ["acrechain"],
@@ -1635,6 +1642,7 @@
         "prefix_chain_ids": ["neutron-"]
       },
       "rebus": {
+        "deprecated": true,
         "chain_id": "reb_1111-1",
         "chain_name": "rebus",
         "endpoints": {
@@ -1781,6 +1789,7 @@
         "prefix_chain_ids": ["ixo-"]
       },
       "migaloo": {
+        "deprecated": true,
         "chain_id": "migaloo-1",
         "chain_name": "migaloo",
         "endpoints": {
@@ -1815,6 +1824,7 @@
         "prefix_chain_ids": ["migaloo-"]
       },
       "teritori": {
+        "deprecated": true,
         "chain_id": "teritori-1",
         "chain_name": "teritori",
         "endpoints": {
@@ -1922,6 +1932,7 @@
         "prefix_chain_ids": ["celestia"]
       },
       "ojo": {
+        "deprecated": true,
         "chain_id": "agamotto",
         "chain_name": "ojo",
         "unstable": true,
@@ -1954,6 +1965,7 @@
         "prefix_chain_ids": ["agamotto"]
       },
       "chihuahua": {
+        "deprecated": true,
         "chain_id": "chihuahua-1",
         "chain_name": "chihuahua",
         "endpoints": {
@@ -2066,6 +2078,7 @@
         "prefix_chain_ids": ["dymension_"]
       },
       "fxcore": {
+        "deprecated": true,
         "chain_id": "fxcore",
         "chain_name": "fxcore",
         "endpoints": {
@@ -2132,6 +2145,7 @@
         "prefix_chain_ids": ["perun-"]
       },
       "bitsong": {
+        "deprecated": true,
         "chain_id": "bitsong-2b",
         "chain_name": "bitsong",
         "endpoints": {
@@ -2168,6 +2182,7 @@
         "prefix_chain_ids": ["bitsong-"]
       },
       "nolus": {
+        "deprecated": true,
         "chain_id": "pirin-1",
         "chain_name": "nolus",
         "endpoints": {
@@ -2309,6 +2324,7 @@
         "prefix_chain_ids": ["elys-"]
       },
       "allora": {
+        "deprecated": true,
         "chain_id": "allora-mainnet-1",
         "chain_name": "allora",
         "endpoints": {
@@ -2340,6 +2356,7 @@
         "prefix_chain_ids": ["allora-"]
       },
       "mantra": {
+        "deprecated": true,
         "chain_id": "mantra-1",
         "chain_name": "mantra",
         "endpoints": {
@@ -2409,6 +2426,7 @@
         "prefix_chain_ids": ["bbn-"]
       },
       "jackal": {
+        "deprecated": true,
         "chain_id": "jackal-1",
         "chain_name": "jackal",
         "endpoints": {
