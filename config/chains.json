@@ -169,6 +169,7 @@
         }
       },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1284,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
@@ -3081,6 +3082,7 @@
         }
       },
       "fantom": {
+        "deprecated": true,
         "chain_id": 4002,
         "chain_name": "Fantom",
         "maintainer_id": "fantom",
@@ -3113,6 +3115,7 @@
         }
       },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1287,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
@@ -3394,6 +3397,7 @@
         }
       },
       "scroll": {
+        "deprecated": true,
         "chain_id": 534351,
         "chain_name": "scroll",
         "maintainer_id": "scroll",
@@ -5575,6 +5579,7 @@
         }
       },
       "fantom": {
+        "deprecated": true,
         "chain_id": 4002,
         "chain_name": "Fantom",
         "maintainer_id": "fantom",
@@ -5607,6 +5612,7 @@
         }
       },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1287,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
