@@ -169,6 +169,7 @@
         }
       },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1284,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
@@ -452,6 +453,7 @@
         }
       },
       "centrifuge": {
+        "deprecated": true,
         "chain_id": 2031,
         "chain_name": "centrifuge",
         "maintainer_id": "centrifuge",
@@ -769,6 +771,7 @@
         "prefix_chain_ids": ["juno-"]
       },
       "emoney": {
+        "deprecated": true,
         "chain_id": "emoney-3",
         "chain_name": "e-money",
         "endpoints": {
@@ -838,6 +841,7 @@
         "prefix_chain_ids": ["injective-"]
       },
       "crescent": {
+        "deprecated": true,
         "chain_id": "crescent-1",
         "chain_name": "crescent",
         "endpoints": {
@@ -909,6 +913,7 @@
         "prefix_chain_ids": ["kaiyo-"]
       },
       "secret-snip": {
+        "deprecated": true,
         "chain_id": "secret-4",
         "chain_name": "secret-snip",
         "endpoints": {
@@ -945,6 +950,7 @@
         "prefix_chain_ids": ["secret-"]
       },
       "secret": {
+        "deprecated": true,
         "chain_id": "secret-4",
         "chain_name": "secret",
         "endpoints": {
@@ -1057,6 +1063,7 @@
         "prefix_chain_ids": ["stargaze-"]
       },
       "assetmantle": {
+        "deprecated": true,
         "chain_id": "mantle-1",
         "chain_name": "assetmantle",
         "endpoints": {
@@ -1129,6 +1136,7 @@
         "prefix_chain_ids": ["fetchhub-"]
       },
       "ki": {
+        "deprecated": true,
         "chain_id": "kichain-2",
         "chain_name": "ki",
         "endpoints": {
@@ -1203,6 +1211,7 @@
         "prefix_chain_ids": ["evmos_"]
       },
       "aura": {
+        "deprecated": true,
         "chain_id": "xstaxy-1",
         "chain_name": "aura",
         "endpoints": {
@@ -1234,6 +1243,7 @@
         "prefix_chain_ids": ["xstaxy-"]
       },
       "comdex": {
+        "deprecated": true,
         "chain_id": "comdex-1",
         "chain_name": "comdex",
         "endpoints": {
@@ -1449,6 +1459,7 @@
         "prefix_chain_ids": ["dimension_"]
       },
       "acre": {
+        "deprecated": true,
         "chain_id": "acre_9052-1",
         "chain_name": "acre",
         "aliases": ["acrechain"],
@@ -1632,6 +1643,7 @@
         "prefix_chain_ids": ["neutron-"]
       },
       "rebus": {
+        "deprecated": true,
         "chain_id": "reb_1111-1",
         "chain_name": "rebus",
         "endpoints": {
@@ -1778,6 +1790,7 @@
         "prefix_chain_ids": ["ixo-"]
       },
       "migaloo": {
+        "deprecated": true,
         "chain_id": "migaloo-1",
         "chain_name": "migaloo",
         "endpoints": {
@@ -1812,6 +1825,7 @@
         "prefix_chain_ids": ["migaloo-"]
       },
       "teritori": {
+        "deprecated": true,
         "chain_id": "teritori-1",
         "chain_name": "teritori",
         "endpoints": {
@@ -1919,6 +1933,7 @@
         "prefix_chain_ids": ["celestia"]
       },
       "ojo": {
+        "deprecated": true,
         "chain_id": "agamotto",
         "chain_name": "ojo",
         "unstable": true,
@@ -1951,6 +1966,7 @@
         "prefix_chain_ids": ["agamotto"]
       },
       "chihuahua": {
+        "deprecated": true,
         "chain_id": "chihuahua-1",
         "chain_name": "chihuahua",
         "endpoints": {
@@ -2063,6 +2079,7 @@
         "prefix_chain_ids": ["dymension_"]
       },
       "fxcore": {
+        "deprecated": true,
         "chain_id": "fxcore",
         "chain_name": "fxcore",
         "endpoints": {
@@ -2129,6 +2146,7 @@
         "prefix_chain_ids": ["perun-"]
       },
       "bitsong": {
+        "deprecated": true,
         "chain_id": "bitsong-2b",
         "chain_name": "bitsong",
         "endpoints": {
@@ -2165,6 +2183,7 @@
         "prefix_chain_ids": ["bitsong-"]
       },
       "nolus": {
+        "deprecated": true,
         "chain_id": "pirin-1",
         "chain_name": "nolus",
         "endpoints": {
@@ -2306,6 +2325,7 @@
         "prefix_chain_ids": ["elys-"]
       },
       "allora": {
+        "deprecated": true,
         "chain_id": "allora-mainnet-1",
         "chain_name": "allora",
         "endpoints": {
@@ -2337,6 +2357,7 @@
         "prefix_chain_ids": ["allora-"]
       },
       "mantra": {
+        "deprecated": true,
         "chain_id": "mantra-1",
         "chain_name": "mantra",
         "endpoints": {
@@ -2406,6 +2427,7 @@
         "prefix_chain_ids": ["bbn-"]
       },
       "jackal": {
+        "deprecated": true,
         "chain_id": "jackal-1",
         "chain_name": "jackal",
         "endpoints": {
@@ -2551,6 +2573,7 @@
     },
     "amplifier": {
       "flow": {
+        "deprecated": true,
         "chain_id": 747,
         "chain_name": "flow",
         "gateway": {
@@ -2755,6 +2778,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98866,
         "chain_name": "plume",
         "gateway": {
@@ -2823,6 +2847,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80094,
         "chain_name": "berachain",
         "gateway": {
@@ -3056,7 +3081,41 @@
           "transaction_path": "/tx/{tx}"
         }
       },
+      "fantom": {
+        "deprecated": true,
+        "chain_id": 4002,
+        "chain_name": "Fantom",
+        "maintainer_id": "fantom",
+        "gateway": {
+          "address": "0x97837985Ec0494E7b9C71f5D3f9250188477ae14"
+        },
+        "endpoints": {
+          "rpc": [
+            "https://rpc.testnet.fantom.network",
+            "https://fantom-testnet.drpc.org"
+          ]
+        },
+        "native_token": {
+          "name": "Fantom",
+          "symbol": "FTM",
+          "decimals": 18
+        },
+        "name": "Fantom",
+        "short_name": "FTM",
+        "image": "/logos/chains/fantom.svg",
+        "color": "#1869ff",
+        "explorer": {
+          "name": "Fantom",
+          "url": "https://explorer.testnet.fantom.network",
+          "icon": "/logos/explorers/fantom.png",
+          "block_path": "/blocks/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/address/{address}",
+          "transaction_path": "/transactions/{tx}"
+        }
+      },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1287,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
@@ -3307,6 +3366,7 @@
         }
       },
       "centrifuge-2": {
+        "deprecated": true,
         "chain_id": 2090,
         "chain_name": "centrifuge-2",
         "maintainer_id": "centrifuge-2",
@@ -3337,6 +3397,7 @@
         }
       },
       "scroll": {
+        "deprecated": true,
         "chain_id": 534351,
         "chain_name": "scroll",
         "maintainer_id": "scroll",
@@ -3420,6 +3481,38 @@
           "name": "Fraxtal",
           "url": "https://holesky.fraxscan.com",
           "icon": "/logos/explorers/fraxtal.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
+      },
+      "blast-sepolia": {
+        "chain_id": 168587773,
+        "chain_name": "blast-sepolia",
+        "maintainer_id": "blast-sepolia",
+        "gateway": {
+          "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
+        },
+        "endpoints": {
+          "rpc": [
+            "https://sepolia.blast.io",
+            "https://blast-sepolia.blockpi.network/v1/rpc/public"
+          ]
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Blast",
+        "short_name": "BLAST",
+        "image": "/logos/chains/blast.svg",
+        "color": "#fefb1c",
+        "explorer": {
+          "name": "Blast",
+          "url": "https://testnet.blastscan.io",
+          "icon": "/logos/explorers/blast.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/token/{address}",
@@ -4872,6 +4965,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -5076,6 +5170,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume",
         "gateway": {
@@ -5144,6 +5239,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
@@ -5281,6 +5377,7 @@
         }
       },
       "memento-demo": {
+        "deprecated": true,
         "chain_id": 2129,
         "chain_name": "memento-demo",
         "maintainer_id": "memento-demo",
@@ -5481,7 +5578,41 @@
           "transaction_path": "/tx/{tx}"
         }
       },
+      "fantom": {
+        "deprecated": true,
+        "chain_id": 4002,
+        "chain_name": "Fantom",
+        "maintainer_id": "fantom",
+        "gateway": {
+          "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+        },
+        "endpoints": {
+          "rpc": [
+            "https://rpc.testnet.fantom.network",
+            "https://fantom-testnet.drpc.org"
+          ]
+        },
+        "native_token": {
+          "name": "Fantom",
+          "symbol": "FTM",
+          "decimals": 18
+        },
+        "name": "Fantom",
+        "short_name": "FTM",
+        "image": "/logos/chains/fantom.svg",
+        "color": "#1869ff",
+        "explorer": {
+          "name": "Fantom",
+          "url": "https://explorer.testnet.fantom.network",
+          "icon": "/logos/explorers/fantom.png",
+          "block_path": "/blocks/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/address/{address}",
+          "transaction_path": "/transactions/{tx}"
+        }
+      },
       "moonbeam": {
+        "deprecated": true,
         "chain_id": 1287,
         "chain_name": "Moonbeam",
         "maintainer_id": "moonbeam",
@@ -5702,6 +5833,7 @@
         }
       },
       "centrifuge": {
+        "deprecated": true,
         "chain_id": 2090,
         "chain_name": "centrifuge",
         "maintainer_id": "centrifuge",
@@ -5754,6 +5886,38 @@
           "name": "Fraxtal",
           "url": "https://holesky.fraxscan.com",
           "icon": "/logos/explorers/fraxtal.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
+      },
+      "blast-sepolia": {
+        "chain_id": 168587773,
+        "chain_name": "blast-sepolia",
+        "maintainer_id": "blast-sepolia",
+        "gateway": {
+          "address": "0x5A4fA5187BddD93097dE4F6062a2E96C82Ea2d61"
+        },
+        "endpoints": {
+          "rpc": [
+            "https://sepolia.blast.io",
+            "https://blast-sepolia.blockpi.network/v1/rpc/public"
+          ]
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Blast",
+        "short_name": "BLAST",
+        "image": "/logos/chains/blast.svg",
+        "color": "#fefb1c",
+        "explorer": {
+          "name": "Blast",
+          "url": "https://testnet.blastscan.io",
+          "icon": "/logos/explorers/blast.png",
           "block_path": "/block/{block}",
           "address_path": "/address/{address}",
           "contract_path": "/token/{address}",
@@ -5889,6 +6053,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -6093,6 +6258,7 @@
         }
       },
       "plume": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume",
         "gateway": {
@@ -6161,6 +6327,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
@@ -6561,6 +6728,7 @@
         }
       },
       "flow": {
+        "deprecated": true,
         "chain_id": 545,
         "chain_name": "flow",
         "gateway": {
@@ -6900,6 +7068,7 @@
         }
       },
       "zkstack-memento": {
+        "deprecated": true,
         "chain_id": 12052024,
         "chain_name": "zkstack-memento",
         "endpoints": {
@@ -7137,6 +7306,7 @@
         }
       },
       "plume-2": {
+        "deprecated": true,
         "chain_id": 98867,
         "chain_name": "plume-2",
         "gateway": {
@@ -7205,6 +7375,7 @@
         }
       },
       "berachain": {
+        "deprecated": true,
         "chain_id": 80069,
         "chain_name": "berachain",
         "gateway": {
