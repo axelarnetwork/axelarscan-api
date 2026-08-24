@@ -4764,7 +4764,7 @@
         "prefix_chain_ids": ["nillion-chain-testnet-"]
       },
       "zigchain-2": {
-        "chain_id": "zig-test-2",
+        "chain_id": "zig-test-1",
         "chain_name": "zigchain-2",
         "endpoints": {
           "lcd": ["https://testnet-api.zigchain.com"],
@@ -4784,7 +4784,7 @@
         "color": "#3c70c0",
         "explorer": {
           "name": "Zigchain",
-          "url": "https://zigscan.org",
+          "url": "https://testnet.zigscan.org",
           "icon": "/logos/explorers/zigchain.png",
           "block_path": "/blocks/{block}",
           "address_path": "/address/{address}",
@@ -4818,7 +4818,7 @@
         "color": "#3c70c0",
         "explorer": {
           "name": "Zigchain",
-          "url": "https://zigscan.org",
+          "url": "https://testnet.zigscan.org",
           "icon": "/logos/explorers/zigchain.png",
           "block_path": "/blocks/{block}",
           "address_path": "/address/{address}",
