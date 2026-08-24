@@ -4794,6 +4794,40 @@
         "prefix_address": "zig",
         "prefix_chain_ids": ["zig-test-"]
       },
+      "zigchain-3": {
+        "chain_id": "zig-test-2",
+        "chain_name": "zigchain-3",
+        "endpoints": {
+          "lcd": [
+            "https://zigchain-testnet-api.polkachu.com",
+            "https://testnet-api.zigchain.com"
+          ],
+          "timeout": {
+            "lcd": 3000
+          }
+        },
+        "native_token": {
+          "name": "Zig",
+          "symbol": "ZIG",
+          "denom": "uzig",
+          "decimals": 18
+        },
+        "name": "Zigchain",
+        "short_name": "ZIG",
+        "image": "/logos/chains/zigchain.svg",
+        "color": "#3c70c0",
+        "explorer": {
+          "name": "Zigchain",
+          "url": "https://zigscan.org",
+          "icon": "/logos/explorers/zigchain.png",
+          "block_path": "/blocks/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/address/{address}",
+          "transaction_path": "/tx/{tx}"
+        },
+        "prefix_address": "zig",
+        "prefix_chain_ids": ["zig-test-"]
+      },
       "terra-3": {
         "chain_id": "pisco-1",
         "chain_name": "terra-3",
