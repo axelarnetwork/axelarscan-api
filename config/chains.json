@@ -3459,6 +3459,7 @@
         }
       },
       "fraxtal": {
+        "deprecated": true,
         "chain_id": 2522,
         "chain_name": "fraxtal",
         "maintainer_id": "fraxtal",
@@ -3488,6 +3489,7 @@
         }
       },
       "blast-sepolia": {
+        "deprecated": true,
         "chain_id": 168587773,
         "chain_name": "blast-sepolia",
         "maintainer_id": "blast-sepolia",
@@ -5927,6 +5929,7 @@
         }
       },
       "blast-sepolia": {
+        "deprecated": true,
         "chain_id": 168587773,
         "chain_name": "blast-sepolia",
         "maintainer_id": "blast-sepolia",
