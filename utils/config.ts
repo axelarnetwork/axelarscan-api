@@ -191,6 +191,56 @@ const getChains = (
     .filter(chain => !chain.disabled);
 };
 
+interface IBCChannelEnd {
+  portId?: string;
+  channelId?: string;
+}
+
+interface IBCChannels {
+  fromAxelar?: IBCChannelEnd;
+  toAxelar?: IBCChannelEnd;
+}
+
+// the axelar hub itself has no IBC channels to itself, so it must never be
+// auto-deprecated by the no-channels rule below
+const AXELAR_HUB_CHAIN_ID = 'axelarnet';
+
+// enrich cosmos chains with their IBC channels (from/to Axelar) from the axelar s3 config
+const getChainsWithIBCChannels = async (
+  types?: ChainType | ChainType[],
+  env: Environment = ENVIRONMENT
+): Promise<ProcessedChain[]> => {
+  const chainsData = getChains(types, env);
+
+  // get ibc channels from axelar s3 chains config
+  const s3ChainsConfig = await getAxelarS3ChainsConfig(env);
+
+  // map ibc channels by chain id (only when a channel id is actually set)
+  const ibcByChainId: Record<string, IBCChannels> = {};
+  for (const [chain, value] of Object.entries(s3ChainsConfig?.chains || {})) {
+    const ibc = (value as { config?: { ibc?: IBCChannels } })?.config?.ibc;
+    if (ibc?.fromAxelar?.channelId || ibc?.toAxelar?.channelId) {
+      ibcByChainId[getChainByS3ConfigChain(chain)] = ibc;
+    }
+  }
+
+  return chainsData.map(chain => {
+    if (chain.chain_type !== 'cosmos') return chain;
+
+    const ibc = ibcByChainId[chain.id];
+
+    // attach ibc channels when available
+    if (ibc) return { ...chain, ibc };
+
+    // otherwise auto-deprecate the chain (except the axelar hub itself)
+    if (chain.id !== AXELAR_HUB_CHAIN_ID) {
+      return { ...chain, deprecated: true, no_inflation: true, no_tvl: true };
+    }
+
+    return chain;
+  });
+};
+
 const getChainData = (
   chain: string,
   types: ChainType | ChainType[],
@@ -539,6 +589,7 @@ export {
   getAxelarS3Config,
   getChainData,
   getChains,
+  getChainsWithIBCChannels,
   getContracts,
   getCustomTVLConfig,
   getEndpoints,

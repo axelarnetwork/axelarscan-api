@@ -7,8 +7,8 @@ const { getChains } = require('../methods');
 
 module.exports = () => {
   describe('getChains', () => {
-    it('Should receive list of chain data', () => {
-      const response = getChains();
+    it('Should receive list of chain data', async () => {
+      const response = await getChains();
 
       response.forEach(d => {
         expect(d).to.be.an('object');
