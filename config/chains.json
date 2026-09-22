@@ -5432,7 +5432,7 @@
         },
         "name": "Robinhood",
         "short_name": "RHC",
-        "image": "/logos/chains/robinhood.svg",
+        "image": "/logos/chains/robinhood.png",
         "color": "#00c805",
         "explorer": {
           "name": "Blockscout",
