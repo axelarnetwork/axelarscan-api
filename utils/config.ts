@@ -560,4 +560,6 @@ export const TOKEN_INFO_COLLECTION = 'token_infos';
 export const TOKEN_TVL_COLLECTION = 'token_tvls';
 export const IBC_CHANNEL_COLLECTION = 'ibc_channels';
 export const TOKEN_API = 'https://api.coingecko.com/api/v3/';
+// paid plan endpoint, used when a CoinGecko API key is configured
+export const PRO_TOKEN_API = 'https://pro-api.coingecko.com/api/v3/';
 export const CURRENCY = 'usd';

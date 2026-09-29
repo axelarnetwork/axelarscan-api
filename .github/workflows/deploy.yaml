@@ -99,6 +99,7 @@ jobs:
           TF_VAR_aws_account_id: ${{ env.AWS_ACCOUNT_ID }}
           TF_VAR_datadog_api_key_secret_arn: ${{ secrets.DATADOG_API_KEY_SECRET_ARN }}
           TF_VAR_indexer_secret_arn: ${{ steps.tf-vars.outputs.indexer_secret_arn }}
+          TF_VAR_coingecko_api_key_secret_arn: ${{ secrets.COINGECKO_API_KEY_SECRET_ARN }}
         run: terraform plan -out=tfplan -no-color
 
       - name: Terraform Apply

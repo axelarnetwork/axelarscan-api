@@ -55,3 +55,10 @@ variable "indexer_secret_arn" {
   type        = string
   sensitive   = true
 }
+
+variable "coingecko_api_key_secret_arn" {
+  description = "ARN of the CoinGecko API key secret in AWS Secrets Manager (paid plan key; empty uses the keyless public API)"
+  type        = string
+  sensitive   = true
+  default     = ""
+}

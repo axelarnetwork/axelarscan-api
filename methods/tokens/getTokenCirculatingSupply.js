@@ -1,6 +1,5 @@
-const { TOKEN_API } = require('../../utils/config');
 const { readCache, writeCache } = require('../../utils/cache');
-const { request } = require('../../utils/http');
+const { requestTokenAPI } = require('../../utils/coingecko');
 const { isNumber, toNumber } = require('../../utils/number');
 
 module.exports = async coingeckoId => {
@@ -13,7 +12,7 @@ module.exports = async coingeckoId => {
 
   // get circulating supply from api
   const { market_data } = {
-    ...(await request(TOKEN_API, {
+    ...(await requestTokenAPI({
       path: `/coins/${coingeckoId}`,
       params: { localization: 'false' },
     })),

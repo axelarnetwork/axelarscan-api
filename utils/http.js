@@ -19,7 +19,7 @@ const request = async (instance, options) => {
   if (!instance) return;
   if (isString(instance)) instance = createInstance(instance);
 
-  const { auth } = { ...options };
+  const { auth, headers: requestHeaders } = { ...options };
   let { method, path, params } = { ...options };
   method = method || 'get';
   path = path || '';
@@ -49,7 +49,7 @@ const request = async (instance, options) => {
       case 'get':
       default:
         response = await instance
-          .get(path, { params, auth })
+          .get(path, { params, auth, headers: requestHeaders })
           .catch(error => parseError(error));
         break;
     }
