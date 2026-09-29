@@ -1,6 +1,5 @@
-const { TOKEN_API } = require('../../utils/config');
 const { readCache, writeCache } = require('../../utils/cache');
-const { request } = require('../../utils/http');
+const { requestTokenAPI } = require('../../utils/coingecko');
 
 module.exports = async () => {
   const cacheId = 'rates';
@@ -11,7 +10,7 @@ module.exports = async () => {
 
   // get rates from api
   const { rates } = {
-    ...(await request(TOKEN_API, { path: '/exchange_rates' })),
+    ...(await requestTokenAPI({ path: '/exchange_rates' })),
   };
 
   if (rates) {

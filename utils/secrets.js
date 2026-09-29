@@ -130,6 +130,31 @@ class SecretsManager {
       password: process.env.INDEXER_PASSWORD,
     };
   }
+
+  /**
+   * Get the CoinGecko API key from Secrets Manager or environment variables
+   * If COINGECKO_API_KEY_SECRET_ARN is set, retrieves from Secrets Manager
+   * (plain string, or a JSON object with api_key)
+   * Otherwise falls back to COINGECKO_API_KEY (local development)
+   * The key must belong to a paid plan, since it is sent to the Pro API
+   * @returns {Promise<string|undefined>} The API key, or undefined if not configured or not retrievable
+   */
+  async getCoingeckoApiKey() {
+    const secretArn = process.env.COINGECKO_API_KEY_SECRET_ARN;
+
+    if (!secretArn) {
+      return process.env.COINGECKO_API_KEY || undefined;
+    }
+
+    try {
+      const secret = await this.getSecret(secretArn);
+      const apiKey = typeof secret === 'object' ? secret?.api_key : secret;
+      return apiKey || undefined;
+    } catch {
+      // already logged by getSecret; fall back to keyless requests
+      return undefined;
+    }
+  }
 }
 
 // Create a singleton instance
@@ -142,4 +167,5 @@ module.exports = {
   // Convenience methods that use the singleton
   getSecret: secretArn => secretsManager.getSecret(secretArn),
   getIndexerConfig: () => secretsManager.getIndexerConfig(),
+  getCoingeckoApiKey: () => secretsManager.getCoingeckoApiKey(),
 };

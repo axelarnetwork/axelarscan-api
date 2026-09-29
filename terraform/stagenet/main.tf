@@ -98,18 +98,19 @@ resource "aws_lambda_function" "function" {
   publish       = true
   environment {
     variables = {
-      NODE_NO_WARNINGS      = 1
-      ENVIRONMENT           = var.environment
-      INDEXER_SECRET_ARN    = var.indexer_secret_arn
-      LOG_LEVEL             = var.log_level
-      DD_LAMBDA_HANDLER     = "dist/index.handler"
-      DD_SITE               = "datadoghq.com"
-      DD_API_KEY_SECRET_ARN = var.datadog_api_key_secret_arn
-      DD_TRACE_ENABLED      = false
-      DD_ENHANCED_METRICS   = false
-      DD_ENV                = var.environment
-      DD_SERVICE            = "${var.package_name}-${var.environment}"
-      DD_VERSION            = var.tag
+      NODE_NO_WARNINGS             = 1
+      ENVIRONMENT                  = var.environment
+      INDEXER_SECRET_ARN           = var.indexer_secret_arn
+      COINGECKO_API_KEY_SECRET_ARN = var.coingecko_api_key_secret_arn
+      LOG_LEVEL                    = var.log_level
+      DD_LAMBDA_HANDLER            = "dist/index.handler"
+      DD_SITE                      = "datadoghq.com"
+      DD_API_KEY_SECRET_ARN        = var.datadog_api_key_secret_arn
+      DD_TRACE_ENABLED             = false
+      DD_ENHANCED_METRICS          = false
+      DD_ENV                       = var.environment
+      DD_SERVICE                   = "${var.package_name}-${var.environment}"
+      DD_VERSION                   = var.tag
     }
   }
   image_config {

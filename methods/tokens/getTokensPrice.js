@@ -4,7 +4,6 @@ const moment = require('moment');
 const { read } = require('../../services/indexer');
 const {
   TOKEN_PRICE_COLLECTION,
-  TOKEN_API,
   CURRENCY,
   getAssets,
   getAssetData,
@@ -19,7 +18,7 @@ const {
   writeCache,
   normalizeCacheId,
 } = require('../../utils/cache');
-const { request } = require('../../utils/http');
+const { requestTokenAPI } = require('../../utils/coingecko');
 const { toCase, toArray } = require('../../utils/parser');
 const { lastString, find } = require('../../utils/string');
 const { isNumber, toNumber } = require('../../utils/number');
@@ -157,7 +156,7 @@ module.exports = async ({
         if (coingecko_id) {
           // get historical price from coingecko
           const { market_data } = {
-            ...(await request(TOKEN_API, {
+            ...(await requestTokenAPI({
               path: `/coins/${coingecko_id}/history`,
               params: {
                 id: coingecko_id,
@@ -236,7 +235,7 @@ module.exports = async ({
 
       if (!response) {
         // get tokens price from coingecko
-        response = await request(TOKEN_API, {
+        response = await requestTokenAPI({
           path: '/simple/price',
           params: { ids: ids.join(','), vs_currencies: currency },
         });
