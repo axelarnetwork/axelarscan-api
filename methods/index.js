@@ -30,14 +30,14 @@ const {
 } = require('./interchain');
 const {
   getMethods,
-  getChains,
+  getChainsWithIBCChannels,
   getAssets,
   getITSAssets,
   getContracts,
 } = require('../utils/config');
 
 const METHODS = {
-  getChains: () => getChains(),
+  getChains: () => getChainsWithIBCChannels(),
   getAssets: () => getAssets(),
   getITSAssets: () => getITSAssets(),
   getContracts: () => getContracts(),
