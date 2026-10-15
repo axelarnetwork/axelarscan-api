@@ -121,12 +121,6 @@ resource "aws_lambda_function" "function" {
   kms_key_arn = ""
 }
 
-resource "aws_lambda_provisioned_concurrency_config" "config" {
-  function_name                     = aws_lambda_function.function.function_name
-  provisioned_concurrent_executions = 10
-  qualifier                         = aws_lambda_function.function.version
-}
-
 resource "aws_lambda_permission" "api" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
