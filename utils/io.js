@@ -26,7 +26,7 @@ const finalizeResponse = (response, params, startTime = moment()) => {
     response &&
     typeof response === 'object' &&
     !Array.isArray(response) &&
-    !['getGMPDataMapping', 'getTransfersDataMapping'].includes(params.method)
+    params.method !== 'getGMPDataMapping'
   ) {
     response = { ...response, time_spent: moment().diff(startTime) };
   }
