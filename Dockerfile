@@ -1,6 +1,12 @@
-FROM public.ecr.aws/lambda/nodejs:20
+# CI sets REGISTRY to our ECR mirror of public.ecr.aws (same paths), which
+# avoids the public registry's per-IP pull limits; local builds use the default
+ARG REGISTRY=public.ecr.aws
 
-COPY --from=public.ecr.aws/datadog/lambda-extension:55 /opt/extensions/ /opt/extensions
+FROM ${REGISTRY}/datadog/lambda-extension:55 AS datadog-extension
+
+FROM ${REGISTRY}/lambda/nodejs:20
+
+COPY --from=datadog-extension /opt/extensions/ /opt/extensions
 
 # Copy package files first for better caching
 COPY package.json pnpm-lock.yaml ./
