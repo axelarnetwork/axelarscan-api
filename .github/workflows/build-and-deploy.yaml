@@ -117,6 +117,8 @@ jobs:
           push: true
           platforms: linux/amd64
           provenance: false
+          # Base images from our ECR mirror of public.ecr.aws (see Dockerfile)
+          build-args: REGISTRY=${{ steps.login-ecr.outputs.registry }}/mirror
           tags: ${{ steps.verify-tag.outputs.full_tag }}
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
