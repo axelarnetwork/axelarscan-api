@@ -130,7 +130,6 @@ jobs:
       matrix:
         environment:
           - devnet-amplifier
-          - stagenet
           - testnet
           - mainnet
     uses: ./.github/workflows/deploy.yaml
