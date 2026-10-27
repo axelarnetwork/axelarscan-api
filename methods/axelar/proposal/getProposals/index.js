@@ -2,6 +2,7 @@ const _ = require('lodash');
 const moment = require('moment');
 
 const { getLCDInstance } = require('../../utils');
+const { stripProposalWasmByteCode } = require('../utils');
 const { getAssets, getAssetData } = require('../../../../utils/config');
 const { request } = require('../../../../utils/http');
 const { toArray } = require('../../../../utils/parser');
@@ -36,6 +37,9 @@ module.exports = async () => {
             toArray(proposals).map(
               d =>
                 new Promise(async resolve => {
+                  // replace wasm bytecode with its checksum and size
+                  stripProposalWasmByteCode(d);
+
                   // extract content from legacy wrapper if present (v1 response for old proposals)
                   const legacyMsg = toArray(d.messages).find(
                     m => m?.['@type'] === '/cosmos.gov.v1.MsgExecLegacyContent'
@@ -51,9 +55,6 @@ module.exports = async () => {
                       description: d.summary,
                     };
                   }
-
-                  // normalize
-                  if (content) delete content.wasm_byte_code;
 
                   // handle both v1 (id) and v1beta1 (proposal_id)
                   d.proposal_id = toNumber(d.id || d.proposal_id);

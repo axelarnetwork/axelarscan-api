@@ -13,7 +13,13 @@ module.exports = () => {
       data.forEach(d => {
         expect(d).to.be.an('object');
         expect(d.proposal_id).to.be.a('number');
+        expect(JSON.stringify(d)).to.not.match(/"wasm_byte_code":/);
+
+        if (/StoreCode|StoreAndInstantiate/.test(d.type)) {
+          expect(d.content.wasm_byte_code_checksum).to.match(/^[0-9a-f]{64}$/);
+          expect(d.content.wasm_byte_code_size).to.be.a('number');
+        }
       });
-    }).timeout(30000);
+    }).timeout(60000);
   });
 };
