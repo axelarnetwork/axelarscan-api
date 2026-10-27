@@ -2,6 +2,7 @@ const moment = require('moment');
 
 const getVotes = require('./getVotes');
 const { getLCDInstance } = require('../../utils');
+const { stripProposalWasmByteCode } = require('../utils');
 const { getAssets, getAssetData } = require('../../../../utils/config');
 const { request } = require('../../../../utils/http');
 const { toArray } = require('../../../../utils/parser');
@@ -18,6 +19,9 @@ module.exports = async params => {
       path: `/cosmos/gov/v1/proposals/${id}`,
     })),
   };
+
+  // replace wasm bytecode with its checksum and size
+  stripProposalWasmByteCode(proposal);
 
   // extract content from legacy wrapper if present (v1 response for old proposals)
   const legacyMsg = toArray(proposal?.messages).find(
