@@ -572,6 +572,7 @@
         }
       },
       "blast": {
+        "deprecated": true,
         "chain_id": 81457,
         "chain_name": "blast",
         "maintainer_id": "blast",
