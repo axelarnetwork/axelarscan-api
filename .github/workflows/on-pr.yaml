@@ -12,6 +12,13 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # OIDC login to our ECR mirror of the base images; fork PRs (no OIDC) build from public.ecr.aws
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
 
     strategy:
       matrix:
@@ -41,10 +48,24 @@ jobs:
           echo "INDEXER_URL=http://localhost:9200" >> $GITHUB_ENV
           echo "DD_TRACE_ENABLED=false" >> $GITHUB_ENV
 
+      - name: Configure AWS credentials
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/ghwf-${{ github.event.repository.name }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076 # v2.0.1
+
       - name: Build Docker image
+        env:
+          MIRROR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
           echo "Building Docker image..."
-          docker build --platform linux/amd64 -t axelarscan-api:test .
+          docker build --platform linux/amd64 ${MIRROR_REGISTRY:+--build-arg REGISTRY=$MIRROR_REGISTRY/mirror} -t axelarscan-api:test .
           echo "Docker image built successfully"
           echo "DD_ENHANCED_METRICS=false" >> $GITHUB_ENV
 
