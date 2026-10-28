@@ -8,12 +8,11 @@ on:
         required: true
         type: string
       environment:
-        description: "Terraform environment to deploy (e.g. devnet-amplifier, stagenet, testnet, mainnet)"
+        description: "Terraform environment to deploy (e.g. devnet-amplifier, testnet, mainnet)"
         required: true
         type: choice
         options:
           - devnet-amplifier
-          - stagenet
           - testnet
           - mainnet
   workflow_call:
@@ -23,7 +22,7 @@ on:
         required: true
         type: string
       environment:
-        description: "Terraform environment to deploy (e.g. devnet-amplifier, stagenet, testnet, mainnet)"
+        description: "Terraform environment to deploy (e.g. devnet-amplifier, testnet, mainnet)"
         required: true
         type: string
 
@@ -79,9 +78,6 @@ jobs:
           case "${{ env.ENVIRONMENT }}" in
             "devnet-amplifier")
               echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_DEVNET_AMPLIFIER }}" >> $GITHUB_OUTPUT
-              ;;
-            "stagenet")
-              echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_STAGENET }}" >> $GITHUB_OUTPUT
               ;;
             "testnet")
               echo "indexer_secret_arn=${{ secrets.INDEXER_SECRET_ARN_TESTNET }}" >> $GITHUB_OUTPUT
