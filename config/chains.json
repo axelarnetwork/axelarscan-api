@@ -2948,6 +2948,40 @@
           "contract_path": "/address/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "arc": {
+        "chain_id": 5042,
+        "chain_name": "arc",
+        "gateway": {
+          "address": "0xD8346AEAaE536e2A98A7B2992CE32E58bd76EC3c"
+        },
+        "multisig_prover": {
+          "address": "axelar1y7es3yxqq9ryex9nytkjk4hl4mh727kmxwk7kp07jscw50p6htjqkt8hfg"
+        },
+        "voting_verifier": {
+          "address": "axelar1ex6c4hxf8xmxz35xqdq02ftwp6xngwhfddjdyj77adnewv7p8pws0l6x8p"
+        },
+        "endpoints": {
+          "rpc": ["https://rpc.mainnet.arc.io"]
+        },
+        "native_token": {
+          "name": "USDC",
+          "symbol": "USDC",
+          "decimals": 18
+        },
+        "name": "Arc",
+        "short_name": "ARC",
+        "image": "/logos/chains/arc.svg",
+        "color": "#2775ca",
+        "explorer": {
+          "name": "Arc Explorer",
+          "url": "https://explorer.arc.io",
+          "icon": "/logos/explorers/arc.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
       }
     }
   },
