@@ -4160,6 +4160,7 @@
         "prefix_chain_ids": ["xion-"]
       },
       "carbon": {
+        "deprecated": true,
         "chain_name": "carbon",
         "endpoints": {
           "lcd": [
@@ -4635,9 +4636,10 @@
         "prefix_address": "fx",
         "prefix_chain_ids": ["dhobyghaut"]
       },
-      "c4e": {
+      "chain4energy": {
+        "deprecated": true,
         "chain_id": "babajaga-1",
-        "chain_name": "c4e",
+        "chain_name": "chain4energy",
         "endpoints": {
           "lcd": ["https://lcd-testnet.c4e.io"],
           "timeout": {
