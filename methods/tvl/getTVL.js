@@ -893,7 +893,10 @@ module.exports = async params => {
       // caching
       await writeCache(cacheId, data, TOKEN_TVL_COLLECTION, true);
     }
-  } else {
+  } else if (isAllChains) {
+    // cache per asset only when every chain was computed; a request filtered
+    // by chain must not overwrite the asset-wide record that getTVLAlert and
+    // the TVL page read with a partial result
     for (const d of data.filter(d => d.success)) {
       // caching
       await writeCache(d.asset, [d], TOKEN_TVL_COLLECTION, true);
