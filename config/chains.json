@@ -4637,7 +4637,6 @@
         "prefix_chain_ids": ["dhobyghaut"]
       },
       "chain4energy": {
-        "deprecated": true,
         "chain_id": "babajaga-1",
         "chain_name": "chain4energy",
         "endpoints": {
