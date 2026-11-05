@@ -2,7 +2,6 @@
   "endpoints": {
     "mainnet": "https://api.axelarscan.io/api",
     "testnet": "https://testnet.api.axelarscan.io/api",
-    "stagenet": "https://stagenet.api.axelarscan.io/api",
     "devnet-amplifier": "https://devnet-amplifier.api.axelarscan.io/api"
   },
   "methods": [
