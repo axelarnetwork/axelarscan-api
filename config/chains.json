@@ -2982,6 +2982,40 @@
           "contract_path": "/token/{address}",
           "transaction_path": "/tx/{tx}"
         }
+      },
+      "robinhood": {
+        "chain_id": 4663,
+        "chain_name": "robinhood",
+        "gateway": {
+          "address": "0xD8346AEAaE536e2A98A7B2992CE32E58bd76EC3c"
+        },
+        "multisig_prover": {
+          "address": "axelar1kkxq0eym2alfu08srsrwj4922nwaxldvavp2e0nt4r67gqa7m7dqpfmlh0"
+        },
+        "voting_verifier": {
+          "address": "axelar1lssejjyhuh0ygglh4m2mxz6msfn63nsw8whv0vytr3ysvk2dh8gsr54u6p"
+        },
+        "endpoints": {
+          "rpc": ["https://rpc.mainnet.chain.robinhood.com"]
+        },
+        "native_token": {
+          "name": "Ethereum",
+          "symbol": "ETH",
+          "decimals": 18
+        },
+        "name": "Robinhood",
+        "short_name": "RHC",
+        "image": "/logos/chains/robinhood.png",
+        "color": "#00c805",
+        "explorer": {
+          "name": "Blockscout",
+          "url": "https://robinhoodchain.blockscout.com",
+          "icon": "/logos/explorers/robinhood.png",
+          "block_path": "/block/{block}",
+          "address_path": "/address/{address}",
+          "contract_path": "/token/{address}",
+          "transaction_path": "/tx/{tx}"
+        }
       }
     }
   },
