@@ -15,14 +15,6 @@
     "gmp_api": "https://testnet.api.axelarscan.io/gmp",
     "app": "https://testnet.axelarscan.io"
   },
-  "stagenet": {
-    "lcd": "http://stagenet.archive-node-lcd.axelarscan.io:80",
-    "lcd_archive": "http://stagenet.archive-node-lcd.axelarscan.io:80",
-    "validator_api": "https://g45hmsa0tg.execute-api.us-east-2.amazonaws.com",
-    "token_transfer_api": "https://glhbed8wmg.execute-api.us-east-2.amazonaws.com",
-    "gmp_api": "https://stagenet.api.axelarscan.io/gmp",
-    "app": "https://stagenet.axelarscan.io"
-  },
   "devnet-amplifier": {
     "lcd": "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80",
     "lcd_archive": "http://devnet-amplifier.archive-node-lcd.axelarscan.io:80",

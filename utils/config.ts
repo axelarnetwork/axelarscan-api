@@ -17,7 +17,7 @@ import tokens from '../config/tokens.json';
 import tvl from '../config/tvl.json';
 
 // Types
-type Environment = 'mainnet' | 'testnet' | 'stagenet' | 'devnet-amplifier';
+type Environment = 'mainnet' | 'testnet' | 'devnet-amplifier';
 type ChainType = 'evm' | 'cosmos' | 'amplifier' | 'vm';
 
 // Derive config types from JSON modules

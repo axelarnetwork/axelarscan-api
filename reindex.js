@@ -59,7 +59,6 @@ const run = async () => {
     {
       mainnet: 10734207,
       testnet: 11315731,
-      stagenet: 2697615,
       'devnet-amplifier': 4863269,
     }[ENVIRONMENT];
 
