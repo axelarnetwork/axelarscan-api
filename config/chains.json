@@ -39,6 +39,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://bsc-dataseed.bnbchain.org",
             "https://bsc.drpc.org",
             "https://api.zan.top/bsc-mainnet",
             "https://bsc-rpc.publicnode.com"
@@ -104,6 +105,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://api.avax.network/ext/bc/C/rpc",
             "https://avalanche.drpc.org",
             "https://avalanche-c-chain-rpc.publicnode.com",
             "https://1rpc.io/avax/c"
@@ -137,10 +139,10 @@
         },
         "endpoints": {
           "rpc": [
+            "https://rpc.fantom.network",
             "https://fantom.drpc.org",
             "https://rpc3.fantom.network",
-            "https://rpc2.fantom.network",
-            "https://rpc.fantom.network"
+            "https://rpc2.fantom.network"
           ]
         },
         "native_token": {
@@ -205,6 +207,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://arb1.arbitrum.io/rpc",
             "https://arbitrum.drpc.org",
             "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
             "https://1rpc.io/arb"
@@ -238,6 +241,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://mainnet.optimism.io",
             "https://optimism-rpc.publicnode.com",
             "https://1rpc.io/op",
             "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
@@ -362,6 +366,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://evm.kava.io",
             "https://evm.data.axelar.kava.io",
             "https://kava-evm.publicnode.com"
           ]
@@ -394,7 +399,10 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": ["https://api.chain.love/rpc/v2"]
+          "rpc": [
+            "https://api.node.glif.io/rpc/v1",
+            "https://api.chain.love/rpc/v2"
+          ]
         },
         "native_token": {
           "name": "Filecoin",
