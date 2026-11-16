@@ -1,4 +1,10 @@
 exports.handler = async (event = {}, context, callback) => {
+  // CORS preflight: API Gateway adds the CORS headers itself, so answer
+  // without loading or running any method
+  if (event.requestContext?.http?.method === 'OPTIONS') {
+    return { statusCode: 204 };
+  }
+
   const moment = require('moment');
 
   const METHODS = require('./methods');
