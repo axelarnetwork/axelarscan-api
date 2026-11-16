@@ -9,7 +9,11 @@
           "address": "0x4F4495243837681061C4743b74B3eEdf548D56A5"
         },
         "endpoints": {
-          "rpc": ["https://eth.blockrazor.xyz", "https://1rpc.io/eth"]
+          "rpc": [
+            "https://ethereum-rpc.publicnode.com",
+            "https://gateway.tenderly.co/public/mainnet",
+            "https://eth.api.pocket.network"
+          ]
         },
         "native_token": {
           "name": "Ethereum",
@@ -41,7 +45,6 @@
           "rpc": [
             "https://bsc-dataseed.bnbchain.org",
             "https://bsc.drpc.org",
-            "https://api.zan.top/bsc-mainnet",
             "https://bsc-rpc.publicnode.com"
           ]
         },
@@ -107,8 +110,7 @@
           "rpc": [
             "https://api.avax.network/ext/bc/C/rpc",
             "https://avalanche.drpc.org",
-            "https://avalanche-c-chain-rpc.publicnode.com",
-            "https://1rpc.io/avax/c"
+            "https://avalanche-c-chain-rpc.publicnode.com"
           ]
         },
         "native_token": {
