@@ -805,6 +805,7 @@
         "prefix_chain_ids": ["emoney-"]
       },
       "injective": {
+        "deprecated": true,
         "chain_id": "injective-1",
         "chain_name": "injective",
         "endpoints": {
@@ -878,6 +879,7 @@
         "prefix_chain_ids": ["crescent-"]
       },
       "kujira": {
+        "deprecated": true,
         "chain_id": "kaiyo-1",
         "chain_name": "kujira",
         "endpoints": {
@@ -988,6 +990,7 @@
         "prefix_chain_ids": ["secret-"]
       },
       "sei": {
+        "deprecated": true,
         "chain_id": "pacific-1",
         "chain_name": "sei",
         "endpoints": {
@@ -1027,6 +1030,7 @@
         "prefix_chain_ids": ["pacific-"]
       },
       "stargaze": {
+        "deprecated": true,
         "chain_id": "stargaze-1",
         "chain_name": "stargaze",
         "endpoints": {
@@ -1175,6 +1179,7 @@
         "prefix_chain_ids": ["kichain-"]
       },
       "evmos": {
+        "deprecated": true,
         "chain_id": "evmos_9001-2",
         "chain_name": "evmos",
         "endpoints": {
@@ -1353,6 +1358,7 @@
         "prefix_chain_ids": ["regen-"]
       },
       "umee": {
+        "deprecated": true,
         "chain_id": "umee-1",
         "chain_name": "umee",
         "endpoints": {
@@ -1496,6 +1502,7 @@
         "prefix_chain_ids": ["acre_"]
       },
       "stride": {
+        "deprecated": true,
         "chain_id": "stride-1",
         "chain_name": "stride",
         "endpoints": {
@@ -1683,6 +1690,7 @@
         "prefix_chain_ids": ["reb_"]
       },
       "archway": {
+        "deprecated": true,
         "chain_id": "archway-1",
         "chain_name": "archway",
         "endpoints": {
@@ -1718,6 +1726,7 @@
         "prefix_chain_ids": ["archway-"]
       },
       "provenance": {
+        "deprecated": true,
         "chain_id": "pio-mainnet-1",
         "chain_name": "provenance",
         "endpoints": {
@@ -2112,6 +2121,7 @@
         "prefix_chain_ids": ["fxcore"]
       },
       "c4e": {
+        "deprecated": true,
         "chain_id": "perun-1",
         "chain_name": "c4e",
         "endpoints": {
@@ -2292,6 +2302,7 @@
         "prefix_chain_ids": ["xion-"]
       },
       "elys": {
+        "deprecated": true,
         "chain_id": "elys-1",
         "chain_name": "elys",
         "endpoints": {
