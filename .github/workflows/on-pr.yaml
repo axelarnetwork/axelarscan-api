@@ -5,12 +5,14 @@ on:
     branches: [main]
   push:
     branches: [main]
+  # The merge queue runs the checks on the exact commit that lands on main.
+  merge_group:
 
 env:
   CI: true
 
 jobs:
-  test:
+  checks:
     runs-on: ubuntu-latest
     # OIDC login to our ECR mirror of the base images; fork PRs (no OIDC) build from public.ecr.aws
     permissions:
@@ -19,10 +21,6 @@ jobs:
     env:
       AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
-
-    strategy:
-      matrix:
-        node-version: ["20.19.4"]
 
     steps:
       - name: Checkout code
@@ -34,7 +32,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: .nvmrc
           cache: "pnpm"
 
       - name: Install dependencies
@@ -49,7 +47,7 @@ jobs:
           echo "DD_TRACE_ENABLED=false" >> $GITHUB_ENV
 
       - name: Configure AWS credentials
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           aws-region: ${{ env.AWS_REGION }}
@@ -57,7 +55,7 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         uses: aws-actions/amazon-ecr-login@062b18b96a7aff071d4dc91bc00c4c1a7945b076 # v2.0.1
 
       - name: Build Docker image
