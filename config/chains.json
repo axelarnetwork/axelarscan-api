@@ -10,9 +10,9 @@
         },
         "endpoints": {
           "rpc": [
-            "https://eth1.lava.build",
-            "https://eth.blockrazor.xyz",
-            "https://1rpc.io/eth"
+            "https://ethereum-rpc.publicnode.com",
+            "https://gateway.tenderly.co/public/mainnet",
+            "https://eth.api.pocket.network"
           ]
         },
         "native_token": {
@@ -43,9 +43,9 @@
         },
         "endpoints": {
           "rpc": [
-            "https://bsc.drpc.org",
-            "https://api.zan.top/bsc-mainnet",
-            "https://bsc-rpc.publicnode.com"
+            "https://bsc-rpc.publicnode.com",
+            "https://bsc-dataseed.bnbchain.org",
+            "https://bsc.drpc.org"
           ]
         },
         "native_token": {
@@ -76,9 +76,8 @@
         },
         "endpoints": {
           "rpc": [
-            "https://polygon.lava.build",
-            "https://1rpc.io/matic",
-            "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+            "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+            "https://1rpc.io/matic"
           ]
         },
         "native_token": {
@@ -109,9 +108,9 @@
         },
         "endpoints": {
           "rpc": [
+            "https://api.avax.network/ext/bc/C/rpc",
             "https://avalanche.drpc.org",
-            "https://avalanche-c-chain-rpc.publicnode.com",
-            "https://1rpc.io/avax/c"
+            "https://avalanche-c-chain-rpc.publicnode.com"
           ]
         },
         "native_token": {
@@ -142,11 +141,10 @@
         },
         "endpoints": {
           "rpc": [
+            "https://rpc.fantom.network",
             "https://fantom.drpc.org",
-            "https://fantom-rpc.publicnode.com",
             "https://rpc3.fantom.network",
-            "https://rpc2.fantom.network",
-            "https://rpc.fantom.network"
+            "https://rpc2.fantom.network"
           ]
         },
         "native_token": {
@@ -211,8 +209,7 @@
         },
         "endpoints": {
           "rpc": [
-            "https://arb1.lava.build",
-            "https://endpoints.omniatech.io/v1/arbitrum/one/public",
+            "https://arb1.arbitrum.io/rpc",
             "https://arbitrum.drpc.org",
             "https://arbitrum-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
             "https://1rpc.io/arb"
@@ -246,7 +243,7 @@
         },
         "endpoints": {
           "rpc": [
-            "https://optimism.lava.build",
+            "https://mainnet.optimism.io",
             "https://optimism-rpc.publicnode.com",
             "https://1rpc.io/op",
             "https://optimism-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
@@ -279,7 +276,11 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": ["https://developer-access-mainnet.base.org"]
+          "rpc": [
+            "https://base-rpc.publicnode.com",
+            "https://mainnet.base.org",
+            "https://base.drpc.org"
+          ]
         },
         "native_token": {
           "name": "Ethereum",
@@ -367,6 +368,7 @@
         },
         "endpoints": {
           "rpc": [
+            "https://evm.kava.io",
             "https://evm.data.axelar.kava.io",
             "https://kava-evm.publicnode.com"
           ]
@@ -399,7 +401,10 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": ["https://api.chain.love/rpc/v2"]
+          "rpc": [
+            "https://api.node.glif.io/rpc/v1",
+            "https://api.chain.love/rpc/v2"
+          ]
         },
         "native_token": {
           "name": "Filecoin",
@@ -428,10 +433,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": [
-            "https://rpc.linea.build",
-            "https://rpc.owlracle.info/linea/70d38ce1826c4a60bb2a8e05a6c8b20f"
-          ]
+          "rpc": ["https://rpc.linea.build"]
         },
         "native_token": {
           "name": "Ethereum",
@@ -463,7 +465,7 @@
           "address": "0xe432150cce91c13a887f7D836923d5597adD8E31"
         },
         "endpoints": {
-          "rpc": ["https://fullnode.parachain.centrifuge.io"]
+          "rpc": ["https://centrifuge-parachain.api.onfinality.io/public"]
         },
         "native_token": {
           "name": "Centrifuge",
