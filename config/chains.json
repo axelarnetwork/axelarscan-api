@@ -43,9 +43,9 @@
         },
         "endpoints": {
           "rpc": [
+            "https://bsc-rpc.publicnode.com",
             "https://bsc-dataseed.bnbchain.org",
-            "https://bsc.drpc.org",
-            "https://bsc-rpc.publicnode.com"
+            "https://bsc.drpc.org"
           ]
         },
         "native_token": {
@@ -76,8 +76,8 @@
         },
         "endpoints": {
           "rpc": [
-            "https://1rpc.io/matic",
-            "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+            "https://polygon-mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
+            "https://1rpc.io/matic"
           ]
         },
         "native_token": {
@@ -277,8 +277,8 @@
         },
         "endpoints": {
           "rpc": [
-            "https://mainnet.base.org",
             "https://base-rpc.publicnode.com",
+            "https://mainnet.base.org",
             "https://base.drpc.org"
           ]
         },
