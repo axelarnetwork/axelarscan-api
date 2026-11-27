@@ -3,7 +3,7 @@
     "lcd": "http://lcd.axelarscan.io:80",
     "lcd_archive": "http://archive-node-lcd.axelarscan.io:80",
     "validator_api": "https://ww5e4qrad0.execute-api.us-east-2.amazonaws.com",
-    "token_transfer_api": "https://xo550w4a8b.execute-api.us-east-2.amazonaws.com",
+    "token_transfer_api": "https://api.axelarscan.io/token",
     "gmp_api": "https://api.axelarscan.io/gmp",
     "app": "https://axelarscan.io"
   },
@@ -11,7 +11,7 @@
     "lcd": "http://testnet.lcd.axelarscan.io:80",
     "lcd_archive": "https://axelart.lava.build",
     "validator_api": "https://762da1qejd.execute-api.us-east-2.amazonaws.com",
-    "token_transfer_api": "https://dl5bgfjozd.execute-api.us-east-2.amazonaws.com",
+    "token_transfer_api": "https://testnet.api.axelarscan.io/token",
     "gmp_api": "https://testnet.api.axelarscan.io/gmp",
     "app": "https://testnet.axelarscan.io"
   },
